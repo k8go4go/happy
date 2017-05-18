@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>html_css</display-name>
+  <welcome-file-list>
+    <welcome-file>/jsp/index.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>login</servlet-name>
+    <servlet-class>kr.heartof.auction.service.member.LoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>join</servlet-name>
+    <servlet-class>kr.heartof.auction.service.member.JoinServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>qna</servlet-name>
+    <servlet-class>kr.heartof.auction.service.foruser.QnaServlet</servlet-class>
+  </servlet>
+   <servlet>
+    <servlet-name>qna_write</servlet-name>
+    <servlet-class>kr.heartof.auction.service.foruser.WriteBoardServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>login</servlet-name>
+    <url-pattern>/service/member/login.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>join</servlet-name>
+    <url-pattern>/service/member/join.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>qna</servlet-name>
+    <url-pattern>/service/foruser/qna.do</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>qna_write</servlet-name>
+    <url-pattern>/service/foruser/qna_write.do</url-pattern>
+  </servlet-mapping>
+</web-app>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>bit used auction</title>
+<link rel="stylesheet" type="text/css" href="resource/css/main.css" />
+<link rel="stylesheet" type="text/css" href="resource/css/member.css" />
+
+<script type="text/javascript">
+	function login() {
+		var form = document.getElementById('login_form');
+		var email = form.EMAIL;
+		var passwd = form.PASSWD;
+		var usr_cd = form.USR_CD;
+
+		if (!validationID(email.value)) {
+			EMAIL.focus();
+			alert("이메일 주소를 다시 입력해주시기 바랍니다.");
+			return;
+		}
+
+		if (!validationPasswd(passwd.value, cpasswd.value)) {
+			cpasswd.focus();
+			return;
+		}
+
+		form.method = 'get';
+		form.action = 'http://wwww.daum.net';
+		form.submit();
+
+		console.log(form);
+	}
+
+	function validationID(email) {
+		if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+			return true;
+		}
+		return false;
+	}
+
+	function cancel() {
+		var elements = document.getElementsByClassName('bitTxt');
+		
+		for(var i=0;  i < elements.length; i++) {
+			 elements[i].value = '';
+		}
+	}
+</script>
+
+<style type="text/css">
+#left, #center, #right {
+	display: inline-block;
+	zoom: 1;
+	padding: 5px;
+	vertical-align: middle;
+}
+
+#left {
+	width: 132px;
+}
+
+#center {
+	width: 432px;
+}
+
+#right {
+	width: 132px;
+}
+
+table {
+	width: 400px
+}
+
+th, td:nth-child(odd) {
+	width: 35%;
+	font: bold;
+	text-align: right;
+	margin: 10px;
+	padding: 10px;
+	text-shadow: 1px 1px 0px #BEE2F9;
+}
+
+#ZIPNO1, #ZIPNO2 {
+	text-align: center;
+}
+
+</style>
+
+</head>
+<body>
+	<div id="wrapper">
+		<div id="navigationwrap">
+			<div id="navigation">
+				<div>
+					<nav class="top_nav">
+						<ul id="menu-bar">
+							<li class="active"><a href="main.html">비트중고경매</a></li>
+							<li><a href="#">진행중인 경매</a>
+								<ul>
+									<li><a href="progressAuction.html">전자제품</a></li>
+									<li><a href="progressAuction.html">의류</a></li>
+									<li><a href="progressAuction.html">식품</a></li>
+									<li><a href="progressAuction.html">기타</a></li>
+								</ul></li>
+							<li><a href="#">이달의 최고 경매</a>
+								<ul>
+									<li><a href="doneAuction.html">전자제품</a></li>
+									<li><a href="doneAuction.html">의류</a></li>
+									<li><a href="doneAuction.html">식품</a></li>
+									<li><a href="doneAuction.html">기타</a></li>
+								</ul></li>
+							<li><a href="member.html">회원정보/회원가입</a></li>
+							<li><a href="login.html">로그인/로그아웃</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+		<div id="leftcolumnwrap">
+			<div id="leftcolumn">
+				<div id="lnb">
+					<ul>
+						<li><a href="monthlyAuction.html">경매이력보기</a></li>
+						<li><a href="monthlyEvent.html">이달의 이벤트</a></li>
+						<li><hr></li>
+						<li><a href="faq.html">F.A.Q</a></li>
+						<li><a href="aboutUs.html">About Us</a></li>
+						<li><a href="contactUs.html">Contact Us</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="contentwrap">
+			<div id="content">
+				<div id="left" class="over_container"></div>
+				<div id="center" class="over_container">
+					<form id="login_form" name="login_form">
+						<h1 style="font-size: 16px; text-align: center;">로그인</h1>
+						<hr>
+						<table>
+							<tr>
+								<th>회원구분</th>
+								<td>개인<input class="bitRadio" type="radio" name="USR_CD"
+									id="USR_CD" value="1" checked="checked" style="width: 20px;"
+									onclick="usercd();" /> 회사<input class="bitRadio" type="radio"
+									name="USR_CD" id="USR_CD" value="2" style="width: 20px;"
+									onclick="usercd();" /></td>
+							</tr>
+							<tr>
+								<th>이메일</th>
+								<td><input class="bitTxt" type="email" name="EMAIL"
+									id="EMAIL" placeholder="이메일을 입력하세요" required maxlength="50" /></td>
+							</tr>
+							<tr>
+								<th>비밀번호</th>
+								<td><input class="bitTxt" type="password" name="PASSWD"
+									id="PASSWD" placeholder="비밀번호를 입력하세요" required maxlength="10" /></td>
+							</tr>
+						</table>
+					</form>
+					<table>
+						<tr>
+							<td colspan="2" style="text-align: center;"><input
+								class="bitBtn" type="button" id="JOINBTN" value="회원가입"
+								onclick="login();" /> <input class="bitBtn" type="button"
+								id="CANCELBTN" value="취소" onclick="cancel();" /></td>
+						</tr>
+					</table>
+				</div>
+				<div id="right" class="over_container"></div>
+			</div>
+		</div>
+		<div id="footerwrap">
+			<div id="footer">
+				<p>This is the Footer</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
