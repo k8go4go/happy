@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import kr.heartof.auction.constant.CreDegCD;
 import kr.heartof.auction.constant.UserCD;
 import kr.heartof.auction.constant.WITHDRAWAL;
-import kr.heartof.auction.vo.member.CompanyUserVO;
-import kr.heartof.auction.vo.member.PrivateUser;
+import kr.heartof.auction.vo.member.ComUsrVO;
+import kr.heartof.auction.vo.member.PriUsrVO;
 import kr.heartof.auction.vo.member.UsrVO;
 
 public class JoinServlet extends HttpServlet {
@@ -43,8 +43,8 @@ public class JoinServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	private PrivateUser makePrivateUser(HttpServletRequest request) {
-		PrivateUser user = new PrivateUser();
+	private PriUsrVO makePrivateUser(HttpServletRequest request) {
+		PriUsrVO user = new PriUsrVO();
 		user.setADDRESS(request.getParameter("ADDRESS1") + " " + request.getParameter("ADDRESS2"));
 		user.setCRE_DEG_CD("");
 		user.setEMAIL(request.getParameter("EMAIL"));
@@ -60,8 +60,8 @@ public class JoinServlet extends HttpServlet {
 		return user;
 	}
 	
-	private CompanyUserVO makeCompanyUserVO(HttpServletRequest request) {
-		CompanyUserVO user = new CompanyUserVO();
+	private ComUsrVO makeCompanyUserVO(HttpServletRequest request) {
+		ComUsrVO user = new ComUsrVO();
 		user.setADDRESS(request.getParameter("ADDRESS1") + " " + request.getParameter("ADDRESS2"));
 		user.setCRE_DEG_CD(CreDegCD.REGULAR);
 		user.setEMAIL(request.getParameter("EMAIL"));

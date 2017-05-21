@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.heartof.auction.constant.UserCD;
-import kr.heartof.auction.vo.member.CompanyUserVO;
-import kr.heartof.auction.vo.member.PrivateUser;
+import kr.heartof.auction.vo.member.ComUsrVO;
+import kr.heartof.auction.vo.member.PriUsrVO;
 import kr.heartof.auction.vo.member.UsrVO;
 
 public class LoginServlet extends HttpServlet {
@@ -28,9 +28,9 @@ public class LoginServlet extends HttpServlet {
 		UsrVO user = null;
 		
 		if(request.getParameter("USR_CD").equals(UserCD.PRIVATE_USR)) {
-			user = new PrivateUser();
+			user = new PriUsrVO();
 		} else {
-			user = new CompanyUserVO();
+			user = new ComUsrVO();
 		}
 		
 		request.getSession().setAttribute("user", user);

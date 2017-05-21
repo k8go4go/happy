@@ -1,156 +1,115 @@
 package kr.heartof.auction.vo.member;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class UsrVO {
-	protected int USR_NO               ;
-	protected String USRID                ;
-	protected String EMAIL                ;
-	protected String TELNO                ;
-	protected String ZIPNO                ;
-	protected String ADDRESS              ;
-	protected Date REG_DATE             ;
-	protected String USR_CD               ;
-	protected String CRE_DEG_CD           ;
-	protected String WITHDRAWAL			 ;
-	
-	/**
-	 * @return the uSR_NO
-	 */
-	public int getUSR_NO() {
-		return USR_NO;
+	private int MEMB_NUM;
+	private String MEMB_ID;
+	private String SEC_NUM;
+	private String EMAIL;
+	private String TEL_NUM;
+	private String MOBIL_NUM;
+	private String ZIP_NUM;
+	private String ADDRESS;
+	private String DETA_ADDRESS;
+	private String CRE_DEG_CD;
+	private Timestamp REG_DTIME;
+	private String MEMB_CD;
+
+	public int getMEMB_NUM() {
+		return MEMB_NUM;
 	}
 
-	/**
-	 * @param uSR_NO the uSR_NO to set
-	 */
-	public void setUSR_NO(int uSR_NO) {
-		USR_NO = uSR_NO;
+	public void setMEMB_NUM(int mEMB_NUM) {
+		MEMB_NUM = mEMB_NUM;
 	}
 
-	/**
-	 * @return the uSRID
-	 */
-	public String getUSRID() {
-		return USRID;
+	public String getMEMB_ID() {
+		return MEMB_ID;
 	}
 
-	/**
-	 * @param uSRID the uSRID to set
-	 */
-	public void setUSRID(String uSRID) {
-		USRID = uSRID;
+	public void setMEMB_ID(String mEMB_ID) {
+		MEMB_ID = mEMB_ID;
 	}
 
-	/**
-	 * @return the tELNO
-	 */
-	public String getTELNO() {
-		return TELNO;
+	public String getSEC_NUM() {
+		return SEC_NUM;
 	}
 
-	/**
-	 * @param tELNO the tELNO to set
-	 */
-	public void setTELNO(String tELNO) {
-		TELNO = tELNO;
+	public void setSEC_NUM(String sEC_NUM) {
+		SEC_NUM = sEC_NUM;
 	}
 
-	/**
-	 * @return the zIPNO
-	 */
-	public String getZIPNO() {
-		return ZIPNO;
-	}
-
-	/**
-	 * @param zIPNO the zIPNO to set
-	 */
-	public void setZIPNO(String zIPNO) {
-		ZIPNO = zIPNO;
-	}
-
-	/**
-	 * @return the aDDRESS
-	 */
-	public String getADDRESS() {
-		return ADDRESS;
-	}
-
-	/**
-	 * @param aDDRESS the aDDRESS to set
-	 */
-	public void setADDRESS(String aDDRESS) {
-		ADDRESS = aDDRESS;
-	}
-
-	/**
-	 * @return the rEG_DATE
-	 */
-	public Date getREG_DATE() {
-		return REG_DATE;
-	}
-
-	/**
-	 * @param rEG_DATE the rEG_DATE to set
-	 */
-	public void setREG_DATE(Date rEG_DATE) {
-		REG_DATE = rEG_DATE;
-	}
-
-	/**
-	 * @return the uSR_CD
-	 */
-	public String getUSR_CD() {
-		return USR_CD;
-	}
-
-	/**
-	 * @param uSR_CD the uSR_CD to set
-	 */
-	public void setUSR_CD(String uSR_CD) {
-		USR_CD = uSR_CD;
-	}
-
-	/**
-	 * @return the cRE_DEG_CD
-	 */
-	public String getCRE_DEG_CD() {
-		return CRE_DEG_CD;
-	}
-
-	/**
-	 * @param cRE_DEG_CD the cRE_DEG_CD to set
-	 */
-	public void setCRE_DEG_CD(String cRE_DEG_CD) {
-		CRE_DEG_CD = cRE_DEG_CD;
-	}
-
-	/**
-	 * @return the wITHDRAWAL
-	 */
-	public String getWITHDRAWAL() {
-		return WITHDRAWAL;
-	}
-
-	/**
-	 * @param wITHDRAWAL the wITHDRAWAL to set
-	 */
-	public void setWITHDRAWAL(String wITHDRAWAL) {
-		WITHDRAWAL = wITHDRAWAL;
-	}
-
-	/**
-	 * @return the eMAIL
-	 */
 	public String getEMAIL() {
 		return EMAIL;
 	}
 
-	/**
-	 * @param eMAIL the eMAIL to set
-	 */
 	public void setEMAIL(String eMAIL) {
 		EMAIL = eMAIL;
-	}	
+	}
+
+	public String getTEL_NUM() {
+		return TEL_NUM;
+	}
+
+	public void setTEL_NUM(String tEL_NUM) {
+		TEL_NUM = tEL_NUM;
+	}
+
+	public String getMOBIL_NUM() {
+		return MOBIL_NUM;
+	}
+
+	public void setMOBIL_NUM(String mOBIL_NUM) {
+		MOBIL_NUM = mOBIL_NUM;
+	}
+
+	public String getZIP_NUM() {
+		return ZIP_NUM;
+	}
+
+	public void setZIP_NUM(String zIP_NUM) {
+		ZIP_NUM = zIP_NUM;
+	}
+
+	public String getADDRESS() {
+		return ADDRESS;
+	}
+
+	public void setADDRESS(String aDDRESS) {
+		ADDRESS = aDDRESS;
+	}
+
+	public String getDETA_ADDRESS() {
+		return DETA_ADDRESS;
+	}
+
+	public void setDETA_ADDRESS(String dETA_ADDRESS) {
+		DETA_ADDRESS = dETA_ADDRESS;
+	}
+
+	public String getCRE_DEG_CD() {
+		return CRE_DEG_CD;
+	}
+
+	public void setCRE_DEG_CD(String cRE_DEG_CD) {
+		CRE_DEG_CD = cRE_DEG_CD;
+	}
+
+	public Timestamp getREG_DTIME() {
+		return REG_DTIME;
+	}
+
+	public void setREG_DTIME(Timestamp rEG_DTIME) {
+		REG_DTIME = rEG_DTIME;
+	}
+
+	public String getMEMB_CD() {
+		return MEMB_CD;
+	}
+
+	public void setMEMB_CD(String mEMB_CD) {
+		MEMB_CD = mEMB_CD;
+	}
+
 }

@@ -1,171 +1,79 @@
 package kr.heartof.auction.vo;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class BoardVO implements Serializable {
-	private static final long serialVersionUID = 1L;
-	private int BOARD_SEQ;
-	private int BOARD_NO;
-	private int INDENT;
-	private int HIGH_BOARD_NO;
-	private String CONT;
-	private String USERID;
-	private int REVIEW_CNT;
+public class BoardVO {
+	private int BOARD_NUM;
 	private String TITLE;
+	private String CONT;
+	private String WRITER_NM;
+	private Date WRITE_DATE;
+	private int REVIEW_CNT;
+	private int HIGH_BOARD_NUM;
+	private int MEMB_NUM;
 
-	private String FILE_NM;
-	private String FILE_PATH;
-	private Date REG_DATE;
-
-	public int getINDENT() {
-		return INDENT;
+	public int getBOARD_NUM() {
+		return BOARD_NUM;
 	}
 
-	public void setINDENT(int iNTEND) {
-		INDENT = iNTEND;
+	public void setBOARD_NUM(int bOARD_NUM) {
+		BOARD_NUM = bOARD_NUM;
 	}
 
-	public int getBOARD_SEQ() {
-		return BOARD_SEQ;
-	}
-
-	public void setBOARD_SEQ(int bOARD_SEQ) {
-		BOARD_SEQ = bOARD_SEQ;
-	}
-
-	/**
-	 * @return the rEG_DATE
-	 */
-	public Date getREG_DATE() {
-		return REG_DATE;
-	}
-
-	/**
-	 * @param rEG_DATE
-	 *            the rEG_DATE to set
-	 */
-	public void setREG_DATE(Date rEG_DATE) {
-		REG_DATE = rEG_DATE;
-	}
-
-	/**
-	 * @return the bOARD_NO
-	 */
-	public int getBOARD_NO() {
-		return BOARD_NO;
-	}
-
-	/**
-	 * @param bOARD_NO
-	 *            the bOARD_NO to set
-	 */
-	public void setBOARD_NO(int bOARD_NO) {
-		BOARD_NO = bOARD_NO;
-	}
-
-	/**
-	 * @return the hIGH_BOARD_NO
-	 */
-	public int getHIGH_BOARD_NO() {
-		return HIGH_BOARD_NO;
-	}
-
-	/**
-	 * @param hIGH_BOARD_NO
-	 *            the hIGH_BOARD_NO to set
-	 */
-	public void setHIGH_BOARD_NO(int hIGH_BOARD_NO) {
-		HIGH_BOARD_NO = hIGH_BOARD_NO;
-	}
-
-	/**
-	 * @return the cONT
-	 */
-	public String getCONT() {
-		return CONT;
-	}
-
-	/**
-	 * @param cONT
-	 *            the cONT to set
-	 */
-	public void setCONT(String cONT) {
-		CONT = cONT;
-	}
-
-	/**
-	 * @return the uSERID
-	 */
-	public String getUSERID() {
-		return USERID;
-	}
-
-	/**
-	 * @param uSERID
-	 *            the uSERID to set
-	 */
-	public void setUSERID(String uSERID) {
-		USERID = uSERID;
-	}
-
-	/**
-	 * @return the rEVIEW_CNT
-	 */
-	public int getREVIEW_CNT() {
-		return REVIEW_CNT;
-	}
-
-	/**
-	 * @param rEVIEW_CNT
-	 *            the rEVIEW_CNT to set
-	 */
-	public void setREVIEW_CNT(int rEVIEW_CNT) {
-		REVIEW_CNT = rEVIEW_CNT;
-	}
-
-	/**
-	 * @return the tITLE
-	 */
 	public String getTITLE() {
 		return TITLE;
 	}
 
-	/**
-	 * @param tITLE
-	 *            the tITLE to set
-	 */
 	public void setTITLE(String tITLE) {
 		TITLE = tITLE;
 	}
 
-	/**
-	 * @return the fILE_NM
-	 */
-	public String getFILE_NM() {
-		return FILE_NM;
+	public String getCONT() {
+		return CONT;
 	}
 
-	/**
-	 * @param fILE_NM
-	 *            the fILE_NM to set
-	 */
-	public void setFILE_NM(String fILE_NM) {
-		FILE_NM = fILE_NM;
+	public void setCONT(String cONT) {
+		CONT = cONT;
 	}
 
-	/**
-	 * @return the fILE_PATH
-	 */
-	public String getFILE_PATH() {
-		return FILE_PATH;
+	public String getWRITER_NM() {
+		return WRITER_NM;
 	}
 
-	/**
-	 * @param fILE_PATH
-	 *            the fILE_PATH to set
-	 */
-	public void setFILE_PATH(String fILE_PATH) {
-		FILE_PATH = fILE_PATH;
+	public void setWRITER_NM(String wRITER_NM) {
+		WRITER_NM = wRITER_NM;
 	}
+
+	public Date getWRITE_DATE() {
+		return WRITE_DATE;
+	}
+
+	public void setWRITE_DATE(Date wRITE_DATE) {
+		WRITE_DATE = wRITE_DATE;
+	}
+
+	public int getREVIEW_CNT() {
+		return REVIEW_CNT;
+	}
+
+	public void setREVIEW_CNT(int rEVIEW_CNT) {
+		REVIEW_CNT = rEVIEW_CNT;
+	}
+
+	public int getHIGH_BOARD_NUM() {
+		return HIGH_BOARD_NUM;
+	}
+
+	public void setHIGH_BOARD_NUM(int hIGH_BOARD_NUM) {
+		HIGH_BOARD_NUM = hIGH_BOARD_NUM;
+	}
+
+	public int getMEMB_NUM() {
+		return MEMB_NUM;
+	}
+
+	public void setMEMB_NUM(int mEMB_NUM) {
+		MEMB_NUM = mEMB_NUM;
+	}
+
 }
