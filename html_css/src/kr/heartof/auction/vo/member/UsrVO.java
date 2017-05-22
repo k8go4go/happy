@@ -15,6 +15,15 @@ public class UsrVO {
 	private String CRE_DEG_CD;
 	private Timestamp REG_DTIME;
 	private String MEMB_CD;
+	private String WITHDRAWAL_CD = "N";
+	
+	public String getWITHDRAWAL_CD() {
+		return WITHDRAWAL_CD;
+	}
+
+	public void setWITHDRAWAL_CD(String wITHDRAWAL_CD) {
+		WITHDRAWAL_CD = wITHDRAWAL_CD;
+	}
 
 	public int getMEMB_NUM() {
 		return MEMB_NUM;

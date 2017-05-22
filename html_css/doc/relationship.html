@@ -1,0 +1,853 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>관계 정의서(HTML)</title>
+<style type="text/css">
+<!--
+.root {
+	border-spacing: 0px;
+	width: 1024px;
+}
+.under-line {
+	border-bottom: solid 1px gray;
+}
+.right-line {
+	border-right: solid 1px gray;
+}
+.left-line {
+	border-left: solid 1px gray;
+}
+th {
+	background-color: #eee;
+}
+.header {
+	margin-bottom: 0px;
+}
+.footter {
+	margin-top: 0px;
+	margin-bottom: 40px;
+	border-bottom: solid 2px black;
+}
+tr.first-row td,tr.first-row th {
+	border-top: solid 2px black;
+}
+tr.last-row td,tr.last-row th {
+	border-bottom: solid 2px black;
+}
+-->
+</style>
+</head>
+<body>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_USR_TO_PRI_USR</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">USR</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">PRI_USR</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">MEMB_NUM</td>
+			<td class="right-line">MEMB_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_USR_TO_COM_USR</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">USR</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">COM_USR</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">MEMB_NUM</td>
+			<td class="right-line">MEMB_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_MGR_TO_MGR</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">MGR</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">MGR</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">비식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">MGR_NUM</td>
+			<td class="right-line">HIGH_MGR_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_USR_TO_MEMBERSHIP</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">USR</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">MEMBERSHIP</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">MEMB_NUM</td>
+			<td class="right-line">MEMB_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_USR_TO_ELEC_WALLET</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">USR</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">ELEC_WALLET</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">MEMB_NUM</td>
+			<td class="right-line">MEMB_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_BOARD_TO_BOARD</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">BOARD</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">BOARD</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">비식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">BOARD_NUM</td>
+			<td class="right-line">HIGH_BOARD_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_USR_TO_BOARD</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">USR</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">BOARD</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">비식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">MEMB_NUM</td>
+			<td class="right-line">MEMB_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_BOARD_TO_ATTAC_FILE</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">BOARD</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">ATTAC_FILE</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">비식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">BOARD_NUM</td>
+			<td class="right-line">BOARD_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_PROD_CATE_TO_PROD_CATE</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">PROD_CATE</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">PROD_CATE</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">비식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">PROD_CATE_NUM</td>
+			<td class="right-line">HIGH_PROD_CATE_NUM</td>
+			<td>CHAR(3)</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_PROD_CATE_TO_PROD</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">PROD_CATE</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">PROD</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">비식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">PROD_CATE_NUM</td>
+			<td class="right-line">PROD_CATE_NUM</td>
+			<td>CHAR(3)</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_PROD_TO_PROD_ATTAC_FILE</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">PROD</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">PROD_ATTAC_FILE</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">비식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">PROD_NUM</td>
+			<td class="right-line">PROD_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_USR_TO_CRE_WARN</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">USR</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">CRE_WARN</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">비식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">MEMB_NUM</td>
+			<td class="right-line">MEMB_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_USR_TO_REG_AUC</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">USR</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">REG_AUC</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">비식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">MEMB_NUM</td>
+			<td class="right-line">MEMB_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_PROD_TO_REG_AUC</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">PROD</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">REG_AUC</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">비식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">PROD_NUM</td>
+			<td class="right-line">PROD_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_AUC_TYPE_TO_REG_AUC</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">AUC_TYPE</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">REG_AUC</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">비식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">AUC_TYPE_NUM</td>
+			<td class="right-line">AUC_TYPE_NUM</td>
+			<td>CHAR(1)</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_PROD_CATE_TO_REG_AUC</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">PROD_CATE</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">REG_AUC</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">비식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ONE_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">PROD_CATE_NUM</td>
+			<td class="right-line">PROD_CATE_NUM</td>
+			<td>CHAR(3)</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_REG_AUC_TO_REG_REJ</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">REG_AUC</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">REG_REJ</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">AUC_REG_NUM</td>
+			<td class="right-line">AUC_REG_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_USR_TO_REG_BIDDING</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">USR</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">REG_BIDDING</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">비식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">MEMB_NUM</td>
+			<td class="right-line">MEMB_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_REG_AUC_TO_REG_BIDDING</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">REG_AUC</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">REG_BIDDING</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">비식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">AUC_REG_NUM</td>
+			<td class="right-line">AUC_REG_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_REG_BIDDING_TO_BIDDING</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">REG_BIDDING</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">BIDDING</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">비식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">BID_NUM</td>
+			<td class="right-line">BID_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_BIDDING_TO_SUCC_BIDDING</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">BIDDING</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">SUCC_BIDDING</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">BID_PRICE_REG_NUM</td>
+			<td class="right-line">SBID_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_SUCC_BIDDING_TO_PAY</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">SUCC_BIDDING</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">PAY</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">비식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">SBID_NUM</td>
+			<td class="right-line">SBID_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_SUCC_BIDDING_TO_DELI</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">SUCC_BIDDING</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">DELI</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">비식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">SBID_NUM</td>
+			<td class="right-line">SBID_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_DELI_TO_DELI_DETAIL</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">DELI</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">DELI_DETAIL</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">DELI_NUM</td>
+			<td class="right-line">DELI_COST_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_DELI_TO_REC</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">DELI</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">REC</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">DELI_NUM</td>
+			<td class="right-line">DELI_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_REC_TO_REC_REJ</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">REC</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">REC_REJ</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ZERO_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">DELI_NUM</td>
+			<td class="right-line">DELI_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+	<table class="root header">
+		<tr class="first-row">
+			<th class="right-line under-line">관계명</th>
+			<td class="right-line under-line"">FK_REG_AUC_TO_REG_AUC_FILE</td>
+			<th class="right-line under-line"" >부모 테이블</th>
+			<td class="under-line right-line">REG_AUC</td>
+			<th class="right-line under-line"" >자식 테이블</th>
+			<td class="under-line">REG_AUC_FILE</td>
+		</tr> 
+		<tr class="last-row">
+			<th class="right-line">식별 유형</th>
+			<td class="right-line">비식별</td>
+			<th class="right-line">부모 차수</th>
+			<td class="right-line">EXACTLY_ONE</td>
+			<th class="right-line">자식 차수</th>
+			<td>ONE_OR_MORE</td>
+		</tr>
+	</table>
+	<table class="root footter">
+		<tr class="last-row">
+			<th class="right-line under-line">부모 컬럼</th>
+			<th class="right-line under-line">자식 컬럼</th>
+			<th class="under-line">데이터 타입</th>
+		</tr>
+		<tr>
+			<td class="right-line">AUC_REG_NUM</td>
+			<td class="right-line">AUC_REG_NUM</td>
+			<td>INTEGER</td>
+		</tr>
+	</table>
+</body>
+</html>

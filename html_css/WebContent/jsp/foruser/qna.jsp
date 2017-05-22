@@ -143,18 +143,20 @@ function initViewCount() {
 					<c:choose>
 					<c:when test="${not empty boardList}" >
 					<c:forEach var="board" items="${boardList}" >
-						<tr onmouseover="view(${board.BOARD_SEQ});">
-							<td><c:out value="${board.BOARD_SEQ}"/></td>
-							<td><img style="width:20px;vertical-align: middle;" src="${myPath}/${board.FILE_PATH}/${board.FILE_NM}" /></td>
+						<tr onmouseover="view(${board.BOARD_NUM});">
+							<td><c:out value="${board.BOARD_NUM}"/></td>
+							<td>
+								<img style="width:20px;vertical-align: middle;" src="${myPath}/${board.attacFileVO.REAL_PATH}/${board.attacFileVO.REAL_NM}" />
+							</td>
 							<td>
 							<c:forEach var="i" begin="1" end="${board.INDENT}" step="1" >
 								<img style="vertical-align: middle;" src="${myPath}/resource/img/common/indent.jpg">
 							</c:forEach>
 							<c:out value="${board.TITLE}"/>
 							</td>
-							<td><c:out value="${board.USERID}"/></td>
+							<td><c:out value="${board.MEMB_NUM}"/></td>
 							<td><c:out value="${board.REVIEW_CNT}"/></td>
-							<td><fmt:formatDate value="${board.REG_DATE}" pattern="yyyy-MM-dd"/></td>
+							<td><fmt:formatDate value="${board.WRITE_DATE}" pattern="yyyy-MM-dd"/></td>
 						</tr>
 						<tr style="display:none" class="answer">
 							<td colspan="6" style="font-size:14px; letter-spacing: 3px;">	

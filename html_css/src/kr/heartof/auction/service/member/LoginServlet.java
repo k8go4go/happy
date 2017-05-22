@@ -29,9 +29,13 @@ public class LoginServlet extends HttpServlet {
 		
 		if(request.getParameter("USR_CD").equals(UserCD.PRIVATE_USR)) {
 			user = new PriUsrVO();
+			user.setMEMB_CD(UserCD.PRIVATE_USR);
 		} else {
 			user = new ComUsrVO();
+			user.setMEMB_CD(UserCD.COMPANY_USR);
 		}
+		user.setMEMB_NUM(1);
+		user.setEMAIL(request.getParameter("EMAIL"));
 		
 		request.getSession().setAttribute("user", user);
 		response.sendRedirect(request.getContextPath() + "/jsp/index.jsp");

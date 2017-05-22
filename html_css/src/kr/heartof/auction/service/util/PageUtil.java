@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import kr.heartof.auction.service.dao.BoardDAO;
 import kr.heartof.auction.service.foruser.dao.QnaDAO;
-import kr.heartof.auction.vo.BoardVO;
+import kr.heartof.auction.vo.foruser.BoardVO;
 
 public class PageUtil {
 	// 한 화면에 보여질 게시물 갯수 정보

@@ -10,8 +10,6 @@
 <script type="text/javascript">
 	function qna_write() {
 		var form = document.getElementById('writeForm');
-		var title = form.TITLE;
-		var cont = form.CONT;
 
 		if(!required(form)) {
 			alert("필수사항을 입력해주시기 바랍니다.");

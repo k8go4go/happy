@@ -2,7 +2,7 @@ package kr.heartof.auction.service.dao;
 
 import java.util.List;
 
-import kr.heartof.auction.vo.BoardVO;
+import kr.heartof.auction.vo.foruser.BoardVO;
 
 public interface BoardDAO {
 	public List<BoardVO> getBoardList(int currentPage, int viewCount);

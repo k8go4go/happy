@@ -45,14 +45,15 @@ public class JoinServlet extends HttpServlet {
 	
 	private PriUsrVO makePrivateUser(HttpServletRequest request) {
 		PriUsrVO user = new PriUsrVO();
-		user.setADDRESS(request.getParameter("ADDRESS1") + " " + request.getParameter("ADDRESS2"));
+		user.setADDRESS(request.getParameter("ADDRESS1"));
+		user.setDETA_ADDRESS(request.getParameter("ADDRESS2"));
 		user.setCRE_DEG_CD("");
 		user.setEMAIL(request.getParameter("EMAIL"));
-		user.setTELNO(request.getParameter("TELNO"));
-		user.setUSR_CD(request.getParameter("TELNO"));
-		user.setUSRID(request.getParameter("EMAIL"));
-		user.setWITHDRAWAL("");
-		user.setZIPNO(request.getParameter("ZIPNO1") + "-" + request.getParameter("ZIPNO2"));
+		user.setTEL_NUM(request.getParameter("TEL_NUM"));
+		user.setMEMB_CD(request.getParameter("MEMB_CD"));
+		user.setMEMB_ID(request.getParameter("MEMB_ID"));
+		user.setWITHDRAWAL_CD(WITHDRAWAL.WITHDRAWAL_N);
+		user.setZIP_NUM(request.getParameter("ZIPNO1") + "-" + request.getParameter("ZIPNO2"));
 		
 		user.setNM(request.getParameter("NM"));
 		user.setNM(request.getParameter("SOCIAL_NO"));
@@ -62,19 +63,20 @@ public class JoinServlet extends HttpServlet {
 	
 	private ComUsrVO makeCompanyUserVO(HttpServletRequest request) {
 		ComUsrVO user = new ComUsrVO();
-		user.setADDRESS(request.getParameter("ADDRESS1") + " " + request.getParameter("ADDRESS2"));
+		user.setADDRESS(request.getParameter("ADDRESS1"));
+		user.setDETA_ADDRESS(request.getParameter("ADDRESS2"));
 		user.setCRE_DEG_CD(CreDegCD.REGULAR);
 		user.setEMAIL(request.getParameter("EMAIL"));
-		user.setTELNO(request.getParameter("TELNO"));
-		user.setUSR_CD(request.getParameter("TELNO"));
-		user.setUSRID(request.getParameter("EMAIL"));
-		user.setWITHDRAWAL(WITHDRAWAL.WITHDRAWAL_N);
-		user.setZIPNO(request.getParameter("ZIPNO1") + "-" + request.getParameter("ZIPNO2"));
+		user.setTEL_NUM(request.getParameter("TEL_NUM"));
+		user.setMEMB_CD(request.getParameter("MEMB_CD"));
+		user.setMEMB_ID(request.getParameter("MEMB_ID"));
+		user.setWITHDRAWAL_CD(WITHDRAWAL.WITHDRAWAL_N);
+		user.setZIP_NUM(request.getParameter("ZIPNO1") + "-" + request.getParameter("ZIPNO2"));
 		
-		user.setCOM_NM(request.getParameter("COM_NM"));
+		user.setCORP_NM(request.getParameter("CORP_NM"));
 		user.setCEO_NM(request.getParameter("CEO_NM"));
-		user.setCHG_NM(request.getParameter("CHG_NM"));
-		user.setBUS_NO(request.getParameter("BUS_NO"));
+		user.setCHGR_NM(request.getParameter("CHGR_NM"));
+		user.setBUS_NUM(request.getParameter("BUS_NUM"));
 		
 		return user;
 	}

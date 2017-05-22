@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.heartof.auction.service.foruser.dao.QnaDAOImpl;
 import kr.heartof.auction.service.util.PageUtil;
-import kr.heartof.auction.vo.BoardVO;
+import kr.heartof.auction.vo.foruser.BoardVO;
 
 public class QnaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

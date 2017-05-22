@@ -5,6 +5,15 @@ public class ComUsrVO extends UsrVO {
 	private String CORP_NM;
 	private String CEO_NM;
 	private String CHGR_NM;
+	private String BUS_NUM;
+
+	public String getBUS_NUM() {
+		return BUS_NUM;
+	}
+
+	public void setBUS_NUM(String bUS_NUM) {
+		BUS_NUM = bUS_NUM;
+	}
 
 	public int getMEMB_NUM() {
 		return MEMB_NUM;
