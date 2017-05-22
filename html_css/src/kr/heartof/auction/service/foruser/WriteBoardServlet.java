@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -14,6 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+
+import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 
 import kr.heartof.auction.constant.UserCD;
 import kr.heartof.auction.service.foruser.dao.QnaDAO;
@@ -81,14 +85,12 @@ public class WriteBoardServlet extends HttpServlet {
 	}
 
 	private void createFile(HttpServletRequest request, BoardVO board) throws IOException, ServletException {
-		OutputStream out = null;
-	    InputStream filecontent = null;
-	    final Part filePart = request.getPart("UPLOADFILE");
-	    final String fileName = getFileName(filePart);
+		ByteArrayOutputStream out = null;
+	    InputStream filecontent = request.getInputStream();
 	    
 		try {
-			out = new FileOutputStream(request.getContextPath() + File.separator + "download" + File.separator + fileName);
-			filecontent = filePart.getInputStream();
+//			request.getContextPath() + File.separator + "download" + File.separator + fileName
+			out = new ByteArrayOutputStream(10 * 1024 * 1024);
 
 			int read = 0;
 			final byte[] bytes = new byte[1024];
@@ -96,6 +98,9 @@ public class WriteBoardServlet extends HttpServlet {
 			while ((read = filecontent.read(bytes)) != -1) {
 				out.write(bytes, 0, read);
 			}
+			
+			byte[] readData = out.toByteArray();
+			String fileName = getFileName(readData);
 			
 			AttacFileVO fileVO = new AttacFileVO();
 		    fileVO.setREAL_NM(fileName);
@@ -122,10 +127,17 @@ public class WriteBoardServlet extends HttpServlet {
 		return null;
 	}
 	
-	private String getFileName(final Part part) {
-		for (String content : part.getHeader("content-disposition").split(";")) {
-			if (content.trim().startsWith("filename")) {
-				return content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
+	private String getFileName(byte[] readData) throws UnsupportedEncodingException {
+		String content = new String(readData, "UTF-8");		
+		String[] conts = content.split(";");		
+		for(String data : conts) {
+			if (data.trim().startsWith("filename")) {
+				String[] interConts = data.trim().split("\\r\\n");
+				for(String interData : interConts) {
+					if(interData.trim().startsWith("filename")) {
+						return interData.substring(interData.indexOf('=') + 1).trim().replaceAll("\"", "");
+					}
+				}
 			}
 		}
 		return null;
