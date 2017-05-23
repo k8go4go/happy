@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<e:DomainDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:e="http://exerd.tomato.com/model" UUID="DDefinition_uNGPMD4bEeePSo3tKksWAw" productId="com.tomato.db.oracle_10g" version="2.4.7.20161226-2038">
+  <domain UUID="Domain_uNGPMT4bEeePSo3tKksWAw" name="문자" suggestedDataType="VARCHAR2(255)">
+    <domain UUID="Domain_uNGPMj4bEeePSo3tKksWAw" name="우편번호 " suggestedDataType="VARCHAR(6)"/>
+    <domain UUID="Domain_uNGPMz4bEeePSo3tKksWAw" name="회원ID" suggestedDataType="VARCHAR(50)"/>
+    <domain UUID="Domain_uNGPND4bEeePSo3tKksWAw" name="비밀번호 " suggestedDataType="VARCHAR(50)"/>
+    <domain UUID="Domain_uNGPNT4bEeePSo3tKksWAw" name="핸드폰번호" suggestedDataType="VARCHAR(13)"/>
+    <domain UUID="Domain_uNGPNj4bEeePSo3tKksWAw" name="상세주소" suggestedDataType="VARCHAR(255)"/>
+    <domain UUID="Domain_uNGPNz4bEeePSo3tKksWAw" name="주민등록번호" suggestedDataType="VARCHAR2(13)"/>
+    <domain UUID="Domain_uNGPOD4bEeePSo3tKksWAw" name="주소"/>
+    <domain UUID="Domain_uNGPOT4bEeePSo3tKksWAw" name="웹주소"/>
+    <domain UUID="Domain_uNGPOj4bEeePSo3tKksWAw" name="전화번호" suggestedDataType="VARCHAR2(30)"/>
+    <domain UUID="Domain_uNGPOz4bEeePSo3tKksWAw" name="이메일" suggestedDataType="VARCHAR2(40)"/>
+    <domain UUID="Domain_uNGPPD4bEeePSo3tKksWAw" name="멤버쉽카드번호" suggestedDataType="VARCHAR(16)"/>
+    <domain UUID="Domain_uNGPPT4bEeePSo3tKksWAw" name="파일경로" suggestedDataType="VARCHAR(255)"/>
+    <domain UUID="Domain_uNGPPj4bEeePSo3tKksWAw" name="비고" suggestedDataType="VARCHAR(255)"/>
+    <domain UUID="Domain_uNGPPz4bEeePSo3tKksWAw" name="상품분류설명" suggestedDataType="VARCHAR(255)"/>
+    <domain UUID="Domain_uNGPQD4bEeePSo3tKksWAw" name="짧은내용" suggestedDataType="VARCHAR(255)"/>
+    <domain UUID="Domain_uNGPQT4bEeePSo3tKksWAw" name="내용" suggestedDataType="LONG TEXT"/>
+  </domain>
+  <domain UUID="Domain_uNGPQj4bEeePSo3tKksWAw" name="숫자" suggestedDataType="INTEGER">
+    <domain UUID="Domain_uNGPQz4bEeePSo3tKksWAw" name="금액"/>
+    <domain UUID="Domain_uNGPRD4bEeePSo3tKksWAw" name="시작가격" suggestedDataType="INTEGER"/>
+    <domain UUID="Domain_uNGPRT4bEeePSo3tKksWAw" name="발급회수" suggestedDataType="SMALLINT"/>
+    <domain UUID="Domain_uNGPRj4bEeePSo3tKksWAw" name="포인트" suggestedDataType="INTEGER"/>
+    <domain UUID="Domain_uNGPRz4bEeePSo3tKksWAw" name="조회수" suggestedDataType="INTEGER"/>
+    <domain UUID="Domain_uNGPSD4bEeePSo3tKksWAw" name="수량" suggestedDataType="SMALLINT"/>
+    <domain UUID="Domain_uNGPST4bEeePSo3tKksWAw" name="파일사이즈" suggestedDataType="INTEGER"/>
+  </domain>
+  <domain UUID="Domain_uNGPSj4bEeePSo3tKksWAw" name="일시" suggestedDataType="DATE">
+    <domain UUID="Domain_uNGPSz4bEeePSo3tKksWAw" name="발급일시" suggestedDataType="TIMESTAMP"/>
+    <domain UUID="Domain_uNGPTD4bEeePSo3tKksWAw" name="종료일시" suggestedDataType="TIMESTAMP"/>
+    <domain UUID="Domain_uNGPTT4bEeePSo3tKksWAw" name="시작일시" suggestedDataType="TIMESTAMP"/>
+    <domain UUID="Domain_uNGPTj4bEeePSo3tKksWAw" name="출시일" suggestedDataType="DATE"/>
+    <domain UUID="Domain_uNGPTz4bEeePSo3tKksWAw" name="입찰번호" suggestedDataType="INTEGER"/>
+    <domain UUID="Domain_uNGPUD4bEeePSo3tKksWAw" name="등록일시" suggestedDataType="TIMESTAMP"/>
+    <domain UUID="Domain_uNGPUT4bEeePSo3tKksWAw" name="입찰일시" suggestedDataType="TIMESTAMP"/>
+    <domain UUID="Domain_uNGPUj4bEeePSo3tKksWAw" name="작성일시" suggestedDataType="DATE"/>
+  </domain>
+  <domain UUID="Domain_uNGPUz4bEeePSo3tKksWAw" name="코드" suggestedDataType="CHAR(1)">
+    <domain UUID="Domain_uNGPVD4bEeePSo3tKksWAw" name="수령확인" suggestedDataType="CHAR(1)"/>
+    <domain UUID="Domain_uNGPVT4bEeePSo3tKksWAw" name="회원구분" suggestedDataType="CHAR(1)"/>
+    <domain UUID="Domain_uNGPVj4bEeePSo3tKksWAw" name="등급" suggestedDataType="CHAR(1)"/>
+    <domain UUID="Domain_uNGPVz4bEeePSo3tKksWAw" name="결재방법" suggestedDataType="CHAR(1)"/>
+    <domain UUID="Domain_uNGPWD4bEeePSo3tKksWAw" name="낙찰상태" suggestedDataType="CHAR(1)"/>
+    <domain UUID="Domain_uNGPWT4bEeePSo3tKksWAw" name="경매유형코드" suggestedDataType="CHAR(1)"/>
+    <domain UUID="Domain_uNG2QD4bEeePSo3tKksWAw" name="승인구분" suggestedDataType="CHAR(1)"/>
+    <domain UUID="Domain_uNG2QT4bEeePSo3tKksWAw" name="상품분류코드" suggestedDataType="CHAR(3)"/>
+    <domain UUID="Domain_uNG2Qj4bEeePSo3tKksWAw" name="신용등급구분 " suggestedDataType="CHAR(1)"/>
+  </domain>
+  <domain UUID="Domain_uNG2Qz4bEeePSo3tKksWAw" name="번호" suggestedDataType="INTEGER">
+    <domain UUID="Domain_uNG2RD4bEeePSo3tKksWAw" name="회원번호" suggestedDataType="INTEGER"/>
+    <domain UUID="Domain_uNG2RT4bEeePSo3tKksWAw" name="게시판번호" suggestedDataType="INTEGER"/>
+    <domain UUID="Domain_uNG2Rj4bEeePSo3tKksWAw" name="경매등록번호" suggestedDataType="INTEGER"/>
+    <domain UUID="Domain_uNG2Rz4bEeePSo3tKksWAw" name="관리자번호" suggestedDataType="INTEGER"/>
+    <domain UUID="Domain_uNG2SD4bEeePSo3tKksWAw" name="첨부파일번호" suggestedDataType="INTEGER"/>
+    <domain UUID="Domain_uNG2ST4bEeePSo3tKksWAw" name="경고번호" suggestedDataType="INTEGER"/>
+    <domain UUID="Domain_uNG2Sj4bEeePSo3tKksWAw" name="상품번호" suggestedDataType="INTEGER"/>
+  </domain>
+  <domain UUID="Domain_uNG2Sz4bEeePSo3tKksWAw" name="이름" suggestedDataType="VARCHAR2(50)">
+    <domain UUID="Domain_uNG2TD4bEeePSo3tKksWAw" name="경매유형명" suggestedDataType="VARCHAR(50)"/>
+    <domain UUID="Domain_uNG2TT4bEeePSo3tKksWAw" name="상품명" suggestedDataType="VARCHAR(50)"/>
+    <domain UUID="Domain_uNG2Tj4bEeePSo3tKksWAw" name="경고명" suggestedDataType="VARCHAR(50)"/>
+    <domain UUID="Domain_uNG2Tz4bEeePSo3tKksWAw" name="상품분류명" suggestedDataType="VARCHAR(50)"/>
+    <domain UUID="Domain_uNG2UD4bEeePSo3tKksWAw" name="파일이름" suggestedDataType="VARCHAR(100)"/>
+    <domain UUID="Domain_uNG2UT4bEeePSo3tKksWAw" name="담당자이름" suggestedDataType="VARCHAR(50)"/>
+    <domain UUID="Domain_uNG2Uj4bEeePSo3tKksWAw" name="대표자이름" suggestedDataType="VARCHAR(50)"/>
+    <domain UUID="Domain_uNG2Uz4bEeePSo3tKksWAw" name="회사이름" suggestedDataType="VARCHAR(50)"/>
+    <domain UUID="Domain_uNG2VD4bEeePSo3tKksWAw" name="관리자이름" suggestedDataType="VARCHAR(50)"/>
+    <domain UUID="Domain_uNG2VT4bEeePSo3tKksWAw" name="작성자이름" suggestedDataType="VARCHAR(50)"/>
+  </domain>
+</e:DomainDefinition>
