@@ -29,9 +29,8 @@ public class QnaDAOImpl implements QnaDAO {
 					   "기본적으로 forEach는 begin 과 end 속성만 설정해주면 동작하며 그 외 속성은 추가적인 옵션이다. 물론 이 두 부분만 설정됬을때는 세부적인 제어가 불가능 하고 step은 기본값으로 1이 작용한다");
 			AttacFileVO fileVO = new AttacFileVO();
 			fileVO.setREAL_NM("1.png");
-			fileVO.setREAL_PATH("resource/img");
 			fileVO.setFILE_NM("");
-			fileVO.setFILE_PATH("");
+			fileVO.setFILE_PATH("resource/img");
 			fileVO.setFILE_SIZE(92089);
 			fileVO.setBOARD_NUM(i);
 			vo.setAttacFileVO(fileVO);

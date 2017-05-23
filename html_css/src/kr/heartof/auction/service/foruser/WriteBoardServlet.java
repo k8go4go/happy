@@ -104,7 +104,6 @@ public class WriteBoardServlet extends HttpServlet {
 			
 			AttacFileVO fileVO = new AttacFileVO();
 		    fileVO.setREAL_NM(fileName);
-		    fileVO.setREAL_PATH(request.getContextPath());
 		    board.setAttacFileVO(fileVO);			
 		} catch (FileNotFoundException fne) {
 			throw new ServletException("Can't not make uploaded your file");

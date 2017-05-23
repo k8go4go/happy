@@ -5,7 +5,6 @@ public class AttacFileVO {
 	private String FILE_NM;
 	private String FILE_PATH;
 	private String REAL_NM;
-	private String REAL_PATH;
 	private int FILE_SIZE;
 	private int BOARD_NUM;
 
@@ -39,14 +38,6 @@ public class AttacFileVO {
 
 	public void setREAL_NM(String rEAL_NM) {
 		REAL_NM = rEAL_NM;
-	}
-
-	public String getREAL_PATH() {
-		return REAL_PATH;
-	}
-
-	public void setREAL_PATH(String rEAL_PATH) {
-		REAL_PATH = rEAL_PATH;
 	}
 
 	public int getFILE_SIZE() {

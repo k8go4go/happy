@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tm:TermDictionary xmlns:tm="http://exerd.com/term-model" version="1.1">
+  <term name="회원" description="회원" physicalName="MEMB" physicalDescription="MEMBER" tag="//@tag.0 //@tag.1">
+    <synonyms>사용자</synonyms>
+    <physicalSynonyms>USR</physicalSynonyms>
+  </term>
+  <term name="이름" description="이름" physicalName="NM" physicalDescription="NAME"/>
+  <term name="주민" description="주민" physicalName="SOC" physicalDescription="SOCIAL"/>
+  <term name="번호" description="번호" physicalName="NUM" physicalDescription="NUMBER"/>
+  <term name="사업자등록" description="사업자등록" physicalName="BUS" physicalDescription="BUSINESS"/>
+  <term name="등록" description="등록" physicalName="REG" physicalDescription="REGISTERED"/>
+  <term name="회사" description="회사" physicalName="COM" physicalDescription="COMPANY"/>
+  <term name="대표자" description="대표자" physicalName="CEO" physicalDescription="CEO"/>
+  <term name="담당자" description="담당자" physicalName="CHGR" physicalDescription="CHARGER"/>
+  <term name="이메일" description="이메일" physicalName="EMAIL" physicalDescription="EMAIL"/>
+  <term name="관리자" description="관리자" physicalName="MGR" physicalDescription="MANAGER"/>
+  <term name="일자" description="일자" physicalName="DATE" physicalDescription="DATE"/>
+  <term name="파일" description="파일" physicalName="FILE" physicalDescription="FILE"/>
+  <term name="경로" description="경로" physicalName="PATH" physicalDescription="PATH"/>
+  <term name="실제" description="실제" physicalName="REAL" physicalDescription="REAL"/>
+  <term name="상품" description="상품" physicalName="PROD" physicalDescription="PRODUCT"/>
+  <term name="분류" description="분류" physicalName="CATE" physicalDescription="CATEGORY"/>
+  <term name="상위" description="상위" physicalName="HIGH" physicalDescription="HIGH"/>
+  <term name="입찰" description="입찰" physicalName="BID" physicalDescription="BIDDING"/>
+  <term name="낙찰" description="낙찰" physicalName="SBID" physicalDescription="SUCCESS BIDDING"/>
+  <term name="결제" description="결제" physicalName="PAy" physicalDescription="PAYMENT"/>
+  <term name="게시판" description="게시판" physicalName="BOARD" physicalDescription="BOARD"/>
+  <term name="시작" description="시작" physicalName="START" physicalDescription="START"/>
+  <term name="종료" description="종료" physicalName="END" physicalDescription="END"/>
+  <term name="경매" description="경매" physicalName="AUC" physicalDescription="AUCTION"/>
+  <term name="제목" description="제목" physicalName="TITLE" physicalDescription="TITLE"/>
+  <term name="내용" description="내용" physicalName="CONT" physicalDescription="CONTENT"/>
+  <term name="구분" description="구분" physicalName="CD" physicalDescription="CODE"/>
+  <term name="유형" description="유형" physicalName="TYPE" physicalDescription="TYPE"/>
+  <term name="비밀" description="비밀" physicalName="SEC" physicalDescription="SERCRET"/>
+  <term name="주소" description="주소" physicalName="ADDRESS" physicalDescription="ADDRESS"/>
+  <term name="우편" description="우편" physicalName="ZIP" physicalDescription="ZIP"/>
+  <term name="핸드폰" description="핸드폰" physicalName="MOBIL" physicalDescription="HANDPHONE"/>
+  <term name="배송" description="배송" physicalName="DELI" physicalDescription="DELIVERY"/>
+  <term name="지역" description="지역" physicalName="LOC" physicalDescription="LOCATION"/>
+  <term name="선택" description="선택" physicalName="SEL" physicalDescription="SELECTION"/>
+  <term name="가격" description="가격" physicalName="PRICE" physicalDescription="PRICE"/>
+  <term name="비용" description="비용" physicalName="COST" physicalDescription="COST"/>
+  <term name="최소" description="최소" physicalName="LOWEST" physicalDescription="LOWEST"/>
+  <term name="최대" description="최대" physicalName="GREATEST" physicalDescription="GREATEST"/>
+  <term name="구분" description="구분" physicalName="CD" physicalDescription="CODE"/>
+  <term name="고객" description="고객" physicalName="CLIENT" physicalDescription="CLIENT"/>
+  <term name="신용" description="신용" physicalName="CRE" physicalDescription="CREDIT"/>
+  <term name="등급" description="등급" physicalName="DEG" physicalDescription="GEGREE"/>
+  <term name="거부" description="거부" physicalName="REJ" physicalDescription="REJECTION"/>
+  <term name="사유" description="사유" physicalName="REAS" physicalDescription="REASON"/>
+  <term name="첨부" description="첨부" physicalName="ATTAC" physicalDescription="ATTACHED"/>
+  <term name="조회" description="조회" physicalName="REVIEW" physicalDescription="REVIEW"/>
+  <term name="검색" description="검색" physicalName="SEARCH" physicalDescription="SEARCH"/>
+  <term name="사용자" description="사용자" physicalName="USR" physicalDescription="USER"/>
+  <term name="시간" description="시간" physicalName="TIME" physicalDescription="TIME"/>
+  <term name="일시" description="일시" physicalName="DTIME" physicalDescription="DATE TIME"/>
+  <term name="승인" description="승인" physicalName="APPR" physicalDescription="APPROVAL"/>
+  <term name="사업" description="사업" physicalName="BUSS" physicalDescription="BUSINESS"/>
+  <term name="영화" description="영화" physicalName="MOV" physicalDescription="MOVIE"/>
+  <term name="표" description="표" physicalName="TICK" physicalDescription="TICKET"/>
+  <term name="주문" description="주문" physicalName="ORD" physicalDescription="ORDER"/>
+  <term name="ID" description="ID" physicalName="ID" physicalDescription="ID"/>
+  <term name="상세" description="상세" physicalName="DETA" physicalDescription="DETAIL"/>
+  <term name="전화" description="전화" physicalName="TEL" physicalDescription="TELEPHONE"/>
+  <term name="상영관" description="상영관" physicalName="CINEMA" physicalDescription="THEATHER"/>
+  <term name="일반" description="일반" physicalName="GEN" physicalDescription="GENERAL"/>
+  <term name="기업" description="기업" physicalName="CORP" physicalDescription="CORPORATION" tag="//@tag.2 //@tag.3">
+    <synonyms>회사</synonyms>
+    <physicalSynonyms>COM</physicalSynonyms>
+  </term>
+  <term name="멤버쉽" description="멤버쉽" physicalName="MSHIP" physicalDescription="MEMBERSHIP"/>
+  <term name="카드" description="카드" physicalName="CARD" physicalDescription="CARD"/>
+  <term name="은행" description="은행" physicalName="BANK" physicalDescription="BANK"/>
+  <term name="방법" description="방법" physicalName="METH" physicalDescription="METHOD"/>
+  <term name="옵션" description="옵션" physicalName="OPT" physicalDescription="OPTION"/>
+  <term name="전자" description="전자" physicalName="ELEC" physicalDescription="ELECTRONIC"/>
+  <term name="지갑" description="지갑" physicalName="WALLET" physicalDescription="WALLET"/>
+  <term name="포인트" description="포인트" physicalName="POINT" physicalDescription="POINT"/>
+  <term name="발급" description="발급" physicalName="ISSUE" physicalDescription="ISSUE"/>
+  <term name="짧은내용" description="짧은내용" physicalName="SCONT" physicalDescription="SHORT CONTENT"/>
+  <term name="링크" description="링크" physicalName="LINK" physicalDescription="LINK"/>
+  <term name="작성자" description="작성자" physicalName="WRITER" physicalDescription="WRITER"/>
+  <term name="작성" description="작성" physicalName="WRITE" physicalDescription="WRITING"/>
+  <term name="수" description="수" physicalName="CNT" physicalDescription="COUNT"/>
+  <term name="수량" description="수량" physicalName="QTY" physicalDescription="QUENTITY"/>
+  <term name="좋음" description="좋음" physicalName="GOOD" physicalDescription="GOOD"/>
+  <term name="나쁨" description="나쁨" physicalName="BAD" physicalDescription="BAD"/>
+  <term name="사이즈" description="사이즈" physicalName="SIZE" physicalDescription="SIZE"/>
+  <term name="명" description="이름" physicalName="NM" physicalDescription="NAME" tag="//@tag.4 //@tag.5">
+    <synonyms>이름</synonyms>
+    <physicalSynonyms>NM</physicalSynonyms>
+  </term>
+  <term name="출시" description="출시" physicalName="ISSUE" physicalDescription="ISSUE"/>
+  <term name="일" description="일" physicalName="DAY" physicalDescription="DAY"/>
+  <term name="경고" description="경고" physicalName="WARN" physicalDescription="WARNING"/>
+  <term name="상태" description="상태" physicalName="STAT" physicalDescription="STATUS"/>
+  <term name="수령" description="수령" physicalName="TAKE" physicalDescription="TAKE"/>
+  <term name="확인" description="확인" physicalName="CONFIRM" physicalDescription="CONFIRM"/>
+  <tag name="회원"/>
+  <tag name="사용자"/>
+  <tag name="회사"/>
+  <tag name="기업"/>
+  <tag name="이름"/>
+  <tag name="명"/>
+</tm:TermDictionary>

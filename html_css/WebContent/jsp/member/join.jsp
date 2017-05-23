@@ -193,10 +193,10 @@ th, td:nth-child(odd) {
 				<table>
 					<tr>
 						<th>회원구분</th>
-						<td>개인<input class="bitRadio" type="radio" name="USR_CD"
-							id="USR_CD" value="1" checked="checked" style="width: 20px;"
+						<td>개인<input class="bitRadio" type="radio" name="MEMB_CD"
+							id="MEMB_CD" value="1" checked="checked" style="width: 20px;"
 							onclick="usercd();" /> 회사<input class="bitRadio" type="radio"
-							name="USR_CD" id="USR_CD" value="2" style="width: 20px;"
+							name="MEMB_CD" id="MEMB_CD" value="2" style="width: 20px;"
 							onclick="usercd();" /></td>
 					</tr>
 					<tr>
@@ -223,20 +223,20 @@ th, td:nth-child(odd) {
 					<tr>
 						<th>우편번호</th>
 						<td><input class="bitTxt" type="text" name="ZIPNO1"
-							id="ZIPNO1" disabled="disabled" style="width: 40px;" /> - <input
+							id="ADDRESS" disabled="disabled" style="width: 40px;" /> - <input
 							class="bitTxt" type="text" name="ZIPNO2" id="ZIPNO2"
 							disabled="disabled" style="width: 40px;" /> <input
 							class="bitBtn" type="button" id="FIND_ZIP" value="우편번호찾기" onclick="zipSearch();"/></td>
 					</tr>
 					<tr>
 						<th>집주소</th>
-						<td><input class="bitTxt" type="text" name="ADDRESS1"
-							id="ADDRESS1" disabled="disabled"></td>
+						<td><input class="bitTxt" type="text" name="ADDRESS"
+							id="ADDRESS" disabled="disabled"></td>
 					</tr>
 					<tr>
 						<th>상제집주소</th>
-						<td><input class="bitTxt" type="text" name="ADDRESS2"
-							id="ADDRESS2" placeholder="상세주소를 입력하세요" required></td>
+						<td><input class="bitTxt" type="text" name="DETA_ADDRESS"
+							id="DETA_ADDRESS" placeholder="상세주소를 입력하세요" required></td>
 					</tr>
 				</table>
 				<div id="pr_member" style="display: block;">
