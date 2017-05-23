@@ -1,13 +1,9 @@
 package kr.heartof.auction.service.foruser;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -19,7 +15,7 @@ import javax.servlet.http.Part;
 
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 
-import kr.heartof.auction.constant.UserCD;
+import kr.heartof.auction.constant.Code;
 import kr.heartof.auction.service.foruser.dao.QnaDAO;
 import kr.heartof.auction.service.foruser.dao.QnaDAOImpl;
 import kr.heartof.auction.service.util.PageUtil;
@@ -61,7 +57,7 @@ public class WriteBoardServlet extends HttpServlet {
 		BoardVO board = new BoardVO();
 
 		board.setMEMB_NUM(vo.getMEMB_NUM());
-		if (vo.getMEMB_CD().equals(UserCD.PRIVATE_USR)) {
+		if (vo.getMEMB_CD().equals(Code.PRI_USR.getKey())) {
 			board.setWRITER_NM(((PriUsrVO) vo).getNM());
 		} else {
 			board.setWRITER_NM(((ComUsrVO) vo).getCHGR_NM());
@@ -69,11 +65,9 @@ public class WriteBoardServlet extends HttpServlet {
 
 		board.setTITLE(request.getParameter("TITLE"));
 		board.setCONT(request.getParameter("CONT"));
-		board.setINDENT(0);
 
 		if (request.getParameter("BOARD_NUM") != null) {
 			board.setHIGH_BOARD_NUM(Integer.parseInt(request.getParameter("BOARD_NUM")));
-			board.setINDENT(1);
 		} else {
 			board.setHIGH_BOARD_NUM(0);
 		}

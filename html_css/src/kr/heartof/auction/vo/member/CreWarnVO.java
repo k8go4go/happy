@@ -5,6 +5,15 @@ public class CreWarnVO {
 	private String WARN_NM;
 	private String WARN_CONT;
 	private int MEMB_NUM;
+	private String WARN_CD;
+	
+	public String getWARN_CD() {
+		return WARN_CD;
+	}
+
+	public void setWARN_CD(String wARN_CD) {
+		WARN_CD = wARN_CD;
+	}
 
 	public int getWARN_NUM() {
 		return WARN_NUM;

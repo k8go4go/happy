@@ -1,6 +1,6 @@
 package kr.heartof.auction.vo.member;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class UsrVO {
 	private int MEMB_NUM;
@@ -13,9 +13,9 @@ public class UsrVO {
 	private String ADDRESS;
 	private String DETA_ADDRESS;
 	private String CRE_DEG_CD;
-	private Timestamp REG_DTIME;
+	private Date REG_DTIME;
 	private String MEMB_CD;
-	private String WITHDRAWAL_CD = "N";
+	private String WITHDRAWAL_CD;
 	
 	public String getWITHDRAWAL_CD() {
 		return WITHDRAWAL_CD;
@@ -105,11 +105,11 @@ public class UsrVO {
 		CRE_DEG_CD = cRE_DEG_CD;
 	}
 
-	public Timestamp getREG_DTIME() {
+	public Date getREG_DTIME() {
 		return REG_DTIME;
 	}
 
-	public void setREG_DTIME(Timestamp rEG_DTIME) {
+	public void setREG_DTIME(Date rEG_DTIME) {
 		REG_DTIME = rEG_DTIME;
 	}
 

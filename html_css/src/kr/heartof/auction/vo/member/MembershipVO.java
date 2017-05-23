@@ -1,15 +1,16 @@
 package kr.heartof.auction.vo.member;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class MembershipVO {
 	private int MEMB_NUM;
 	private String MSHIP_CARD_NUM;
 	private String NM;
 	private int POINT;
-	private Timestamp ISSUE_DATE;
+	private Date ISSUE_DATE;
 	private int ISSUE_CNT;
-
+	private String DEG;
+	
 	public int getMEMB_NUM() {
 		return MEMB_NUM;
 	}
@@ -42,11 +43,11 @@ public class MembershipVO {
 		POINT = pOINT;
 	}
 
-	public Timestamp getISSUE_DATE() {
+	public Date getISSUE_DATE() {
 		return ISSUE_DATE;
 	}
 
-	public void setISSUE_DATE(Timestamp iSSUE_DATE) {
+	public void setISSUE_DATE(Date iSSUE_DATE) {
 		ISSUE_DATE = iSSUE_DATE;
 	}
 
@@ -65,6 +66,4 @@ public class MembershipVO {
 	public void setDEG(String dEG) {
 		DEG = dEG;
 	}
-
-	private String DEG;
 }

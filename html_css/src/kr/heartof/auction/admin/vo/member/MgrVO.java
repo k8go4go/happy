@@ -1,6 +1,6 @@
 package kr.heartof.auction.admin.vo.member;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class MgrVO {
 	private int MGR_NUM;
@@ -10,8 +10,27 @@ public class MgrVO {
 	private String EMAIL;
 	private String TEL_NUM;
 	private String MOBIL_NUM;
-	private Timestamp REG_DTIME;
+	private Date REG_DTIME;
 	private int HIGH_MGR_NUM;
+	
+	private String MEMB_CD;
+	private String MAIL_CD;	
+	
+	public String getMEMB_CD() {
+		return MEMB_CD;
+	}
+
+	public void setMEMB_CD(String mEMB_CD) {
+		MEMB_CD = mEMB_CD;
+	}
+
+	public String getMAIL_CD() {
+		return MAIL_CD;
+	}
+
+	public void setMAIL_CD(String mAIL_CD) {
+		MAIL_CD = mAIL_CD;
+	}
 
 	public int getMGR_NUM() {
 		return MGR_NUM;
@@ -69,11 +88,11 @@ public class MgrVO {
 		MOBIL_NUM = mOBIL_NUM;
 	}
 
-	public Timestamp getREG_DTIME() {
+	public Date getREG_DTIME() {
 		return REG_DTIME;
 	}
 
-	public void setREG_DTIME(Timestamp rEG_DTIME) {
+	public void setREG_DTIME(Date rEG_DTIME) {
 		REG_DTIME = rEG_DTIME;
 	}
 

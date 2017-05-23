@@ -1,14 +1,14 @@
 package kr.heartof.auction.vo.auction;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class RegAucVO {
 	private int AUC_REG_NUM;
 	private String AUC_PROD_NM;
 	private String SHORT_CONT;
-	private Timestamp REG_DTIME;
-	private Timestamp START_DTIME;
-	private Timestamp END_DTIME;
+	private Date REG_DTIME;
+	private Date START_DTIME;
+	private Date END_DTIME;
 	private int START_PRICE;
 	private int QTY;
 	private String APPR_CD;
@@ -40,27 +40,27 @@ public class RegAucVO {
 		SHORT_CONT = sHORT_CONT;
 	}
 
-	public Timestamp getREG_DTIME() {
+	public Date getREG_DTIME() {
 		return REG_DTIME;
 	}
 
-	public void setREG_DTIME(Timestamp rEG_DTIME) {
+	public void setREG_DTIME(Date rEG_DTIME) {
 		REG_DTIME = rEG_DTIME;
 	}
 
-	public Timestamp getSTART_DTIME() {
+	public Date getSTART_DTIME() {
 		return START_DTIME;
 	}
 
-	public void setSTART_DTIME(Timestamp sTART_DTIME) {
+	public void setSTART_DTIME(Date sTART_DTIME) {
 		START_DTIME = sTART_DTIME;
 	}
 
-	public Timestamp getEND_DTIME() {
+	public Date getEND_DTIME() {
 		return END_DTIME;
 	}
 
-	public void setEND_DTIME(Timestamp eND_DTIME) {
+	public void setEND_DTIME(Date eND_DTIME) {
 		END_DTIME = eND_DTIME;
 	}
 

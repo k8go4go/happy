@@ -17,7 +17,6 @@ public class QnaDAOImpl implements QnaDAO {
 		for(int i=0; i < 116 ; i++) {
 			BoardVO vo = new BoardVO();
 			vo.setBOARD_NUM(i);
-			vo.setINDENT(new Random().nextInt(2));
 			vo.setCONT("forEach는 다음과 같은 속성을 가진다.<br>"+
 					   "items : forEach가 순회할 Collection 개체를 지정한다. <br>"+
 					   "begin : 반복문의 시작값을 설정한다.<br>" + 

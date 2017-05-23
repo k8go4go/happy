@@ -8,27 +8,26 @@ public class BoardVO {
 	private String CONT;
 	private String WRITER_NM;
 	private Date WRITE_DATE;
-	private int INDENT;
 	private int REVIEW_CNT;
 	private int HIGH_BOARD_NUM;
 	private int MEMB_NUM;
-	
+	private String QUES_CD;
 	private AttacFileVO attacFileVO;
 	
+	public String getQUES_CD() {
+		return QUES_CD;
+	}
+
+	public void setQUES_CD(String qUES_CD) {
+		QUES_CD = qUES_CD;
+	}
+
 	public AttacFileVO getAttacFileVO() {
 		return attacFileVO;
 	}
 
 	public void setAttacFileVO(AttacFileVO attacFileVO) {
 		this.attacFileVO = attacFileVO;
-	}
-
-	public int getINDENT() {
-		return INDENT;
-	}
-
-	public void setINDENT(int iNDENT) {
-		INDENT = iNDENT;
 	}
 
 	public int getBOARD_NUM() {

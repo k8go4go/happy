@@ -1,13 +1,13 @@
 package kr.heartof.auction.vo.auction;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class RegBiddingVO {
 	private int BID_NUM;
 	private int MEMB_NUM;
 	private int AUC_REG_NUM;
 	private int BID_QTY;
-	private Timestamp REG_DTIME;
+	private Date REG_DTIME;
 
 	public int getBID_NUM() {
 		return BID_NUM;
@@ -41,11 +41,11 @@ public class RegBiddingVO {
 		BID_QTY = bID_QTY;
 	}
 
-	public Timestamp getREG_DTIME() {
+	public Date getREG_DTIME() {
 		return REG_DTIME;
 	}
 
-	public void setREG_DTIME(Timestamp rEG_DTIME) {
+	public void setREG_DTIME(Date rEG_DTIME) {
 		REG_DTIME = rEG_DTIME;
 	}
 

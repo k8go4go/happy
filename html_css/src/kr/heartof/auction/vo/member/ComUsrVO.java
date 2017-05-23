@@ -3,9 +3,9 @@ package kr.heartof.auction.vo.member;
 public class ComUsrVO extends UsrVO {
 	private int MEMB_NUM;
 	private String CORP_NM;
+	private String BUS_NUM;
 	private String CEO_NM;
 	private String CHGR_NM;
-	private String BUS_NUM;
 
 	public String getBUS_NUM() {
 		return BUS_NUM;

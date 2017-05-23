@@ -1,8 +1,10 @@
 package kr.heartof.auction.vo.auction;
 
+import java.util.Date;
+
 public class SuccBiddingVO {
 	private int SBID_NUM;
-	private String SBID_STAT;
+	private Date SBID_DATE;
 	private int SBID_PRICE;
 
 	public int getSBID_NUM() {
@@ -13,12 +15,12 @@ public class SuccBiddingVO {
 		SBID_NUM = sBID_NUM;
 	}
 
-	public String getSBID_STAT() {
-		return SBID_STAT;
+	public Date getSBID_DATE() {
+		return SBID_DATE;
 	}
 
-	public void setSBID_STAT(String sBID_STAT) {
-		SBID_STAT = sBID_STAT;
+	public void setSBID_DATE(Date sBID_STAT) {
+		SBID_DATE = sBID_STAT;
 	}
 
 	public int getSBID_PRICE() {

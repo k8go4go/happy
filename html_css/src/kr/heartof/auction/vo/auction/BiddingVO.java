@@ -1,11 +1,11 @@
 package kr.heartof.auction.vo.auction;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class BiddingVO {
 	private int BID_PRICE_REG_NUM;
 	private int BID_PRICE;
-	private Timestamp BID_DTIME;
+	private Date BID_DTIME;
 	private int BID_NUM;
 
 	public int getBID_PRICE_REG_NUM() {
@@ -24,11 +24,11 @@ public class BiddingVO {
 		BID_PRICE = bID_PRICE;
 	}
 
-	public Timestamp getBID_DTIME() {
+	public Date getBID_DTIME() {
 		return BID_DTIME;
 	}
 
-	public void setBID_DTIME(Timestamp bID_DTIME) {
+	public void setBID_DTIME(Date bID_DTIME) {
 		BID_DTIME = bID_DTIME;
 	}
 

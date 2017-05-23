@@ -5,10 +5,8 @@ public class RegAucFileVO {
 	private String FILE_NM;
 	private String FILE_PATH;
 	private String REAL_NM;
-	private String REAL_PATH;
 	private int FILE_SIZE;
 	private int BOARD_NUM;
-	private int PROD_NUM;
 	private int AUC_REG_NUM;
 
 	public int getATTAC_FILE_NUM() {
@@ -43,14 +41,6 @@ public class RegAucFileVO {
 		REAL_NM = rEAL_NM;
 	}
 
-	public String getREAL_PATH() {
-		return REAL_PATH;
-	}
-
-	public void setREAL_PATH(String rEAL_PATH) {
-		REAL_PATH = rEAL_PATH;
-	}
-
 	public int getFILE_SIZE() {
 		return FILE_SIZE;
 	}
@@ -65,14 +55,6 @@ public class RegAucFileVO {
 
 	public void setBOARD_NUM(int bOARD_NUM) {
 		BOARD_NUM = bOARD_NUM;
-	}
-
-	public int getPROD_NUM() {
-		return PROD_NUM;
-	}
-
-	public void setPROD_NUM(int pROD_NUM) {
-		PROD_NUM = pROD_NUM;
 	}
 
 	public int getAUC_REG_NUM() {
