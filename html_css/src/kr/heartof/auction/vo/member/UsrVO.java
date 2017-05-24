@@ -17,6 +17,16 @@ public class UsrVO {
 	private String MEMB_CD;
 	private String WITHDRAWAL_CD;
 	
+	private UsrFileVO usrFile;
+	
+	public UsrFileVO getUsrFile() {
+		return usrFile;
+	}
+
+	public void setUsrFile(UsrFileVO usrFile) {
+		this.usrFile = usrFile;
+	}
+
 	public String getWITHDRAWAL_CD() {
 		return WITHDRAWAL_CD;
 	}

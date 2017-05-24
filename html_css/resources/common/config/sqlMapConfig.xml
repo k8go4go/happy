@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- 설정파일에서 사용할 프로퍼티의 파일의 경로 지정: classpath -->
+	<properties resource="common/conf/db.properties"/>
+	<!-- SQL의 결과를 담을 VO 객체들의 별칭을 설정하여 사용의 편의를 도모  -->
+	<typeAliases>
+		<typeAlias type="kr.heartof.auction.vo.AucTypeVO" alias="AucTypeVO"/>
+		<typeAlias type="kr.co.mlec.board.vo.BiddingVO" alias="BiddingVO"/>
+		<typeAlias type="kr.co.mlec.board.vo.RegAucFileVO" alias="RegAucFileVO"/>
+		<typeAlias type="kr.co.mlec.board.vo.RegAucVO" alias="RegAucVO"/>
+		<typeAlias type="kr.co.mlec.board.vo.RegBiddingVO" alias="RegBiddingVO"/>
+		<typeAlias type="kr.co.mlec.board.vo.RegRejVO" alias="RegRejVO"/>
+		<typeAlias type="kr.co.mlec.board.vo.SuccBiddingVO" alias="SuccBiddingVO"/>
+		<typeAlias type="kr.co.mlec.board.vo.BoardVO" alias="BoardVO"/>
+		
+		<typeAlias type="kr.co.mlec.board.vo.delivery.DeliDetailVO" alias="DeliDetailVO"/>
+		<typeAlias type="kr.co.mlec.board.vo.delivery.DeliVO" alias="DeliVO"/>
+		<typeAlias type="kr.co.mlec.board.vo.delivery.PayVO" alias="PayVO"/>
+		<typeAlias type="kr.co.mlec.board.vo.delivery.RecRejVO" alias="RecRejVO"/>
+		<typeAlias type="kr.co.mlec.board.vo.delivery.RecVO" alias="RecVO"/>
+		
+		<typeAlias type="kr.co.mlec.board.vo.foruser.AttacFileVO" alias="AttacFileVO"/>
+		<typeAlias type="kr.co.mlec.board.vo.foruser.BoardVO" alias="BoardVO"/>
+		
+		<typeAlias type="kr.heartof.auction.vo.member.ComUsrVO" alias="ComUsrVO"/>
+		<typeAlias type="kr.heartof.auction.vo.member.CreWarnVO" alias="CreWarnVO"/>
+		<typeAlias type="kr.heartof.auction.vo.member.ElecWalletVO" alias="ElecWalletVO"/>
+		<typeAlias type="kr.heartof.auction.vo.member.MembershipVO" alias="MembershipVO"/>
+		<typeAlias type="kr.heartof.auction.vo.member.PriUsrVO" alias="PriUsrVO"/>
+		<typeAlias type="kr.heartof.auction.vo.member.UsrVO" alias="UsrVO"/>
+		<typeAlias type="kr.heartof.auction.vo.member.UsrFileVO" alias="UsrFileVO"/>
+		
+		<typeAlias type="kr.heartof.auction.vo.product.ProdCateVO" alias="ProdCateVO"/>
+		<typeAlias type="kr.heartof.auction.vo.product.ProdVO" alias="ProdVO"/>		
+	</typeAliases>
+	
+	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${username}"/>
+				<property name="password" value="${password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers>
+		<mapper resource="kr/heartof/auction/mapper/xml/**/*.xml"/>
+		<mapper resource="kr/heartof/auction/mapper/xml/*.xml"/>
+	</mappers>
+</configuration>
