@@ -102,9 +102,8 @@
 			    A.MAIL_CD, B.NM, B.SOC_REG_NUM
 			FROM 
 			    USR A INNER JOIN PRI_USR B 
-			    	ON A.MEMB_NUM = B.MEMB_NUM
-			    INNER JOIN CD C  
-			    	ON A.WITHDRAWAL_CD = C.CD 
+			    	ON A.MEMB_NUM = B.MEMB_NUM AND 
+			    	   A.WITHDRAWAL_CD = '1702' 
 		</when>
 		<otherwise>
 			SELECT 
@@ -112,14 +111,13 @@
 			    A.ADDRESS, A.DETA_ADDRESS, A.REG_DTIME, A.MEMB_CD, A.WITHDRAWAL_CD, A.CRE_DEG_CD,
 			    A.MAIL_CD, B.CORP_NM, B.BUS_NUM, B.CEO_NM, B.CHGR_NM
 			FROM 
-			    USR A INNER JOIN COM_USR B ON A.MEMB_NUM = B.MEMB_NUM   
-			    INNER JOIN CD C  ON A.WITHDRAWAL_CD = C.CD
+			    USR A INNER JOIN COM_USR B 
+			    	ON A.MEMB_NUM = B.MEMB_NUM AND 
+			    	   A.WITHDRAWAL_CD = '1702'
 		</otherwise>		    
 		</choose>    
 		WHERE
-		    A.MEMB_NUM = #{MEMB_NUM} AND
-		    A.WITHDRAWAL_CD = '1702' AND
-		    A.MEMB_CD = #{MEMB_CD}
+		    A.MEMB_NUM = #{MEMB_NUM}
 	</select>
 	
 	<select id="memberInfoFile" parameterType="int" resultType="UsrFileVO">
