@@ -16,8 +16,8 @@
 		<result column="MEMB_CD" property="MEMB_CD" />
 		<result column="WITHDRAWAL_CD" property="WITHDRAWAL_CD" />
 		<discriminator javaType="java.lang.String" column="MEMB_CD">
-			<case value="2001" resultMap="comUsrinfo" />
-			<case value="2002" resultMap="priUsrinfo" />					
+			<case value="2001" resultMap="priUsrinfo" />					
+			<case value="2002" resultMap="comUsrinfo" />
 		</discriminator>
 	</resultMap>
 	
@@ -41,7 +41,7 @@
 		FROM 
 			USR 
 		WHERE 
-			MEMB_ID = #{MEMB_ID};
+			MEMB_ID = #{MEMB_ID}
 	</select>
 
 	<insert id="newMember" parameterType="UsrVO">
@@ -93,18 +93,9 @@
 		)
 	</insert>
 
-	<select id="memberInfo" parameterType="int" resultMap="usrinfo">
+	<select id="memberInfo" parameterType="UsrVO" resultMap="usrinfo">
 		<choose>
-		<when test="MEMB_CD == 2001">
-			SELECT 
-			    A.MEMB_NUM, A.MEMB_ID, A.SEC_NUM, A.EMAIL, A.TEL_NUM, A.MOBIL_NUM, A.ZIP_NUM,
-			    A.ADDRESS, A.DETA_ADDRESS, A.REG_DTIME, A.MEMB_CD, A.WITHDRAWAL_CD, A.CRE_DEG_CD,
-			    A.MAIL_CD, B.CORP_NM, B.BUS_NUM, B.CEO_NM, B.CHGR_NM
-			FROM 
-			    USR A INNER JOIN COM_USR B ON A.MEMB_NUM = B.MEMB_NUM   
-			    INNER JOIN CD C  ON A.WITHDRAWAL_CD = C.CD
-		</when>
-		<otherwise>
+		<when test="MEMB_CD == '2001'">
 			SELECT 
 			    A.MEMB_NUM, A.MEMB_ID, A.SEC_NUM, A.EMAIL, A.TEL_NUM, A.MOBIL_NUM, A.ZIP_NUM,
 			    A.ADDRESS, A.DETA_ADDRESS, A.REG_DTIME, A.MEMB_CD, A.WITHDRAWAL_CD, A.CRE_DEG_CD,
@@ -114,11 +105,21 @@
 			    	ON A.MEMB_NUM = B.MEMB_NUM
 			    INNER JOIN CD C  
 			    	ON A.WITHDRAWAL_CD = C.CD 
+		</when>
+		<otherwise>
+			SELECT 
+			    A.MEMB_NUM, A.MEMB_ID, A.SEC_NUM, A.EMAIL, A.TEL_NUM, A.MOBIL_NUM, A.ZIP_NUM,
+			    A.ADDRESS, A.DETA_ADDRESS, A.REG_DTIME, A.MEMB_CD, A.WITHDRAWAL_CD, A.CRE_DEG_CD,
+			    A.MAIL_CD, B.CORP_NM, B.BUS_NUM, B.CEO_NM, B.CHGR_NM
+			FROM 
+			    USR A INNER JOIN COM_USR B ON A.MEMB_NUM = B.MEMB_NUM   
+			    INNER JOIN CD C  ON A.WITHDRAWAL_CD = C.CD
 		</otherwise>		    
 		</choose>    
 		WHERE
-		    A.MEMB_ID = #{MEMB_NUM} AND
-		    A.WITHDRAWAL_CD = '1702';
+		    A.MEMB_NUM = #{MEMB_NUM} AND
+		    A.WITHDRAWAL_CD = '1702' AND
+		    A.MEMB_CD = #{MEMB_CD}
 	</select>
 	
 	<select id="memberInfoFile" parameterType="int" resultType="UsrFileVO">
@@ -127,7 +128,7 @@
 		FROM 
 		    USR A INNER JOIN COM_USR B ON A.MEMB_NUM = B.MEMB_NUM 
 		WHERE
-	    	A.MEMB_ID = #{MEMB_NUM};
+	    	A.MEMB_ID = #{MEMB_NUM}
 	</select>
 
 	<update id="updateBasicMemberInfo" parameterType="UsrVO">

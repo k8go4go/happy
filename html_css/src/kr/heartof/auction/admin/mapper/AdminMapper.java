@@ -1,4 +1,4 @@
-package kr.heartof.auction.service.mapper;
+package kr.heartof.auction.admin.mapper;
 
 import java.util.Map;
 
@@ -17,7 +17,7 @@ import kr.heartof.auction.vo.member.UsrVO;
  * @author LEESANGOUK
  * html_css
  */
-public interface MemberMapper {
+public interface AdminMapper {
 	/**
 	 * 회원가입시 회원 중복 확인 
 	 * @param MEMB_ID
@@ -57,7 +57,7 @@ public interface MemberMapper {
 	 * @param 공통 USR 테이블 vo 
 	 * @return 회원 정보 VO
 	 */
-	public UsrVO memberInfo(UsrVO vo); 
+	public Map<String, String> memberInfo(int MEMB_NUM); 
 	
 	/**
 	 * 회원 프로필 파일 조회
