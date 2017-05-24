@@ -26,12 +26,12 @@ public class LoginServlet extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		UsrVO user = null;
 		
-		if(request.getParameter("USR_CD").equals(Code.PRI_USR.getKey())) {
+		if(request.getParameter("USR_CD").equals(Code.MEMBER_PRI_CD.getKey())) {
 			user = new PriUsrVO();
-			user.setMEMB_CD(Code.PRI_USR.getKey());
+			user.setMEMB_CD(Code.MEMBER_PRI_CD.getKey());
 		} else {
 			user = new ComUsrVO();
-			user.setMEMB_CD(Code.COM_USR.getKey());
+			user.setMEMB_CD(Code.MEMBER_COM_CD.getKey());
 		}
 		user.setMEMB_NUM(1);
 		user.setEMAIL(request.getParameter("EMAIL"));

@@ -24,7 +24,7 @@ public class JoinServlet extends HttpServlet {
 		
 		UsrVO user = null;
 		
-		if(request.getParameter("USR_CD").equals(Code.PRI_USR.getKey())) {
+		if(request.getParameter("USR_CD").equals(Code.MEMBER_PRI_CD.getKey())) {
 			user = makePrivateUser(request);
 			request.setAttribute("NM", request.getParameter("NM"));
 		} else {
@@ -49,7 +49,7 @@ public class JoinServlet extends HttpServlet {
 		user.setTEL_NUM(request.getParameter("TEL_NUM"));
 		user.setMEMB_CD(request.getParameter("MEMB_CD"));
 		user.setMEMB_ID(request.getParameter("MEMB_ID"));
-		user.setWITHDRAWAL_CD(Code.WITHDRAWAL_N.getKey());
+		user.setWITHDRAWAL_CD(Code.WITHDRAWAL_N_CD.getKey());
 		user.setZIP_NUM(request.getParameter("ZIPNO1") + "-" + request.getParameter("ZIPNO2"));
 		
 		user.setNM(request.getParameter("NM"));
@@ -62,12 +62,12 @@ public class JoinServlet extends HttpServlet {
 		ComUsrVO user = new ComUsrVO();
 		user.setADDRESS(request.getParameter("ADDRESS1"));
 		user.setDETA_ADDRESS(request.getParameter("ADDRESS2"));
-		user.setCRE_DEG_CD(Code.CRE_DEG_WHITE.getKey());
+		user.setCRE_DEG_CD(Code.MEMBER_CRED_DEG_OK_CD.getKey());
 		user.setEMAIL(request.getParameter("EMAIL"));
 		user.setTEL_NUM(request.getParameter("TEL_NUM"));
 		user.setMEMB_CD(request.getParameter("MEMB_CD"));
 		user.setMEMB_ID(request.getParameter("MEMB_ID"));
-		user.setWITHDRAWAL_CD(Code.WITHDRAWAL_N.getKey());
+		user.setWITHDRAWAL_CD(Code.WITHDRAWAL_N_CD.getKey());
 		user.setZIP_NUM(request.getParameter("ZIPNO1") + "-" + request.getParameter("ZIPNO2"));
 		
 		user.setCORP_NM(request.getParameter("CORP_NM"));

@@ -57,7 +57,7 @@ public class WriteBoardServlet extends HttpServlet {
 		BoardVO board = new BoardVO();
 
 		board.setMEMB_NUM(vo.getMEMB_NUM());
-		if (vo.getMEMB_CD().equals(Code.PRI_USR.getKey())) {
+		if (vo.getMEMB_CD().equals(Code.MEMBER_PRI_CD.getKey())) {
 			board.setWRITER_NM(((PriUsrVO) vo).getNM());
 		} else {
 			board.setWRITER_NM(((ComUsrVO) vo).getCHGR_NM());
