@@ -1,8 +1,8 @@
 package kr.heartof.auction.service.mapper;
 
-import java.util.Map;
-
 import kr.heartof.auction.vo.member.ComUsrVO;
+import kr.heartof.auction.vo.member.ElecWalletVO;
+import kr.heartof.auction.vo.member.MembershipVO;
 import kr.heartof.auction.vo.member.PriUsrVO;
 import kr.heartof.auction.vo.member.UsrFileVO;
 import kr.heartof.auction.vo.member.UsrVO;
@@ -23,7 +23,7 @@ public interface MemberMapper {
 	 * @param MEMB_ID
 	 * @return 중복시 1 리턴 가능한 아이디 인경우 0 리턴
 	 */
-	public int duplicateID(String MEMB_ID) ;
+	public int duplicateID(String MEMB_ID);
 	
 	/**
 	 * 회원가입시 공통분모에 해당하는 USER 테이블 삽입
@@ -99,4 +99,27 @@ public interface MemberMapper {
 	 * @return
 	 */
 	public int updateWithdrawal(UsrVO vo);
+	
+	/**
+	 * 회원 번호에 해당하는 전자지갑을 발행함
+	 * @param vo
+	 * @return
+	 */
+	public int newElecWallet(ElecWalletVO vo) ;
+	
+	/**
+	 * 회원 번호에 해당하는 멤버쉽 발행
+	 * @param vo
+	 * @return
+	 */
+	public int newMemberShip(MembershipVO vo);
+	
+	/**
+	 * 멤버쉽 카드번호 중복 확인
+	 * @param cardNum 확인할 번호
+	 * @return
+	 */
+	public int duplicateCardNumber(String cardNum);
+	
+	public UsrVO findID(UsrVO vo);
 }
