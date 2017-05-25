@@ -121,5 +121,20 @@ public interface MemberMapper {
 	 */
 	public int duplicateCardNumber(String cardNum);
 	
+	/**
+	 * 회원 아이디 찾기 
+	 * 회원 아이디는 사용자에 따라 개인은 이름과 주민번호
+	 * 기업 회원은 회사이름, 법인번호, 대표이름 으로 ID를 찾을수 있다. 
+	 * @param vo
+	 * @return
+	 */
 	public UsrVO findID(UsrVO vo);
+	
+	/**
+	 * 비밀번호 업데이트 비밀번호 분실한 사용자에게 새로운 비밀번호를 
+	 * 보내주고 갱신하도록 유도한다.
+	 * @param vo
+	 * @return
+	 */
+	public int changePasswd(UsrVO newPasswd);
 }

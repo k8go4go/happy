@@ -99,7 +99,19 @@ public enum Code {
 //	2002 기업	
 	MEMBER_CD ("2000", "회원구분"),
 	MEMBER_PRI_CD("2001", "개인"),
-	MEMBER_COM_CD("2002", "기업");
+	MEMBER_COM_CD("2002", "기업"),
+//2100 질문답변
+//	2101 답변완료
+//	2102 답변중
+	QNA_CD ("2100", "질문답변"),
+	QNA_COMPLETE_CD("2101", "답변완료"),
+	QNA_ING_CD("2102", "답변중"),
+/*	2200	카테고리사용구분
+	2201	사용
+	2202	미사용*/
+	PROD_CATE_CD ("2200", "카테고리사용구분"),
+	PROD_CATE_Y_CD("2201", "사용"),
+	PROD_CATE_N_CD("2202", "미사용");	
 	private String key;
 	private String value;
 	

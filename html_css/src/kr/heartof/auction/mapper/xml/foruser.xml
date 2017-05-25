@@ -1,40 +1,65 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.mlec.board.mapper.BoardMapper">
-	<select id="selectBoard" resultType="BoardVO">
-		 select 
-		 	no, title, writer, reg_date 
-		 from 
-		 	tb_board 
-		 order by no desc
+<mapper namespace="kr.heartof.auction.service.mapper.QnaMapper">
+	<select id="list" resultMap="BoardVO">
+		SELECT 
+		    c.BOARD_NUM, 
+		    c.TITLE,
+		    c.WRITER_NM,
+		    c.WRITE_DATE,
+		    c.HIGH_BOARD_NUM, 
+		    c.REVIEW_CNT,
+		    c.QUES_CD,
+		    p.MEMB_ID
+		FROM 
+		    BOARD c INNER JOIN USR p 
+		    ON c.MEMB_NUM = p.MEMB_NUM
+		ORDER BY
+		    c.BOARD_NUM DESC;
 	</select>
 	
-	 <select id="selectOneBoard" parameterType="int" resultType="BoardVO">
-		 	select 
-		 		no, title, writer
-				content, 
-				reg_date as regDate
-			from 
-				tb_board
-			where 
-				no = #{no}
+	 <select id="detail" parameterType="int" resultType="BoardVO">
+		SELECT 
+		    c.BOARD_NUM, 
+		    c.TITLE,
+		    c.WRITER_NM,
+		    c.WRITE_DATE,
+		    c.HIGH_BOARD_NUM, 
+		    c.REVIEW_CNT,
+		    c.QUES_CD,
+		    p.MEMB_ID
+		FROM 
+		    BOARD c INNER JOIN USR p 
+		    ON c.MEMB_NUM = p.MEMB_NUM		
+		where 
+			c.BOARD_NUM = #{BOARD_NUM}
 	 </select>
 	 
-	 <insert id="insertBoard" parameterType="BoardVO">
+	 <insert id="insert" parameterType="BoardVO">
 	 		insert into tb_board
-			( no, title, writer, content) values 
-			(tb_board_seq.nextval, #{title}, #{writer}, #{content}) 
+			( BOARD_NUM, TITLE, CONT, WRITER_NM, WRITE_DATE,
+			  REVIEW_CNT, MEMB_NUM, QUES_CD) values 
+			(BOARD_SEQ.nextVal, #{TITLE}, #{CONT}, #{WRITER_NM},
+				0, #{MEMB_NUM}, '2202'
+			) 
 	 </insert>
 	 
-	 <update id="updateBoard" parameterType="BoardVO">
+	 <update id="update" parameterType="BoardVO">
 	 		update tb_board
 			set title = #{title},
 			    content = #{content}
 			where no = #{no}
 	 </update>
 	 
-	 <delete id="deleteBoard" parameterType="int">
+	 <update id="updateHitCount" parameterType="int">
+	 		update tb_board
+			set title = #{title},
+			    content = #{content}
+			where no = #{no}
+	 </update>
+	 
+	 <delete id="delete" parameterType="int">
 	  		delete
 			from tb_board
 			where no = #{no} 

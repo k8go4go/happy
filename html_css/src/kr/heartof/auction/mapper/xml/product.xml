@@ -1,42 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.mlec.board.mapper.BoardMapper">
-	<select id="selectBoard" resultType="BoardVO">
-		 select 
-		 	no, title, writer, reg_date 
-		 from 
-		 	tb_board 
-		 order by no desc
+<mapper namespace="kr.heartof.auction.service.mapper.ProductMapper">
+	<select id="getProdCates" resultType="ProdCateVO" parameterType="String">
+		 SELECT 
+		    c.PROD_CATE_NUM, 
+		    c.HIGH_PROD_CATE_NUM, 
+		    c.PROD_CATE_NM,
+		    c.SHORT_CONT,
+		    p.PROD_CATE_NM AS PARENT_PROD_CATE_NM,
+		    p.PROD_CATE_NUM AS PARENT_PROD_CATE_NUM,
+		    p.SHORT_CONT AS PARENT_SHORT_CONT,
+		    p.HIGH_PROD_CATE_NUM AS PARENT_HIGH_PROD_CATE_NUM
+		FROM 
+		    PROD_CATE c LEFT JOIN PROD_CATE p 
+		    ON p.PROD_CATE_NUM = c.HIGH_PROD_CATE_NUM
+		WHERE   
+		<if test="HIGH_PROD_CATE_NUM != null">    
+			c.USE_CD = '2201'    
+		    AND c.HIGH_PROD_CATE_NUM = #{HIGH_PROD_CATE_NUM} 
+		</if>    
+		START WITH c.PROD_CATE_NUM = '1000'
+		CONNECT BY PRIOR c.PROD_CATE_NUM = c.HIGH_PROD_CATE_NUM;
 	</select>
-	
-	 <select id="selectOneBoard" parameterType="int" resultType="BoardVO">
-		 	select 
-		 		no, title, writer
-				content, 
-				reg_date as regDate
-			from 
-				tb_board
-			where 
-				no = #{no}
-	 </select>
 	 
-	 <insert id="insertBoard" parameterType="BoardVO">
-	 		insert into tb_board
-			( no, title, writer, content) values 
-			(tb_board_seq.nextval, #{title}, #{writer}, #{content}) 
+	 <insert id="insertProdCate" parameterType="ProdCateVO">
+	 		insert into PROD_CATE
+			(PROD_CATE_NUM, PROD_CATE_NM, SHORT_CONT, USE_CD
+			<if test="HIGH_PROD_CATE_NUM != null"> 
+			, HIGH_PROD_CATE_NUM
+			</if>
+			) values 
+			(
+			#{PROD_CATE_NUM}, #{PROD_CATE_NM}, #{SHORT_CONT}, '2201'
+			<if test="HIGH_PROD_CATE_NUM != null"> 
+			, #{HIGH_PROD_CATE_NUM}
+			</if>
+			) 
 	 </insert>
 	 
-	 <update id="updateBoard" parameterType="BoardVO">
-	 		update tb_board
-			set title = #{title},
-			    content = #{content}
-			where no = #{no}
+	 <update id="updateProdCate" parameterType="ProdCateVO">
+	 		update PROD_CATE
+			set 
+				PROD_CATE_NM = #{PROD_CATE_NM},
+			    SHORT_CONT = #{SHORT_CONT}
+			where 
+				PROD_CATE_NUM = #{PROD_CATE_NUM}
 	 </update>
 	 
-	 <delete id="deleteBoard" parameterType="int">
-	  		delete
-			from tb_board
-			where no = #{no} 
+	 <delete id="changeCDProdCate" parameterType="ProdCateVO">
+	  		update PROD_CATE
+			set 
+				USE_CD = #{USE_CD}
+			where 
+				PROD_CATE_NUM = #{PROD_CATE_NUM}
 	 </delete>
 </mapper>

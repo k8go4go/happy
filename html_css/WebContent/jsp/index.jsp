@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="myResourcePath" value="${pageContext.request.contextPath}/resource/img" />
+
+<c:set var="myResourcePath" value="${myContextPath}/resource/img" />
 
 <c:import url="/jsp/common/header.jsp" />
 <c:import url="/jsp/common/gnb.jsp" />
