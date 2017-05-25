@@ -93,6 +93,57 @@
 		)
 	</insert>
 
+	<insert id="newElecWallet" parameterType="ElecWalletVO">
+		INSERT INTO ELEC_WALLET
+		( 
+			MEMB_NUM, POINT
+		)
+		VALUES 
+		(
+			#{MEMB_NUM}, #{POINT}
+		)
+	</insert>
+
+	<insert id="newMemberShip" parameterType="MembershipVO">
+		INSERT INTO MEMBERSHIP
+		( 
+			MEMB_NUM, MSHIP_CARD_NUM, NM, 
+			POINT, ISSUE_DATE, ISSUE_CNT, DEG
+		)
+		VALUES 
+		(
+			#{MEMB_NUM}, #{MSHIP_CARD_NUM}, #{NM}, 
+			#{POINT}, SYSDATE, #{ISSUE_CNT}, #{DEG}
+		)
+	</insert>
+
+	<select id="duplicateCardNumber" parameterType="String" resultType="int">
+		SELECT 
+			COUNT(MSHIP_CARD_NUM) 
+		FROM 
+			MEMBERSHIP 
+		WHERE 
+			MSHIP_CARD_NUM = #{MSHIP_CARD_NUM}
+	</select>
+	
+	<select id="findID" parameterType="String" resultType="int">
+		SELECT 
+			COUNT(MSHIP_CARD_NUM) 
+		FROM 
+			MEMBERSHIP 
+		WHERE 
+			MSHIP_CARD_NUM = #{MSHIP_CARD_NUM}
+	</select>
+	
+	<select id="findPasswd" parameterType="String" resultType="int">
+		SELECT 
+			COUNT(MSHIP_CARD_NUM) 
+		FROM 
+			MEMBERSHIP 
+		WHERE 
+			MSHIP_CARD_NUM = #{MSHIP_CARD_NUM}
+	</select>
+	
 	<select id="memberInfo" parameterType="UsrVO" resultMap="usrinfo">
 		<choose>
 		<when test="MEMB_CD == '2001'">
