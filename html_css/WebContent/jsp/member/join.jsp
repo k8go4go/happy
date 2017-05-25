@@ -103,7 +103,7 @@
 
 	function usercd() {
 		var form = document.getElementById('join_member');
-		var usr_cd = form.USR_CD;
+		var usr_cd = form.MEMB_CD;
 
 		var div_pr = document.getElementById('pr_member');
 		var div_com = document.getElementById('com_member');

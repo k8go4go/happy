@@ -37,4 +37,9 @@ public class UsrFileVO {
 	public void setFILE_SIZE(int fILE_SIZE) {
 		FILE_SIZE = fILE_SIZE;
 	}
+	@Override
+	public String toString() {
+		return "UsrFileVO [MEMB_NUM=" + MEMB_NUM + ", FILE_NM=" + FILE_NM + ", FILE_PATH=" + FILE_PATH + ", REAL_NM="
+				+ REAL_NM + ", FILE_SIZE=" + FILE_SIZE + "]";
+	}
 }

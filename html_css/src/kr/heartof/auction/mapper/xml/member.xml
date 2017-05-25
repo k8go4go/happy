@@ -122,11 +122,11 @@
 	
 	<select id="memberInfoFile" parameterType="int" resultType="UsrFileVO">
 		SELECT 
-		    A.MEMB_NUM, B.FILE_NM, B.FILE_PATH, B.REAL_NM, B.FILE_SIZE
+		    B.MEMB_NUM, B.FILE_NM, B.FILE_PATH, B.REAL_NM, B.FILE_SIZE
 		FROM 
-		    USR A INNER JOIN COM_USR B ON A.MEMB_NUM = B.MEMB_NUM 
+		    USR_FILE B 
 		WHERE
-	    	A.MEMB_ID = #{MEMB_NUM}
+	    	B.MEMB_NUM = #{MEMB_NUM}
 	</select>
 
 	<update id="updateBasicMemberInfo" parameterType="UsrVO">
