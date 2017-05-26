@@ -111,7 +111,16 @@ public enum Code {
 	2202	미사용*/
 	PROD_CATE_CD ("2200", "카테고리사용구분"),
 	PROD_CATE_Y_CD("2201", "사용"),
-	PROD_CATE_N_CD("2202", "미사용");	
+	PROD_CATE_N_CD("2202", "미사용"),
+	
+/*	9900 검색구분코드
+	9901 작성자
+	9902 제목*/	
+	SEARCH_CD ("9900", "검색구분코드"),
+	SEARCH_WRITER_CD("9901", "작성자"),
+	SEARCH_TITLE_CD("9902", "제목");
+	
+	
 	private String key;
 	private String value;
 	

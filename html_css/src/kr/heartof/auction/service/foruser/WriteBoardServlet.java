@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,12 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 
 import kr.heartof.auction.constant.Code;
-import kr.heartof.auction.service.foruser.dao.QnaDAO;
-import kr.heartof.auction.service.foruser.dao.QnaDAOImpl;
-import kr.heartof.auction.service.util.PageUtil;
+import kr.heartof.auction.service.mapper.QnaMapper;
 import kr.heartof.auction.vo.foruser.AttacFileVO;
 import kr.heartof.auction.vo.foruser.BoardVO;
 import kr.heartof.auction.vo.member.ComUsrVO;
@@ -26,23 +27,24 @@ import kr.heartof.auction.vo.member.PriUsrVO;
 import kr.heartof.auction.vo.member.UsrVO;
 
 public class WriteBoardServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private QnaDAO dao = new QnaDAOImpl();
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		throw new ServletException("Can't use Get method when you are using form and attached file");
+	private static QnaMapper mapper = null; 
+	static {
+		String resource = "common/config/sqlMapConfig.xml";
+		SqlSessionFactory sqlSessionFactory;
+		try {
+			sqlSessionFactory = new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream(resource));
+			SqlSession session = sqlSessionFactory.openSession();
+			mapper = session.getMapper(QnaMapper.class);
+		} catch (IOException e) {
+		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.addHeader("Content-Type", "text/html;charset=UTF-8");
 
 		BoardVO board = makeBoard(request);
-		dao.insertBoard(board);
-
-		// testCode //
-		setList(request, board);
+		mapper.insert(board);
 
 		RequestDispatcher dispacher = request.getServletContext().getRequestDispatcher("/service/foruser/qna.do");
 		dispacher.forward(request, response);
@@ -134,33 +136,5 @@ public class WriteBoardServlet extends HttpServlet {
 			}
 		}
 		return null;
-	}
-
-	// 추가되는 insert 확인 //
-	private void setList(HttpServletRequest request, BoardVO newBoard) {
-		PageUtil util = new PageUtil(PageUtil.BLOCKPAGE_5);
-		util.setDAO(new QnaDAOImpl());
-		util.setHttpServletRequest(request);
-		int currentPage = util.getCurrentPageFromClinet();
-		int total = util.getTotalFromBoardData();
-		int totalPage = util.getTotalPage();
-		int startIndicator = util.startIndicator();
-		int endIndicator = util.endIndicator();
-		int viewCount = util.viewCount();
-		int start = util.getStart();
-		int end = util.getEnd();
-		List<BoardVO> sendList = util.getRequestBoardList(currentPage);
-		;
-		sendList.add(0, newBoard);
-
-		request.setAttribute("list", sendList);
-		request.setAttribute("total", total);
-		request.setAttribute("currentPage", currentPage);
-		request.setAttribute("totalPage", totalPage);
-		request.setAttribute("startIndicator", startIndicator);
-		request.setAttribute("endIndicator", endIndicator);
-		request.setAttribute("start", start);
-		request.setAttribute("end", end);
-		request.setAttribute("viewCount", viewCount);
 	}
 }

@@ -16,8 +16,10 @@ import kr.heartof.auction.vo.foruser.PageVO;
 public interface QnaMapper {
 
 	public List<BoardVO> list(PageVO vo);
-
-	public int detail(int BOARD_NUM);
+	
+	public List<BoardVO> searchList(PageVO vo);
+	
+	public BoardVO detail(int BOARD_NUM);
 
 	public int insert(BoardVO vo);
 
@@ -29,5 +31,7 @@ public interface QnaMapper {
 
 	public int deleteRelatedFile(int BOARD_NUM);
 	
-	public int updateQuesCD(int parentBoard_NUM);
+	public int updateQuesCD(BoardVO vo);
+	
+	public int searchListTot(PageVO vo);
 }

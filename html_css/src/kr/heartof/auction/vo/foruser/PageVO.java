@@ -1,35 +1,29 @@
+
 package kr.heartof.auction.vo.foruser;
+
+import kr.heartof.auction.constant.Code;
 
 public class PageVO {
 	private int START;
 	private int END;
-
-	private int viewCount; // 한 화면에 보여질 갯수
-	private int showBlockPageCount; // 페이지 넘버를 보여질 갯수
-	private int currentPage; // 현재 페이지 번호
-
-	public int getViewCount() {
-		return viewCount;
+	
+	private String CD;
+	private String searchWord;
+	
+	public String getSearchWord() {
+		return searchWord;
 	}
 
-	public void setViewCount(int viewCount) {
-		this.viewCount = viewCount;
+	public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
 	}
 
-	public int getShowBlockPageCount() {
-		return showBlockPageCount;
+	public String getCD() {
+		return CD;
 	}
 
-	public void setShowBlockPageCount(int showBlockPageCount) {
-		this.showBlockPageCount = showBlockPageCount;
-	}
-
-	public int getCurrentPage() {
-		return currentPage;
-	}
-
-	public void setCurrentPage(int currentPage) {
-		this.currentPage = currentPage;
+	public void setCD(String cD) {
+		CD = cD;
 	}
 
 	public int getSTART() {

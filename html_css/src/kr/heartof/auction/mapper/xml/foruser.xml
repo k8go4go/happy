@@ -11,7 +11,7 @@
 		<result column="REVIEW_CNT" property="REVIEW_CNT" />
 		<result column="QUES_CD" property="QUES_CD" />
 		<result column="MEMB_ID" property="MEMB_ID" />
-		<association column="TOT" property="TOT"  javaType="int" select="listTot"/>
+		<association column="TOT" property="TOT" javaType="int" select="listTot"/>
 		<collection property="files" javaType="java.util.ArrayList" ofType="AttacFileVO" 
 			column="BOARD_NUM" select="listAttachFile"/>
 		<collection property="replys" javaType="java.util.ArrayList" ofType="BoardVO" 
@@ -39,6 +39,7 @@
 		    B.WRITER_NM,
 		    B.WRITE_DATE,
 		    B.HIGH_BOARD_NUM,
+		    B.WRITE_DATE,
 		    B.REVIEW_CNT,
 		    U.MEMB_ID
 		FROM 
@@ -59,7 +60,7 @@
 	
 	<select id="list" resultMap="boardList" parameterType="PageVO">
 		SELECT RN, BOARD_NUM, HIGH_BOARD_NUM, TITLE, CONT,
-			    REVIEW_CNT, QUES_CD, MEMB_ID, TOT
+			    REVIEW_CNT, WRITE_DATE, QUES_CD, MEMB_ID, TOT
 		FROM (
 			SELECT
 			    ROWNUM RN,
@@ -68,6 +69,7 @@
 			    TITLE,
 			    CONT,
 			    REVIEW_CNT,
+			    WRITE_DATE,
 			    QUES_CD,
 			    U.MEMB_ID,
 			    0 AS TOT
@@ -82,9 +84,42 @@
 			#{END} >= RN
 	</select>
 	
-	<select id="searchlist" resultMap="boardList" parameterType="PageVO">
+	<resultMap type="BoardVO" id="searchMapList">
+		<id column="RN" property="RN" />
+		<result column="BOARD_NUM" property="BOARD_NUM" />
+		<result column="WRITER_NM" property="WRITER_NM" />
+		<result column="TITLE" property="TITLE" />
+		<result column="WRITE_DATE" property="WRITE_DATE" />
+		<result column="REVIEW_CNT" property="REVIEW_CNT" />
+		<result column="QUES_CD" property="QUES_CD" />
+		<result column="MEMB_ID" property="MEMB_ID" />
+		
+		<collection property="files" javaType="java.util.ArrayList" ofType="AttacFileVO" 
+			column="BOARD_NUM" select="listAttachFile"/>
+		<collection property="replys" javaType="java.util.ArrayList" ofType="BoardVO" 
+			column="BOARD_NUM" select="listReplys"/>			
+	</resultMap>
+	
+	<select id="searchListTot" resultType="int" >
+			SELECT
+			    COUNT(*) AS TOT
+			FROM 
+			    BOARD
+			WHERE 
+			    QUES_CD = '2101' 
+			<if test="CD != null">
+				<if test="CD == '9901'">
+					AND WRITER_NM  like '%'||#{searchWord}||'%'
+				</if>   
+				<if test="CD == '9902'">
+					AND TITLE  like '%'||#{searchWord}||'%'
+				</if>
+			</if>
+	</select>
+	
+	<select id="searchList" resultMap="searchMapList">
 		SELECT RN, BOARD_NUM, HIGH_BOARD_NUM, TITLE, CONT,
-			    REVIEW_CNT, QUES_CD, MEMB_ID, TOT
+			    REVIEW_CNT, WRITE_DATE, QUES_CD, MEMB_ID, TOT
 		FROM (
 			SELECT
 			    ROWNUM RN,
@@ -93,6 +128,7 @@
 			    TITLE,
 			    CONT,
 			    REVIEW_CNT,
+			    WRITE_DATE,
 			    QUES_CD,
 			    U.MEMB_ID,
 			    0 AS TOT
@@ -101,6 +137,14 @@
 			    ON B.MEMB_NUM = U.MEMB_NUM
 			WHERE 
 			    QUES_CD = '2101' 
+			<if test="CD != null">
+				<if test="CD == '9901'">
+					AND B.WRITER_NM  like '%'||#{searchWord}||'%'
+				</if>   
+				<if test="CD == '9902'">
+					AND B.TITLE  like '%'||#{searchWord}||'%'
+				</if>
+			</if>    
 			) BOARD 
 		WHERE 
 			RN >= #{START} AND 
@@ -128,9 +172,16 @@
 	 <insert id="insert" parameterType="BoardVO">
 	 		INSERT INTO BOARD
 			( BOARD_NUM, TITLE, CONT, WRITER_NM, WRITE_DATE,
-			  REVIEW_CNT, MEMB_NUM, QUES_CD) VALUES 
-			(BOARD_SEQ.NEXTVAL, #{TITLE}, #{CONT}, #{WRITER_NM},
+			  REVIEW_CNT, MEMB_NUM, QUES_CD
+			  <if test="HIGH_BOARD_NUM != null">
+			  	,HIGH_BOARD_NUM
+			  </if>
+			  ) VALUES 
+			(BOARD_SEQ.NEXTVAL, #{TITLE}, #{CONT}, #{WRITER_NM}, sysdate,
 				0, #{MEMB_NUM}, '2202'
+			   <if test="HIGH_BOARD_NUM != null">
+			  		,#{HIGH_BOARD_NUM}
+			  </if>
 			)
 	 </insert>
 	 
@@ -139,34 +190,36 @@
 			SET TITLE = #{TITLE},
 			    CONT = #{CONT}
 			WHERE 
-				MEMB_NUM = #{MEMB_NUM}
+				BOARD_NUM = #{BOARD_NUM}
 	 </update>
 	 
 	 <update id="updateHitCount" parameterType="int">
 	 		UPDATE BOARD
 			SET 
-				REVIEW_CNT = #{REVIEW_CNT} + 1			    
+				REVIEW_CNT = REVIEW_CNT + 1			    
 			WHERE 
-				MEMB_NUM = #{MEMB_NUM}
+				BOARD_NUM = #{BOARD_NUM}
 	 </update>
 	 
-	 <update id="updateQuesCD" parameterType="int">
+	 <update id="updateQuesCD" >
 	 		UPDATE BOARD
 			SET 
-				REVIEW_CNT = #{REVIEW_CNT} + 1			    
+				QUES_CD = #{QUES_CD}			    
 			WHERE 
-				MEMB_NUM = #{MEMB_NUM}
+				BOARD_NUM = #{BOARD_NUM}
 	 </update>
 	 
 	 <delete id="delete" parameterType="int">
 	  		DELETE
 			FROM BOARD
-			WHERE MEMB_NUM = #{MEMB_NUM} 
+			WHERE 
+				BOARD_NUM = #{BOARD_NUM} 
 	 </delete>
 	 
 	 <delete id="deleteRelatedFile" parameterType="int">
 	  		DELETE
 			FROM ATTAC_FILE
-			WHERE MEMB_NUM = #{MEMB_NUM} 
+			WHERE 
+				BOARD_NUM = #{BOARD_NUM}
 	 </delete>
 </mapper>

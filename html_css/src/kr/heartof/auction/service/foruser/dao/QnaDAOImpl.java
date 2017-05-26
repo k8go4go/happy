@@ -3,15 +3,19 @@ package kr.heartof.auction.service.foruser.dao;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 import kr.heartof.auction.vo.foruser.AttacFileVO;
 import kr.heartof.auction.vo.foruser.BoardVO;
+import kr.heartof.auction.vo.foruser.PageVO;
 
 public class QnaDAOImpl implements QnaDAO {
-
 	@Override
-	public List<BoardVO> getBoardList(int currentPage, int viewCount) {
+	public List<BoardVO> list(PageVO vo) {
+		
+		return null;
+	}
+	
+	public List<BoardVO> getTestBoardList(int currentPage, int viewCount) {
 		List<BoardVO> list = new ArrayList<BoardVO>();
 		
 		for(int i=0; i < 116 ; i++) {
@@ -41,15 +45,16 @@ public class QnaDAOImpl implements QnaDAO {
 		}
 		
 		List<BoardVO> sendList = null;
-		int totalPage = getBoardTotal() / viewCount + (getBoardTotal() % viewCount > 0 ? 1 : 0);
+		int totalPage = 116 / viewCount + (116 % viewCount > 0 ? 1 : 0);
 		if(currentPage != totalPage) {
 			sendList = arraycopy(list, (currentPage - 1) * viewCount, viewCount);
 		} else { 
-			sendList = arraycopy(list, (currentPage - 1) * viewCount, getBoardTotal() % viewCount);
+			sendList = arraycopy(list, (currentPage - 1) * viewCount, 116 % viewCount);
 		}
 		
 		return sendList;
 	}
+	
 	
 	private List<BoardVO> arraycopy(List<BoardVO> source, int startIndex, int count) {
 		List<BoardVO> sendList = new ArrayList<BoardVO>();
@@ -65,26 +70,38 @@ public class QnaDAOImpl implements QnaDAO {
 	
 	
 	@Override
-	public boolean insertBoard(BoardVO vo) {
+	public boolean insert(BoardVO vo) {
 		
 		return false;
 	}
 
 	@Override
-	public boolean deleteBoard(int no) {
+	public boolean delete(int no) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean updateBoard(BoardVO vo) {
+	public boolean update(BoardVO vo) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public int getBoardTotal() {
-		return 116;
+	public int updateHitCount(int no) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
+	@Override
+	public int deleteRelatedFile(int no) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateQuesCD(int parentNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

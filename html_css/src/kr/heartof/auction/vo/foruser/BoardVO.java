@@ -21,6 +21,25 @@ public class BoardVO {
 	private List<BoardVO> replys;
 	private List<AttacFileVO> files;
 	
+	private String code;
+	private String searchWord;
+	
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getSearchWord() {
+		return searchWord;
+	}
+
+	public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
+	}
+
 	public String getMEMB_ID() {
 		return MEMB_ID;
 	}
@@ -141,4 +160,12 @@ public class BoardVO {
 		MEMB_NUM = mEMB_NUM;
 	}
 
+	@Override
+	public String toString() {
+		return "BoardVO [RN=" + RN + ", BOARD_NUM=" + BOARD_NUM + ", TITLE=" + TITLE + ", CONT=" + CONT + ", WRITER_NM="
+				+ WRITER_NM + ", WRITE_DATE=" + WRITE_DATE + ", REVIEW_CNT=" + REVIEW_CNT + ", HIGH_BOARD_NUM="
+				+ HIGH_BOARD_NUM + ", MEMB_NUM=" + MEMB_NUM + ", TOT=" + TOT + ", MEMB_ID=" + MEMB_ID + ", QUES_CD="
+				+ QUES_CD + ", attacFileVO=" + attacFileVO + ", replys=" + replys + ", files=" + files + ", code="
+				+ code + ", searchWord=" + searchWord + "]";
+	}
 }
