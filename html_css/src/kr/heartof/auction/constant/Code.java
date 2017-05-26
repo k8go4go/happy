@@ -57,8 +57,9 @@ public enum Code {
 //	1501 승인
 //	1502 거부
 	REG_AUC_APPROVAL_CD ("1500", "경매등록승인"),
-	REG_AUC_APPROVAL_Y_CD("1501", "온라인입금"),
-	REG_AUC_APPROVAL_N_CD("1502", "멤버쉽포인트"),
+	REG_AUC_APPROVAL_Y_CD("1501", "승인"),
+	REG_AUC_APPROVAL_N_CD("1502", "거부"),
+	REG_AUC_APPROVAL_ING_CD("1503", "대기중"),
 // 1600 상품수령/미수령
 //	1601. 수령
 //	1602. 미수령	

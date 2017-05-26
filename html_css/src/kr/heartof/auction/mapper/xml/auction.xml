@@ -1,37 +1,66 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.mlec.board.mapper.BoardMapper">
-	<select id="selectBoard" resultType="BoardVO">
-		 select 
-		 	no, title, writer, reg_date 
-		 from 
-		 	tb_board 
-		 order by no desc
+<mapper namespace="kr.heartof.auction.service.mapper.AuctionMapper">
+	<select id="allProgressing" resultType="RegAucVO">
+
 	</select>
-	
-	 <select id="selectOneBoard" parameterType="int" resultType="BoardVO">
-		 	select 
-		 		no, title, writer
-				content, 
-				reg_date as regDate
-			from 
-				tb_board
-			where 
-				no = #{no}
-	 </select>
 	 
-	 <insert id="insertBoard" parameterType="BoardVO">
-	 		insert into tb_board
-			( no, title, writer, content) values 
-			(tb_board_seq.nextval, #{title}, #{writer}, #{content}) 
+	<select id="detail" resultType="RegAucVO">
+
+	</select>
+	 
+	 <insert id="regAuction">
+	 		INSERT INTO REG_AUC
+			(
+				AUC_REG_NUM, AUC_PROD_NM, SHORT_CONT, REG_DTIME, 
+				START_DTIME, END_DTIME, START_PRICE,
+				QTY, MEMB_NUM, PROD_CATE_NUM, APPR_CD, AUC_TYPE_NUM
+			) values 
+			(
+				REG_AUG_SEQ.nextval, #{AUC_PROD_NM}, #{SHORT_CONT}, sysdate, 
+				#{START_DTIME}, #{END_DTIME}, #{START_PRICE},
+				#{QTY}, #{MEMB_NUM}, #{PROD_CATE_NUM}, '1503', '1801'
+			) 
 	 </insert>
 	 
-	 <update id="updateBoard" parameterType="BoardVO">
-	 		update tb_board
-			set title = #{title},
-			    content = #{content}
-			where no = #{no}
+	 <insert id="regAuctionFile">
+	 		INSERT INTO REG_AUC_FILE
+			(
+				ATTAC_FILE_NUM, FILE_NM, FILE_PATH, REAL_NM, 
+				FILE_SIZE, AUC_REG_NUM
+			) values 
+			(
+				AUC_FILE_SEQ.nextval, #{FILE_NM}, #{FILE_PATH}, #{REAL_NM},  
+				#{FILE_SIZE}, #{AUC_REG_NUM}
+			) 
+	 </insert>
+	 
+	 <update id="updateAuction">
+	 		UPDATE REG_AUC
+			SET 
+			    AUC_PROD_NM = #{AUC_PROD_NM}, 
+			    SHORT_CONT = #{SHORT_CONT}, 
+				START_DTIME = #{START_DTIME}, 
+				END_DTIME  = #{END_DTIME}, 
+				START_PRICE = #{START_PRICE}, 
+				QTY = #{QTY}, 
+				PROD_CATE_NUM = #{PROD_CATE_NUM},  
+				AUC_TYPE_NUM = #{AUC_TYPE_NUM}, 
+			WHERE 
+				AUC_REG_NUM = #{AUC_REG_NUM}
+	 </update>
+	 
+	 <update id="updateAuctionFile">
+	 		UPDATE REG_AUC_FILE
+			SET 
+			   FILE_NM = #{FILE_NM}, 
+			   FILE_PATH = #{FILE_PATH}, 
+			   REAL_NM = #{REAL_NM}, 
+			   FILE_SIZE = #{FILE_SIZE}
+			WHERE 
+				AUC_REG_NUM = #{AUC_REG_NUM} 
+				AND ATTAC_FILE_NUM = #{ATTAC_FILE_NUM}
 	 </update>
 	 
 	 <delete id="deleteBoard" parameterType="int">

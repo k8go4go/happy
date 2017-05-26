@@ -1,6 +1,7 @@
 package kr.heartof.auction.vo.auction;
 
 import java.util.Date;
+import java.util.List;
 
 public class RegAucVO {
 	private int AUC_REG_NUM;
@@ -15,6 +16,26 @@ public class RegAucVO {
 	private int MEMB_NUM;
 	private int PROD_NUM;
 	private String AUC_TYPE_NUM;
+	
+	private List<RegAucFileVO> files;
+	
+	private RegRejVO rej;
+	
+	public RegRejVO getRej() {
+		return rej;
+	}
+
+	public void setRej(RegRejVO rej) {
+		this.rej = rej;
+	}
+
+	public List<RegAucFileVO> getFiles() {
+		return files;
+	}
+
+	public void setFiles(List<RegAucFileVO> files) {
+		this.files = files;
+	}
 
 	public int getAUC_REG_NUM() {
 		return AUC_REG_NUM;
