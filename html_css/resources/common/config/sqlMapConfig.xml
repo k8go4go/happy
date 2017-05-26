@@ -23,6 +23,7 @@
 		
 		<typeAlias type="kr.heartof.auction.vo.foruser.AttacFileVO" alias="AttacFileVO"/>
 		<typeAlias type="kr.heartof.auction.vo.foruser.BoardVO" alias="BoardVO"/>
+		<typeAlias type="kr.heartof.auction.vo.foruser.PageVO" alias="PageVO"/>
 		
 		<typeAlias type="kr.heartof.auction.vo.member.ComUsrVO" alias="ComUsrVO"/>
 		<typeAlias type="kr.heartof.auction.vo.member.CreWarnVO" alias="CreWarnVO"/>
@@ -51,5 +52,6 @@
 
 	<mappers>
 		<mapper resource="kr/heartof/auction/mapper/xml/member.xml"/>
+		<mapper resource="kr/heartof/auction/mapper/xml/foruser.xml"/>
 	</mappers>
 </configuration>

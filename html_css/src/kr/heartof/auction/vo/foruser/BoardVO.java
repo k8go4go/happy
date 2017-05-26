@@ -1,8 +1,10 @@
 package kr.heartof.auction.vo.foruser;
 
 import java.util.Date;
+import java.util.List;
 
 public class BoardVO {
+	private int RN;
 	private int BOARD_NUM;
 	private String TITLE;
 	private String CONT;
@@ -11,9 +13,54 @@ public class BoardVO {
 	private int REVIEW_CNT;
 	private int HIGH_BOARD_NUM;
 	private int MEMB_NUM;
+	private int TOT;
+	private String MEMB_ID;
 	private String QUES_CD;
 	private AttacFileVO attacFileVO;
+
+	private List<BoardVO> replys;
+	private List<AttacFileVO> files;
 	
+	public String getMEMB_ID() {
+		return MEMB_ID;
+	}
+
+	public void setMEMB_ID(String mEMB_ID) {
+		MEMB_ID = mEMB_ID;
+	}
+
+	public int getTOT() {
+		return TOT;
+	}
+
+	public void setTOT(int tOT) {
+		TOT = tOT;
+	}
+
+	public List<BoardVO> getReplys() {
+		return replys;
+	}
+
+	public void setReplys(List<BoardVO> replys) {
+		this.replys = replys;
+	}
+
+	public List<AttacFileVO> getFiles() {
+		return files;
+	}
+
+	public void setFiles(List<AttacFileVO> files) {
+		this.files = files;
+	}
+
+	public int getRN() {
+		return RN;
+	}
+
+	public void setRN(int rN) {
+		RN = rN;
+	}
+
 	public String getQUES_CD() {
 		return QUES_CD;
 	}

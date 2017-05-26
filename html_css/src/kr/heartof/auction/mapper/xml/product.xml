@@ -3,7 +3,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.heartof.auction.service.mapper.ProductMapper">
 	<select id="getProdCates" resultType="ProdCateVO" parameterType="String">
-		 SELECT 
+		SELECT 
 		    c.PROD_CATE_NUM, 
 		    c.HIGH_PROD_CATE_NUM, 
 		    c.PROD_CATE_NM,

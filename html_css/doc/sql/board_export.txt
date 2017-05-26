@@ -1,4 +1,4 @@
-INSERT INTO BOARD (BOARD_NUM, WRITER_NM, TITLE, CONT, WRITE_DATE, REVIEW_CNT, MEMB_NUM, QUES_CD) VALUES (board_seq.nextVal, 'title', '김용재', 'cont', sysdate, 0, 1, '2102');
+ INSERT INTO BOARD (BOARD_NUM, WRITER_NM, TITLE, CONT, WRITE_DATE, REVIEW_CNT, MEMB_NUM, QUES_CD) VALUES (board_seq.nextVal, 'title', '김용재', 'cont', sysdate, 0, 1, '2102');
  INSERT INTO BOARD (BOARD_NUM, WRITER_NM, TITLE, CONT, WRITE_DATE, REVIEW_CNT, MEMB_NUM, QUES_CD) VALUES (board_seq.nextVal, 'title', '김용재', 'cont', sysdate, 0, 1, '2102');
  INSERT INTO BOARD (BOARD_NUM, WRITER_NM, TITLE, CONT, WRITE_DATE, REVIEW_CNT, MEMB_NUM, QUES_CD) VALUES (board_seq.nextVal, 'title', '김용재', 'cont', sysdate, 0, 1, '2102');
  INSERT INTO BOARD (BOARD_NUM, WRITER_NM, TITLE, CONT, WRITE_DATE, REVIEW_CNT, MEMB_NUM, QUES_CD) VALUES (board_seq.nextVal, 'title', '김용재', 'cont', sysdate, 0, 1, '2102');
