@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>htmlWithAngularNBootstrap</display-name>
+  <welcome-file-list>
+    <welcome-file>/jsp/index.jsp</welcome-file>
+  </welcome-file-list>
+  <context-param>
+    <description>Profile Upload Path</description>
+    <param-name>profile_upload</param-name>
+    <param-value>/download/profile/</param-value>
+  </context-param>
+  <context-param>
+    <description>Product File Upload Path</description>
+    <param-name>product_file_upload</param-name>
+    <param-value>/download/product</param-value>
+  </context-param>
+  <context-param>
+    <description>Board File Upload Path</description>
+    <param-name>board_file_upload</param-name>
+    <param-value>/download/board/</param-value>
+  </context-param>
+  
+  <listener>
+  		<display-name>Starter For Menu Product Category</display-name>
+  		<listener-class>kr.heartof.starter.Starter</listener-class>
+  </listener>
+</web-app>

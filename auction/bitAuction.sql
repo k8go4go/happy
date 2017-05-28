@@ -1,92 +1,19 @@
-/* íšŒì›ë²ˆí˜¸ ì‹œí€€ìŠ¤ */
-CREATE SEQUENCE usr_seq 
-	MINVALUE 1
-	INCREMENT BY 1
-	START WITH 1
-	ORDER;
-
-/* ê´€ë¦¬ìžë²ˆí˜¸ ì‹œí€€ìŠ¤ */
-CREATE SEQUENCE mgr_seq 
-	MINVALUE 1
-	INCREMENT BY 1
-	START WITH 1
-	ORDER;
-
-/* ê²Œì‹œíŒë²ˆí˜¸ ì‹œí€€ìŠ¤ */
-CREATE SEQUENCE board_seq 
-	MINVALUE 1
-	INCREMENT BY 1
-	START WITH 1
-	ORDER;
-
-/* ê²½ë§¤ ë“±ë¡ ì‹œí€€ìŠ¤ */
-CREATE SEQUENCE reg_auc_seq 
-	MINVALUE 1
-	INCREMENT BY 1
-	START WITH 1
-	ORDER;
-
-/* ì²¨ë¶€íŒŒì¼ ì‹œí€€ìŠ¤ */
-CREATE SEQUENCE atta_file_seq 
-	MINVALUE 1
-	INCREMENT BY 1
-	START WITH 1
-	ORDER;
-
-/* ìƒí’ˆì²¨ë¶€íŒŒì¼ ì‹œí€€ìŠ¤ */
-CREATE SEQUENCE prod_file_seq;
-
-/* ê²½ë§¤ ì²¨ë¶€ íŒŒì¼ ì‹œí€€ìŠ¤ */
-CREATE SEQUENCE auc_file_seq 
-	MINVALUE 1
-	INCREMENT BY 1
-	START WITH 1
-	ORDER;
-
-/* ìž…ì°° ì‹œí€€ìŠ¤ */
-CREATE SEQUENCE bid_seq 
-	MINVALUE 1
-	INCREMENT BY 1
-	START WITH 1
-	ORDER;
-
-/* ìž…ì°° ë“±ë¡ ì‹œí€€ìŠ¤ */
-CREATE SEQUENCE bid_reg_seq 
-	MINVALUE 1
-	INCREMENT BY 1
-	START WITH 1
-	ORDER;
-
-/* ê²°ìž¬ ì‹œí€€ìŠ¤ */
-CREATE SEQUENCE pay_seq 
-	MINVALUE 1
-	INCREMENT BY 1
-	START WITH 1
-	ORDER;
-
-/* ë°°ì†¡ ì‹œí€€ìŠ¤ */
-CREATE SEQUENCE deli_seq 
-	MINVALUE 1
-	INCREMENT BY 1
-	START WITH 1
-	ORDER;
-
-/* íšŒì› */
+/* È¸¿ø */
 CREATE TABLE USR (
-	MEMB_NUM INTEGER NOT NULL, /* íšŒì›ë²ˆí˜¸  */
-	MEMB_ID VARCHAR(50) NOT NULL, /* íšŒì›ID  */
-	SEC_NUM VARCHAR(50) NOT NULL, /* ë¹„ë°€ë²ˆí˜¸ */
-	EMAIL VARCHAR2(40) NOT NULL, /* ì´ë©”ì¼  */
-	TEL_NUM VARCHAR2(30) NOT NULL, /* ì „í™”ë²ˆí˜¸ */
-	MOBIL_NUM VARCHAR(13) NOT NULL, /* í•¸ë“œí°ë²ˆí˜¸ */
-	ZIP_NUM VARCHAR(6) NOT NULL, /* ìš°íŽ¸ë²ˆí˜¸  */
-	ADDRESS VARCHAR2(255) NOT NULL, /* ì£¼ì†Œ  */
-	DETA_ADDRESS VARCHAR(255) NOT NULL, /* ìƒì„¸ì£¼ì†Œ */
-	REG_DTIME DATE DEFAULT sysdate NOT NULL, /* ë“±ë¡ì¼ì‹œ */
-	MEMB_CD CHAR(4), /* íšŒì›êµ¬ë¶„ */
-	WITHDRAWAL_CD CHAR(4), /* íƒˆí‡´êµ¬ë¶„  */
-	CRE_DEG_CD CHAR(4), /* ì‹ ìš©ë“±ê¸‰êµ¬ë¶„  */
-	MAIL_CD CHAR(4) /* êµ¬ë¶„ */
+	MEMB_NUM INTEGER NOT NULL, /* È¸¿ø¹øÈ£  */
+	MEMB_ID VARCHAR(50) NOT NULL, /* È¸¿øID  */
+	SEC_NUM VARCHAR(50) NOT NULL, /* ºñ¹Ð¹øÈ£ */
+	EMAIL VARCHAR2(40) NOT NULL, /* ÀÌ¸ÞÀÏ  */
+	TEL_NUM VARCHAR2(30) NOT NULL, /* ÀüÈ­¹øÈ£ */
+	MOBIL_NUM VARCHAR(13) NOT NULL, /* ÇÚµåÆù¹øÈ£ */
+	ZIP_NUM VARCHAR(6) NOT NULL, /* ¿ìÆí¹øÈ£  */
+	ADDRESS VARCHAR2(255) NOT NULL, /* ÁÖ¼Ò  */
+	DETA_ADDRESS VARCHAR(255) NOT NULL, /* »ó¼¼ÁÖ¼Ò */
+	REG_DTIME DATE DEFAULT sysdate NOT NULL, /* µî·ÏÀÏ½Ã */
+	MEMB_CD CHAR(4), /* È¸¿ø±¸ºÐ */
+	WITHDRAWAL_CD CHAR(4), /* Å»Åð±¸ºÐ  */
+	CRE_DEG_CD CHAR(4), /* ½Å¿ëµî±Þ±¸ºÐ  */
+	MAIL_CD CHAR(4) /* ±¸ºÐ */
 );
 
 CREATE UNIQUE INDEX PK_USR
@@ -133,11 +60,11 @@ ALTER TABLE USR
 			MEMB_ID
 		);
 
-/* ê°œì¸íšŒì› */
+/* °³ÀÎÈ¸¿ø */
 CREATE TABLE PRI_USR (
-	MEMB_NUM INTEGER NOT NULL, /* íšŒì›ë²ˆí˜¸  */
-	NM VARCHAR(50) NOT NULL, /* ì´ë¦„ */
-	SOC_REG_NUM VARCHAR2(13) NOT NULL /* ì£¼ë¯¼ë“±ë¡ë²ˆí˜¸ */
+	MEMB_NUM INTEGER NOT NULL, /* È¸¿ø¹øÈ£  */
+	NM VARCHAR(50) NOT NULL, /* ÀÌ¸§ */
+	SOC_REG_NUM VARCHAR2(13) NOT NULL /* ÁÖ¹Îµî·Ï¹øÈ£ */
 );
 
 CREATE UNIQUE INDEX PK_PRI_USR
@@ -158,13 +85,13 @@ ALTER TABLE PRI_USR
 			MEMB_NUM
 		);
 
-/* ê¸°ì—…íšŒì› */
+/* ±â¾÷È¸¿ø */
 CREATE TABLE COM_USR (
-	MEMB_NUM INTEGER NOT NULL, /* íšŒì›ë²ˆí˜¸  */
-	CORP_NM VARCHAR(50) NOT NULL, /* íšŒì‚¬ì´ë¦„ */
-	BUS_NUM VARCHAR2(10), /* ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸ */
-	CEO_NM VARCHAR(50) NOT NULL, /* ëŒ€í‘œìžì´ë¦„ */
-	CHGR_NM VARCHAR(50) NOT NULL /* ë‹´ë‹¹ìžì´ë¦„ */
+	MEMB_NUM INTEGER NOT NULL, /* È¸¿ø¹øÈ£  */
+	CORP_NM VARCHAR(50) NOT NULL, /* È¸»çÀÌ¸§ */
+	BUS_NUM VARCHAR2(10), /* »ç¾÷ÀÚµî·Ï¹øÈ£ */
+	CEO_NM VARCHAR(50) NOT NULL, /* ´ëÇ¥ÀÚÀÌ¸§ */
+	CHGR_NM VARCHAR(50) NOT NULL /* ´ã´çÀÚÀÌ¸§ */
 );
 
 CREATE UNIQUE INDEX PK_COM_USR
@@ -191,19 +118,19 @@ ALTER TABLE COM_USR
 			MEMB_NUM
 		);
 
-/* ê´€ë¦¬íšŒì› */
+/* °ü¸®È¸¿ø */
 CREATE TABLE MGR (
-	MGR_NUM INTEGER NOT NULL, /* ê´€ë¦¬ìžë²ˆí˜¸  */
-	MGR_NM VARCHAR(50) NOT NULL, /* ê´€ë¦¬ìžì´ë¦„ */
-	MEMB_ID VARCHAR(50) NOT NULL, /* íšŒì›ID  */
-	SEC_NUM VARCHAR(50) NOT NULL, /* ë¹„ë°€ë²ˆí˜¸ */
-	EMAIL VARCHAR2(40) NOT NULL, /* ì´ë©”ì¼  */
-	TEL_NUM VARCHAR2(30) NOT NULL, /* ì „í™”ë²ˆí˜¸  */
-	MOBIL_NUM VARCHAR(13) NOT NULL, /* í•¸ë“œí°ë²ˆí˜¸  */
-	REG_DTIME DATE DEFAULT sysdate NOT NULL, /* ë“±ë¡ì¼ì‹œ */
-	HIGH_MGR_NUM INTEGER, /* ìƒìœ„ê´€ë¦¬ìžë²ˆí˜¸ */
-	MEMB_CD CHAR(4), /* íšŒì›êµ¬ë¶„ */
-	MAIL_CD CHAR(4) /* êµ¬ë¶„ */
+	MGR_NUM INTEGER NOT NULL, /* °ü¸®ÀÚ¹øÈ£  */
+	MGR_NM VARCHAR(50) NOT NULL, /* °ü¸®ÀÚÀÌ¸§ */
+	MEMB_ID VARCHAR(50) NOT NULL, /* È¸¿øID  */
+	SEC_NUM VARCHAR(50) NOT NULL, /* ºñ¹Ð¹øÈ£ */
+	EMAIL VARCHAR2(40) NOT NULL, /* ÀÌ¸ÞÀÏ  */
+	TEL_NUM VARCHAR2(30) NOT NULL, /* ÀüÈ­¹øÈ£  */
+	MOBIL_NUM VARCHAR(13) NOT NULL, /* ÇÚµåÆù¹øÈ£  */
+	REG_DTIME DATE DEFAULT sysdate NOT NULL, /* µî·ÏÀÏ½Ã */
+	HIGH_MGR_NUM INTEGER, /* »óÀ§°ü¸®ÀÚ¹øÈ£ */
+	MEMB_CD CHAR(4), /* È¸¿ø±¸ºÐ */
+	MAIL_CD CHAR(4) /* ±¸ºÐ */
 );
 
 CREATE UNIQUE INDEX PK_MGR
@@ -233,15 +160,15 @@ ALTER TABLE MGR
 			MGR_NUM
 		);
 
-/* ë©¤ë²„ì‰½ */
+/* ¸â¹ö½± */
 CREATE TABLE MEMBERSHIP (
-	MEMB_NUM INTEGER NOT NULL, /* íšŒì›ë²ˆí˜¸  */
-	MSHIP_CARD_NUM VARCHAR(16) NOT NULL, /* ë©¤ë²„ì‰½ì¹´ë“œë²ˆí˜¸ */
-	NM VARCHAR2(50) NOT NULL, /* ì´ë¦„ */
-	POINT INTEGER NOT NULL, /* í¬ì¸íŠ¸ */
-	ISSUE_DATE DATE NOT NULL, /* ë°œê¸‰ì¼ì‹œ */
-	ISSUE_CNT SMALLINT DEFAULT 1 NOT NULL, /* ë°œê¸‰íšŒìˆ˜ */
-	DEG CHAR(4) /* ë“±ê¸‰ */
+	MEMB_NUM INTEGER NOT NULL, /* È¸¿ø¹øÈ£  */
+	MSHIP_CARD_NUM VARCHAR(16) NOT NULL, /* ¸â¹ö½±Ä«µå¹øÈ£ */
+	NM VARCHAR2(50) NOT NULL, /* ÀÌ¸§ */
+	POINT INTEGER NOT NULL, /* Æ÷ÀÎÆ® */
+	ISSUE_DATE DATE NOT NULL, /* ¹ß±ÞÀÏ½Ã */
+	ISSUE_CNT SMALLINT DEFAULT 1 NOT NULL, /* ¹ß±ÞÈ¸¼ö */
+	DEG CHAR(4) /* µî±Þ */
 );
 
 CREATE UNIQUE INDEX PK_MEMBERSHIP
@@ -278,13 +205,13 @@ ALTER TABLE MEMBERSHIP
 			MSHIP_CARD_NUM
 		);
 
-/* ì „ìžì§€ê°‘ */
+/* ÀüÀÚÁö°© */
 CREATE TABLE ELEC_WALLET (
-	MEMB_NUM INTEGER NOT NULL, /* íšŒì›ë²ˆí˜¸  */
-	POINT INTEGER DEFAULT 100000 NOT NULL /* í¬ì¸íŠ¸ */
+	MEMB_NUM INTEGER NOT NULL, /* È¸¿ø¹øÈ£  */
+	POINT INTEGER DEFAULT 100000 NOT NULL /* Æ÷ÀÎÆ® */
 );
 
-COMMENT ON COLUMN ELEC_WALLET.POINT IS 'íšŒì› ì²«ê°€ìž… 100000 Point';
+COMMENT ON COLUMN ELEC_WALLET.POINT IS 'È¸¿ø Ã¹°¡ÀÔ 100000 Point';
 
 CREATE UNIQUE INDEX PK_ELEC_WALLET
 	ON ELEC_WALLET (
@@ -298,17 +225,17 @@ ALTER TABLE ELEC_WALLET
 			MEMB_NUM
 		);
 
-/* ê²Œì‹œíŒ */
+/* °Ô½ÃÆÇ */
 CREATE TABLE BOARD (
-	BOARD_NUM INTEGER NOT NULL, /* ê²Œì‹œíŒë²ˆí˜¸ */
-	TITLE VARCHAR2(100) NOT NULL, /* ì œëª© */
-	CONT NVARCHAR2(2000) NOT NULL, /* ë‚´ìš© */
-	WRITER_NM VARCHAR(50) NOT NULL, /* ìž‘ì„±ìžì´ë¦„  */
-	WRITE_DATE DATE DEFAULT sysdate NOT NULL, /* ìž‘ì„±ì¼ì‹œ */
-	REVIEW_CNT INTEGER DEFAULT 0 NOT NULL, /* ì¡°íšŒìˆ˜  */
-	HIGH_BOARD_NUM INTEGER, /* ìƒìœ„ê²Œì‹œíŒë²ˆí˜¸ */
-	MEMB_NUM INTEGER, /* íšŒì›ë²ˆí˜¸  */
-	QUES_CD CHAR(4) /* ì§ˆë¬¸êµ¬ë¶„ */
+	BOARD_NUM INTEGER NOT NULL, /* °Ô½ÃÆÇ¹øÈ£ */
+	TITLE VARCHAR2(100) NOT NULL, /* Á¦¸ñ */
+	CONT NVARCHAR2(2000) NOT NULL, /* ³»¿ë */
+	WRITER_NM VARCHAR(50) NOT NULL, /* ÀÛ¼ºÀÚÀÌ¸§  */
+	WRITE_DATE DATE DEFAULT sysdate NOT NULL, /* ÀÛ¼ºÀÏ½Ã */
+	REVIEW_CNT INTEGER DEFAULT 0 NOT NULL, /* Á¶È¸¼ö  */
+	HIGH_BOARD_NUM INTEGER, /* »óÀ§°Ô½ÃÆÇ¹øÈ£ */
+	MEMB_NUM INTEGER, /* È¸¿ø¹øÈ£  */
+	QUES_CD CHAR(4) /* Áú¹®±¸ºÐ */
 );
 
 CREATE UNIQUE INDEX PK_BOARD
@@ -348,17 +275,17 @@ ALTER TABLE BOARD
 			BOARD_NUM
 		);
 
-/* ì²¨ë¶€íŒŒì¼ */
+/* Ã·ºÎÆÄÀÏ */
 CREATE TABLE ATTAC_FILE (
-	ATTAC_FILE_NUM INTEGER NOT NULL, /* ì²¨ë¶€íŒŒì¼ë²ˆí˜¸ */
-	FILE_NM VARCHAR(100) NOT NULL, /* íŒŒì¼ì´ë¦„  */
-	FILE_PATH VARCHAR(255) NOT NULL, /* íŒŒì¼ê²½ë¡œ  */
-	REAL_NM VARCHAR(100) NOT NULL, /* ì‹¤ì œì´ë¦„ */
-	FILE_SIZE INTEGER NOT NULL, /* íŒŒì¼ì‚¬ì´ì¦ˆ */
-	BOARD_NUM INTEGER /* ê²Œì‹œíŒë²ˆí˜¸ */
+	ATTAC_FILE_NUM INTEGER NOT NULL, /* Ã·ºÎÆÄÀÏ¹øÈ£ */
+	FILE_NM VARCHAR(100) NOT NULL, /* ÆÄÀÏÀÌ¸§  */
+	FILE_PATH VARCHAR(255) NOT NULL, /* ÆÄÀÏ°æ·Î  */
+	REAL_NM VARCHAR(100) NOT NULL, /* ½ÇÁ¦ÀÌ¸§ */
+	FILE_SIZE INTEGER NOT NULL, /* ÆÄÀÏ»çÀÌÁî */
+	BOARD_NUM INTEGER /* °Ô½ÃÆÇ¹øÈ£ */
 );
 
-COMMENT ON COLUMN ATTAC_FILE.FILE_SIZE IS 'íŒŒì¼ ì‚¬ì´ì¦ˆ 10M ì´í•˜';
+COMMENT ON COLUMN ATTAC_FILE.FILE_SIZE IS 'ÆÄÀÏ »çÀÌÁî 10M ÀÌÇÏ';
 
 CREATE UNIQUE INDEX PK_ATTAC_FILE
 	ON ATTAC_FILE (
@@ -382,795 +309,796 @@ ALTER TABLE ATTAC_FILE
 		CONSTRAINT CK_ATTAC_FILE
 		CHECK (FILE_SIZE between 1 and 1000000);
 
-/* ìƒí’ˆë¶„ë¥˜ */
+/* »óÇ°ºÐ·ù */
 CREATE TABLE PROD_CATE (
-	PROD_CATE_NUM CHAR(4) NOT NULL, /* ìƒí’ˆë¶„ë¥˜ì½”ë“œ */
-	PROD_CATE_NM VARCHAR(50) NOT NULL, /* ìƒí’ˆë¶„ë¥˜ëª… */
-	SHORT_CONT VARCHAR(255) NOT NULL, /* ìƒí’ˆë¶„ë¥˜ì„¤ëª… */
-	HIGH_PROD_CATE_NUM CHAR(4) /* ìƒìœ„ìƒí’ˆë¶„ë¥˜ì½”ë“œ */
+	PROD_CATE_NUM CHAR(4) NOT NULL, /* »óÇ°ºÐ·ùÄÚµå */
+	PROD_CATE_NM VARCHAR(50) NOT NULL, /* »óÇ°ºÐ·ù¸í */
+	SHORT_CONT VARCHAR(255) NOT NULL, /* »óÇ°ºÐ·ù¼³¸í */
+	HIGH_PROD_CATE_NUM CHAR(4), /* »óÀ§»óÇ°ºÐ·ùÄÚµå */
+	USE_CD CHAR(4) /* ±¸ºÐ */
 );
 
-COMMENT ON COLUMN PROD_CATE.PROD_CATE_NUM IS '1000	íŒ¨ì…˜ì˜ë¥˜/ìž¡í™”		
-	1100	ì—¬ì„±íŒ¨ì…˜	
-		1101	í‹°ì…”ì¸ 
-		1102	ë§¨íˆ¬ë§¨/í›„ë“œì§‘ì—…
-		1103	ë¸”ë¼ìš°ìŠ¤/ì…”ì¸ 
-		1104	ì›í”¼ìŠ¤/ì •ìž¥ì„¸íŠ¸
-		1105	ë‹ˆíŠ¸ë¥˜/ì¡°ë¼
-		1106	ë°”ì§€/ë ˆê¹…ìŠ¤
-		1107	ìŠ¤ì»¤íŠ¸/ì¹˜ë§ˆ
-		1108	ì•„ìš°í„°
-		1109	íŒ¨ì…˜ìš´ë™ë³µ
-		1110	ë¹„í‚¤ë‹ˆ/ë¹„ì¹˜ì›¨ì–´
-		1111	ë¹…ì‚¬ì´ì¦ˆ ì˜ë¥˜
-		1112	ì†ì˜·/ìž ì˜·
-		1113	ì»¤í”Œë£©/íŒ¨ë°€ë¦¬ë£©
-		1114	ìž„ë¶€ë³µ
-		1115	í•œë³µ/íŒŒí‹°ë³µ
-		1116	ì‹ ë°œ
-		1117	ê°€ë°©/ìž¡í™”
-		1118	í•´ì™¸ì§êµ¬
-	1200	ë‚¨ì„±íŒ¨ì…˜	
-		1201	í‹°ì…”ì¸ 
-		1202	ë§¨íˆ¬ë§¨
-		1203	ì…”ì¸ 
-		1204	ë°”ì§€
-		1205	íŠ¸ë ˆì´ë‹
-		1206	í›„ë“œì§‘ì—…/ì§‘ì—…ë¥˜
-		1207	ìŠ¤ì›¨í„°
-		1208	ê°€ë””ê±´
-		1209	ë² ìŠ¤íŠ¸/ì¡°ë¼
-		1210	ì•„ìš°í„°
-		1211	ì†ì˜·/ìž ì˜·
-		1212	ë¹…ì‚¬ì´ì¦ˆ ì˜ë¥˜
-		1213	íŒ¨ì…˜ ëž˜ì‰¬ê°€ë“œ
-		1214	ì»¤í”Œë£©/íŒ¨ë°€ë¦¬ë£©
-		1215	í•œë³µ/ì½”ìŠ¤íŠ¬
-		1216	ì‹ ë°œ
-		1217	ê°€ë°©/ìž¡í™”
-		1218	í•´ì™¸ì§êµ¬
-	1300	 ìŠ¤í¬ì¸ íŒ¨ì…˜	
-		1301	ì—¬ì„±ìŠ¤í¬ì¸ ì˜ë¥˜
-		1302	ë‚¨ì„±ìŠ¤í¬ì¸ ì˜ë¥˜
-		1303	ë‚¨ë…€ìŠ¤í¬ì¸ ì˜ë¥˜
-		1304	ìŠ¤í¬ì¸ ìŠˆì¦ˆ
-		1305	ìŠ¤í¬ì¸ ìž¡í™”
-		1306	ìœ ì•„ë™ìŠ¤í¬ì¸ íŒ¨ì…˜
-	1400	ì‹ ë°œ	
-		1401	ìŠ¤ë‹ˆì»¤ì¦ˆ/ìŠ¬ë¦½ì˜¨
-		1402	ìš´ë™í™”/ëŸ°ë‹í™”
-		1403	ì—¬ì„±ë‹¨í™”/í”Œëž«
-		1404	ì—¬ì„±í•˜ì´íž
-		1405	ì—¬ì„±ì›Œì»¤/ë¶€ì¸ 
-		1406	ì—¬ì„±ìƒŒë“¤/ìª¼ë¦¬
-		1407	ë‚¨ì„±ë¡œí¼/ì›°íŠ¸í™”
-		1408	ë‚¨ì„±ì •ìž¥êµ¬ë‘
-		1409	ë‚¨ì„±ì›Œì»¤/ë¶€ì¸ 
-		1410	ë‚¨ì„±ìƒŒë“¤/ìª¼ë¦¬
-		1411	ìŠ¬ë¦¬í¼/ì‹¤ë‚´í™”
-		1412	ê¸°ëŠ¥í™”
-		1413	ê¹”ì°½/ì‹ ë°œëˆ
-		1414	ì‹ ë°œê´€ë¦¬ìš©í’ˆ
-		1415	í•´ì™¸ì§êµ¬
-	1500	ê°€ë°©/ìž¡í™”	
-		1501	ì—¬ì„±ê°€ë°©
-		1502	ë‚¨ì„±ê°€ë°©
-		1503	ë‚¨ë…€ìºì£¼ì–¼ê°€ë°©
-		1504	ì—¬í–‰ê°€ë°©/ì†Œí’ˆ
-		1505	ì§€ê°‘/ë²¨íŠ¸
-		1506	ì–‘ë§/ìŠ¤íƒ€í‚¹
-		1507	ë¨¸í”ŒëŸ¬/ìŠ¤ì¹´í”„/ìˆ„
-		1508	ëª¨ìž
-		1509	ìž¥ê°‘/ì‹œì¦Œìž¡í™”
-		1510	ë„¥íƒ€ì´/ì†Œí’ˆ
-		1511	ìš°ì‚°/ì–‘ì‚°/ìš°ë¹„
-		1512	ì•„ì´ì›¨ì–´
-		1513	ì‹œê³„
-		1514	ì¥¬ì–¼ë¦¬
-		1515	í•´ì™¸ì§êµ¬
-	1600	ëª…í’ˆíŒ¨ì…˜	
-		1601	ì—¬ì„±ì˜ë¥˜
-		1602	ë‚¨ì„±ì˜ë¥˜
-		1603	ì†ì˜·
-		1604	ì‹ ë°œ
-		1605	ê°€ë°©
-		1606	ì§€ê°‘
-		1607	ì‹œê³„/ì¥¬ì–¼ë¦¬
-		1608	ë²¨íŠ¸
-		1609	ëª¨ìž
-		1610	ìŠ¤ì¹´í”„/ë¨¸í”ŒëŸ¬
-		1611	ì•ˆê²½í…Œ/ì„ ê¸€ë¼ìŠ¤
-		1612	ë„¥íƒ€ì´
-		1613	ê¸°íƒ€íŒ¨ì…˜ìž¡í™”
-2000	ë·°í‹°		
-	2100	ìŠ¤í‚¨ì¼€ì–´	
-		2101	ê¸°ì´ˆí™”ìž¥í’ˆ
-		2102	í´ë Œì§•/í•„ë§
-		2103	ë§ˆìŠ¤í¬/íŒ©
-		2104	ì„ ì¼€ì–´/íƒœë‹
-	2200	ë©”ì´í¬ì—…	
-		2201	ì•„ì´ ë©”ì´í¬ì—…
-		2202	ë¦½ ë©”ì´í¬ì—…
-		2203	ë² ì´ìŠ¤ ë©”ì´í¬ì—…
-		2204	ì¹˜í¬/ê¸°íƒ€ ë©”ì´í¬ì—…
-	2300	í–¥ìˆ˜	
-		2301	ì—¬ì„±í–¥ìˆ˜
-		2302	ë‚¨ì„±í–¥ìˆ˜
-		2303	ë“œë ˆìŠ¤í¼í“¸
-	2400	í—¤ì–´	
-		2401	ìƒ´í‘¸/ë¦°ìŠ¤
-		2402	íŠ¸ë¦¬íŠ¸ë¨¼íŠ¸/íŒ©
-		2403	ìŠ¤íƒ€ì¼ë§/ì¼€ì–´/ì„¸íŠ¸
-		2404	ì—¼ìƒ‰/íŒŒë§ˆ
-	2500	ë°”ë””	
-		2501	ìƒ¤ì›Œ/ìž…ìš•ìš©í’ˆ
-		2502	ë°”ë””ë¡œì…˜/í¬ë¦¼
-		2503	í•¸ë“œ/í’‹/ë°ì˜¤
-		2504	ì œëª¨/ìŠ¬ë¦¬ë°/ì²­ê²°ì œ
-	2600	ë„¤ì¼	
-		2601	íí‹°í´/ì˜ì–‘
-		2602	ì¼ë°˜ë„¤ì¼
-		2603	ì ¤ë„¤ì¼
-		2604	ë„¤ì¼ì¼€ì–´ë„êµ¬
-		2605	ë„¤ì¼ì•„íŠ¸ì†Œí’ˆ/ë„êµ¬
-		2606	ë„¤ì¼ì„¸íŠ¸
-	2700	ë‚¨ì„±í™”ìž¥í’ˆ	
-		2701	ë‚¨ì„±ìŠ¤í‚¨ì¼€ì–´
-		2702	ë‚¨ì„±ë©”ì´í¬ì—…
-		2703	ë‚¨ì„±í™”ìž¥í’ˆì„¸íŠ¸
-		2704	ë‚¨ì„± í—¤ì–´ì¼€ì–´
-		2705	ë‚¨ì„± ë°”ë””ì¼€ì–´
-		2706	ë‚¨ì„± ì‰ì´ë¹™ ì¼€ì–´
-	2800	ëª…í’ˆí™”ìž¥í’ˆ	
-		2801	ìŠ¤í‚¨ì¼€ì–´
-		2802	ë©”ì´í¬ì—…
-		2803	í–¥ìˆ˜
-		2804	í—¤ì–´ì¼€ì–´
-		2805	ë°”ë””ì¼€ì–´
-		2806	ë‚¨ì„±í™”ìž¥í’ˆ
-		2807	ë·°í‹°ì†Œí’ˆ
-	2900	í—¬ìŠ¤í™”ìž¥í’ˆ	
-		2901	ìŠ¤í‚¨ì¼€ì–´
-		2902	íŽ˜ì´ìŠ¤ë©”ì´í¬ì—…
-		2903	ë¦½ì¼€ì–´
-		2904	í—¤ì–´ì¼€ì–´
-		2905	ë°”ë””ì¼€ì–´
-		2906	ì„¸íŠ¸
-		2907	ë·°í‹°ì†Œí’ˆ
-3000	ì‹í’ˆ		
-	3100	ìœ ê¸°ë†/ì¹œí™˜ê²½ ì „ë¬¸ê´€	
-		3101	ê³¼ì¼
-		3102	ê²¬ê³¼/ê±´ê³¼
-		3103	ì±„ì†Œ
-		3104	ìŒ€/ìž¡ê³¡
-		3105	ì¶•ì‚°/ê³„ëž€
-		3106	ìˆ˜ì‚°ë¬¼/ê±´ì–´ë¬¼
-		3107	ìŒë£Œ
-		3108	ìœ ì œí’ˆ/ë‘ìœ 
-		3109	ì»¤í”¼/ì›ë‘/ì°¨
-		3110	ê³¼ìž/ì‹œë¦¬ì–¼
-		3111	ë©´/í†µì¡°ë¦¼/ê°€ê³µì‹í’ˆ
-		3112	ê°€ë£¨/ì¡°ë¯¸ë£Œ/ì˜¤ì¼
-		3113	ìž¥/ì†ŒìŠ¤/ë“œë ˆì‹±/ì‹ì´ˆ
-	3200	ê³¼ì¼	
-		3201	ì‚¬ê³¼/ë°°
-		3202	ê·¤/í•œë¼ë´‰/ê°ê·¤ë¥˜
-		3203	ê°/í™ì‹œ/ê³¶ê°
-		3204	í‚¤ìœ„/ì°¸ë‹¤ëž˜
-		3205	í† ë§ˆí† /ìžë‘/ë³µìˆ­ì•„/í¬ë„
-		3206	ìˆ˜ë°•/ë©”ë¡ /ì°¸ì™¸
-		3207	ë”¸ê¸°/ë¸”ë£¨ë² ë¦¬/ë² ë¦¬ë¥˜
-		3208	ë°”ë‚˜ë‚˜/ì˜¤ë Œì§€/íŒŒì¸ì• í”Œ
-		3209	ìžëª½/ë ˆëª¬/ë¼ìž„/ì„ë¥˜
-		3210	ë§ê³ /ì²´ë¦¬/ì•„ë³´ì¹´ë„/ê¸°íƒ€
-		3211	ëƒ‰ë™ê³¼ì¼/ê°„íŽ¸ê³¼ì¼
-		3212	ê³¼ì¼ê°€ë£¨
-		3213	ê³¼ì¼ì„ ë¬¼ì„¸íŠ¸
-	3300	ê²¬ê³¼/ê±´ê³¼	
-		3301	ë•…ì½©/í˜¸ë‘
-		3302	ë°¤/ìž£/ì€í–‰
-		3303	ì•„ëª¬ë“œ/í”¼ìŠ¤íƒ€ì¹˜ì˜¤
-		3304	ê¸°íƒ€ê²¬ê³¼ë¥˜
-		3305	í˜¸ë°•ì”¨/í•´ë°”ë¼ê¸°ì”¨
-		3306	ê¸°íƒ€ì”¨ì•—
-		3307	í˜¼í•©ê²¬ê³¼/ì„¸íŠ¸
-		3308	ê±´ê³¼ì¼/ê±´ì±„ì†Œ
-	3400	ì±„ì†Œ	
-		3401	ë‘ë¶€/ì½©ë‚˜ë¬¼
-		3402	ê°ìž/ê³ êµ¬ë§ˆ
-		3403	ë‹¹ê·¼/ë¿Œë¦¬ì±„ì†Œ
-		3404	ì˜¤ì´/ê³ ì¶”/ì—´ë§¤ì±„ì†Œ
-		3405	ì–‘íŒŒ/ë§ˆëŠ˜/íŒŒ
-		3406	ë°°ì¶”/ë¬´/ê¹€ìž¥ì±„ì†Œ
-		3407	ì‹œê¸ˆì¹˜/ë‚˜ë¬¼/ìžŽì¤„ê¸°ì±„ì†Œ
-		3408	ìƒì¶”/ê¹»ìžŽ/ìŒˆì±„ì†Œ
-		3409	ìƒëŸ¬ë“œ/ì†ì§ˆì±„ì†Œ
-		3410	ìƒˆì†¡ì´/ë²„ì„¯ë¥˜
-		3411	ì¸ì‚¼/ê±´ê°•ì°¨ìž¬ë£Œ
-		3412	ê¸°íƒ€ì±„ì†Œ
-		3413	ê±´ë‚˜ë¬¼/ê±´ì±„ì†Œ
-	3500	ìŒ€/ìž¡ê³¡	
-		3501	ë°±ë¯¸
-		3502	í˜„ë¯¸/ì°¹ìŒ€/í‘ë¯¸
-		3503	ê¸°ëŠ¥ì„±ìŒ€/ê¸°íƒ€ìŒ€
-		3504	ì½©/íŒ¥/ë³´ë¦¬
-		3505	ì¡°/ìˆ˜ìˆ˜/ê¹¨
-		3506	ê¸°íƒ€ìž¡ê³¡/í˜¼í•©ê³¡
-		3507	ìŠˆí¼ê³¡ë¬¼
-		3508	ê¸°íƒ€ì”¨ì•—
-		3509	ìŒ€/ìž¡ê³¡ ê°€ë£¨
-		3510	ê³¡ë¥˜ì„ ë¬¼ì„¸íŠ¸
-	3600	ì¶•ì‚°/ê³„ëž€	
-		3601	ì†Œê³ ê¸°
-		3602	ë¼ì§€ê³ ê¸°
-		3603	ë‹­/ì˜¤ë¦¬ê³ ê¸°
-		3604	ì–‘/ë§ê³ ê¸°
-		3605	ê¸°íƒ€ ìœ¡ê³ ê¸°
-		3606	ê³„ëž€/ì•Œë¥˜/ê°€ê³µëž€
-		3607	ì¶•ì‚°ì„ ë¬¼ì„¸íŠ¸
-	3700	ìˆ˜ì‚°ë¬¼/ê±´ì–´ë¬¼	
-		3701	ìƒì„ 
-		3702	ì˜¤ì§•ì–´/ë‚™ì§€/ì—°ì²´ë¥˜
-		3703	ìƒˆìš°/ê²Œ/ê°‘ê°ë¥˜
-		3704	ì „ë³µ/êµ´/ì¡°ê°œë¥˜
-		3705	ë©¸ì¹˜/ì²œì—°ì¡°ë¯¸ë£Œ
-		3706	ê¹€/ë¯¸ì—­/í•´ì¡°ë¥˜
-		3707	ê±´ì˜¤ì§•ì–´/ì¥í¬/ì–´í¬
-		3708	í™©íƒœ/ì§„ë¯¸ì±„
-		3709	ìƒì„ ì•Œ
-		3710	ê¸°íƒ€ìˆ˜ì‚°ë¬¼/ê±´ì–´ë¬¼
-		3711	ìˆ˜ì‚°ë¬¼ì„ ë¬¼ì„¸íŠ¸
-	3800	ìƒìˆ˜/ìŒë£Œ	
-		3801	ìƒìˆ˜/íƒ„ì‚°ìˆ˜
-		3802	ê³¼ì¼/ì•¼ì±„ìŒë£Œ
-		3803	íƒ„ì‚°/ìŠ¤í¬ì¸ ìŒë£Œ
-		3804	ì»¤í”¼ìŒë£Œ/ì°¨ìŒë£Œ
-		3805	ë‘ìœ 
-		3806	ì¼ë°˜ìš°ìœ 
-		3807	ë©¸ê· ìš°ìœ 
-		3808	ìˆ™ì·¨/ê±´ê°•ìŒë£Œ
-		3809	ìœ ì•„ìŒë£Œ
-		3810	ê¸°íƒ€ì£¼ìŠ¤/ìŒë£Œ
-		3811	ìŒë£Œì„ ë¬¼ì„¸íŠ¸
-	3900	ê±´ê°•ì‹í’ˆ	
-		3901	ë¹„íƒ€ë¯¼/ì˜ì–‘ì œ
-		3902	í™ì‚¼/ì¸ì‚¼
-		3903	í—¬ìŠ¤/ë‹¤ì´ì–´íŠ¸ì‹í’ˆ
-		3904	ì˜ì–‘ì‹/ì„ ì‹
-		3905	ê¿€/ë¡œì–„ì ¤ë¦¬
-		3906	ê±´ê°•ì°¨ ì›ë¬¼
-		3907	ê±´ê°•ë¶„ë§/ê±´ê°•í™˜
-		3908	í•œë°©ìž¬ë£Œ
-		3909	ìž„ì‚°ë¶€ì‹í’ˆ
-		3910	ìœ ì•„ê±´ê°•ì‹í’ˆ
-4000	ì „ìžì œí’ˆ		
-	4100	ë…¸íŠ¸ë¶/PC/íƒœë¸”ë¦¿	
-		4101	ë…¸íŠ¸ë¶
-		4102	ë…¸íŠ¸ë¶ìš© ì•¡ì„¸ì„œë¦¬
-		4103	ë°ìŠ¤í¬íƒ‘
-		4104	PC ì¤‘ê³ /ë¦¬í¼ë¹„ì‹œ
-		4105	íƒœë¸”ë¦¿ PC
-		4106	íƒœë¸”ë¦¿PC ì•¡ì„¸ì„œë¦¬
-	4200	ì €ìž¥ìž¥ì¹˜/ê³µìœ ê¸°	
-		4201	ì™¸ìž¥í•˜ë“œ/NAS
+COMMENT ON COLUMN PROD_CATE.PROD_CATE_NUM IS '1000	ÆÐ¼ÇÀÇ·ù/ÀâÈ­		
+	1100	¿©¼ºÆÐ¼Ç	
+		1101	Æ¼¼ÅÃ÷
+		1102	¸ÇÅõ¸Ç/ÈÄµåÁý¾÷
+		1103	ºí¶ó¿ì½º/¼ÅÃ÷
+		1104	¿øÇÇ½º/Á¤Àå¼¼Æ®
+		1105	´ÏÆ®·ù/Á¶³¢
+		1106	¹ÙÁö/·¹±ë½º
+		1107	½ºÄ¿Æ®/Ä¡¸¶
+		1108	¾Æ¿ìÅÍ
+		1109	ÆÐ¼Ç¿îµ¿º¹
+		1110	ºñÅ°´Ï/ºñÄ¡¿þ¾î
+		1111	ºò»çÀÌÁî ÀÇ·ù
+		1112	¼Ó¿Ê/Àá¿Ê
+		1113	Ä¿ÇÃ·è/ÆÐ¹Ð¸®·è
+		1114	ÀÓºÎº¹
+		1115	ÇÑº¹/ÆÄÆ¼º¹
+		1116	½Å¹ß
+		1117	°¡¹æ/ÀâÈ­
+		1118	ÇØ¿ÜÁ÷±¸
+	1200	³²¼ºÆÐ¼Ç	
+		1201	Æ¼¼ÅÃ÷
+		1202	¸ÇÅõ¸Ç
+		1203	¼ÅÃ÷
+		1204	¹ÙÁö
+		1205	Æ®·¹ÀÌ´×
+		1206	ÈÄµåÁý¾÷/Áý¾÷·ù
+		1207	½º¿þÅÍ
+		1208	°¡µð°Ç
+		1209	º£½ºÆ®/Á¶³¢
+		1210	¾Æ¿ìÅÍ
+		1211	¼Ó¿Ê/Àá¿Ê
+		1212	ºò»çÀÌÁî ÀÇ·ù
+		1213	ÆÐ¼Ç ·¡½¬°¡µå
+		1214	Ä¿ÇÃ·è/ÆÐ¹Ð¸®·è
+		1215	ÇÑº¹/ÄÚ½ºÆ¬
+		1216	½Å¹ß
+		1217	°¡¹æ/ÀâÈ­
+		1218	ÇØ¿ÜÁ÷±¸
+	1300	 ½ºÆ÷Ã÷ÆÐ¼Ç	
+		1301	¿©¼º½ºÆ÷Ã÷ÀÇ·ù
+		1302	³²¼º½ºÆ÷Ã÷ÀÇ·ù
+		1303	³²³à½ºÆ÷Ã÷ÀÇ·ù
+		1304	½ºÆ÷Ã÷½´Áî
+		1305	½ºÆ÷Ã÷ÀâÈ­
+		1306	À¯¾Æµ¿½ºÆ÷Ã÷ÆÐ¼Ç
+	1400	½Å¹ß	
+		1401	½º´ÏÄ¿Áî/½½¸³¿Â
+		1402	¿îµ¿È­/·±´×È­
+		1403	¿©¼º´ÜÈ­/ÇÃ·§
+		1404	¿©¼ºÇÏÀÌÈú
+		1405	¿©¼º¿öÄ¿/ºÎÃ÷
+		1406	¿©¼º»÷µé/ÂÉ¸®
+		1407	³²¼º·ÎÆÛ/À£Æ®È­
+		1408	³²¼ºÁ¤Àå±¸µÎ
+		1409	³²¼º¿öÄ¿/ºÎÃ÷
+		1410	³²¼º»÷µé/ÂÉ¸®
+		1411	½½¸®ÆÛ/½Ç³»È­
+		1412	±â´ÉÈ­
+		1413	±òÃ¢/½Å¹ß²ö
+		1414	½Å¹ß°ü¸®¿ëÇ°
+		1415	ÇØ¿ÜÁ÷±¸
+	1500	°¡¹æ/ÀâÈ­	
+		1501	¿©¼º°¡¹æ
+		1502	³²¼º°¡¹æ
+		1503	³²³àÄ³ÁÖ¾ó°¡¹æ
+		1504	¿©Çà°¡¹æ/¼ÒÇ°
+		1505	Áö°©/º§Æ®
+		1506	¾ç¸»/½ºÅ¸Å·
+		1507	¸ÓÇÃ·¯/½ºÄ«ÇÁ/¼ñ
+		1508	¸ðÀÚ
+		1509	Àå°©/½ÃÁðÀâÈ­
+		1510	³ØÅ¸ÀÌ/¼ÒÇ°
+		1511	¿ì»ê/¾ç»ê/¿ìºñ
+		1512	¾ÆÀÌ¿þ¾î
+		1513	½Ã°è
+		1514	Áê¾ó¸®
+		1515	ÇØ¿ÜÁ÷±¸
+	1600	¸íÇ°ÆÐ¼Ç	
+		1601	¿©¼ºÀÇ·ù
+		1602	³²¼ºÀÇ·ù
+		1603	¼Ó¿Ê
+		1604	½Å¹ß
+		1605	°¡¹æ
+		1606	Áö°©
+		1607	½Ã°è/Áê¾ó¸®
+		1608	º§Æ®
+		1609	¸ðÀÚ
+		1610	½ºÄ«ÇÁ/¸ÓÇÃ·¯
+		1611	¾È°æÅ×/¼±±Û¶ó½º
+		1612	³ØÅ¸ÀÌ
+		1613	±âÅ¸ÆÐ¼ÇÀâÈ­
+2000	ºäÆ¼		
+	2100	½ºÅ²ÄÉ¾î	
+		2101	±âÃÊÈ­ÀåÇ°
+		2102	Å¬·»Â¡/ÇÊ¸µ
+		2103	¸¶½ºÅ©/ÆÑ
+		2104	¼±ÄÉ¾î/ÅÂ´×
+	2200	¸ÞÀÌÅ©¾÷	
+		2201	¾ÆÀÌ ¸ÞÀÌÅ©¾÷
+		2202	¸³ ¸ÞÀÌÅ©¾÷
+		2203	º£ÀÌ½º ¸ÞÀÌÅ©¾÷
+		2204	Ä¡Å©/±âÅ¸ ¸ÞÀÌÅ©¾÷
+	2300	Çâ¼ö	
+		2301	¿©¼ºÇâ¼ö
+		2302	³²¼ºÇâ¼ö
+		2303	µå·¹½ºÆÛÇ¾
+	2400	Çì¾î	
+		2401	¼¤Çª/¸°½º
+		2402	Æ®¸®Æ®¸ÕÆ®/ÆÑ
+		2403	½ºÅ¸ÀÏ¸µ/ÄÉ¾î/¼¼Æ®
+		2404	¿°»ö/ÆÄ¸¶
+	2500	¹Ùµð	
+		2501	»þ¿ö/ÀÔ¿å¿ëÇ°
+		2502	¹Ùµð·Î¼Ç/Å©¸²
+		2503	ÇÚµå/Ç²/µ¥¿À
+		2504	Á¦¸ð/½½¸®¹Ö/Ã»°áÁ¦
+	2600	³×ÀÏ	
+		2601	Å¥Æ¼Å¬/¿µ¾ç
+		2602	ÀÏ¹Ý³×ÀÏ
+		2603	Á©³×ÀÏ
+		2604	³×ÀÏÄÉ¾îµµ±¸
+		2605	³×ÀÏ¾ÆÆ®¼ÒÇ°/µµ±¸
+		2606	³×ÀÏ¼¼Æ®
+	2700	³²¼ºÈ­ÀåÇ°	
+		2701	³²¼º½ºÅ²ÄÉ¾î
+		2702	³²¼º¸ÞÀÌÅ©¾÷
+		2703	³²¼ºÈ­ÀåÇ°¼¼Æ®
+		2704	³²¼º Çì¾îÄÉ¾î
+		2705	³²¼º ¹ÙµðÄÉ¾î
+		2706	³²¼º ½¦ÀÌºù ÄÉ¾î
+	2800	¸íÇ°È­ÀåÇ°	
+		2801	½ºÅ²ÄÉ¾î
+		2802	¸ÞÀÌÅ©¾÷
+		2803	Çâ¼ö
+		2804	Çì¾îÄÉ¾î
+		2805	¹ÙµðÄÉ¾î
+		2806	³²¼ºÈ­ÀåÇ°
+		2807	ºäÆ¼¼ÒÇ°
+	2900	Çï½ºÈ­ÀåÇ°	
+		2901	½ºÅ²ÄÉ¾î
+		2902	ÆäÀÌ½º¸ÞÀÌÅ©¾÷
+		2903	¸³ÄÉ¾î
+		2904	Çì¾îÄÉ¾î
+		2905	¹ÙµðÄÉ¾î
+		2906	¼¼Æ®
+		2907	ºäÆ¼¼ÒÇ°
+3000	½ÄÇ°		
+	3100	À¯±â³ó/Ä£È¯°æ Àü¹®°ü	
+		3101	°úÀÏ
+		3102	°ß°ú/°Ç°ú
+		3103	Ã¤¼Ò
+		3104	½Ò/Àâ°î
+		3105	Ãà»ê/°è¶õ
+		3106	¼ö»ê¹°/°Ç¾î¹°
+		3107	À½·á
+		3108	À¯Á¦Ç°/µÎÀ¯
+		3109	Ä¿ÇÇ/¿øµÎ/Â÷
+		3110	°úÀÚ/½Ã¸®¾ó
+		3111	¸é/ÅëÁ¶¸²/°¡°ø½ÄÇ°
+		3112	°¡·ç/Á¶¹Ì·á/¿ÀÀÏ
+		3113	Àå/¼Ò½º/µå·¹½Ì/½ÄÃÊ
+	3200	°úÀÏ	
+		3201	»ç°ú/¹è
+		3202	±Ö/ÇÑ¶óºÀ/°¨±Ö·ù
+		3203	°¨/È«½Ã/°ù°¨
+		3204	Å°À§/Âü´Ù·¡
+		3205	Åä¸¶Åä/ÀÚµÎ/º¹¼þ¾Æ/Æ÷µµ
+		3206	¼ö¹Ú/¸Þ·Ð/Âü¿Ü
+		3207	µþ±â/ºí·çº£¸®/º£¸®·ù
+		3208	¹Ù³ª³ª/¿À·»Áö/ÆÄÀÎ¾ÖÇÃ
+		3209	ÀÚ¸ù/·¹¸ó/¶óÀÓ/¼®·ù
+		3210	¸Á°í/Ã¼¸®/¾Æº¸Ä«µµ/±âÅ¸
+		3211	³Ãµ¿°úÀÏ/°£Æí°úÀÏ
+		3212	°úÀÏ°¡·ç
+		3213	°úÀÏ¼±¹°¼¼Æ®
+	3300	°ß°ú/°Ç°ú	
+		3301	¶¥Äá/È£µÎ
+		3302	¹ã/Àã/ÀºÇà
+		3303	¾Æ¸óµå/ÇÇ½ºÅ¸Ä¡¿À
+		3304	±âÅ¸°ß°ú·ù
+		3305	È£¹Ú¾¾/ÇØ¹Ù¶ó±â¾¾
+		3306	±âÅ¸¾¾¾Ñ
+		3307	È¥ÇÕ°ß°ú/¼¼Æ®
+		3308	°Ç°úÀÏ/°ÇÃ¤¼Ò
+	3400	Ã¤¼Ò	
+		3401	µÎºÎ/Äá³ª¹°
+		3402	°¨ÀÚ/°í±¸¸¶
+		3403	´ç±Ù/»Ñ¸®Ã¤¼Ò
+		3404	¿ÀÀÌ/°íÃß/¿­¸ÅÃ¤¼Ò
+		3405	¾çÆÄ/¸¶´Ã/ÆÄ
+		3406	¹èÃß/¹«/±èÀåÃ¤¼Ò
+		3407	½Ã±ÝÄ¡/³ª¹°/ÀÙÁÙ±âÃ¤¼Ò
+		3408	»óÃß/²¢ÀÙ/½ÓÃ¤¼Ò
+		3409	»ø·¯µå/¼ÕÁúÃ¤¼Ò
+		3410	»õ¼ÛÀÌ/¹ö¼¸·ù
+		3411	ÀÎ»ï/°Ç°­Â÷Àç·á
+		3412	±âÅ¸Ã¤¼Ò
+		3413	°Ç³ª¹°/°ÇÃ¤¼Ò
+	3500	½Ò/Àâ°î	
+		3501	¹é¹Ì
+		3502	Çö¹Ì/Âý½Ò/Èæ¹Ì
+		3503	±â´É¼º½Ò/±âÅ¸½Ò
+		3504	Äá/ÆÏ/º¸¸®
+		3505	Á¶/¼ö¼ö/±ú
+		3506	±âÅ¸Àâ°î/È¥ÇÕ°î
+		3507	½´ÆÛ°î¹°
+		3508	±âÅ¸¾¾¾Ñ
+		3509	½Ò/Àâ°î °¡·ç
+		3510	°î·ù¼±¹°¼¼Æ®
+	3600	Ãà»ê/°è¶õ	
+		3601	¼Ò°í±â
+		3602	µÅÁö°í±â
+		3603	´ß/¿À¸®°í±â
+		3604	¾ç/¸»°í±â
+		3605	±âÅ¸ À°°í±â
+		3606	°è¶õ/¾Ë·ù/°¡°ø¶õ
+		3607	Ãà»ê¼±¹°¼¼Æ®
+	3700	¼ö»ê¹°/°Ç¾î¹°	
+		3701	»ý¼±
+		3702	¿ÀÂ¡¾î/³«Áö/¿¬Ã¼·ù
+		3703	»õ¿ì/°Ô/°©°¢·ù
+		3704	Àüº¹/±¼/Á¶°³·ù
+		3705	¸êÄ¡/Ãµ¿¬Á¶¹Ì·á
+		3706	±è/¹Ì¿ª/ÇØÁ¶·ù
+		3707	°Ç¿ÀÂ¡¾î/ÁãÆ÷/¾îÆ÷
+		3708	È²ÅÂ/Áø¹ÌÃ¤
+		3709	»ý¼±¾Ë
+		3710	±âÅ¸¼ö»ê¹°/°Ç¾î¹°
+		3711	¼ö»ê¹°¼±¹°¼¼Æ®
+	3800	»ý¼ö/À½·á	
+		3801	»ý¼ö/Åº»ê¼ö
+		3802	°úÀÏ/¾ßÃ¤À½·á
+		3803	Åº»ê/½ºÆ÷Ã÷À½·á
+		3804	Ä¿ÇÇÀ½·á/Â÷À½·á
+		3805	µÎÀ¯
+		3806	ÀÏ¹Ý¿ìÀ¯
+		3807	¸ê±Õ¿ìÀ¯
+		3808	¼÷Ãë/°Ç°­À½·á
+		3809	À¯¾ÆÀ½·á
+		3810	±âÅ¸ÁÖ½º/À½·á
+		3811	À½·á¼±¹°¼¼Æ®
+	3900	°Ç°­½ÄÇ°	
+		3901	ºñÅ¸¹Î/¿µ¾çÁ¦
+		3902	È«»ï/ÀÎ»ï
+		3903	Çï½º/´ÙÀÌ¾îÆ®½ÄÇ°
+		3904	¿µ¾ç½Ä/¼±½Ä
+		3905	²Ü/·Î¾âÁ©¸®
+		3906	°Ç°­Â÷ ¿ø¹°
+		3907	°Ç°­ºÐ¸»/°Ç°­È¯
+		3908	ÇÑ¹æÀç·á
+		3909	ÀÓ»êºÎ½ÄÇ°
+		3910	À¯¾Æ°Ç°­½ÄÇ°
+4000	ÀüÀÚÁ¦Ç°		
+	4100	³ëÆ®ºÏ/PC/ÅÂºí¸´	
+		4101	³ëÆ®ºÏ
+		4102	³ëÆ®ºÏ¿ë ¾×¼¼¼­¸®
+		4103	µ¥½ºÅ©Å¾
+		4104	PC Áß°í/¸®ÆÛºñ½Ã
+		4105	ÅÂºí¸´ PC
+		4106	ÅÂºí¸´PC ¾×¼¼¼­¸®
+	4200	ÀúÀåÀåÄ¡/°øÀ¯±â	
+		4201	¿ÜÀåÇÏµå/NAS
 		4202	HDD
 		4203	SSD
-		4204	ODD/ê³µë””ìŠ¤í¬
-		4205	USBë©”ëª¨ë¦¬
-		4206	ë©”ëª¨ë¦¬ì¹´ë“œ/ì¹´ë“œë¦¬ë”
-		4207	ê³µìœ ê¸°/ëžœì¹´ë“œ
-		4208	ë„¤íŠ¸ì›Œí¬ìž¥ë¹„
-		4209	CCTV/IPì¹´ë©”ë¼
-	4300	ëª¨ë‹ˆí„°/í”„ë¦°í„°	
-		4301	ëª¨ë‹ˆí„°
-		4302	ëª¨ë‹ˆí„° ì£¼ë³€ê¸°ê¸°
-		4303	í”„ë¦°í„°/ë³µí•©ê¸°
-		4304	ìŠ¤ìºë„ˆ
-		4305	ë³µì‚¬ê¸°
-		4306	POS/ë°”ì½”ë“œìŠ¤ìº”
-		4307	ìž‰í¬/í† ë„ˆ
-	4400	PCë¶€í’ˆ/ì£¼ë³€ê¸°ê¸°	
-		4401	ë§ˆìš°ìŠ¤/í‚¤ë³´ë“œ
-		4402	ìŠ¤í”¼ì»¤/í—¤ë“œì…‹/ì›¹ìº 
+		4204	ODD/°øµð½ºÅ©
+		4205	USB¸Þ¸ð¸®
+		4206	¸Þ¸ð¸®Ä«µå/Ä«µå¸®´õ
+		4207	°øÀ¯±â/·£Ä«µå
+		4208	³×Æ®¿öÅ©Àåºñ
+		4209	CCTV/IPÄ«¸Þ¶ó
+	4300	¸ð´ÏÅÍ/ÇÁ¸°ÅÍ	
+		4301	¸ð´ÏÅÍ
+		4302	¸ð´ÏÅÍ ÁÖº¯±â±â
+		4303	ÇÁ¸°ÅÍ/º¹ÇÕ±â
+		4304	½ºÄ³³Ê
+		4305	º¹»ç±â
+		4306	POS/¹ÙÄÚµå½ºÄµ
+		4307	À×Å©/Åä³Ê
+	4400	PCºÎÇ°/ÁÖº¯±â±â	
+		4401	¸¶¿ì½º/Å°º¸µå
+		4402	½ºÇÇÄ¿/Çìµå¼Â/À¥Ä·
 		4403	CPU
-		4404	ëž¨(RAM)
-		4405	ê·¸ëž˜í”½/TVì¹´ë“œ
-		4406	ë©”ì¸ë³´ë“œ/í™•ìž¥ì¹´ë“œ
-		4407	ì¼€ì´ìŠ¤/íŒŒì›Œ
-		4408	USBí—ˆë¸Œ/ì¼€ì´ë¸”/ì  ë”
-		4409	ë©€í‹°íƒ­/PCê´€ë¦¬ìš©í’ˆ
-		4410	ì¿¨ëŸ¬
-		4411	ì†Œí”„íŠ¸ì›¨ì–´
-	4500	íœ´ëŒ€í°/ì•¡ì„¸ì„œë¦¬	
-		4501	íœ´ëŒ€í° ì¼€ì´ìŠ¤
-		4502	íœ´ëŒ€í° ì•¡ì„¸ì„œë¦¬
-		4503	ë°°í„°ë¦¬/ì¶©ì „/ì¼€ì´ë¸”
-		4504	ìŠ¤ë§ˆíŠ¸ì›Œì¹˜/ë°´ë“œ
-		4505	íƒœë¸”ë¦¿ PC
-		4506	íƒœë¸”ë¦¿PC ì•¡ì„¸ì„œë¦¬
-		4507	ë©”ëª¨ë¦¬ì¹´ë“œ/ë¦¬ë”ê¸°
-		4508	íœ´ëŒ€í°
-	4600	ìŒí–¥ê¸°ê¸°/ì´ì–´í°	
-		4601	ì´ì–´í°
-		4602	í—¤ë“œí°
-		4603	ìŠ¤í”¼ì»¤
-		4604	í™ˆì‹œì–´í„°/ì˜¤ë””ì˜¤
-		4605	ë¼ë””ì˜¤/ì¹´ì„¸íŠ¸/MP3
-		4606	ë…¹ìŒ/ì–´í•™/ì‚¬ì „
-		4607	PA/ë§ˆì´í¬/ë ˆì½”ë”©
-		4608	ìŒí–¥ ì•¡ì„¸ì„œë¦¬
-	4700	TV/ì˜ìƒê°€ì „	
+		4404	·¥(RAM)
+		4405	±×·¡ÇÈ/TVÄ«µå
+		4406	¸ÞÀÎº¸µå/È®ÀåÄ«µå
+		4407	ÄÉÀÌ½º/ÆÄ¿ö
+		4408	USBÇãºê/ÄÉÀÌºí/Á¨´õ
+		4409	¸ÖÆ¼ÅÇ/PC°ü¸®¿ëÇ°
+		4410	Äð·¯
+		4411	¼ÒÇÁÆ®¿þ¾î
+	4500	ÈÞ´ëÆù/¾×¼¼¼­¸®	
+		4501	ÈÞ´ëÆù ÄÉÀÌ½º
+		4502	ÈÞ´ëÆù ¾×¼¼¼­¸®
+		4503	¹èÅÍ¸®/ÃæÀü/ÄÉÀÌºí
+		4504	½º¸¶Æ®¿öÄ¡/¹êµå
+		4505	ÅÂºí¸´ PC
+		4506	ÅÂºí¸´PC ¾×¼¼¼­¸®
+		4507	¸Þ¸ð¸®Ä«µå/¸®´õ±â
+		4508	ÈÞ´ëÆù
+	4600	À½Çâ±â±â/ÀÌ¾îÆù	
+		4601	ÀÌ¾îÆù
+		4602	ÇìµåÆù
+		4603	½ºÇÇÄ¿
+		4604	È¨½Ã¾îÅÍ/¿Àµð¿À
+		4605	¶óµð¿À/Ä«¼¼Æ®/MP3
+		4606	³ìÀ½/¾îÇÐ/»çÀü
+		4607	PA/¸¶ÀÌÅ©/·¹ÄÚµù
+		4608	À½Çâ ¾×¼¼¼­¸®
+	4700	TV/¿µ»ó°¡Àü	
 		4701	TV
-		4702	TV ì•¡ì„¸ì„œë¦¬
-		4703	ë¸”ë£¨ë ˆì´/DVD/DivX
-		4704	ë¹”/í”„ë¡œì í„°/ìŠ¤í¬ë¦°
-	4800	ì¹´ë©”ë¼/ìº ì½”ë”	
+		4702	TV ¾×¼¼¼­¸®
+		4703	ºí·ç·¹ÀÌ/DVD/DivX
+		4704	ºö/ÇÁ·ÎÁ§ÅÍ/½ºÅ©¸°
+	4800	Ä«¸Þ¶ó/Ä·ÄÚ´õ	
 		4801	DSLR
-		4802	DSLR ë Œì¦ˆ
-		4803	ë¯¸ëŸ¬ë¦¬ìŠ¤
-		4804	ë¯¸ëŸ¬ë¦¬ìŠ¤ ë Œì¦ˆ
-		4805	í•˜ì´ì—”ë“œ/ì»´íŒ©íŠ¸
-		4806	ì¹´ë©”ë¼ ì•¡ì„¸ì„œë¦¬
-		4807	ì•¡ì…˜ìº /ìº ì½”ë”
-		4808	ì¦‰ì„/ê¸°íƒ€ì¹´ë©”ë¼
-		4809	í¬í† í”„ë¦°í„°/ìš©ì§€
-		4810	ì¤‘ê³ /ë¦¬í¼/ë³‘í–‰
-	4900	ëƒ‰ìž¥ê³ /ê¹€ì¹˜ëƒ‰ìž¥ê³ 	
-		4901	ëƒ‰ìž¥ê³ 
-		4902	ê¹€ì¹˜ëƒ‰ìž¥ê³ 
-5000	ìžë™ì°¨ìš©í’ˆ		
-	5100	ì‹¤ë‚´ìš©í’ˆ	
-		5101	ì¸í…Œë¦¬ì–´ìš©í’ˆ
-		5102	ì°¨ëŸ‰ìš©ìˆ˜ë‚©ìš©í’ˆ
-		5103	ì°¨ëŸ‰ìš©íŽ¸ì˜ìš©í’ˆ
-	5200	ì‹¤ì™¸ìš©í’ˆ/ìµìŠ¤í…Œë¦¬ì–´	
-		5201	ì™€ì´í¼
-		5202	ìŠ¤í‹°ì»¤/ì— ë¸”ëŸ¼
-		5203	ì•ˆí…Œë‚˜/ë³¼
-		5204	ì£¼ìœ êµ¬ìº¡/í˜¼ìœ ë°©ì§€ë§
-		5205	ë²ˆí˜¸íŒ ì•¡ì„¸ì„œë¦¬
-		5206	ì¬ë°”ì´ì €/ì¬ë£¨í”„
-		5207	ëª°ë”©/ê°€ë“œ
-		5208	ë¯¸ëŸ¬ìš©í’ˆ
-		5209	ë£¨í”„ìš©í’ˆ
-		5210	ìºë¦¬ì–´ìš©í’ˆ
-		5211	ì°¨ëŸ‰ìš© ë°”ë””ì»¤ë²„
-	5300	ì„¸ì°¨/ê´€ë¦¬ìš©í’ˆ	
-		5301	ì„¸ì°¨ìš©í’ˆ
-		5302	ê´€ë¦¬ìš©í’ˆ
-		5303	ì„¸ì°¨ìš©í’ˆì„¸íŠ¸
-	5400	ë§¤íŠ¸/ì‹œíŠ¸/ì¿ ì…˜	
-		5401	ì°¨ëŸ‰ìš©ì¹´ë§¤íŠ¸
-		5402	ì°¨ëŸ‰ìš©ì‹œíŠ¸/ìœ ì•„ì‹œíŠ¸
-		5403	ì°¨ëŸ‰ìš©ì¿ ì…˜
-		5404	ì°¨ëŸ‰ìš©ë°©ì„
-		5405	ì¿ ì…˜ë°©ì„ì„¸íŠ¸
-6000	í‹°ì¼“		
-	6100	êµ­ë‚´ì—¬í–‰	
-		6101	í˜¸í…”
-		6102	ë¦¬ì¡°íŠ¸
-		6103	íŽœì…˜
-		6104	ìº í•‘/ê¸€ëž¨í•‘
-		6105	ë¶€í‹°í¬ í˜¸í…”/ëª¨í…”
-		6106	ê²ŒìŠ¤íŠ¸í•˜ìš°ìŠ¤
-		6107	í…Œë§ˆíŒŒí¬/ì›Œí„°íŒŒí¬
-		6108	ë ˆí¬ì¸ /ì²´í—˜/ê³¨í”„
-		6109	ë‚´ë¥™í…Œë§ˆì—¬í–‰
-		6110	ì „êµ­ë Œí„°ì¹´
-		6111	ì œì£¼ì—¬í–‰
-		6112	ì œì£¼í•­ê³µê¶Œ
-		6113	ì œì£¼ë Œí„°ì¹´
-	6200	í•´ì™¸ì—¬í–‰	
-		6201	íŠ¹ê°€ í•­ê³µ
-		6202	ì‹¤ì‹œê°„ í•­ê³µ ì˜ˆì•½
-		6203	íŠ¹ê°€ í˜¸í…”
-		6204	ì „ì„¸ê³„ í˜¸í…” ì˜ˆì•½
-		6205	ê´€ê´‘ì§€ìž…ìž¥ê¶Œ/êµí†µíŒ¨ìŠ¤
-		6206	ì¼ë³¸
-		6207	ë™ë‚¨ì•„ì‹œì•„
-		6208	ê´Œ/ì‚¬ì´íŒ/í˜¸ì£¼
-		6209	í™ì½©/ë§ˆì¹´ì˜¤/ëŒ€ë§Œ
-		6210	ì¤‘êµ­
-		6211	ìœ ëŸ½
-		6212	ë¯¸ì£¼/í•˜ì™€ì´
-	6300	ê³µì—°/ì „ì‹œ/ì²´í—˜	
-		6301	ê³¨ë“ ë¼ìš´ì§€
-		6302	ë®¤ì§€ì»¬/ì½˜ì„œíŠ¸
-		6303	ì—°ê·¹/ì˜í™”
-		6304	ì²´í—˜/ì „ì‹œ
-		6305	ì•„ë™ê°€ì¡±ê·¹
-		6306	í‚¤ì¦ˆì¹´íŽ˜/íŒŒí¬';
+		4802	DSLR ·»Áî
+		4803	¹Ì·¯¸®½º
+		4804	¹Ì·¯¸®½º ·»Áî
+		4805	ÇÏÀÌ¿£µå/ÄÄÆÑÆ®
+		4806	Ä«¸Þ¶ó ¾×¼¼¼­¸®
+		4807	¾×¼ÇÄ·/Ä·ÄÚ´õ
+		4808	Áï¼®/±âÅ¸Ä«¸Þ¶ó
+		4809	Æ÷ÅäÇÁ¸°ÅÍ/¿ëÁö
+		4810	Áß°í/¸®ÆÛ/º´Çà
+	4900	³ÃÀå°í/±èÄ¡³ÃÀå°í	
+		4901	³ÃÀå°í
+		4902	±èÄ¡³ÃÀå°í
+5000	ÀÚµ¿Â÷¿ëÇ°		
+	5100	½Ç³»¿ëÇ°	
+		5101	ÀÎÅ×¸®¾î¿ëÇ°
+		5102	Â÷·®¿ë¼ö³³¿ëÇ°
+		5103	Â÷·®¿ëÆíÀÇ¿ëÇ°
+	5200	½Ç¿Ü¿ëÇ°/ÀÍ½ºÅ×¸®¾î	
+		5201	¿ÍÀÌÆÛ
+		5202	½ºÆ¼Ä¿/¿¥ºí·³
+		5203	¾ÈÅ×³ª/º¼
+		5204	ÁÖÀ¯±¸Ä¸/È¥À¯¹æÁö¸µ
+		5205	¹øÈ£ÆÇ ¾×¼¼¼­¸®
+		5206	½ã¹ÙÀÌÀú/½ã·çÇÁ
+		5207	¸ôµù/°¡µå
+		5208	¹Ì·¯¿ëÇ°
+		5209	·çÇÁ¿ëÇ°
+		5210	Ä³¸®¾î¿ëÇ°
+		5211	Â÷·®¿ë ¹ÙµðÄ¿¹ö
+	5300	¼¼Â÷/°ü¸®¿ëÇ°	
+		5301	¼¼Â÷¿ëÇ°
+		5302	°ü¸®¿ëÇ°
+		5303	¼¼Â÷¿ëÇ°¼¼Æ®
+	5400	¸ÅÆ®/½ÃÆ®/Äí¼Ç	
+		5401	Â÷·®¿ëÄ«¸ÅÆ®
+		5402	Â÷·®¿ë½ÃÆ®/À¯¾Æ½ÃÆ®
+		5403	Â÷·®¿ëÄí¼Ç
+		5404	Â÷·®¿ë¹æ¼®
+		5405	Äí¼Ç¹æ¼®¼¼Æ®
+6000	Æ¼ÄÏ		
+	6100	±¹³»¿©Çà	
+		6101	È£ÅÚ
+		6102	¸®Á¶Æ®
+		6103	Ææ¼Ç
+		6104	Ä·ÇÎ/±Û·¥ÇÎ
+		6105	ºÎÆ¼Å© È£ÅÚ/¸ðÅÚ
+		6106	°Ô½ºÆ®ÇÏ¿ì½º
+		6107	Å×¸¶ÆÄÅ©/¿öÅÍÆÄÅ©
+		6108	·¹Æ÷Ã÷/Ã¼Çè/°ñÇÁ
+		6109	³»·úÅ×¸¶¿©Çà
+		6110	Àü±¹·»ÅÍÄ«
+		6111	Á¦ÁÖ¿©Çà
+		6112	Á¦ÁÖÇ×°ø±Ç
+		6113	Á¦ÁÖ·»ÅÍÄ«
+	6200	ÇØ¿Ü¿©Çà	
+		6201	Æ¯°¡ Ç×°ø
+		6202	½Ç½Ã°£ Ç×°ø ¿¹¾à
+		6203	Æ¯°¡ È£ÅÚ
+		6204	Àü¼¼°è È£ÅÚ ¿¹¾à
+		6205	°ü±¤ÁöÀÔÀå±Ç/±³ÅëÆÐ½º
+		6206	ÀÏº»
+		6207	µ¿³²¾Æ½Ã¾Æ
+		6208	±¡/»çÀÌÆÇ/È£ÁÖ
+		6209	È«Äá/¸¶Ä«¿À/´ë¸¸
+		6210	Áß±¹
+		6211	À¯·´
+		6212	¹ÌÁÖ/ÇÏ¿ÍÀÌ
+	6300	°ø¿¬/Àü½Ã/Ã¼Çè	
+		6301	°ñµç¶ó¿îÁö
+		6302	¹ÂÁöÄÃ/ÄÜ¼­Æ®
+		6303	¿¬±Ø/¿µÈ­
+		6304	Ã¼Çè/Àü½Ã
+		6305	¾Æµ¿°¡Á·±Ø
+		6306	Å°ÁîÄ«Æä/ÆÄÅ©';
 
-COMMENT ON COLUMN PROD_CATE.HIGH_PROD_CATE_NUM IS '1000	íŒ¨ì…˜ì˜ë¥˜/ìž¡í™”		
-	1100	ì—¬ì„±íŒ¨ì…˜	
-		1101	í‹°ì…”ì¸ 
-		1102	ë§¨íˆ¬ë§¨/í›„ë“œì§‘ì—…
-		1103	ë¸”ë¼ìš°ìŠ¤/ì…”ì¸ 
-		1104	ì›í”¼ìŠ¤/ì •ìž¥ì„¸íŠ¸
-		1105	ë‹ˆíŠ¸ë¥˜/ì¡°ë¼
-		1106	ë°”ì§€/ë ˆê¹…ìŠ¤
-		1107	ìŠ¤ì»¤íŠ¸/ì¹˜ë§ˆ
-		1108	ì•„ìš°í„°
-		1109	íŒ¨ì…˜ìš´ë™ë³µ
-		1110	ë¹„í‚¤ë‹ˆ/ë¹„ì¹˜ì›¨ì–´
-		1111	ë¹…ì‚¬ì´ì¦ˆ ì˜ë¥˜
-		1112	ì†ì˜·/ìž ì˜·
-		1113	ì»¤í”Œë£©/íŒ¨ë°€ë¦¬ë£©
-		1114	ìž„ë¶€ë³µ
-		1115	í•œë³µ/íŒŒí‹°ë³µ
-		1116	ì‹ ë°œ
-		1117	ê°€ë°©/ìž¡í™”
-		1118	í•´ì™¸ì§êµ¬
-	1200	ë‚¨ì„±íŒ¨ì…˜	
-		1201	í‹°ì…”ì¸ 
-		1202	ë§¨íˆ¬ë§¨
-		1203	ì…”ì¸ 
-		1204	ë°”ì§€
-		1205	íŠ¸ë ˆì´ë‹
-		1206	í›„ë“œì§‘ì—…/ì§‘ì—…ë¥˜
-		1207	ìŠ¤ì›¨í„°
-		1208	ê°€ë””ê±´
-		1209	ë² ìŠ¤íŠ¸/ì¡°ë¼
-		1210	ì•„ìš°í„°
-		1211	ì†ì˜·/ìž ì˜·
-		1212	ë¹…ì‚¬ì´ì¦ˆ ì˜ë¥˜
-		1213	íŒ¨ì…˜ ëž˜ì‰¬ê°€ë“œ
-		1214	ì»¤í”Œë£©/íŒ¨ë°€ë¦¬ë£©
-		1215	í•œë³µ/ì½”ìŠ¤íŠ¬
-		1216	ì‹ ë°œ
-		1217	ê°€ë°©/ìž¡í™”
-		1218	í•´ì™¸ì§êµ¬
-	1300	 ìŠ¤í¬ì¸ íŒ¨ì…˜	
-		1301	ì—¬ì„±ìŠ¤í¬ì¸ ì˜ë¥˜
-		1302	ë‚¨ì„±ìŠ¤í¬ì¸ ì˜ë¥˜
-		1303	ë‚¨ë…€ìŠ¤í¬ì¸ ì˜ë¥˜
-		1304	ìŠ¤í¬ì¸ ìŠˆì¦ˆ
-		1305	ìŠ¤í¬ì¸ ìž¡í™”
-		1306	ìœ ì•„ë™ìŠ¤í¬ì¸ íŒ¨ì…˜
-	1400	ì‹ ë°œ	
-		1401	ìŠ¤ë‹ˆì»¤ì¦ˆ/ìŠ¬ë¦½ì˜¨
-		1402	ìš´ë™í™”/ëŸ°ë‹í™”
-		1403	ì—¬ì„±ë‹¨í™”/í”Œëž«
-		1404	ì—¬ì„±í•˜ì´íž
-		1405	ì—¬ì„±ì›Œì»¤/ë¶€ì¸ 
-		1406	ì—¬ì„±ìƒŒë“¤/ìª¼ë¦¬
-		1407	ë‚¨ì„±ë¡œí¼/ì›°íŠ¸í™”
-		1408	ë‚¨ì„±ì •ìž¥êµ¬ë‘
-		1409	ë‚¨ì„±ì›Œì»¤/ë¶€ì¸ 
-		1410	ë‚¨ì„±ìƒŒë“¤/ìª¼ë¦¬
-		1411	ìŠ¬ë¦¬í¼/ì‹¤ë‚´í™”
-		1412	ê¸°ëŠ¥í™”
-		1413	ê¹”ì°½/ì‹ ë°œëˆ
-		1414	ì‹ ë°œê´€ë¦¬ìš©í’ˆ
-		1415	í•´ì™¸ì§êµ¬
-	1500	ê°€ë°©/ìž¡í™”	
-		1501	ì—¬ì„±ê°€ë°©
-		1502	ë‚¨ì„±ê°€ë°©
-		1503	ë‚¨ë…€ìºì£¼ì–¼ê°€ë°©
-		1504	ì—¬í–‰ê°€ë°©/ì†Œí’ˆ
-		1505	ì§€ê°‘/ë²¨íŠ¸
-		1506	ì–‘ë§/ìŠ¤íƒ€í‚¹
-		1507	ë¨¸í”ŒëŸ¬/ìŠ¤ì¹´í”„/ìˆ„
-		1508	ëª¨ìž
-		1509	ìž¥ê°‘/ì‹œì¦Œìž¡í™”
-		1510	ë„¥íƒ€ì´/ì†Œí’ˆ
-		1511	ìš°ì‚°/ì–‘ì‚°/ìš°ë¹„
-		1512	ì•„ì´ì›¨ì–´
-		1513	ì‹œê³„
-		1514	ì¥¬ì–¼ë¦¬
-		1515	í•´ì™¸ì§êµ¬
-	1600	ëª…í’ˆíŒ¨ì…˜	
-		1601	ì—¬ì„±ì˜ë¥˜
-		1602	ë‚¨ì„±ì˜ë¥˜
-		1603	ì†ì˜·
-		1604	ì‹ ë°œ
-		1605	ê°€ë°©
-		1606	ì§€ê°‘
-		1607	ì‹œê³„/ì¥¬ì–¼ë¦¬
-		1608	ë²¨íŠ¸
-		1609	ëª¨ìž
-		1610	ìŠ¤ì¹´í”„/ë¨¸í”ŒëŸ¬
-		1611	ì•ˆê²½í…Œ/ì„ ê¸€ë¼ìŠ¤
-		1612	ë„¥íƒ€ì´
-		1613	ê¸°íƒ€íŒ¨ì…˜ìž¡í™”
-2000	ë·°í‹°		
-	2100	ìŠ¤í‚¨ì¼€ì–´	
-		2101	ê¸°ì´ˆí™”ìž¥í’ˆ
-		2102	í´ë Œì§•/í•„ë§
-		2103	ë§ˆìŠ¤í¬/íŒ©
-		2104	ì„ ì¼€ì–´/íƒœë‹
-	2200	ë©”ì´í¬ì—…	
-		2201	ì•„ì´ ë©”ì´í¬ì—…
-		2202	ë¦½ ë©”ì´í¬ì—…
-		2203	ë² ì´ìŠ¤ ë©”ì´í¬ì—…
-		2204	ì¹˜í¬/ê¸°íƒ€ ë©”ì´í¬ì—…
-	2300	í–¥ìˆ˜	
-		2301	ì—¬ì„±í–¥ìˆ˜
-		2302	ë‚¨ì„±í–¥ìˆ˜
-		2303	ë“œë ˆìŠ¤í¼í“¸
-	2400	í—¤ì–´	
-		2401	ìƒ´í‘¸/ë¦°ìŠ¤
-		2402	íŠ¸ë¦¬íŠ¸ë¨¼íŠ¸/íŒ©
-		2403	ìŠ¤íƒ€ì¼ë§/ì¼€ì–´/ì„¸íŠ¸
-		2404	ì—¼ìƒ‰/íŒŒë§ˆ
-	2500	ë°”ë””	
-		2501	ìƒ¤ì›Œ/ìž…ìš•ìš©í’ˆ
-		2502	ë°”ë””ë¡œì…˜/í¬ë¦¼
-		2503	í•¸ë“œ/í’‹/ë°ì˜¤
-		2504	ì œëª¨/ìŠ¬ë¦¬ë°/ì²­ê²°ì œ
-	2600	ë„¤ì¼	
-		2601	íí‹°í´/ì˜ì–‘
-		2602	ì¼ë°˜ë„¤ì¼
-		2603	ì ¤ë„¤ì¼
-		2604	ë„¤ì¼ì¼€ì–´ë„êµ¬
-		2605	ë„¤ì¼ì•„íŠ¸ì†Œí’ˆ/ë„êµ¬
-		2606	ë„¤ì¼ì„¸íŠ¸
-	2700	ë‚¨ì„±í™”ìž¥í’ˆ	
-		2701	ë‚¨ì„±ìŠ¤í‚¨ì¼€ì–´
-		2702	ë‚¨ì„±ë©”ì´í¬ì—…
-		2703	ë‚¨ì„±í™”ìž¥í’ˆì„¸íŠ¸
-		2704	ë‚¨ì„± í—¤ì–´ì¼€ì–´
-		2705	ë‚¨ì„± ë°”ë””ì¼€ì–´
-		2706	ë‚¨ì„± ì‰ì´ë¹™ ì¼€ì–´
-	2800	ëª…í’ˆí™”ìž¥í’ˆ	
-		2801	ìŠ¤í‚¨ì¼€ì–´
-		2802	ë©”ì´í¬ì—…
-		2803	í–¥ìˆ˜
-		2804	í—¤ì–´ì¼€ì–´
-		2805	ë°”ë””ì¼€ì–´
-		2806	ë‚¨ì„±í™”ìž¥í’ˆ
-		2807	ë·°í‹°ì†Œí’ˆ
-	2900	í—¬ìŠ¤í™”ìž¥í’ˆ	
-		2901	ìŠ¤í‚¨ì¼€ì–´
-		2902	íŽ˜ì´ìŠ¤ë©”ì´í¬ì—…
-		2903	ë¦½ì¼€ì–´
-		2904	í—¤ì–´ì¼€ì–´
-		2905	ë°”ë””ì¼€ì–´
-		2906	ì„¸íŠ¸
-		2907	ë·°í‹°ì†Œí’ˆ
-3000	ì‹í’ˆ		
-	3100	ìœ ê¸°ë†/ì¹œí™˜ê²½ ì „ë¬¸ê´€	
-		3101	ê³¼ì¼
-		3102	ê²¬ê³¼/ê±´ê³¼
-		3103	ì±„ì†Œ
-		3104	ìŒ€/ìž¡ê³¡
-		3105	ì¶•ì‚°/ê³„ëž€
-		3106	ìˆ˜ì‚°ë¬¼/ê±´ì–´ë¬¼
-		3107	ìŒë£Œ
-		3108	ìœ ì œí’ˆ/ë‘ìœ 
-		3109	ì»¤í”¼/ì›ë‘/ì°¨
-		3110	ê³¼ìž/ì‹œë¦¬ì–¼
-		3111	ë©´/í†µì¡°ë¦¼/ê°€ê³µì‹í’ˆ
-		3112	ê°€ë£¨/ì¡°ë¯¸ë£Œ/ì˜¤ì¼
-		3113	ìž¥/ì†ŒìŠ¤/ë“œë ˆì‹±/ì‹ì´ˆ
-	3200	ê³¼ì¼	
-		3201	ì‚¬ê³¼/ë°°
-		3202	ê·¤/í•œë¼ë´‰/ê°ê·¤ë¥˜
-		3203	ê°/í™ì‹œ/ê³¶ê°
-		3204	í‚¤ìœ„/ì°¸ë‹¤ëž˜
-		3205	í† ë§ˆí† /ìžë‘/ë³µìˆ­ì•„/í¬ë„
-		3206	ìˆ˜ë°•/ë©”ë¡ /ì°¸ì™¸
-		3207	ë”¸ê¸°/ë¸”ë£¨ë² ë¦¬/ë² ë¦¬ë¥˜
-		3208	ë°”ë‚˜ë‚˜/ì˜¤ë Œì§€/íŒŒì¸ì• í”Œ
-		3209	ìžëª½/ë ˆëª¬/ë¼ìž„/ì„ë¥˜
-		3210	ë§ê³ /ì²´ë¦¬/ì•„ë³´ì¹´ë„/ê¸°íƒ€
-		3211	ëƒ‰ë™ê³¼ì¼/ê°„íŽ¸ê³¼ì¼
-		3212	ê³¼ì¼ê°€ë£¨
-		3213	ê³¼ì¼ì„ ë¬¼ì„¸íŠ¸
-	3300	ê²¬ê³¼/ê±´ê³¼	
-		3301	ë•…ì½©/í˜¸ë‘
-		3302	ë°¤/ìž£/ì€í–‰
-		3303	ì•„ëª¬ë“œ/í”¼ìŠ¤íƒ€ì¹˜ì˜¤
-		3304	ê¸°íƒ€ê²¬ê³¼ë¥˜
-		3305	í˜¸ë°•ì”¨/í•´ë°”ë¼ê¸°ì”¨
-		3306	ê¸°íƒ€ì”¨ì•—
-		3307	í˜¼í•©ê²¬ê³¼/ì„¸íŠ¸
-		3308	ê±´ê³¼ì¼/ê±´ì±„ì†Œ
-	3400	ì±„ì†Œ	
-		3401	ë‘ë¶€/ì½©ë‚˜ë¬¼
-		3402	ê°ìž/ê³ êµ¬ë§ˆ
-		3403	ë‹¹ê·¼/ë¿Œë¦¬ì±„ì†Œ
-		3404	ì˜¤ì´/ê³ ì¶”/ì—´ë§¤ì±„ì†Œ
-		3405	ì–‘íŒŒ/ë§ˆëŠ˜/íŒŒ
-		3406	ë°°ì¶”/ë¬´/ê¹€ìž¥ì±„ì†Œ
-		3407	ì‹œê¸ˆì¹˜/ë‚˜ë¬¼/ìžŽì¤„ê¸°ì±„ì†Œ
-		3408	ìƒì¶”/ê¹»ìžŽ/ìŒˆì±„ì†Œ
-		3409	ìƒëŸ¬ë“œ/ì†ì§ˆì±„ì†Œ
-		3410	ìƒˆì†¡ì´/ë²„ì„¯ë¥˜
-		3411	ì¸ì‚¼/ê±´ê°•ì°¨ìž¬ë£Œ
-		3412	ê¸°íƒ€ì±„ì†Œ
-		3413	ê±´ë‚˜ë¬¼/ê±´ì±„ì†Œ
-	3500	ìŒ€/ìž¡ê³¡	
-		3501	ë°±ë¯¸
-		3502	í˜„ë¯¸/ì°¹ìŒ€/í‘ë¯¸
-		3503	ê¸°ëŠ¥ì„±ìŒ€/ê¸°íƒ€ìŒ€
-		3504	ì½©/íŒ¥/ë³´ë¦¬
-		3505	ì¡°/ìˆ˜ìˆ˜/ê¹¨
-		3506	ê¸°íƒ€ìž¡ê³¡/í˜¼í•©ê³¡
-		3507	ìŠˆí¼ê³¡ë¬¼
-		3508	ê¸°íƒ€ì”¨ì•—
-		3509	ìŒ€/ìž¡ê³¡ ê°€ë£¨
-		3510	ê³¡ë¥˜ì„ ë¬¼ì„¸íŠ¸
-	3600	ì¶•ì‚°/ê³„ëž€	
-		3601	ì†Œê³ ê¸°
-		3602	ë¼ì§€ê³ ê¸°
-		3603	ë‹­/ì˜¤ë¦¬ê³ ê¸°
-		3604	ì–‘/ë§ê³ ê¸°
-		3605	ê¸°íƒ€ ìœ¡ê³ ê¸°
-		3606	ê³„ëž€/ì•Œë¥˜/ê°€ê³µëž€
-		3607	ì¶•ì‚°ì„ ë¬¼ì„¸íŠ¸
-	3700	ìˆ˜ì‚°ë¬¼/ê±´ì–´ë¬¼	
-		3701	ìƒì„ 
-		3702	ì˜¤ì§•ì–´/ë‚™ì§€/ì—°ì²´ë¥˜
-		3703	ìƒˆìš°/ê²Œ/ê°‘ê°ë¥˜
-		3704	ì „ë³µ/êµ´/ì¡°ê°œë¥˜
-		3705	ë©¸ì¹˜/ì²œì—°ì¡°ë¯¸ë£Œ
-		3706	ê¹€/ë¯¸ì—­/í•´ì¡°ë¥˜
-		3707	ê±´ì˜¤ì§•ì–´/ì¥í¬/ì–´í¬
-		3708	í™©íƒœ/ì§„ë¯¸ì±„
-		3709	ìƒì„ ì•Œ
-		3710	ê¸°íƒ€ìˆ˜ì‚°ë¬¼/ê±´ì–´ë¬¼
-		3711	ìˆ˜ì‚°ë¬¼ì„ ë¬¼ì„¸íŠ¸
-	3800	ìƒìˆ˜/ìŒë£Œ	
-		3801	ìƒìˆ˜/íƒ„ì‚°ìˆ˜
-		3802	ê³¼ì¼/ì•¼ì±„ìŒë£Œ
-		3803	íƒ„ì‚°/ìŠ¤í¬ì¸ ìŒë£Œ
-		3804	ì»¤í”¼ìŒë£Œ/ì°¨ìŒë£Œ
-		3805	ë‘ìœ 
-		3806	ì¼ë°˜ìš°ìœ 
-		3807	ë©¸ê· ìš°ìœ 
-		3808	ìˆ™ì·¨/ê±´ê°•ìŒë£Œ
-		3809	ìœ ì•„ìŒë£Œ
-		3810	ê¸°íƒ€ì£¼ìŠ¤/ìŒë£Œ
-		3811	ìŒë£Œì„ ë¬¼ì„¸íŠ¸
-	3900	ê±´ê°•ì‹í’ˆ	
-		3901	ë¹„íƒ€ë¯¼/ì˜ì–‘ì œ
-		3902	í™ì‚¼/ì¸ì‚¼
-		3903	í—¬ìŠ¤/ë‹¤ì´ì–´íŠ¸ì‹í’ˆ
-		3904	ì˜ì–‘ì‹/ì„ ì‹
-		3905	ê¿€/ë¡œì–„ì ¤ë¦¬
-		3906	ê±´ê°•ì°¨ ì›ë¬¼
-		3907	ê±´ê°•ë¶„ë§/ê±´ê°•í™˜
-		3908	í•œë°©ìž¬ë£Œ
-		3909	ìž„ì‚°ë¶€ì‹í’ˆ
-		3910	ìœ ì•„ê±´ê°•ì‹í’ˆ
-4000	ì „ìžì œí’ˆ		
-	4100	ë…¸íŠ¸ë¶/PC/íƒœë¸”ë¦¿	
-		4101	ë…¸íŠ¸ë¶
-		4102	ë…¸íŠ¸ë¶ìš© ì•¡ì„¸ì„œë¦¬
-		4103	ë°ìŠ¤í¬íƒ‘
-		4104	PC ì¤‘ê³ /ë¦¬í¼ë¹„ì‹œ
-		4105	íƒœë¸”ë¦¿ PC
-		4106	íƒœë¸”ë¦¿PC ì•¡ì„¸ì„œë¦¬
-	4200	ì €ìž¥ìž¥ì¹˜/ê³µìœ ê¸°	
-		4201	ì™¸ìž¥í•˜ë“œ/NAS
+COMMENT ON COLUMN PROD_CATE.HIGH_PROD_CATE_NUM IS '1000	ÆÐ¼ÇÀÇ·ù/ÀâÈ­		
+	1100	¿©¼ºÆÐ¼Ç	
+		1101	Æ¼¼ÅÃ÷
+		1102	¸ÇÅõ¸Ç/ÈÄµåÁý¾÷
+		1103	ºí¶ó¿ì½º/¼ÅÃ÷
+		1104	¿øÇÇ½º/Á¤Àå¼¼Æ®
+		1105	´ÏÆ®·ù/Á¶³¢
+		1106	¹ÙÁö/·¹±ë½º
+		1107	½ºÄ¿Æ®/Ä¡¸¶
+		1108	¾Æ¿ìÅÍ
+		1109	ÆÐ¼Ç¿îµ¿º¹
+		1110	ºñÅ°´Ï/ºñÄ¡¿þ¾î
+		1111	ºò»çÀÌÁî ÀÇ·ù
+		1112	¼Ó¿Ê/Àá¿Ê
+		1113	Ä¿ÇÃ·è/ÆÐ¹Ð¸®·è
+		1114	ÀÓºÎº¹
+		1115	ÇÑº¹/ÆÄÆ¼º¹
+		1116	½Å¹ß
+		1117	°¡¹æ/ÀâÈ­
+		1118	ÇØ¿ÜÁ÷±¸
+	1200	³²¼ºÆÐ¼Ç	
+		1201	Æ¼¼ÅÃ÷
+		1202	¸ÇÅõ¸Ç
+		1203	¼ÅÃ÷
+		1204	¹ÙÁö
+		1205	Æ®·¹ÀÌ´×
+		1206	ÈÄµåÁý¾÷/Áý¾÷·ù
+		1207	½º¿þÅÍ
+		1208	°¡µð°Ç
+		1209	º£½ºÆ®/Á¶³¢
+		1210	¾Æ¿ìÅÍ
+		1211	¼Ó¿Ê/Àá¿Ê
+		1212	ºò»çÀÌÁî ÀÇ·ù
+		1213	ÆÐ¼Ç ·¡½¬°¡µå
+		1214	Ä¿ÇÃ·è/ÆÐ¹Ð¸®·è
+		1215	ÇÑº¹/ÄÚ½ºÆ¬
+		1216	½Å¹ß
+		1217	°¡¹æ/ÀâÈ­
+		1218	ÇØ¿ÜÁ÷±¸
+	1300	 ½ºÆ÷Ã÷ÆÐ¼Ç	
+		1301	¿©¼º½ºÆ÷Ã÷ÀÇ·ù
+		1302	³²¼º½ºÆ÷Ã÷ÀÇ·ù
+		1303	³²³à½ºÆ÷Ã÷ÀÇ·ù
+		1304	½ºÆ÷Ã÷½´Áî
+		1305	½ºÆ÷Ã÷ÀâÈ­
+		1306	À¯¾Æµ¿½ºÆ÷Ã÷ÆÐ¼Ç
+	1400	½Å¹ß	
+		1401	½º´ÏÄ¿Áî/½½¸³¿Â
+		1402	¿îµ¿È­/·±´×È­
+		1403	¿©¼º´ÜÈ­/ÇÃ·§
+		1404	¿©¼ºÇÏÀÌÈú
+		1405	¿©¼º¿öÄ¿/ºÎÃ÷
+		1406	¿©¼º»÷µé/ÂÉ¸®
+		1407	³²¼º·ÎÆÛ/À£Æ®È­
+		1408	³²¼ºÁ¤Àå±¸µÎ
+		1409	³²¼º¿öÄ¿/ºÎÃ÷
+		1410	³²¼º»÷µé/ÂÉ¸®
+		1411	½½¸®ÆÛ/½Ç³»È­
+		1412	±â´ÉÈ­
+		1413	±òÃ¢/½Å¹ß²ö
+		1414	½Å¹ß°ü¸®¿ëÇ°
+		1415	ÇØ¿ÜÁ÷±¸
+	1500	°¡¹æ/ÀâÈ­	
+		1501	¿©¼º°¡¹æ
+		1502	³²¼º°¡¹æ
+		1503	³²³àÄ³ÁÖ¾ó°¡¹æ
+		1504	¿©Çà°¡¹æ/¼ÒÇ°
+		1505	Áö°©/º§Æ®
+		1506	¾ç¸»/½ºÅ¸Å·
+		1507	¸ÓÇÃ·¯/½ºÄ«ÇÁ/¼ñ
+		1508	¸ðÀÚ
+		1509	Àå°©/½ÃÁðÀâÈ­
+		1510	³ØÅ¸ÀÌ/¼ÒÇ°
+		1511	¿ì»ê/¾ç»ê/¿ìºñ
+		1512	¾ÆÀÌ¿þ¾î
+		1513	½Ã°è
+		1514	Áê¾ó¸®
+		1515	ÇØ¿ÜÁ÷±¸
+	1600	¸íÇ°ÆÐ¼Ç	
+		1601	¿©¼ºÀÇ·ù
+		1602	³²¼ºÀÇ·ù
+		1603	¼Ó¿Ê
+		1604	½Å¹ß
+		1605	°¡¹æ
+		1606	Áö°©
+		1607	½Ã°è/Áê¾ó¸®
+		1608	º§Æ®
+		1609	¸ðÀÚ
+		1610	½ºÄ«ÇÁ/¸ÓÇÃ·¯
+		1611	¾È°æÅ×/¼±±Û¶ó½º
+		1612	³ØÅ¸ÀÌ
+		1613	±âÅ¸ÆÐ¼ÇÀâÈ­
+2000	ºäÆ¼		
+	2100	½ºÅ²ÄÉ¾î	
+		2101	±âÃÊÈ­ÀåÇ°
+		2102	Å¬·»Â¡/ÇÊ¸µ
+		2103	¸¶½ºÅ©/ÆÑ
+		2104	¼±ÄÉ¾î/ÅÂ´×
+	2200	¸ÞÀÌÅ©¾÷	
+		2201	¾ÆÀÌ ¸ÞÀÌÅ©¾÷
+		2202	¸³ ¸ÞÀÌÅ©¾÷
+		2203	º£ÀÌ½º ¸ÞÀÌÅ©¾÷
+		2204	Ä¡Å©/±âÅ¸ ¸ÞÀÌÅ©¾÷
+	2300	Çâ¼ö	
+		2301	¿©¼ºÇâ¼ö
+		2302	³²¼ºÇâ¼ö
+		2303	µå·¹½ºÆÛÇ¾
+	2400	Çì¾î	
+		2401	¼¤Çª/¸°½º
+		2402	Æ®¸®Æ®¸ÕÆ®/ÆÑ
+		2403	½ºÅ¸ÀÏ¸µ/ÄÉ¾î/¼¼Æ®
+		2404	¿°»ö/ÆÄ¸¶
+	2500	¹Ùµð	
+		2501	»þ¿ö/ÀÔ¿å¿ëÇ°
+		2502	¹Ùµð·Î¼Ç/Å©¸²
+		2503	ÇÚµå/Ç²/µ¥¿À
+		2504	Á¦¸ð/½½¸®¹Ö/Ã»°áÁ¦
+	2600	³×ÀÏ	
+		2601	Å¥Æ¼Å¬/¿µ¾ç
+		2602	ÀÏ¹Ý³×ÀÏ
+		2603	Á©³×ÀÏ
+		2604	³×ÀÏÄÉ¾îµµ±¸
+		2605	³×ÀÏ¾ÆÆ®¼ÒÇ°/µµ±¸
+		2606	³×ÀÏ¼¼Æ®
+	2700	³²¼ºÈ­ÀåÇ°	
+		2701	³²¼º½ºÅ²ÄÉ¾î
+		2702	³²¼º¸ÞÀÌÅ©¾÷
+		2703	³²¼ºÈ­ÀåÇ°¼¼Æ®
+		2704	³²¼º Çì¾îÄÉ¾î
+		2705	³²¼º ¹ÙµðÄÉ¾î
+		2706	³²¼º ½¦ÀÌºù ÄÉ¾î
+	2800	¸íÇ°È­ÀåÇ°	
+		2801	½ºÅ²ÄÉ¾î
+		2802	¸ÞÀÌÅ©¾÷
+		2803	Çâ¼ö
+		2804	Çì¾îÄÉ¾î
+		2805	¹ÙµðÄÉ¾î
+		2806	³²¼ºÈ­ÀåÇ°
+		2807	ºäÆ¼¼ÒÇ°
+	2900	Çï½ºÈ­ÀåÇ°	
+		2901	½ºÅ²ÄÉ¾î
+		2902	ÆäÀÌ½º¸ÞÀÌÅ©¾÷
+		2903	¸³ÄÉ¾î
+		2904	Çì¾îÄÉ¾î
+		2905	¹ÙµðÄÉ¾î
+		2906	¼¼Æ®
+		2907	ºäÆ¼¼ÒÇ°
+3000	½ÄÇ°		
+	3100	À¯±â³ó/Ä£È¯°æ Àü¹®°ü	
+		3101	°úÀÏ
+		3102	°ß°ú/°Ç°ú
+		3103	Ã¤¼Ò
+		3104	½Ò/Àâ°î
+		3105	Ãà»ê/°è¶õ
+		3106	¼ö»ê¹°/°Ç¾î¹°
+		3107	À½·á
+		3108	À¯Á¦Ç°/µÎÀ¯
+		3109	Ä¿ÇÇ/¿øµÎ/Â÷
+		3110	°úÀÚ/½Ã¸®¾ó
+		3111	¸é/ÅëÁ¶¸²/°¡°ø½ÄÇ°
+		3112	°¡·ç/Á¶¹Ì·á/¿ÀÀÏ
+		3113	Àå/¼Ò½º/µå·¹½Ì/½ÄÃÊ
+	3200	°úÀÏ	
+		3201	»ç°ú/¹è
+		3202	±Ö/ÇÑ¶óºÀ/°¨±Ö·ù
+		3203	°¨/È«½Ã/°ù°¨
+		3204	Å°À§/Âü´Ù·¡
+		3205	Åä¸¶Åä/ÀÚµÎ/º¹¼þ¾Æ/Æ÷µµ
+		3206	¼ö¹Ú/¸Þ·Ð/Âü¿Ü
+		3207	µþ±â/ºí·çº£¸®/º£¸®·ù
+		3208	¹Ù³ª³ª/¿À·»Áö/ÆÄÀÎ¾ÖÇÃ
+		3209	ÀÚ¸ù/·¹¸ó/¶óÀÓ/¼®·ù
+		3210	¸Á°í/Ã¼¸®/¾Æº¸Ä«µµ/±âÅ¸
+		3211	³Ãµ¿°úÀÏ/°£Æí°úÀÏ
+		3212	°úÀÏ°¡·ç
+		3213	°úÀÏ¼±¹°¼¼Æ®
+	3300	°ß°ú/°Ç°ú	
+		3301	¶¥Äá/È£µÎ
+		3302	¹ã/Àã/ÀºÇà
+		3303	¾Æ¸óµå/ÇÇ½ºÅ¸Ä¡¿À
+		3304	±âÅ¸°ß°ú·ù
+		3305	È£¹Ú¾¾/ÇØ¹Ù¶ó±â¾¾
+		3306	±âÅ¸¾¾¾Ñ
+		3307	È¥ÇÕ°ß°ú/¼¼Æ®
+		3308	°Ç°úÀÏ/°ÇÃ¤¼Ò
+	3400	Ã¤¼Ò	
+		3401	µÎºÎ/Äá³ª¹°
+		3402	°¨ÀÚ/°í±¸¸¶
+		3403	´ç±Ù/»Ñ¸®Ã¤¼Ò
+		3404	¿ÀÀÌ/°íÃß/¿­¸ÅÃ¤¼Ò
+		3405	¾çÆÄ/¸¶´Ã/ÆÄ
+		3406	¹èÃß/¹«/±èÀåÃ¤¼Ò
+		3407	½Ã±ÝÄ¡/³ª¹°/ÀÙÁÙ±âÃ¤¼Ò
+		3408	»óÃß/²¢ÀÙ/½ÓÃ¤¼Ò
+		3409	»ø·¯µå/¼ÕÁúÃ¤¼Ò
+		3410	»õ¼ÛÀÌ/¹ö¼¸·ù
+		3411	ÀÎ»ï/°Ç°­Â÷Àç·á
+		3412	±âÅ¸Ã¤¼Ò
+		3413	°Ç³ª¹°/°ÇÃ¤¼Ò
+	3500	½Ò/Àâ°î	
+		3501	¹é¹Ì
+		3502	Çö¹Ì/Âý½Ò/Èæ¹Ì
+		3503	±â´É¼º½Ò/±âÅ¸½Ò
+		3504	Äá/ÆÏ/º¸¸®
+		3505	Á¶/¼ö¼ö/±ú
+		3506	±âÅ¸Àâ°î/È¥ÇÕ°î
+		3507	½´ÆÛ°î¹°
+		3508	±âÅ¸¾¾¾Ñ
+		3509	½Ò/Àâ°î °¡·ç
+		3510	°î·ù¼±¹°¼¼Æ®
+	3600	Ãà»ê/°è¶õ	
+		3601	¼Ò°í±â
+		3602	µÅÁö°í±â
+		3603	´ß/¿À¸®°í±â
+		3604	¾ç/¸»°í±â
+		3605	±âÅ¸ À°°í±â
+		3606	°è¶õ/¾Ë·ù/°¡°ø¶õ
+		3607	Ãà»ê¼±¹°¼¼Æ®
+	3700	¼ö»ê¹°/°Ç¾î¹°	
+		3701	»ý¼±
+		3702	¿ÀÂ¡¾î/³«Áö/¿¬Ã¼·ù
+		3703	»õ¿ì/°Ô/°©°¢·ù
+		3704	Àüº¹/±¼/Á¶°³·ù
+		3705	¸êÄ¡/Ãµ¿¬Á¶¹Ì·á
+		3706	±è/¹Ì¿ª/ÇØÁ¶·ù
+		3707	°Ç¿ÀÂ¡¾î/ÁãÆ÷/¾îÆ÷
+		3708	È²ÅÂ/Áø¹ÌÃ¤
+		3709	»ý¼±¾Ë
+		3710	±âÅ¸¼ö»ê¹°/°Ç¾î¹°
+		3711	¼ö»ê¹°¼±¹°¼¼Æ®
+	3800	»ý¼ö/À½·á	
+		3801	»ý¼ö/Åº»ê¼ö
+		3802	°úÀÏ/¾ßÃ¤À½·á
+		3803	Åº»ê/½ºÆ÷Ã÷À½·á
+		3804	Ä¿ÇÇÀ½·á/Â÷À½·á
+		3805	µÎÀ¯
+		3806	ÀÏ¹Ý¿ìÀ¯
+		3807	¸ê±Õ¿ìÀ¯
+		3808	¼÷Ãë/°Ç°­À½·á
+		3809	À¯¾ÆÀ½·á
+		3810	±âÅ¸ÁÖ½º/À½·á
+		3811	À½·á¼±¹°¼¼Æ®
+	3900	°Ç°­½ÄÇ°	
+		3901	ºñÅ¸¹Î/¿µ¾çÁ¦
+		3902	È«»ï/ÀÎ»ï
+		3903	Çï½º/´ÙÀÌ¾îÆ®½ÄÇ°
+		3904	¿µ¾ç½Ä/¼±½Ä
+		3905	²Ü/·Î¾âÁ©¸®
+		3906	°Ç°­Â÷ ¿ø¹°
+		3907	°Ç°­ºÐ¸»/°Ç°­È¯
+		3908	ÇÑ¹æÀç·á
+		3909	ÀÓ»êºÎ½ÄÇ°
+		3910	À¯¾Æ°Ç°­½ÄÇ°
+4000	ÀüÀÚÁ¦Ç°		
+	4100	³ëÆ®ºÏ/PC/ÅÂºí¸´	
+		4101	³ëÆ®ºÏ
+		4102	³ëÆ®ºÏ¿ë ¾×¼¼¼­¸®
+		4103	µ¥½ºÅ©Å¾
+		4104	PC Áß°í/¸®ÆÛºñ½Ã
+		4105	ÅÂºí¸´ PC
+		4106	ÅÂºí¸´PC ¾×¼¼¼­¸®
+	4200	ÀúÀåÀåÄ¡/°øÀ¯±â	
+		4201	¿ÜÀåÇÏµå/NAS
 		4202	HDD
 		4203	SSD
-		4204	ODD/ê³µë””ìŠ¤í¬
-		4205	USBë©”ëª¨ë¦¬
-		4206	ë©”ëª¨ë¦¬ì¹´ë“œ/ì¹´ë“œë¦¬ë”
-		4207	ê³µìœ ê¸°/ëžœì¹´ë“œ
-		4208	ë„¤íŠ¸ì›Œí¬ìž¥ë¹„
-		4209	CCTV/IPì¹´ë©”ë¼
-	4300	ëª¨ë‹ˆí„°/í”„ë¦°í„°	
-		4301	ëª¨ë‹ˆí„°
-		4302	ëª¨ë‹ˆí„° ì£¼ë³€ê¸°ê¸°
-		4303	í”„ë¦°í„°/ë³µí•©ê¸°
-		4304	ìŠ¤ìºë„ˆ
-		4305	ë³µì‚¬ê¸°
-		4306	POS/ë°”ì½”ë“œìŠ¤ìº”
-		4307	ìž‰í¬/í† ë„ˆ
-	4400	PCë¶€í’ˆ/ì£¼ë³€ê¸°ê¸°	
-		4401	ë§ˆìš°ìŠ¤/í‚¤ë³´ë“œ
-		4402	ìŠ¤í”¼ì»¤/í—¤ë“œì…‹/ì›¹ìº 
+		4204	ODD/°øµð½ºÅ©
+		4205	USB¸Þ¸ð¸®
+		4206	¸Þ¸ð¸®Ä«µå/Ä«µå¸®´õ
+		4207	°øÀ¯±â/·£Ä«µå
+		4208	³×Æ®¿öÅ©Àåºñ
+		4209	CCTV/IPÄ«¸Þ¶ó
+	4300	¸ð´ÏÅÍ/ÇÁ¸°ÅÍ	
+		4301	¸ð´ÏÅÍ
+		4302	¸ð´ÏÅÍ ÁÖº¯±â±â
+		4303	ÇÁ¸°ÅÍ/º¹ÇÕ±â
+		4304	½ºÄ³³Ê
+		4305	º¹»ç±â
+		4306	POS/¹ÙÄÚµå½ºÄµ
+		4307	À×Å©/Åä³Ê
+	4400	PCºÎÇ°/ÁÖº¯±â±â	
+		4401	¸¶¿ì½º/Å°º¸µå
+		4402	½ºÇÇÄ¿/Çìµå¼Â/À¥Ä·
 		4403	CPU
-		4404	ëž¨(RAM)
-		4405	ê·¸ëž˜í”½/TVì¹´ë“œ
-		4406	ë©”ì¸ë³´ë“œ/í™•ìž¥ì¹´ë“œ
-		4407	ì¼€ì´ìŠ¤/íŒŒì›Œ
-		4408	USBí—ˆë¸Œ/ì¼€ì´ë¸”/ì  ë”
-		4409	ë©€í‹°íƒ­/PCê´€ë¦¬ìš©í’ˆ
-		4410	ì¿¨ëŸ¬
-		4411	ì†Œí”„íŠ¸ì›¨ì–´
-	4500	íœ´ëŒ€í°/ì•¡ì„¸ì„œë¦¬	
-		4501	íœ´ëŒ€í° ì¼€ì´ìŠ¤
-		4502	íœ´ëŒ€í° ì•¡ì„¸ì„œë¦¬
-		4503	ë°°í„°ë¦¬/ì¶©ì „/ì¼€ì´ë¸”
-		4504	ìŠ¤ë§ˆíŠ¸ì›Œì¹˜/ë°´ë“œ
-		4505	íƒœë¸”ë¦¿ PC
-		4506	íƒœë¸”ë¦¿PC ì•¡ì„¸ì„œë¦¬
-		4507	ë©”ëª¨ë¦¬ì¹´ë“œ/ë¦¬ë”ê¸°
-		4508	íœ´ëŒ€í°
-	4600	ìŒí–¥ê¸°ê¸°/ì´ì–´í°	
-		4601	ì´ì–´í°
-		4602	í—¤ë“œí°
-		4603	ìŠ¤í”¼ì»¤
-		4604	í™ˆì‹œì–´í„°/ì˜¤ë””ì˜¤
-		4605	ë¼ë””ì˜¤/ì¹´ì„¸íŠ¸/MP3
-		4606	ë…¹ìŒ/ì–´í•™/ì‚¬ì „
-		4607	PA/ë§ˆì´í¬/ë ˆì½”ë”©
-		4608	ìŒí–¥ ì•¡ì„¸ì„œë¦¬
-	4700	TV/ì˜ìƒê°€ì „	
+		4404	·¥(RAM)
+		4405	±×·¡ÇÈ/TVÄ«µå
+		4406	¸ÞÀÎº¸µå/È®ÀåÄ«µå
+		4407	ÄÉÀÌ½º/ÆÄ¿ö
+		4408	USBÇãºê/ÄÉÀÌºí/Á¨´õ
+		4409	¸ÖÆ¼ÅÇ/PC°ü¸®¿ëÇ°
+		4410	Äð·¯
+		4411	¼ÒÇÁÆ®¿þ¾î
+	4500	ÈÞ´ëÆù/¾×¼¼¼­¸®	
+		4501	ÈÞ´ëÆù ÄÉÀÌ½º
+		4502	ÈÞ´ëÆù ¾×¼¼¼­¸®
+		4503	¹èÅÍ¸®/ÃæÀü/ÄÉÀÌºí
+		4504	½º¸¶Æ®¿öÄ¡/¹êµå
+		4505	ÅÂºí¸´ PC
+		4506	ÅÂºí¸´PC ¾×¼¼¼­¸®
+		4507	¸Þ¸ð¸®Ä«µå/¸®´õ±â
+		4508	ÈÞ´ëÆù
+	4600	À½Çâ±â±â/ÀÌ¾îÆù	
+		4601	ÀÌ¾îÆù
+		4602	ÇìµåÆù
+		4603	½ºÇÇÄ¿
+		4604	È¨½Ã¾îÅÍ/¿Àµð¿À
+		4605	¶óµð¿À/Ä«¼¼Æ®/MP3
+		4606	³ìÀ½/¾îÇÐ/»çÀü
+		4607	PA/¸¶ÀÌÅ©/·¹ÄÚµù
+		4608	À½Çâ ¾×¼¼¼­¸®
+	4700	TV/¿µ»ó°¡Àü	
 		4701	TV
-		4702	TV ì•¡ì„¸ì„œë¦¬
-		4703	ë¸”ë£¨ë ˆì´/DVD/DivX
-		4704	ë¹”/í”„ë¡œì í„°/ìŠ¤í¬ë¦°
-	4800	ì¹´ë©”ë¼/ìº ì½”ë”	
+		4702	TV ¾×¼¼¼­¸®
+		4703	ºí·ç·¹ÀÌ/DVD/DivX
+		4704	ºö/ÇÁ·ÎÁ§ÅÍ/½ºÅ©¸°
+	4800	Ä«¸Þ¶ó/Ä·ÄÚ´õ	
 		4801	DSLR
-		4802	DSLR ë Œì¦ˆ
-		4803	ë¯¸ëŸ¬ë¦¬ìŠ¤
-		4804	ë¯¸ëŸ¬ë¦¬ìŠ¤ ë Œì¦ˆ
-		4805	í•˜ì´ì—”ë“œ/ì»´íŒ©íŠ¸
-		4806	ì¹´ë©”ë¼ ì•¡ì„¸ì„œë¦¬
-		4807	ì•¡ì…˜ìº /ìº ì½”ë”
-		4808	ì¦‰ì„/ê¸°íƒ€ì¹´ë©”ë¼
-		4809	í¬í† í”„ë¦°í„°/ìš©ì§€
-		4810	ì¤‘ê³ /ë¦¬í¼/ë³‘í–‰
-	4900	ëƒ‰ìž¥ê³ /ê¹€ì¹˜ëƒ‰ìž¥ê³ 	
-		4901	ëƒ‰ìž¥ê³ 
-		4902	ê¹€ì¹˜ëƒ‰ìž¥ê³ 
-5000	ìžë™ì°¨ìš©í’ˆ		
-	5100	ì‹¤ë‚´ìš©í’ˆ	
-		5101	ì¸í…Œë¦¬ì–´ìš©í’ˆ
-		5102	ì°¨ëŸ‰ìš©ìˆ˜ë‚©ìš©í’ˆ
-		5103	ì°¨ëŸ‰ìš©íŽ¸ì˜ìš©í’ˆ
-	5200	ì‹¤ì™¸ìš©í’ˆ/ìµìŠ¤í…Œë¦¬ì–´	
-		5201	ì™€ì´í¼
-		5202	ìŠ¤í‹°ì»¤/ì— ë¸”ëŸ¼
-		5203	ì•ˆí…Œë‚˜/ë³¼
-		5204	ì£¼ìœ êµ¬ìº¡/í˜¼ìœ ë°©ì§€ë§
-		5205	ë²ˆí˜¸íŒ ì•¡ì„¸ì„œë¦¬
-		5206	ì¬ë°”ì´ì €/ì¬ë£¨í”„
-		5207	ëª°ë”©/ê°€ë“œ
-		5208	ë¯¸ëŸ¬ìš©í’ˆ
-		5209	ë£¨í”„ìš©í’ˆ
-		5210	ìºë¦¬ì–´ìš©í’ˆ
-		5211	ì°¨ëŸ‰ìš© ë°”ë””ì»¤ë²„
-	5300	ì„¸ì°¨/ê´€ë¦¬ìš©í’ˆ	
-		5301	ì„¸ì°¨ìš©í’ˆ
-		5302	ê´€ë¦¬ìš©í’ˆ
-		5303	ì„¸ì°¨ìš©í’ˆì„¸íŠ¸
-	5400	ë§¤íŠ¸/ì‹œíŠ¸/ì¿ ì…˜	
-		5401	ì°¨ëŸ‰ìš©ì¹´ë§¤íŠ¸
-		5402	ì°¨ëŸ‰ìš©ì‹œíŠ¸/ìœ ì•„ì‹œíŠ¸
-		5403	ì°¨ëŸ‰ìš©ì¿ ì…˜
-		5404	ì°¨ëŸ‰ìš©ë°©ì„
-		5405	ì¿ ì…˜ë°©ì„ì„¸íŠ¸
-6000	í‹°ì¼“		
-	6100	êµ­ë‚´ì—¬í–‰	
-		6101	í˜¸í…”
-		6102	ë¦¬ì¡°íŠ¸
-		6103	íŽœì…˜
-		6104	ìº í•‘/ê¸€ëž¨í•‘
-		6105	ë¶€í‹°í¬ í˜¸í…”/ëª¨í…”
-		6106	ê²ŒìŠ¤íŠ¸í•˜ìš°ìŠ¤
-		6107	í…Œë§ˆíŒŒí¬/ì›Œí„°íŒŒí¬
-		6108	ë ˆí¬ì¸ /ì²´í—˜/ê³¨í”„
-		6109	ë‚´ë¥™í…Œë§ˆì—¬í–‰
-		6110	ì „êµ­ë Œí„°ì¹´
-		6111	ì œì£¼ì—¬í–‰
-		6112	ì œì£¼í•­ê³µê¶Œ
-		6113	ì œì£¼ë Œí„°ì¹´
-	6200	í•´ì™¸ì—¬í–‰	
-		6201	íŠ¹ê°€ í•­ê³µ
-		6202	ì‹¤ì‹œê°„ í•­ê³µ ì˜ˆì•½
-		6203	íŠ¹ê°€ í˜¸í…”
-		6204	ì „ì„¸ê³„ í˜¸í…” ì˜ˆì•½
-		6205	ê´€ê´‘ì§€ìž…ìž¥ê¶Œ/êµí†µíŒ¨ìŠ¤
-		6206	ì¼ë³¸
-		6207	ë™ë‚¨ì•„ì‹œì•„
-		6208	ê´Œ/ì‚¬ì´íŒ/í˜¸ì£¼
-		6209	í™ì½©/ë§ˆì¹´ì˜¤/ëŒ€ë§Œ
-		6210	ì¤‘êµ­
-		6211	ìœ ëŸ½
-		6212	ë¯¸ì£¼/í•˜ì™€ì´
-	6300	ê³µì—°/ì „ì‹œ/ì²´í—˜	
-		6301	ê³¨ë“ ë¼ìš´ì§€
-		6302	ë®¤ì§€ì»¬/ì½˜ì„œíŠ¸
-		6303	ì—°ê·¹/ì˜í™”
-		6304	ì²´í—˜/ì „ì‹œ
-		6305	ì•„ë™ê°€ì¡±ê·¹
-		6306	í‚¤ì¦ˆì¹´íŽ˜/íŒŒí¬';
+		4802	DSLR ·»Áî
+		4803	¹Ì·¯¸®½º
+		4804	¹Ì·¯¸®½º ·»Áî
+		4805	ÇÏÀÌ¿£µå/ÄÄÆÑÆ®
+		4806	Ä«¸Þ¶ó ¾×¼¼¼­¸®
+		4807	¾×¼ÇÄ·/Ä·ÄÚ´õ
+		4808	Áï¼®/±âÅ¸Ä«¸Þ¶ó
+		4809	Æ÷ÅäÇÁ¸°ÅÍ/¿ëÁö
+		4810	Áß°í/¸®ÆÛ/º´Çà
+	4900	³ÃÀå°í/±èÄ¡³ÃÀå°í	
+		4901	³ÃÀå°í
+		4902	±èÄ¡³ÃÀå°í
+5000	ÀÚµ¿Â÷¿ëÇ°		
+	5100	½Ç³»¿ëÇ°	
+		5101	ÀÎÅ×¸®¾î¿ëÇ°
+		5102	Â÷·®¿ë¼ö³³¿ëÇ°
+		5103	Â÷·®¿ëÆíÀÇ¿ëÇ°
+	5200	½Ç¿Ü¿ëÇ°/ÀÍ½ºÅ×¸®¾î	
+		5201	¿ÍÀÌÆÛ
+		5202	½ºÆ¼Ä¿/¿¥ºí·³
+		5203	¾ÈÅ×³ª/º¼
+		5204	ÁÖÀ¯±¸Ä¸/È¥À¯¹æÁö¸µ
+		5205	¹øÈ£ÆÇ ¾×¼¼¼­¸®
+		5206	½ã¹ÙÀÌÀú/½ã·çÇÁ
+		5207	¸ôµù/°¡µå
+		5208	¹Ì·¯¿ëÇ°
+		5209	·çÇÁ¿ëÇ°
+		5210	Ä³¸®¾î¿ëÇ°
+		5211	Â÷·®¿ë ¹ÙµðÄ¿¹ö
+	5300	¼¼Â÷/°ü¸®¿ëÇ°	
+		5301	¼¼Â÷¿ëÇ°
+		5302	°ü¸®¿ëÇ°
+		5303	¼¼Â÷¿ëÇ°¼¼Æ®
+	5400	¸ÅÆ®/½ÃÆ®/Äí¼Ç	
+		5401	Â÷·®¿ëÄ«¸ÅÆ®
+		5402	Â÷·®¿ë½ÃÆ®/À¯¾Æ½ÃÆ®
+		5403	Â÷·®¿ëÄí¼Ç
+		5404	Â÷·®¿ë¹æ¼®
+		5405	Äí¼Ç¹æ¼®¼¼Æ®
+6000	Æ¼ÄÏ		
+	6100	±¹³»¿©Çà	
+		6101	È£ÅÚ
+		6102	¸®Á¶Æ®
+		6103	Ææ¼Ç
+		6104	Ä·ÇÎ/±Û·¥ÇÎ
+		6105	ºÎÆ¼Å© È£ÅÚ/¸ðÅÚ
+		6106	°Ô½ºÆ®ÇÏ¿ì½º
+		6107	Å×¸¶ÆÄÅ©/¿öÅÍÆÄÅ©
+		6108	·¹Æ÷Ã÷/Ã¼Çè/°ñÇÁ
+		6109	³»·úÅ×¸¶¿©Çà
+		6110	Àü±¹·»ÅÍÄ«
+		6111	Á¦ÁÖ¿©Çà
+		6112	Á¦ÁÖÇ×°ø±Ç
+		6113	Á¦ÁÖ·»ÅÍÄ«
+	6200	ÇØ¿Ü¿©Çà	
+		6201	Æ¯°¡ Ç×°ø
+		6202	½Ç½Ã°£ Ç×°ø ¿¹¾à
+		6203	Æ¯°¡ È£ÅÚ
+		6204	Àü¼¼°è È£ÅÚ ¿¹¾à
+		6205	°ü±¤ÁöÀÔÀå±Ç/±³ÅëÆÐ½º
+		6206	ÀÏº»
+		6207	µ¿³²¾Æ½Ã¾Æ
+		6208	±¡/»çÀÌÆÇ/È£ÁÖ
+		6209	È«Äá/¸¶Ä«¿À/´ë¸¸
+		6210	Áß±¹
+		6211	À¯·´
+		6212	¹ÌÁÖ/ÇÏ¿ÍÀÌ
+	6300	°ø¿¬/Àü½Ã/Ã¼Çè	
+		6301	°ñµç¶ó¿îÁö
+		6302	¹ÂÁöÄÃ/ÄÜ¼­Æ®
+		6303	¿¬±Ø/¿µÈ­
+		6304	Ã¼Çè/Àü½Ã
+		6305	¾Æµ¿°¡Á·±Ø
+		6306	Å°ÁîÄ«Æä/ÆÄÅ©';
 
 CREATE UNIQUE INDEX PK_PROD_CATE
 	ON PROD_CATE (
@@ -1189,13 +1117,13 @@ ALTER TABLE PROD_CATE
 			PROD_CATE_NUM
 		);
 
-/* ì‹ ìš©ê²½ê³  */
+/* ½Å¿ë°æ°í */
 CREATE TABLE CRE_WARN (
-	WARN_NUM INTEGER NOT NULL, /* ê²½ê³ ë²ˆí˜¸ */
-	WARN_NM VARCHAR(50) NOT NULL, /* ê²½ê³ ëª…  */
-	WARN_CONT VARCHAR(255) NOT NULL, /* ê²½ê³ ë‚´ìš©  */
-	MEMB_NUM INTEGER NOT NULL, /* íšŒì›ë²ˆí˜¸  */
-	WARN_CD CHAR(4) /* ê²½ê³ êµ¬ë¶„ */
+	WARN_NUM INTEGER NOT NULL, /* °æ°í¹øÈ£ */
+	WARN_NM VARCHAR(50) NOT NULL, /* °æ°í¸í  */
+	WARN_CONT VARCHAR(255) NOT NULL, /* °æ°í³»¿ë  */
+	MEMB_NUM INTEGER NOT NULL, /* È¸¿ø¹øÈ£  */
+	WARN_CD CHAR(4) /* °æ°í±¸ºÐ */
 );
 
 CREATE UNIQUE INDEX PK_CRE_WARN
@@ -1220,20 +1148,20 @@ ALTER TABLE CRE_WARN
 			WARN_NUM
 		);
 
-/* ê²½ë§¤ë“±ë¡ìƒí’ˆ */
+/* °æ¸Åµî·Ï»óÇ° */
 CREATE TABLE REG_AUC (
-	AUC_REG_NUM INTEGER NOT NULL, /* ê²½ë§¤ë“±ë¡ë²ˆí˜¸ */
-	AUC_PROD_NM VARCHAR(50) NOT NULL, /* ê²½ë§¤ìƒí’ˆëª… */
-	SHORT_CONT NVARCHAR2(2000) NOT NULL, /* ê²½ë§¤ìƒí’ˆì„¤ëª… */
-	REG_DTIME DATE DEFAULT sysdate NOT NULL, /* ë“±ë¡ì¼ì‹œ */
-	START_DTIME DATE NOT NULL, /* ì‹œìž‘ì¼ì‹œ */
-	END_DTIME DATE NOT NULL, /* ì¢…ë£Œì¼ì‹œ */
-	START_PRICE INTEGER NOT NULL, /* ì‹œìž‘ê°€ */
-	QTY SMALLINT NOT NULL, /* ìˆ˜ëŸ‰ */
-	MEMB_NUM INTEGER NOT NULL, /* íšŒì›ë²ˆí˜¸  */
-	PROD_CATE_NUM CHAR(4), /* ìƒí’ˆë¶„ë¥˜ì½”ë“œ */
-	APPR_CD CHAR(4), /* ìŠ¹ì¸êµ¬ë¶„ */
-	AUC_TYPE_NUM CHAR(4) /* ê²½ë§¤ìœ í˜•ë²ˆí˜¸ */
+	AUC_REG_NUM INTEGER NOT NULL, /* °æ¸Åµî·Ï¹øÈ£ */
+	AUC_PROD_NM VARCHAR(50) NOT NULL, /* °æ¸Å»óÇ°¸í */
+	SHORT_CONT NVARCHAR2(2000) NOT NULL, /* °æ¸Å»óÇ°¼³¸í */
+	REG_DTIME DATE DEFAULT sysdate NOT NULL, /* µî·ÏÀÏ½Ã */
+	START_DTIME DATE NOT NULL, /* ½ÃÀÛÀÏ½Ã */
+	END_DTIME DATE NOT NULL, /* Á¾·áÀÏ½Ã */
+	START_PRICE INTEGER NOT NULL, /* ½ÃÀÛ°¡ */
+	QTY SMALLINT NOT NULL, /* ¼ö·® */
+	MEMB_NUM INTEGER NOT NULL, /* È¸¿ø¹øÈ£  */
+	PROD_CATE_NUM CHAR(4), /* »óÇ°ºÐ·ùÄÚµå */
+	APPR_CD CHAR(4), /* ½ÂÀÎ±¸ºÐ */
+	AUC_TYPE_NUM CHAR(4) /* °æ¸ÅÀ¯Çü¹øÈ£ */
 );
 
 CREATE UNIQUE INDEX PK_REG_AUC
@@ -1284,10 +1212,10 @@ ALTER TABLE REG_AUC
 			AUC_REG_NUM
 		);
 
-/* ë“±ë¡ê±°ë¶€ */
+/* µî·Ï°ÅºÎ */
 CREATE TABLE REG_REJ (
-	AUC_REG_NUM INTEGER NOT NULL, /* ê²½ë§¤ë“±ë¡ë²ˆí˜¸ */
-	REG_REJ_REAS VARCHAR(255) NOT NULL /* ë“±ë¡ê±°ë¶€ì‚¬ìœ  */
+	AUC_REG_NUM INTEGER NOT NULL, /* °æ¸Åµî·Ï¹øÈ£ */
+	REG_REJ_REAS VARCHAR(255) NOT NULL /* µî·Ï°ÅºÎ»çÀ¯ */
 );
 
 CREATE UNIQUE INDEX PK_REG_REJ
@@ -1302,13 +1230,13 @@ ALTER TABLE REG_REJ
 			AUC_REG_NUM
 		);
 
-/* ìž…ì°° */
+/* ÀÔÂû */
 CREATE TABLE REG_BIDDING (
-	BID_NUM INTEGER NOT NULL, /* ìž…ì°°ë²ˆí˜¸ */
-	MEMB_NUM INTEGER NOT NULL, /* íšŒì›ë²ˆí˜¸  */
-	AUC_REG_NUM INTEGER NOT NULL, /* ê²½ë§¤ë“±ë¡ë²ˆí˜¸ */
-	BID_QTY SMALLINT NOT NULL, /* ìž…ì°°ìˆ˜ëŸ‰ */
-	REG_DTIME DATE DEFAULT sysdate NOT NULL /* ë“±ë¡ì¼ì‹œ */
+	BID_NUM INTEGER NOT NULL, /* ÀÔÂû¹øÈ£ */
+	MEMB_NUM INTEGER NOT NULL, /* È¸¿ø¹øÈ£  */
+	AUC_REG_NUM INTEGER NOT NULL, /* °æ¸Åµî·Ï¹øÈ£ */
+	BID_QTY SMALLINT NOT NULL, /* ÀÔÂû¼ö·® */
+	REG_DTIME DATE DEFAULT sysdate NOT NULL /* µî·ÏÀÏ½Ã */
 );
 
 CREATE UNIQUE INDEX PK_REG_BIDDING
@@ -1333,12 +1261,12 @@ ALTER TABLE REG_BIDDING
 			BID_NUM
 		);
 
-/* ìž…ì°°ê°€ë“±ë¡ */
+/* ÀÔÂû°¡µî·Ï */
 CREATE TABLE BIDDING (
-	BID_PRICE_REG_NUM INTEGER NOT NULL, /* ìž…ì°°ê°€ë“±ë¡ë²ˆí˜¸ */
-	BID_PRICE INTEGER NOT NULL, /* ìž…ì°°ê¸ˆì•¡  */
-	BID_DTIME DATE DEFAULT sysdate NOT NULL, /* ìž…ì°°ì¼ì‹œ */
-	BID_NUM INTEGER NOT NULL /* ìž…ì°°ë²ˆí˜¸ */
+	BID_PRICE_REG_NUM INTEGER NOT NULL, /* ÀÔÂû°¡µî·Ï¹øÈ£ */
+	BID_PRICE INTEGER NOT NULL, /* ÀÔÂû±Ý¾×  */
+	BID_DTIME DATE DEFAULT sysdate NOT NULL, /* ÀÔÂûÀÏ½Ã */
+	BID_NUM INTEGER NOT NULL /* ÀÔÂû¹øÈ£ */
 );
 
 CREATE UNIQUE INDEX PK_BIDDING
@@ -1363,11 +1291,11 @@ ALTER TABLE BIDDING
 			BID_PRICE_REG_NUM
 		);
 
-/* ë‚™ì°° */
+/* ³«Âû */
 CREATE TABLE SUCC_BIDDING (
-	SBID_NUM INTEGER NOT NULL, /* ë‚™ì°°ë²ˆí˜¸ */
-	SBID_DATE DATE, /* ë‚™ì°°ì¼ìž */
-	SBID_PRICE INTEGER NOT NULL /* ë‚™ì°°ê°€ */
+	SBID_NUM INTEGER NOT NULL, /* ³«Âû¹øÈ£ */
+	SBID_DATE DATE, /* ³«ÂûÀÏÀÚ */
+	SBID_PRICE INTEGER NOT NULL /* ³«Âû°¡ */
 );
 
 CREATE UNIQUE INDEX PK_SUCC_BIDDING
@@ -1382,21 +1310,21 @@ ALTER TABLE SUCC_BIDDING
 			SBID_NUM
 		);
 
-/* ê²°ìž¬ */
+/* °áÀç */
 CREATE TABLE PAY (
-	PAY_NUM INTEGER NOT NULL, /* ê²°ì œë²ˆí˜¸  */
-	PAY_PRICE INTEGER NOT NULL, /* ê²°ì œê°€ê²© */
-	PAY_DATE DATE DEFAULT sysdate NOT NULL, /* ê²°ì œì¼ìž  */
-	SBID_NUM INTEGER NOT NULL, /* ë‚™ì°°ë²ˆí˜¸ */
-	PAY_METH CHAR(4) /* ê²°ì œë°©ë²• */
+	PAY_NUM INTEGER NOT NULL, /* °áÁ¦¹øÈ£  */
+	PAY_PRICE INTEGER NOT NULL, /* °áÁ¦°¡°Ý */
+	PAY_DATE DATE DEFAULT sysdate NOT NULL, /* °áÁ¦ÀÏÀÚ  */
+	SBID_NUM INTEGER NOT NULL, /* ³«Âû¹øÈ£ */
+	PAY_METH CHAR(4) /* °áÁ¦¹æ¹ý */
 );
 
-COMMENT ON COLUMN PAY.SBID_NUM IS '1. ì˜¨ë¼ì¸ìž…ê¸ˆ
-2. ë©¤ë²„ì‰½í¬ì¸íŠ¸
-3. ì „ìžì§€ê°‘í¬ì¸íŠ¸
-4. ì‹ ìš©ì¹´ë“œ
-5. ì§ë¶ˆì¹´ë“œ
-6. í°ë¹Œ
+COMMENT ON COLUMN PAY.SBID_NUM IS '1. ¿Â¶óÀÎÀÔ±Ý
+2. ¸â¹ö½±Æ÷ÀÎÆ®
+3. ÀüÀÚÁö°©Æ÷ÀÎÆ®
+4. ½Å¿ëÄ«µå
+5. Á÷ºÒÄ«µå
+6. Æùºô
 ';
 
 CREATE UNIQUE INDEX PK_PAY
@@ -1421,12 +1349,12 @@ ALTER TABLE PAY
 			PAY_NUM
 		);
 
-/* ë°°ì†¡ */
+/* ¹è¼Û */
 CREATE TABLE DELI (
-	DELI_NUM INTEGER NOT NULL, /* ë°°ì†¡ë²ˆí˜¸ */
-	DELI_DTIME DATE DEFAULT sysdate NOT NULL, /* ë°°ì†¡ì¼ì‹œ */
-	SBID_NUM INTEGER NOT NULL, /* ë‚™ì°°ë²ˆí˜¸ */
-	SHORT_CONT VARCHAR(255) NOT NULL /* ë¹„ê³  */
+	DELI_NUM INTEGER NOT NULL, /* ¹è¼Û¹øÈ£ */
+	DELI_DTIME DATE DEFAULT sysdate NOT NULL, /* ¹è¼ÛÀÏ½Ã */
+	SBID_NUM INTEGER NOT NULL, /* ³«Âû¹øÈ£ */
+	SHORT_CONT VARCHAR(255) NOT NULL /* ºñ°í */
 );
 
 CREATE UNIQUE INDEX PK_DELI
@@ -1446,10 +1374,10 @@ ALTER TABLE DELI
 			DELI_NUM
 		);
 
-/* ë°°ì†¡ë¹„ìš© */
+/* ¹è¼Ûºñ¿ë */
 CREATE TABLE DELI_DETAIL (
-	DELI_COST_NUM INTEGER NOT NULL, /* ë°°ì†¡ë¹„ìš©ë²ˆí˜¸  */
-	DELI_COST INTEGER NOT NULL /* ë°°ì†¡ë¹„ìš© */
+	DELI_COST_NUM INTEGER NOT NULL, /* ¹è¼Ûºñ¿ë¹øÈ£  */
+	DELI_COST INTEGER NOT NULL /* ¹è¼Ûºñ¿ë */
 );
 
 CREATE UNIQUE INDEX PK_DELI_DETAIL
@@ -1464,11 +1392,11 @@ ALTER TABLE DELI_DETAIL
 			DELI_COST_NUM
 		);
 
-/* ìˆ˜ë ¹ */
+/* ¼ö·É */
 CREATE TABLE REC (
-	DELI_NUM INTEGER NOT NULL, /* ë°°ì†¡ë²ˆí˜¸ */
-	TAKE_DTIME DATE DEFAULT sysdate NOT NULL, /* ìˆ˜ë ¹ì¼ì‹œ */
-	TAKE_CONFIRM CHAR(4) /* ìˆ˜ë ¹í™•ì¸ */
+	DELI_NUM INTEGER NOT NULL, /* ¹è¼Û¹øÈ£ */
+	TAKE_DTIME DATE DEFAULT sysdate NOT NULL, /* ¼ö·ÉÀÏ½Ã */
+	TAKE_CONFIRM CHAR(4) /* ¼ö·ÉÈ®ÀÎ */
 );
 
 CREATE UNIQUE INDEX PK_REC
@@ -1493,10 +1421,10 @@ ALTER TABLE REC
 			DELI_NUM
 		);
 
-/* ìˆ˜ë ¹ê±°ë¶€ */
+/* ¼ö·É°ÅºÎ */
 CREATE TABLE REC_REJ (
-	DELI_NUM INTEGER NOT NULL, /* ë°°ì†¡ë²ˆí˜¸ */
-	REJ_REAS VARCHAR(255) NOT NULL /* ê±°ë¶€ì‚¬ìœ  */
+	DELI_NUM INTEGER NOT NULL, /* ¹è¼Û¹øÈ£ */
+	REJ_REAS VARCHAR(255) NOT NULL /* °ÅºÎ»çÀ¯ */
 );
 
 CREATE UNIQUE INDEX PK_REC_REJ
@@ -1511,14 +1439,14 @@ ALTER TABLE REC_REJ
 			DELI_NUM
 		);
 
-/* ê²½ë§¤ìƒí’ˆì²¨ë¶€íŒŒì¼ */
+/* °æ¸Å»óÇ°Ã·ºÎÆÄÀÏ */
 CREATE TABLE REG_AUC_FILE (
-	ATTAC_FILE_NUM INTEGER NOT NULL, /* ì²¨ë¶€íŒŒì¼ë²ˆí˜¸ */
-	FILE_NM VARCHAR(100), /* íŒŒì¼ì´ë¦„  */
-	FILE_PATH VARCHAR(255), /* íŒŒì¼ê²½ë¡œ  */
-	REAL_NM VARCHAR(100), /* ì‹¤ì œì´ë¦„ */
-	FILE_SIZE INTEGER, /* íŒŒì¼ì‚¬ì´ì¦ˆ */
-	AUC_REG_NUM INTEGER /* ê²½ë§¤ë“±ë¡ë²ˆí˜¸ */
+	ATTAC_FILE_NUM INTEGER NOT NULL, /* Ã·ºÎÆÄÀÏ¹øÈ£ */
+	FILE_NM VARCHAR(100), /* ÆÄÀÏÀÌ¸§  */
+	FILE_PATH VARCHAR(255), /* ÆÄÀÏ°æ·Î  */
+	REAL_NM VARCHAR(100), /* ½ÇÁ¦ÀÌ¸§ */
+	FILE_SIZE INTEGER, /* ÆÄÀÏ»çÀÌÁî */
+	AUC_REG_NUM INTEGER /* °æ¸Åµî·Ï¹øÈ£ */
 );
 
 CREATE UNIQUE INDEX PK_REG_AUC_FILE
@@ -1538,64 +1466,64 @@ ALTER TABLE REG_AUC_FILE
 			ATTAC_FILE_NUM
 		);
 
-/* ë¶„ë¥˜ */
+/* ºÐ·ù */
 CREATE TABLE CD (
-	CD CHAR(4) NOT NULL, /* êµ¬ë¶„ */
-	CATE_NM VARCHAR2(50) NOT NULL, /* ë¶„ë¥˜ëª… */
-	CATE_CONT VARCHAR(255), /* ë¶„ë¥˜ë‚´ìš© */
-	HIGH_CD CHAR(4) /* ìƒìœ„êµ¬ë¶„ */
+	CD CHAR(4) NOT NULL, /* ±¸ºÐ */
+	CATE_NM VARCHAR2(50) NOT NULL, /* ºÐ·ù¸í */
+	CATE_CONT VARCHAR(255), /* ºÐ·ù³»¿ë */
+	HIGH_CD CHAR(4) /* »óÀ§±¸ºÐ */
 );
 
-COMMENT ON COLUMN CD.CD IS '1000 	ê´€ë¦¬ìžêµ¬ë¶„ì½”ë“œ
-	1001 	ìˆ˜í¼ê´€ë¦¬ìž
-	1002 	ì¼ë°˜ê´€ë¦¬ìž
-1100	ê²½ê³ êµ¬ë¶„ì½”ë“œ
-	1101. ê²½ê³  1ë²ˆ
-	1102. ê²½ê³  2ë²ˆ
-	1103. ê·¸ë ˆì´íšŒì› ë“±ë¡
-	1104. ë‹¤í¬ê·¸ë ˆì´ íšŒì› ë“±ë¡
-	1105. ë¸”ëž™ íšŒì›
-1200	íšŒì›ë“±ê¸‰	
-	1201. ì •íšŒì›
-	1202. ë¸Œë¡ ì¦ˆíšŒì›
-	1203. ì‹¤ë²„íšŒì›
-	1204. ê³¨ë“œíšŒì›
-	1205. VIP íšŒì›
-	1209. ë¸”ëž™ íšŒì› (ë©¤ë²„ì‰½ ëª°ìˆ˜)
-1300	íšŒì›ì‹ ìš©ë“±ê¸‰
-	1301. ì–‘í˜¸
-	1302. ë¶ˆëŸ‰
-1400	ê²°ì œë°©ë²•
-	1401. ì˜¨ë¼ì¸ìž…ê¸ˆ
-	1402. ë©¤ë²„ì‰½í¬ì¸íŠ¸
-	1403. ì „ìžì§€ê°‘í¬ì¸íŠ¸
-	1404. ì‹ ìš©ì¹´ë“œ
-	1405. ì§ë¶ˆì¹´ë“œ
-	1406. í°ë¹Œ
-1500	ê²½ë§¤ë“±ë¡ìŠ¹ì¸
-	1501 ìŠ¹ì¸
-	1502 ê±°ë¶€
-	1503 ëŒ€ê¸°ì¤‘
-1600 ìƒí’ˆìˆ˜ë ¹/ë¯¸ìˆ˜ë ¹
-	1601. ìˆ˜ë ¹
-	1602. ë¯¸ìˆ˜ë ¹
-1700 íšŒì›íƒˆí‡´êµ¬ë¶„
-	1701. íƒˆí‡´
-	1702. íšŒì›
-1800 ê²½ë§¤ìœ í˜•
-	1801. ìˆœê²½ë§¤
-	1802. ì—­ê²½ë§¤
-	1803. ë”ì¹˜ê²½ë§¤
-	1804. ìŒë°©í–¥ê²½ë§¤
-1900 ì´ë©”ì¼ìœ í˜•
+COMMENT ON COLUMN CD.CD IS '1000 	°ü¸®ÀÚ±¸ºÐÄÚµå
+	1001 	¼öÆÛ°ü¸®ÀÚ
+	1002 	ÀÏ¹Ý°ü¸®ÀÚ
+1100	°æ°í±¸ºÐÄÚµå
+	1101. °æ°í 1¹ø
+	1102. °æ°í 2¹ø
+	1103. ±×·¹ÀÌÈ¸¿ø µî·Ï
+	1104. ´ÙÅ©±×·¹ÀÌ È¸¿ø µî·Ï
+	1105. ºí·¢ È¸¿ø
+1200	È¸¿øµî±Þ	
+	1201. Á¤È¸¿ø
+	1202. ºê·ÐÁîÈ¸¿ø
+	1203. ½Ç¹öÈ¸¿ø
+	1204. °ñµåÈ¸¿ø
+	1205. VIP È¸¿ø
+	1209. ºí·¢ È¸¿ø (¸â¹ö½± ¸ô¼ö)
+1300	È¸¿ø½Å¿ëµî±Þ
+	1301. ¾çÈ£
+	1302. ºÒ·®
+1400	°áÁ¦¹æ¹ý
+	1401. ¿Â¶óÀÎÀÔ±Ý
+	1402. ¸â¹ö½±Æ÷ÀÎÆ®
+	1403. ÀüÀÚÁö°©Æ÷ÀÎÆ®
+	1404. ½Å¿ëÄ«µå
+	1405. Á÷ºÒÄ«µå
+	1406. Æùºô
+1500	°æ¸Åµî·Ï½ÂÀÎ
+	1501 ½ÂÀÎ
+	1502 °ÅºÎ
+	1503 ´ë±âÁß
+1600 »óÇ°¼ö·É/¹Ì¼ö·É
+	1601. ¼ö·É
+	1602. ¹Ì¼ö·É
+1700 È¸¿øÅ»Åð±¸ºÐ
+	1701. Å»Åð
+	1702. È¸¿ø
+1800 °æ¸ÅÀ¯Çü
+	1801. ¼ø°æ¸Å
+	1802. ¿ª°æ¸Å
+	1803. ´õÄ¡°æ¸Å
+	1804. ½Ö¹æÇâ°æ¸Å
+1900 ÀÌ¸ÞÀÏÀ¯Çü
 	1901. daum.net
 	1902. naver.com
 	1903. google.com
 	1904. nate.com
 	1905. empas.com
-2000 íšŒì›êµ¬ë¶„
-	2001 ê°œì¸
-	2002 ê¸°ì—…';
+2000 È¸¿ø±¸ºÐ
+	2001 °³ÀÎ
+	2002 ±â¾÷';
 
 CREATE UNIQUE INDEX PK_CD
 	ON CD (
@@ -1614,17 +1542,31 @@ ALTER TABLE CD
 			CD
 		);
 
-/* ëŒ“ê¸€ */
+/* ´ñ±Û */
 CREATE TABLE SHORT_BOARD (
-	AUC_REG_NUM INTEGER NOT NULL, /* ê²½ë§¤ë“±ë¡ë²ˆí˜¸ */
-	CONT NVARCHAR2(2000) NOT NULL, /* ë‚´ìš© */
-	WRITER_NM VARCHAR(50) NOT NULL, /* ìž‘ì„±ìžì´ë¦„  */
-	WRITE_DATE DATE DEFAULT sysdate NOT NULL /* ìž‘ì„±ì¼ì‹œ */
+	AUC_REG_NUM INTEGER NOT NULL, /* °æ¸Åµî·Ï¹øÈ£ */
+	CONT NVARCHAR2(2000) NOT NULL, /* ³»¿ë */
+	WRITER_NM VARCHAR(50) NOT NULL, /* ÀÛ¼ºÀÚÀÌ¸§  */
+	WRITE_DATE DATE DEFAULT sysdate NOT NULL /* ÀÛ¼ºÀÏ½Ã */
 );
 
 CREATE UNIQUE INDEX PK_SHORT_BOARD
 	ON SHORT_BOARD (
 		AUC_REG_NUM ASC
+	);
+
+CREATE INDEX IX_SHORT_BOARD
+	ON SHORT_BOARD (
+	);
+
+CREATE INDEX IX_SHORT_BOARD2
+	ON SHORT_BOARD (
+		CONT ASC
+	);
+
+CREATE INDEX IX_SHORT_BOARD3
+	ON SHORT_BOARD (
+		WRITER_NM ASC
 	);
 
 ALTER TABLE SHORT_BOARD
@@ -1792,6 +1734,16 @@ ALTER TABLE PROD_CATE
 		)
 		REFERENCES PROD_CATE (
 			PROD_CATE_NUM
+		);
+
+ALTER TABLE PROD_CATE
+	ADD
+		CONSTRAINT FK_CD_TO_PROD_CATE
+		FOREIGN KEY (
+			USE_CD
+		)
+		REFERENCES CD (
+			CD
 		);
 
 ALTER TABLE CRE_WARN

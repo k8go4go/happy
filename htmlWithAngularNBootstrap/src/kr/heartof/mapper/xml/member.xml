@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.heartof.auction.service.mapper.MemberMapper">
+	<resultMap type="UsrVO" id="usrinfo">
+		<id column="MEMB_NUM" property="MEMB_NUM" />
+		<result column="MEMB_ID" property="MEMB_ID" />
+		<result column="SEC_NUM" property="SEC_NUM" />
+		<result column="EMAIL" property="TEL_NUM" />
+		<result column="MOBIL_NUM" property="MOBIL_NUM" />
+		<result column="ZIP_NUM" property="ZIP_NUM" />
+		<result column="ADDRESS" property="ADDRESS" />
+		<result column="DETA_ADDRESS" property="DETA_ADDRESS" />
+		<result column="CRE_DEG_CD" property="CRE_DEG_CD" />
+		<result javaType="java.util.Date" column="REG_DTIME" property="REG_DTIME" />
+		<result column="MEMB_CD" property="MEMB_CD" />
+		<result column="WITHDRAWAL_CD" property="WITHDRAWAL_CD" />
+		<discriminator javaType="java.lang.String" column="MEMB_CD">
+			<case value="2001" resultMap="priUsrinfo" />					
+			<case value="2002" resultMap="comUsrinfo" />
+		</discriminator>
+	</resultMap>
+	
+	<resultMap type="ComUsrVO" id="comUsrinfo">
+		<id column="MEMB_NUM" property="MEMB_NUM" />
+		<result column="CORP_NM" property="CORP_NM" />
+		<result column="BUS_NUM" property="BUS_NUM" />
+		<result column="CEO_NM" property="CEO_NM" />
+		<result column="CHGR_NM" property="CHGR_NM" />
+	</resultMap>
+	
+	<resultMap type="PriUsrVO" id="priUsrinfo">
+		<id column="MEMB_NUM" property="MEMB_NUM" />
+		<result column="NM" property="NM" />
+		<result column="SOC_REG_NUM" property="SOC_REG_NUM" />
+	</resultMap>
+	
+	<select id="duplicateID" parameterType="String" resultType="int">
+		SELECT 
+			COUNT(MEMB_ID) 
+		FROM 
+			USR 
+		WHERE 
+			MEMB_ID = #{MEMB_ID}
+	</select>
+
+	<insert id="newMember" parameterType="UsrVO">
+		<selectKey keyProperty="MEMB_NUM" resultType="int" order="AFTER"></selectKey>
+		INSERT INTO USR
+		( 
+			MEMB_NUM, MEMB_ID, SEC_NUM, EMAIL, TEL_NUM,
+			MOBIL_NUM, ZIP_NUM, ADDRESS, DETA_ADDRESS, REG_DTIME,
+			MEMB_CD, WITHDRAWAL_CD, CRE_DEG_CD, MAIL_CD) 
+		)
+		VALUES 
+		(
+			USR_SEQ.nextVal, #{MEMB_ID}, #{SEC_NUM}, #{EMAIL}, #{TEL_NUM},
+			#{MOBIL_NUM}, #{ZIP_NUM}, #{ADDRESS}, #{DETA_ADDRESS}, SYSDATE,
+			#{MEMB_CD}, #{WITHDRAWAL_CD}, #{CRE_DEG_CD}, #{MAIL_CD}
+		)
+	</insert>
+	
+	<insert id="newComMember" parameterType="ComUsrVO">
+		INSERT INTO COM_USR
+		( 
+			MEMB_NUM, CORP_NM, BUS_NUM, CEO_NM, CHGR_NM
+		)
+		VALUES 
+		(
+			#{MEMB_NUM}, #{CORP_NM}, #{BUS_NUM}, #{CEO_NM}, #{CHGR_NM}
+		)
+	</insert>
+	
+	<insert id="newPriMember" parameterType="PriUsrVO">
+		INSERT INTO PRI_USR
+		( 
+			MEMB_NUM, NM, SOC_REG_NUM
+		)
+		VALUES 
+		(
+			#{MEMB_NUM}, #{NM}, #{SOC_REG_NUM}
+		)
+	</insert>
+
+	<insert id="newProfile" parameterType="UsrFileVO">
+		INSERT INTO USR_FILE
+		( 
+			MEMB_NUM, FILE_NM, FILE_PATH, REAL_NM, FILE_SIZE
+		)
+		VALUES 
+		(
+			#{MEMB_NUM}, #{FILE_NM}, #{FILE_PATH}, #{REAL_NM}, #{FILE_SIZE}
+		)
+	</insert>
+
+	<insert id="newElecWallet" parameterType="ElecWalletVO">
+		INSERT INTO ELEC_WALLET
+		( 
+			MEMB_NUM, POINT
+		)
+		VALUES 
+		(
+			#{MEMB_NUM}, #{POINT}
+		)
+	</insert>
+
+	<insert id="newMemberShip" parameterType="MembershipVO">
+		INSERT INTO MEMBERSHIP
+		( 
+			MEMB_NUM, MSHIP_CARD_NUM, NM, 
+			POINT, ISSUE_DATE, ISSUE_CNT, DEG
+		)
+		VALUES 
+		(
+			#{MEMB_NUM}, #{MSHIP_CARD_NUM}, #{NM}, 
+			#{POINT}, SYSDATE, #{ISSUE_CNT}, #{DEG}
+		)
+	</insert>
+
+	<select id="duplicateCardNumber" parameterType="String" resultType="int">
+		SELECT 
+			COUNT(MSHIP_CARD_NUM) 
+		FROM 
+			MEMBERSHIP 
+		WHERE 
+			MSHIP_CARD_NUM = #{MSHIP_CARD_NUM}
+	</select>
+	
+	<select id="findID" parameterType="UsrVO" resultMap="usrinfo">
+		<choose>
+		<when test="MEMB_CD == '2001'">
+			SELECT 
+			    A.MEMB_NUM, A.MEMB_ID, A.SEC_NUM, A.EMAIL, A.TEL_NUM, A.MOBIL_NUM, A.ZIP_NUM,
+			    A.ADDRESS, A.DETA_ADDRESS, A.REG_DTIME, A.MEMB_CD, A.WITHDRAWAL_CD, A.CRE_DEG_CD,
+			    A.MAIL_CD, B.NM, B.SOC_REG_NUM
+			FROM 
+			    USR A INNER JOIN PRI_USR B 
+			    	ON A.MEMB_NUM = B.MEMB_NUM AND 
+			    	   A.WITHDRAWAL_CD = '1702' 
+			WHERE
+		    	B.SOC_REG_NUM = #{SOC_REG_NUM} AND
+		    	B.NM = #{NM}
+		</when>
+		<otherwise>
+			SELECT 
+			    A.MEMB_NUM, A.MEMB_ID, A.SEC_NUM, A.EMAIL, A.TEL_NUM, A.MOBIL_NUM, A.ZIP_NUM,
+			    A.ADDRESS, A.DETA_ADDRESS, A.REG_DTIME, A.MEMB_CD, A.WITHDRAWAL_CD, A.CRE_DEG_CD,
+			    A.MAIL_CD, B.CORP_NM, B.BUS_NUM, B.CEO_NM, B.CHGR_NM
+			FROM 
+			    USR A INNER JOIN COM_USR B 
+			    	ON A.MEMB_NUM = B.MEMB_NUM AND 
+			    	   A.WITHDRAWAL_CD = '1702'
+			WHERE
+		    	B.CORP_NM = #{CORP_NM} AND
+		    	B.BUS_NUM = #{BUS_NUM} AND
+		    	B.CEO_NM = #{CEO_NM} 
+		</otherwise>		    
+		</choose>    
+	</select>
+	
+	<update id="changePasswd" parameterType="UsrVO" >
+		UPDATE USR_CD
+			SET 
+				SEC_NUM = #{SEC_NUM}
+		WHERE
+			MEMB_ID = #{MEMB_ID}		
+	</update>
+	
+	<select id="memberInfo" parameterType="UsrVO" resultMap="usrinfo">
+		<choose>
+		<when test="MEMB_CD == '2001'">
+			SELECT 
+			    A.MEMB_NUM, A.MEMB_ID, A.SEC_NUM, A.EMAIL, A.TEL_NUM, A.MOBIL_NUM, A.ZIP_NUM,
+			    A.ADDRESS, A.DETA_ADDRESS, A.REG_DTIME, A.MEMB_CD, A.WITHDRAWAL_CD, A.CRE_DEG_CD,
+			    A.MAIL_CD, B.NM, B.SOC_REG_NUM
+			FROM 
+			    USR A INNER JOIN PRI_USR B 
+			    	ON A.MEMB_NUM = B.MEMB_NUM AND 
+			    	   A.WITHDRAWAL_CD = '1702' 
+		</when>
+		<otherwise>
+			SELECT 
+			    A.MEMB_NUM, A.MEMB_ID, A.SEC_NUM, A.EMAIL, A.TEL_NUM, A.MOBIL_NUM, A.ZIP_NUM,
+			    A.ADDRESS, A.DETA_ADDRESS, A.REG_DTIME, A.MEMB_CD, A.WITHDRAWAL_CD, A.CRE_DEG_CD,
+			    A.MAIL_CD, B.CORP_NM, B.BUS_NUM, B.CEO_NM, B.CHGR_NM
+			FROM 
+			    USR A INNER JOIN COM_USR B 
+			    	ON A.MEMB_NUM = B.MEMB_NUM AND 
+			    	   A.WITHDRAWAL_CD = '1702'
+		</otherwise>		    
+		</choose>    
+		WHERE
+		    A.MEMB_NUM = #{MEMB_NUM}
+	</select>
+	
+	<select id="memberInfoFile" parameterType="int" resultType="UsrFileVO">
+		SELECT 
+		    B.MEMB_NUM, B.FILE_NM, B.FILE_PATH, B.REAL_NM, B.FILE_SIZE
+		FROM 
+		    USR_FILE B 
+		WHERE
+	    	B.MEMB_NUM = #{MEMB_NUM}
+	</select>
+
+	<update id="updateBasicMemberInfo" parameterType="UsrVO">
+		UPDATE USR
+		SET 
+			<if test="SEC_NUM != null">
+				SEC_NUM = #{SEC_NUM},
+			</if>
+			<if test="EMAIL != null">
+				EMAIL = #{EMAIL},
+			</if>
+			<if test="TEL_NUM != null">
+				TEL_NUM = #{TEL_NUM},
+			</if>
+			<if test="MOBIL_NUM != null">
+				MOBIL_NUM = #{MOBIL_NUM},
+			</if>
+			<if test="ZIP_NUM != null">
+				ZIP_NUM = #{ZIP_NUM},
+				ADDRESS = #{ADDRESS},
+				DETA_ADDRESS = #{DETA_ADDRESS},
+			</if>
+			CRE_DEG_CD = #{CRE_DEG_CD}
+		WHERE 
+			MEMB_NUM = #{MEMB_NUM}
+	</update>
+
+	<update id="updatePriMemberInfo" parameterType="PriUsrVO">
+		UPDATE PRI_USR
+		SET 
+			<if test="SOC_REG_NUM != null">
+				SOC_REG_NUM = #{SOC_REG_NUM},
+			</if>
+				NM = #{NM}
+		WHERE MEMB_NUM = #{MEMB_NUM}
+	</update>
+	
+	<update id="updateComMemberInfo" parameterType="ComUsrVO">
+		UPDATE COM_USR
+		SET 
+			<if test="CORP_NM != null">
+				CORP_NM = #{CORP_NM},
+			</if>
+			<if test="BUS_NUM != null">
+				BUS_NUM = #{BUS_NUM},
+			</if>
+			<if test="CEO_NM != null">
+				CEO_NM = #{CEO_NM},
+			</if>
+				CHGR_NM = #{CHGR_NM}
+		WHERE MEMB_NUM = #{MEMB_NUM}
+	</update>
+
+	<update id="updateUsrProfile" parameterType="UsrFileVO">
+		UPDATE USR_FILE
+		SET 
+			<if test="FILE_SIZE != null">
+				FILE_SIZE = #{FILE_SIZE},
+			</if>
+			<if test="FILE_PATH != null">
+				FILE_PATH = #{FILE_PATH},
+			</if>
+			<if test="REAL_NM != null">
+				REAL_NM = #{REAL_NM},
+			</if>
+				FILE_NM = #{FILE_NM}
+		WHERE 
+			MEMB_NUM = #{MEMB_NUM}
+	</update>
+
+	<update id="updateWithdrawal" parameterType="UsrVO">
+		UPDATE USR
+		SET 
+			WITHDRAWAL_CD = #{WITHDRAWAL_CD}
+		WHERE 
+			MEMB_NUM = #{MEMB_NUM}
+	</update>
+</mapper>

@@ -1,5 +1,5 @@
 {
-  "ecmaVersion": 6,
+  "ecmaVersion": 5,
   "plugins": {
     "guess-types": {
       
@@ -15,6 +15,59 @@
     },
     "doc_comment": {
       "strong": true
+    },
+    "lint": {
+      "config": {
+        
+      }
+    },
+    "eslint": {
+      "config": {
+        
+      }
+    },
+    "jscs": {
+      "config": {
+        
+      }
+    },
+    "jshint": {
+      "config": {
+        "bitwise": true,
+        "camelcase": true,
+        "curly": true,
+        "enforceall": true,
+        "eqeqeq": true,
+        "es3": true,
+        "es5": true,
+        "forin": true,
+        "freeze": true,
+        "funcscope": true,
+        "futurehostile": true,
+        "globalstrict": true,
+        "immed": true,
+        "indent": 2,
+        "iterator": true,
+        "latedef": true,
+        "maxcomplexity": 5,
+        "maxdepth": 4,
+        "maxerr": 50,
+        "maxlen": 80,
+        "maxparams": 3,
+        "maxstatements": 5,
+        "newcap": true,
+        "noarg": true,
+        "nocomma": true,
+        "noempty": true,
+        "nonbsp": true,
+        "nonew": true,
+        "notypeof": true,
+        "quotmark": true,
+        "shadow": true,
+        "singleGroups": true,
+        "undef": true,
+        "unused": true
+      }
     },
     "browser-extension": {
       

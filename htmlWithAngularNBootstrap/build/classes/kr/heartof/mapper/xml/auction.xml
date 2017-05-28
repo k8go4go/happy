@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.heartof.auction.service.mapper.AuctionMapper">
+	<resultMap type="RegAucVO" id="aucList">
+		<id column="AUC_REG_NUM" property="AUC_REG_NUM" />
+		<result column="AUC_PROD_NM" property="AUC_PROD_NM" />
+		<result column="SHORT_CONT" property="SHORT_CONT" />
+		<result column="TITLE" property="TITLE" />
+		<result column="REG_DTIME" property="REG_DTIME" />
+		<result column="START_DTIME" property="START_DTIME" />
+		<result column="START_PRICE" property="START_PRICE" />
+		<result column="QTY" property="QTY" />
+		<result column="MEMB_NUM" property="MEMB_NUM" />
+		<result column="PROD_CATE_NUM" property="PROD_CATE_NUM" />
+		<result column="APPR_CD" property="APPR_CD" />
+		<result column="AUC_TYPE_NUM" property="AUC_TYPE_NUM" />
+		<collection property="files" javaType="java.util.ArrayList" ofType="RegAucFileVO" 
+			column="AUC_REG_NUM" select="listRegAucFile"/>				
+	</resultMap>
+
+	<select id="allProgressing" resultMap="aucList">
+
+	</select>
+	
+	<select id="cateProgressing" resultMap="aucList" >
+		SELECT
+			 AUC_REG_NUM,
+			 AUC_PROD_NM,
+			 SHORT_CONT,
+			 REG_DTIME,
+			 START_DTIME,
+			 END_DTIME,
+			 START_PRICE,
+			 QTY,
+			 MEMB_NUM,
+			 PROD_CATE_NUM,
+			 APPR_CD,
+			 AUC_TYPE_NUM
+		FROM 
+			REG_AUC
+		WHERE
+			PROD_CATE_NUM = #{PROD_CATE_NUM}
+			AND END_DTIME > SYSDATE
+			AND APPR_CD = '1501' 	
+		ORDER BY START_DTIME ASC					
+	</select>
+	
+	<select id="listRegAucFile" parameterType="int" resultType="RegAucFileVO">
+		SELECT
+			 ATTAC_FILE_NUM,
+			 FILE_NM,
+			 FILE_PATH,
+			 REAL_NM,
+			 FILE_SIZE
+		FROM 		
+			REG_AUC_FILE 	
+		WHERE
+			AUC_REG_NUM = #{AUC_REG_NUM}		
+	</select>
+	
+	<select id="detail" resultType="aucList">
+		SELECT
+			 AUC_REG_NUM,
+			 AUC_PROD_NM,
+			 SHORT_CONT,
+			 REG_DTIME,
+			 START_DTIME,
+			 END_DTIME,
+			 START_PRICE,
+			 QTY,
+			 MEMB_NUM,
+			 PROD_CATE_NUM,
+			 APPR_CD,
+			 AUC_TYPE_NUM
+		FROM 
+			REG_AUC
+		WHERE
+			AUC_REG_NUM = #{AUC_REG_NUM} AND
+			APPR_CD = '1501'
+	</select>
+	 
+	 <insert id="regAuction">
+	 		INSERT INTO REG_AUC
+			(
+				AUC_REG_NUM, AUC_PROD_NM, SHORT_CONT, REG_DTIME, 
+				START_DTIME, END_DTIME, START_PRICE,
+				QTY, MEMB_NUM, PROD_CATE_NUM, APPR_CD, AUC_TYPE_NUM
+			) values 
+			(
+				REG_AUG_SEQ.nextval, #{AUC_PROD_NM}, #{SHORT_CONT}, sysdate, 
+				#{START_DTIME}, #{END_DTIME}, #{START_PRICE},
+				#{QTY}, #{MEMB_NUM}, #{PROD_CATE_NUM}, '1503', '1801'
+			) 
+	 </insert>
+	 
+	 <insert id="regAuctionFile">
+	 		INSERT INTO REG_AUC_FILE
+			(
+				ATTAC_FILE_NUM, FILE_NM, FILE_PATH, REAL_NM, 
+				FILE_SIZE, AUC_REG_NUM
+			) values 
+			(
+				AUC_FILE_SEQ.nextval, #{FILE_NM}, #{FILE_PATH}, #{REAL_NM},  
+				#{FILE_SIZE}, #{AUC_REG_NUM}
+			) 
+	 </insert>
+	 
+	 <update id="updateAuction">
+	 		UPDATE REG_AUC
+			SET 
+			    AUC_PROD_NM = #{AUC_PROD_NM}, 
+			    SHORT_CONT = #{SHORT_CONT}, 
+				START_DTIME = #{START_DTIME}, 
+				END_DTIME  = #{END_DTIME}, 
+				START_PRICE = #{START_PRICE}, 
+				QTY = #{QTY}, 
+				PROD_CATE_NUM = #{PROD_CATE_NUM},  
+				AUC_TYPE_NUM = #{AUC_TYPE_NUM}, 
+			WHERE 
+				AUC_REG_NUM = #{AUC_REG_NUM}
+	 </update>
+	 
+	 <update id="updateAuctionFile">
+	 		UPDATE REG_AUC_FILE
+			SET 
+			   FILE_NM = #{FILE_NM}, 
+			   FILE_PATH = #{FILE_PATH}, 
+			   REAL_NM = #{REAL_NM}, 
+			   FILE_SIZE = #{FILE_SIZE}
+			WHERE 
+				AUC_REG_NUM = #{AUC_REG_NUM} 
+				AND ATTAC_FILE_NUM = #{ATTAC_FILE_NUM}
+	 </update>
+	 
+	 <delete id="deteteAuction" >
+	  		DELETE
+			FROM REG_AUC
+			WHERE 
+				AUC_REG_NUM = #{AUC_REG_NUM}
+	 </delete>
+	 
+	 <delete id="deteteAucFile" >
+	  		DELETE
+			FROM REG_AUC_FILE
+			WHERE 
+				AUC_REG_NUM = #{AUC_REG_NUM}
+	 </delete>
+</mapper>
