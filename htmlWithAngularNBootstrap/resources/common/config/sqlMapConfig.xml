@@ -53,5 +53,6 @@
 	<mappers>
 		<mapper resource="kr/heartof/mapper/xml/member.xml"/>
 		<mapper resource="kr/heartof/mapper/xml/foruser.xml"/>
+		<mapper resource="kr/heartof/mapper/xml/product.xml"/>
 	</mappers>
 </configuration>

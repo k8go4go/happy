@@ -13,7 +13,7 @@ public class Starter implements ServletContextListener{
 		ServletContext context = sce.getServletContext();
 		context.setAttribute("menu", "");
 		
-		ProductMapper mapper = BringSqlSession.getMapper(ProductMapper.class);
+		ProductMapper mapper = BringSqlSession.getInstance().getMapper(ProductMapper.class);
 		
 	}
 

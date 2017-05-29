@@ -8,22 +8,26 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class BringSqlSession {
-	private static SqlSession session = null; 
-	static {
-		String resource = "common/config/sqlMapConfig.xml";
-		SqlSessionFactory sqlSessionFactory;
-		try {
-			sqlSessionFactory = new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream(resource));
-			session = sqlSessionFactory.openSession();
-		} catch (IOException e) {
-			e.printStackTrace();
+	private static SqlSession session = null;
+	private static String resource = "common/config/sqlMapConfig.xml";
+
+	public static SqlSession getInstance() {
+		if (session == null) {
+			SqlSessionFactory sqlSessionFactory;
+			try {
+				sqlSessionFactory = new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream(resource));
+				session = sqlSessionFactory.openSession();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+		return session;
 	}
-	
+
 	public static <T> T getMapper(Class<T> arg) {
 		return session.getMapper(arg);
 	}
-	
+
 	public static void sessionClose() {
 		session.clearCache();
 		session.close();
