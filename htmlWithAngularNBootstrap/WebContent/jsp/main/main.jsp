@@ -4,7 +4,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 
 <c:import url="${contextPath}/jsp/common/header.jsp"></c:import>
+<c:import url="${contextPath}/jsp/common/nav.jsp"></c:import>
 
-<c:redirect url="main.do"></c:redirect>
+main
 
 <c:import url="${contextPath}/jsp/common/footer.jsp"></c:import>

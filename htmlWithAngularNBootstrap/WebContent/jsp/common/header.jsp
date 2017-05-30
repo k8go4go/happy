@@ -15,7 +15,7 @@
 <link href="${contextPath}/resources/css/bootstrap-theme.css">
 <title>Bit Used Auction</title>
 </head>
-<body>
+<body role='document'>
 <div class=".container-fluid">
 <div class="row">
   <div class="col-md-1"></div>

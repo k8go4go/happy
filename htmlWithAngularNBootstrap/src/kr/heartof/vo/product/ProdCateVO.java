@@ -1,5 +1,7 @@
 package kr.heartof.vo.product;
 
+import java.util.List;
+
 public class ProdCateVO {
 	private String PROD_CATE_NUM;
 	private String PROD_CATE_NM;
@@ -11,6 +13,16 @@ public class ProdCateVO {
 	private String PARENT_SHORT_CONT;
 	private String PARENT_HIGH_PROD_CATE_NUM;
 	
+	private List<ProdCateVO> lowerCateVO;
+	
+	public List<ProdCateVO> getLowerCateVO() {
+		return lowerCateVO;
+	}
+
+	public void setLowerCateVO(List<ProdCateVO> lowerCateVO) {
+		this.lowerCateVO = lowerCateVO;
+	}
+
 	public String getUSE_CD() {
 		return USE_CD;
 	}
@@ -83,4 +95,12 @@ public class ProdCateVO {
 		HIGH_PROD_CATE_NUM = hIGH_PROD_CATE_NUM;
 	}
 
+	@Override
+	public String toString() {
+		return "ProdCateVO [PROD_CATE_NUM=" + PROD_CATE_NUM + ", PROD_CATE_NM=" + PROD_CATE_NM + ", SHORT_CONT="
+				+ SHORT_CONT + ", HIGH_PROD_CATE_NUM=" + HIGH_PROD_CATE_NUM + ", USE_CD=" + USE_CD
+				+ ", PARENT_PROD_CATE_NM=" + PARENT_PROD_CATE_NM + ", PARENT_PROD_CATE_NUM=" + PARENT_PROD_CATE_NUM
+				+ ", PARENT_SHORT_CONT=" + PARENT_SHORT_CONT + ", PARENT_HIGH_PROD_CATE_NUM="
+				+ PARENT_HIGH_PROD_CATE_NUM + ", lowerCateVO=" + lowerCateVO + "]";
+	}
 }
