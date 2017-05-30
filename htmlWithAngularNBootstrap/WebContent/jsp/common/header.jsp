@@ -4,15 +4,17 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="contextPath"  value="${pageContext.request.contextPath}" scope="request"/>
+<c:set var="menuList"  value="${applicationScope['menu']}" scope="request"/>
+
     
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-<link href="${contextPath}/resources/css/bootstrap.css">
-<link href="${contextPath}/resources/css/bootstrap-theme.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/bootstrap-theme.css">
 <title>Bit Used Auction</title>
 </head>
 <body role='document'>
