@@ -27,10 +27,10 @@
 		<display-name>Starter For Menu Product Category</display-name>
 		<listener-class>kr.heartof.starter.Starter</listener-class>
 	</listener>
-	<listener>
-		<display-name>Checking finished Auctions</display-name>
-		<listener-class>kr.heartof.starter.JobScheduler</listener-class>
-	</listener>
+<!-- 	<listener> -->
+<!-- 		<display-name>Checking finished Auctions</display-name> -->
+<!-- 		<listener-class>kr.heartof.starter.JobScheduler</listener-class> -->
+<!-- 	</listener> -->
 	
 	
 	

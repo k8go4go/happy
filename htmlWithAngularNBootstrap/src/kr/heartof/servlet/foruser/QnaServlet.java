@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import kr.heartof.util.BringSqlSession;
 import kr.heartof.util.PageUtil;
 import kr.heartof.vo.foruser.BoardVO;
 
+@WebServlet("/qna.do")
 public class QnaServlet extends HttpServlet {
 	private static final long serialVersionUID = -6604503467292740840L;
 	private static QnaMapper mapper = BringSqlSession.getMapper(QnaMapper.class); 
@@ -34,7 +36,6 @@ public class QnaServlet extends HttpServlet {
 		int start = util.getStart();
 		int end = util.getEnd();
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/jsp/foruser/qna.jsp");
 		request.setAttribute("list", sendList);
 		request.setAttribute("total", sendList.get(0).getTOT());
 		request.setAttribute("currentPage", currentPage);
@@ -44,6 +45,7 @@ public class QnaServlet extends HttpServlet {
 		request.setAttribute("start", start);
 		request.setAttribute("end", end);
 		request.setAttribute("viewCount", viewCount);
-		dispatcher.forward(request, response);
+		
+		request.getServletContext().getRequestDispatcher("/jsp/foruser/qnaList.jsp").forward(request, response);
 	}
 }

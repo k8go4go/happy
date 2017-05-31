@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.heartof.auction.service.mapper.QnaMapper">
+<mapper namespace="kr.heartof.service.mapper.QnaMapper">
 	<resultMap type="BoardVO" id="boardList">
 		<id column="RN" property="RN" />
 		<result column="BOARD_NUM" property="BOARD_NUM" />

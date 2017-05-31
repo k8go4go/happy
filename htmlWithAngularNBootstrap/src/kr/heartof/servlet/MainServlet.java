@@ -22,7 +22,7 @@ public class MainServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		@SuppressWarnings("unchecked")
-		Map<Integer, PathVO> path = (Map<Integer, PathVO>)request.getServletContext().getAttribute("path");
+		Map<String, PathVO> path = (Map<String, PathVO>)request.getServletContext().getAttribute("path");
 		
 		String pathStr = path.get(kr.heartof.constant.Path.MAIN_JSP.getPath()).getPATH();
 		String pathNmStr = path.get(kr.heartof.constant.Path.MAIN_JSP.getPath()).getPATH_NM();

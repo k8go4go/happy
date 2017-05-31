@@ -1,19 +1,21 @@
 package kr.heartof.constant;
 
 public enum Path {
-	MAIN_JSP(1);
+	MAIN_JSP("1"),
+	QNA_JSP("2"),
+	FAQ_JSP("3");
 
-	private int path;
+	private String path;
 
-	private Path(int path) {
+	private Path(String path) {
 		this.path = path;
 	}
 
-	public int getPath() {
+	public String getPath() {
 		return path;
 	}
 
-	public void setPath(int path) {
+	public void setPath(String path) {
 		this.path = path;
 	}
 }

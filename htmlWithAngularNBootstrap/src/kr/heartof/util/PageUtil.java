@@ -61,10 +61,18 @@ public class PageUtil {
 	}
 
 	public List<BoardVO> getRequestBoardList() {
-		if(pageVO.getCD() == null)
-			return mapper.list(pageVO);
-		else
-			return mapper.list(pageVO);
+		List<BoardVO> boardList = null;
+		if(pageVO.getCD() == null) {
+			boardList = mapper.list(pageVO);
+			if(boardList.size() > 0) 
+				total = boardList.get(0).getTOT();
+			return boardList;
+		} else {
+			boardList = mapper.list(pageVO);
+			if(boardList.size() > 0) 
+				total = boardList.get(0).getTOT();
+			return boardList;
+		}
 	}
 
 	public int getStart() {
@@ -96,9 +104,10 @@ public class PageUtil {
 	}
 
 	public final void setHttpServletRequest(HttpServletRequest request) {
-		this.currentPage = 1;
 		if (request.getParameter("page") != null) {
 			currentPage = Integer.parseInt(request.getParameter("page"));
+		} else {
+			this.currentPage = 1;
 		}
 		
 		if (request.getParameter("viewCount") != null) {
@@ -113,11 +122,15 @@ public class PageUtil {
 		
 		if (request.getParameter("start") != null) {
 			pageVO.setSTART(Integer.parseInt(request.getParameter("start")));
-		} 
+		} else {
+			pageVO.setSTART(1);
+		}
 		
 		if (request.getParameter("end") != null) {
 			pageVO.setEND(Integer.parseInt(request.getParameter("end")));
-		} 
+		} else {
+			pageVO.setEND(10);
+		}
 		
 		if (request.getParameter("search") != null) {
 			pageVO.setSearchWord(request.getParameter("search"));

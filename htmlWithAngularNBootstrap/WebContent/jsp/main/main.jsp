@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
 
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:import url="/jsp/common/header.jsp"></c:import>
 <c:import url="/jsp/common/nav.jsp"></c:import>
 
-main
-
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-8">
+QNA List
+	</div>
+	<div class="col-md-1"></div>
+</div>
 <c:import url="/jsp/common/footer.jsp"></c:import>

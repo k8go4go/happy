@@ -1,0 +1,77 @@
+▶  DEBUG 16:51:19.816 [main] org.apache.ibatis.logging.LogFactory[setImplementation:135] - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+▶  DEBUG 16:51:20.001 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[forceCloseAll:316] - PooledDataSource forcefully closed/removed all connections.
+▶  DEBUG 16:51:20.002 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[forceCloseAll:316] - PooledDataSource forcefully closed/removed all connections.
+▶  DEBUG 16:51:20.002 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[forceCloseAll:316] - PooledDataSource forcefully closed/removed all connections.
+▶  DEBUG 16:51:20.002 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[forceCloseAll:316] - PooledDataSource forcefully closed/removed all connections.
+▶  DEBUG 16:51:20.210 [main] org.apache.ibatis.transaction.jdbc.JdbcTransaction[openConnection:136] - Opening JDBC Connection
+▶  DEBUG 16:51:20.626 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[popConnection:387] - Created connection 434693.
+▶  DEBUG 16:51:20.626 [main] org.apache.ibatis.transaction.jdbc.JdbcTransaction[setDesiredAutoCommit:100] - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@6a205]
+▶  DEBUG 16:51:20.628 [main] kr.heartof.service.mapper.QnaMapper.list[debug:159] - ==>  Preparing: SELECT RN, BOARD_NUM, HIGH_BOARD_NUM, TITLE, CONT, REVIEW_CNT, WRITE_DATE, QUES_CD, MEMB_ID, TOT FROM ( SELECT ROWNUM RN, BOARD_NUM, HIGH_BOARD_NUM, TITLE, CONT, REVIEW_CNT, WRITE_DATE, QUES_CD, U.MEMB_ID, 0 AS TOT FROM BOARD B INNER JOIN USR U ON B.MEMB_NUM = U.MEMB_NUM WHERE QUES_CD = '2101' ) BOARD WHERE RN >= ? AND ? >= RN 
+▶  DEBUG 16:51:20.746 [main] kr.heartof.service.mapper.QnaMapper.list[debug:159] - ==> Parameters: 1(Integer), 10(Integer)
+▶  DEBUG 16:51:20.789 [main] kr.heartof.service.mapper.QnaMapper.listTot[debug:159] - ====>  Preparing: SELECT COUNT(*) AS TOT FROM BOARD WHERE QUES_CD = '2101' 
+▶  DEBUG 16:51:20.789 [main] kr.heartof.service.mapper.QnaMapper.listTot[debug:159] - ====> Parameters: 
+▶  DEBUG 16:51:20.791 [main] kr.heartof.service.mapper.QnaMapper.listTot[debug:159] - <====      Total: 1
+▶  DEBUG 16:51:20.792 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - ====>  Preparing: SELECT ATTAC_FILE_NUM, FILE_NM, FILE_PATH, REAL_NM, FILE_SIZE FROM ATTAC_FILE WHERE BOARD_NUM = ? 
+▶  DEBUG 16:51:20.793 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - ====> Parameters: 496(Integer)
+▶  DEBUG 16:51:20.794 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - <====      Total: 0
+▶  DEBUG 16:51:20.795 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - ====>  Preparing: SELECT ROWNUM RN, B.BOARD_NUM, B.TITLE, B.WRITER_NM, B.WRITE_DATE, B.HIGH_BOARD_NUM, B.WRITE_DATE, B.REVIEW_CNT, U.MEMB_ID FROM BOARD B INNER JOIN USR U ON B.MEMB_NUM = U.MEMB_NUM WHERE B.HIGH_BOARD_NUM = ? 
+▶  DEBUG 16:51:20.795 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - ====> Parameters: 496(Integer)
+▶  DEBUG 16:51:20.797 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - <====      Total: 1
+▶  DEBUG 16:51:20.799 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - ====>  Preparing: SELECT ATTAC_FILE_NUM, FILE_NM, FILE_PATH, REAL_NM, FILE_SIZE FROM ATTAC_FILE WHERE BOARD_NUM = ? 
+▶  DEBUG 16:51:20.799 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - ====> Parameters: 495(Integer)
+▶  DEBUG 16:51:20.800 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - <====      Total: 0
+▶  DEBUG 16:51:20.801 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - ====>  Preparing: SELECT ROWNUM RN, B.BOARD_NUM, B.TITLE, B.WRITER_NM, B.WRITE_DATE, B.HIGH_BOARD_NUM, B.WRITE_DATE, B.REVIEW_CNT, U.MEMB_ID FROM BOARD B INNER JOIN USR U ON B.MEMB_NUM = U.MEMB_NUM WHERE B.HIGH_BOARD_NUM = ? 
+▶  DEBUG 16:51:20.801 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - ====> Parameters: 495(Integer)
+▶  DEBUG 16:51:20.803 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - <====      Total: 1
+▶  DEBUG 16:51:20.804 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - ====>  Preparing: SELECT ATTAC_FILE_NUM, FILE_NM, FILE_PATH, REAL_NM, FILE_SIZE FROM ATTAC_FILE WHERE BOARD_NUM = ? 
+▶  DEBUG 16:51:20.804 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - ====> Parameters: 494(Integer)
+▶  DEBUG 16:51:20.805 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - <====      Total: 0
+▶  DEBUG 16:51:20.805 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - ====>  Preparing: SELECT ROWNUM RN, B.BOARD_NUM, B.TITLE, B.WRITER_NM, B.WRITE_DATE, B.HIGH_BOARD_NUM, B.WRITE_DATE, B.REVIEW_CNT, U.MEMB_ID FROM BOARD B INNER JOIN USR U ON B.MEMB_NUM = U.MEMB_NUM WHERE B.HIGH_BOARD_NUM = ? 
+▶  DEBUG 16:51:20.806 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - ====> Parameters: 494(Integer)
+▶  DEBUG 16:51:20.809 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - <====      Total: 1
+▶  DEBUG 16:51:20.810 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - ====>  Preparing: SELECT ATTAC_FILE_NUM, FILE_NM, FILE_PATH, REAL_NM, FILE_SIZE FROM ATTAC_FILE WHERE BOARD_NUM = ? 
+▶  DEBUG 16:51:20.810 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - ====> Parameters: 493(Integer)
+▶  DEBUG 16:51:20.812 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - <====      Total: 0
+▶  DEBUG 16:51:20.812 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - ====>  Preparing: SELECT ROWNUM RN, B.BOARD_NUM, B.TITLE, B.WRITER_NM, B.WRITE_DATE, B.HIGH_BOARD_NUM, B.WRITE_DATE, B.REVIEW_CNT, U.MEMB_ID FROM BOARD B INNER JOIN USR U ON B.MEMB_NUM = U.MEMB_NUM WHERE B.HIGH_BOARD_NUM = ? 
+▶  DEBUG 16:51:20.813 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - ====> Parameters: 493(Integer)
+▶  DEBUG 16:51:20.815 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - <====      Total: 1
+▶  DEBUG 16:51:20.816 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - ====>  Preparing: SELECT ATTAC_FILE_NUM, FILE_NM, FILE_PATH, REAL_NM, FILE_SIZE FROM ATTAC_FILE WHERE BOARD_NUM = ? 
+▶  DEBUG 16:51:20.816 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - ====> Parameters: 492(Integer)
+▶  DEBUG 16:51:20.817 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - <====      Total: 0
+▶  DEBUG 16:51:20.818 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - ====>  Preparing: SELECT ROWNUM RN, B.BOARD_NUM, B.TITLE, B.WRITER_NM, B.WRITE_DATE, B.HIGH_BOARD_NUM, B.WRITE_DATE, B.REVIEW_CNT, U.MEMB_ID FROM BOARD B INNER JOIN USR U ON B.MEMB_NUM = U.MEMB_NUM WHERE B.HIGH_BOARD_NUM = ? 
+▶  DEBUG 16:51:20.818 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - ====> Parameters: 492(Integer)
+▶  DEBUG 16:51:20.819 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - <====      Total: 1
+▶  DEBUG 16:51:20.820 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - ====>  Preparing: SELECT ATTAC_FILE_NUM, FILE_NM, FILE_PATH, REAL_NM, FILE_SIZE FROM ATTAC_FILE WHERE BOARD_NUM = ? 
+▶  DEBUG 16:51:20.821 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - ====> Parameters: 491(Integer)
+▶  DEBUG 16:51:20.821 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - <====      Total: 0
+▶  DEBUG 16:51:20.822 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - ====>  Preparing: SELECT ROWNUM RN, B.BOARD_NUM, B.TITLE, B.WRITER_NM, B.WRITE_DATE, B.HIGH_BOARD_NUM, B.WRITE_DATE, B.REVIEW_CNT, U.MEMB_ID FROM BOARD B INNER JOIN USR U ON B.MEMB_NUM = U.MEMB_NUM WHERE B.HIGH_BOARD_NUM = ? 
+▶  DEBUG 16:51:20.822 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - ====> Parameters: 491(Integer)
+▶  DEBUG 16:51:20.823 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - <====      Total: 1
+▶  DEBUG 16:51:20.824 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - ====>  Preparing: SELECT ATTAC_FILE_NUM, FILE_NM, FILE_PATH, REAL_NM, FILE_SIZE FROM ATTAC_FILE WHERE BOARD_NUM = ? 
+▶  DEBUG 16:51:20.825 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - ====> Parameters: 490(Integer)
+▶  DEBUG 16:51:20.826 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - <====      Total: 0
+▶  DEBUG 16:51:20.826 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - ====>  Preparing: SELECT ROWNUM RN, B.BOARD_NUM, B.TITLE, B.WRITER_NM, B.WRITE_DATE, B.HIGH_BOARD_NUM, B.WRITE_DATE, B.REVIEW_CNT, U.MEMB_ID FROM BOARD B INNER JOIN USR U ON B.MEMB_NUM = U.MEMB_NUM WHERE B.HIGH_BOARD_NUM = ? 
+▶  DEBUG 16:51:20.827 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - ====> Parameters: 490(Integer)
+▶  DEBUG 16:51:20.830 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - <====      Total: 1
+▶  DEBUG 16:51:20.831 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - ====>  Preparing: SELECT ATTAC_FILE_NUM, FILE_NM, FILE_PATH, REAL_NM, FILE_SIZE FROM ATTAC_FILE WHERE BOARD_NUM = ? 
+▶  DEBUG 16:51:20.831 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - ====> Parameters: 489(Integer)
+▶  DEBUG 16:51:20.832 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - <====      Total: 0
+▶  DEBUG 16:51:20.834 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - ====>  Preparing: SELECT ROWNUM RN, B.BOARD_NUM, B.TITLE, B.WRITER_NM, B.WRITE_DATE, B.HIGH_BOARD_NUM, B.WRITE_DATE, B.REVIEW_CNT, U.MEMB_ID FROM BOARD B INNER JOIN USR U ON B.MEMB_NUM = U.MEMB_NUM WHERE B.HIGH_BOARD_NUM = ? 
+▶  DEBUG 16:51:20.834 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - ====> Parameters: 489(Integer)
+▶  DEBUG 16:51:20.837 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - <====      Total: 1
+▶  DEBUG 16:51:20.838 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - ====>  Preparing: SELECT ATTAC_FILE_NUM, FILE_NM, FILE_PATH, REAL_NM, FILE_SIZE FROM ATTAC_FILE WHERE BOARD_NUM = ? 
+▶  DEBUG 16:51:20.839 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - ====> Parameters: 488(Integer)
+▶  DEBUG 16:51:20.840 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - <====      Total: 0
+▶  DEBUG 16:51:20.840 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - ====>  Preparing: SELECT ROWNUM RN, B.BOARD_NUM, B.TITLE, B.WRITER_NM, B.WRITE_DATE, B.HIGH_BOARD_NUM, B.WRITE_DATE, B.REVIEW_CNT, U.MEMB_ID FROM BOARD B INNER JOIN USR U ON B.MEMB_NUM = U.MEMB_NUM WHERE B.HIGH_BOARD_NUM = ? 
+▶  DEBUG 16:51:20.841 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - ====> Parameters: 488(Integer)
+▶  DEBUG 16:51:20.842 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - <====      Total: 1
+▶  DEBUG 16:51:20.843 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - ====>  Preparing: SELECT ATTAC_FILE_NUM, FILE_NM, FILE_PATH, REAL_NM, FILE_SIZE FROM ATTAC_FILE WHERE BOARD_NUM = ? 
+▶  DEBUG 16:51:20.843 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - ====> Parameters: 487(Integer)
+▶  DEBUG 16:51:20.844 [main] kr.heartof.service.mapper.QnaMapper.listAttachFile[debug:159] - <====      Total: 0
+▶  DEBUG 16:51:20.844 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - ====>  Preparing: SELECT ROWNUM RN, B.BOARD_NUM, B.TITLE, B.WRITER_NM, B.WRITE_DATE, B.HIGH_BOARD_NUM, B.WRITE_DATE, B.REVIEW_CNT, U.MEMB_ID FROM BOARD B INNER JOIN USR U ON B.MEMB_NUM = U.MEMB_NUM WHERE B.HIGH_BOARD_NUM = ? 
+▶  DEBUG 16:51:20.844 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - ====> Parameters: 487(Integer)
+▶  DEBUG 16:51:20.845 [main] kr.heartof.service.mapper.QnaMapper.listReplys[debug:159] - <====      Total: 1
+▶  DEBUG 16:51:20.848 [main] kr.heartof.service.mapper.QnaMapper.list[debug:159] - <==      Total: 10
+▶  DEBUG 16:51:20.849 [main] org.apache.ibatis.transaction.jdbc.JdbcTransaction[resetAutoCommit:122] - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@6a205]
+▶  DEBUG 16:51:20.849 [main] org.apache.ibatis.transaction.jdbc.JdbcTransaction[close:90] - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@6a205]
+▶  DEBUG 16:51:20.850 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[pushConnection:344] - Returned connection 434693 to pool.

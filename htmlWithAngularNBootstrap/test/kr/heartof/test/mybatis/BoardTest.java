@@ -20,7 +20,7 @@ public class BoardTest {
 		SqlSession session = sqlSessionFactory.openSession();
 		
 		QnaMapper mapper = session.getMapper(QnaMapper.class);
-		delete(mapper);
+		list(mapper);
 		session.commit();
 		session.close();
 	}

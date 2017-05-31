@@ -30,11 +30,11 @@ public class Starter implements ServletContextListener{
 		context.setAttribute("path", changePathListToMap(pathMapper.path()));
 	}
 	
-	private Map<Integer, PathVO> changePathListToMap(List<PathVO> list) {
-		Map<Integer, PathVO> map = new HashMap<Integer, PathVO>();
+	private Map<String, PathVO> changePathListToMap(List<PathVO> list) {
+		Map<String, PathVO> map = new HashMap<String, PathVO>();
 		
 		for(PathVO v : list) {
-			map.put(v.getPATH_NUM(), v);
+			map.put(String.valueOf(v.getPATH_NUM()), v);
 		}
 		
 		return map;
