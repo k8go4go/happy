@@ -30,8 +30,9 @@
 		<tbody>
 		<c:forEach items="${requestScope.list}" var="recod" begin="0" step="1">
 	      <tr>
+<!-- 	      TITLE, BOARD_NUM, CATE_NM, WRITER_NM, WRITE_DATE, CONT, REVIEW_CNT -->
 	        <td class="text-center"><kbd>${recod.BOARD_NUM}</kbd></td>
-	        <td class="text-center"><a href="javascript:showModal('${recod}');">${recod.TITLE}</a><kbd>${recod.REVIEW_CNT}</kbd></td>
+	        <td class="text-center"><a href="javascript:showModal('${recod.TITLE}', '${recod.BOARD_NUM}', '${recod.CATE_NM}', '${recod.WRITER_NM}', '${recod.WRITE_DATE}', '${recod.CONT}', '${recod.REVIEW_CNT}');">${recod.TITLE}</a><kbd>${recod.REVIEW_CNT}</kbd></td>
 	        <td class="text-center"><span>${recod.WRITER_NM}</span></td>
 	        <td class="text-center"><fmt:formatDate value="${recod.WRITE_DATE}" pattern="yyyy-mm-dd"/></td>
 	        <td class="text-center"><kbd>${recod.CATE_NM}</kbd></td>
@@ -40,7 +41,7 @@
 				<c:forEach items="${recod.replys}" var="replayRec" begin="0" step="1">
 			<tr>
 				<td class="text-center"><kbd>${replayRec.BOARD_NUM}</kbd></td>
-		        <td class="text-center"><a href="javascript:showModal('${replayRec}');">${replayRec.TITLE}</a><kbd>${replayRec.REVIEW_CNT}</kbd></td>
+		        <td class="text-center"><a href="javascript:showModal('${replayRec.TITLE}', '${replayRec.BOARD_NUM}', '${replayRec.CATE_NM}', '${replayRec.WRITER_NM}', '${replayRec.WRITE_DATE}', '${replayRec.CONT}', '${replayRec.REVIEW_CNT}');">${replayRec.TITLE}</a><kbd>${replayRec.REVIEW_CNT}</kbd></td>
 		        <td class="text-center"><span>${replayRec.WRITER_NM}</span></td>
 		        <td class="text-center"><fmt:formatDate value="${replayRec.WRITE_DATE}" pattern="yyyy-mm-dd"/></td>
 	        	<td class="text-center"><kbd>${replayRec.CATE_NM}</kbd></td>
@@ -84,22 +85,14 @@
 </div>
 
 <script>
-	function showModal(record) {
-		$('#qnaTitle').html(record.TITLE);
-		$('#BOARD_NUM').html(record);
-		$('#CATE_NM').html(record);
-		$('#WRITER_NM').html(record);
-		$('#WRITE_DATE').html(record);
-		$('#CONT').html(record);
-		$('#REVIEW_CNT').html(record);
-		
-// 		$('#qnaTitle').html('${record.TITLE}');
-// 		$('#BOARD_NUM').html('${record.BOARD_NUM}');
-// 		$('#CATE_NM').html('${record.CATE_NM}');
-// 		$('#WRITER_NM').html('${record.WRITER_NM}');
-// 		$('#WRITE_DATE').html('${record.WRITE_DATE}');
-// 		$('#CONT').html('${record.CONT}');
-// 		$('#REVIEW_CNT').html('${record.REVIEW_CNT}');
+	function showModal(TITLE, BOARD_NUM, CATE_NM, WRITER_NM, WRITE_DATE, CONT, REVIEW_CNT) {
+		$('#qnaTitle').html(TITLE);
+		$('#BOARD_NUM').html(BOARD_NUM);
+		$('#CATE_NM').html(CATE_NM);
+		$('#WRITER_NM').html(WRITER_NM);
+		$('#WRITE_DATE').html(WRITE_DATE);
+		$('#CONT').html(CONT);
+		$('#REVIEW_CNT').html(REVIEW_CNT);
 		
 		$('#anaFormModal').modal('show');
 	}
