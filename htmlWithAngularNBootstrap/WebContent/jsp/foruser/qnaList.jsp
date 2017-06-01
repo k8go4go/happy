@@ -19,9 +19,9 @@
 	    <thead>
 	      <tr>
 	        <th class="col-md-1 text-center">글번호</th>
-	        <th class="col-md-6 text-center">제목</th>
+	        <th class="col-md-5 text-center">제목</th>
 	        <th class="col-md-1 text-center">작성자</th>
-	        <th class="col-md-1 text-center">작성일</th>
+	        <th class="col-md-2 text-center">작성일</th>
 	        <th class="col-md-1 text-center">상태</th>
 	      </tr>
 	    </thead>
@@ -30,21 +30,24 @@
 		<tbody>
 		<c:forEach items="${requestScope.list}" var="recod" begin="0" step="1">
 	      <tr>
-<!-- 	      TITLE, BOARD_NUM, CATE_NM, WRITER_NM, WRITE_DATE, CONT, REVIEW_CNT -->
 	        <td class="text-center"><kbd>${recod.BOARD_NUM}</kbd></td>
-	        <td class="text-center"><a href="javascript:showModal('${recod.TITLE}', '${recod.BOARD_NUM}', '${recod.CATE_NM}', '${recod.WRITER_NM}', '${recod.WRITE_DATE}', '${recod.CONT}', '${recod.REVIEW_CNT}');">${recod.TITLE}</a><kbd>${recod.REVIEW_CNT}</kbd></td>
-	        <td class="text-center"><span>${recod.WRITER_NM}</span></td>
-	        <td class="text-center"><fmt:formatDate value="${recod.WRITE_DATE}" pattern="yyyy-mm-dd"/></td>
-	        <td class="text-center"><kbd>${recod.CATE_NM}</kbd></td>
+	        <td class="text-center">
+	        <a href="javascript:showModal('${recod.TITLE}', '${recod.BOARD_NUM}', '${recod.CATE_NM}', '${recod.WRITER_NM}', '<fmt:formatDate value="${recod.WRITE_DATE}" pattern="yyyy-mm-dd"/>', '${recod.CONT}', '${recod.REVIEW_CNT}');">
+	        ${recod.TITLE}</a></td>
+	        <td class="text-center"><small>${recod.WRITER_NM}</small></td>
+	        <td class="text-center"><small><fmt:formatDate value="${recod.WRITE_DATE}" pattern="yyyy-mm-dd"/></small></td>
+	        <td class="text-center"><kbd><small>${recod.CATE_NM}</small></kbd></td>
 	      </tr>
 		      <c:if test="${not empty recod.replys}">
 				<c:forEach items="${recod.replys}" var="replayRec" begin="0" step="1">
 			<tr>
 				<td class="text-center"><kbd>${replayRec.BOARD_NUM}</kbd></td>
-		        <td class="text-center"><a href="javascript:showModal('${replayRec.TITLE}', '${replayRec.BOARD_NUM}', '${replayRec.CATE_NM}', '${replayRec.WRITER_NM}', '${replayRec.WRITE_DATE}', '${replayRec.CONT}', '${replayRec.REVIEW_CNT}');">${replayRec.TITLE}</a><kbd>${replayRec.REVIEW_CNT}</kbd></td>
-		        <td class="text-center"><span>${replayRec.WRITER_NM}</span></td>
-		        <td class="text-center"><fmt:formatDate value="${replayRec.WRITE_DATE}" pattern="yyyy-mm-dd"/></td>
-	        	<td class="text-center"><kbd>${replayRec.CATE_NM}</kbd></td>
+		        <td class="text-center">
+		        <a href="javascript:showModal('${replayRec.TITLE}', '${replayRec.BOARD_NUM}', '${replayRec.CATE_NM}', '${replayRec.WRITER_NM}', '<fmt:formatDate value="${replayRec.WRITE_DATE}" pattern="yyyy-mm-dd"/>', '${replayRec.CONT}', '${replayRec.REVIEW_CNT}');">
+		        ${replayRec.TITLE}</a></td>
+		        <td class="text-center"><small>${replayRec.WRITER_NM}</small></td>
+		        <td class="text-center"><small><fmt:formatDate value="${replayRec.WRITE_DATE}" pattern="yyyy-mm-dd"/></small></td>
+	        	<td class="text-center"><kbd><small>${replayRec.CATE_NM}</small></kbd></td>
 		    </tr>
 			    </c:forEach>
 			    </c:if>
@@ -63,6 +66,7 @@
 		
 	<!-- 페이지 버튼 -->
 		<c:if test="${requestScope.totalPage != 0}">
+		<div class="text-center">
 		<nav aria-label="Page navigation">
 			<ul class="pagination">
 				<c:if test="${requestScope.startIndicator != 0}">
@@ -79,25 +83,57 @@
 				</c:if>
 			</ul>
 		</nav>
+		</div>
 		</c:if>
 	</div>
 	<div class="col-md-1"></div>
 </div>
 
 <script>
-	function showModal(TITLE, BOARD_NUM, CATE_NM, WRITER_NM, WRITE_DATE, CONT, REVIEW_CNT) {
-		$('#qnaTitle').html(TITLE);
-		$('#BOARD_NUM').html(BOARD_NUM);
-		$('#CATE_NM').html(CATE_NM);
-		$('#WRITER_NM').html(WRITER_NM);
-		$('#WRITE_DATE').html(WRITE_DATE);
-		$('#CONT').html(CONT);
+	var showModal = function (TITLE, BOARD_NUM, CATE_NM, WRITER_NM, WRITE_DATE, CONT, REVIEW_CNT) {
+		$('#TITLE').val(TITLE);
+		$('#BOARD_NUM').val(BOARD_NUM);
+		$('#CATE_NM').val(CATE_NM);
+		$('#WRITER_NM').val(WRITER_NM);
+		$('#WRITE_DATE').val(WRITE_DATE);
+		$('#CONT').val(CONT);
 		$('#REVIEW_CNT').html(REVIEW_CNT);
 		
 		$('#anaFormModal').modal('show');
 	}
 	
+	var changeDisable =  function() {
+		$('#TITLE').attr('disabled',false);
+		$('#WRITER_NM').attr('disabled',false);
+		$('#WRITE_DATE').attr('disabled',false);
+		$('#CONT').attr('disabled',false);
+		
+		$('#btnModify').hide();
+		$('#btnClose').hide();
+		
+		$('#btnComplete').show();
+		$('#btnCancel').show();
+	}
 
+	var cancelModify = function () {
+		$('#TITLE').attr('disabled',true);
+		$('#WRITER_NM').attr('disabled',true);
+		$('#WRITE_DATE').attr('disabled',true);
+		$('#CONT').attr('disabled',true);
+		
+		$('#btnModify').show();
+		$('#btnClose').show();
+		
+		$('#btnComplete').hide();
+		$('#btnCancel').hide();
+	}
+	
+	var completeModify = function () {
+		cancelModify();
+		var frm = $("#boardModalForm")[0];
+		frm.action = '${contextPath}${pathList['3'].PATH}${pathList['3'].PATH_NM}';
+		frm.submit();
+	}
 </script>
 
 <c:import url="/jsp/common/footer.jsp"></c:import>

@@ -199,7 +199,8 @@
 	 <update id="update" parameterType="BoardVO">
 	 		UPDATE BOARD
 			SET TITLE = #{TITLE},
-			    CONT = #{CONT}
+			    CONT = #{CONT},
+			    WRITER_NM = #{WRITER_NM}
 			WHERE 
 				BOARD_NUM = #{BOARD_NUM}
 	 </update>

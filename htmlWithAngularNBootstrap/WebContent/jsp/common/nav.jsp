@@ -126,7 +126,7 @@ $(document).ready(function(){
 								aria-expanded="false">고객센터<span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li><a href="<c:url value="${pathList['2'].PATH}${pathList['2'].PATH_NM}" />">QNA</a></li>
-									<li><a href="<c:url value="${pathList['3'].PATH}${pathList['3'].PATH_NM}" />">FAQ</a></li>
+									<li><a href="<c:url value="${pathList['6'].PATH}${pathList['6'].PATH_NM}" />">FAQ</a></li>
 									<li role="separator" class="divider"></li>
 									<li><a href="#">About US</a></li>
 								</ul></li>

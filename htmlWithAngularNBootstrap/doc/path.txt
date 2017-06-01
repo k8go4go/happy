@@ -1,0 +1,14 @@
+1	main.jsp	/jsp/main/
+2	qna.do	        /
+3	updateQna.do	/
+4	deleteQna.do	/
+5	insertQna.do	/
+6	faq.do	        /
+
+update path
+    set PATH_NUM = 6
+    where PATH_NUM = 5;
+    commit;
+insert into path values (3, 'updateQna.do', '/'); commit;
+insert into path values (4, 'deleteQna.do', '/'); commit;
+insert into path values (5, 'insertQna.do', '/'); commit;
