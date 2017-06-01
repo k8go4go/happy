@@ -10,7 +10,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="memberJoinForm">
           <div class="form-group">
 	          <label class="glyphicon glyphicon-edit">회원구분</label>
 	          <div class="input-group" >
@@ -25,7 +25,7 @@
 	          <label class="glyphicon glyphicon-user">아이디</label>
 	          <div class="input-group" >
 	          	  <span class="input-group-addon" id="addon2"></span>
-	              <input type="text" class="form-control" id="MEMB_ID" aria-describedby="addon2" required="required">
+	              <input type="text" class="form-control" id="MEMB_ID" onchange="" aria-describedby="addon2" required="required">
 	          	  <span class="input-group-addon" id="addon2"></span>
 	          
 	          	  <input class="form-control" type="file"/>
@@ -110,9 +110,12 @@
       </div>
       
       <div class="modal-footer bg-danger">
-        <button type="button" class="btn btn-primary">로그인</button>
+        <button type="button" class="btn btn-primary" onclick="join();">회원가입</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+</script>

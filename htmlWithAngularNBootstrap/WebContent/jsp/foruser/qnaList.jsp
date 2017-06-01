@@ -7,72 +7,60 @@
 <c:import url="/jsp/common/header.jsp"></c:import>
 <c:import url="/jsp/common/nav.jsp"></c:import>
 
+
+<c:import url="/jsp/foruser/explainModal.jsp"></c:import>
 <div class="row">
 	<div class="col-md-1"></div>
 	<div class="col-md-8">
-		<!-- 게시판 반복 부분 -->
-		<c:choose>
+	  <h2>질문과 답변</h2>
+	  <p>The .table-striped class adds zebra-stripes to a table:</p>            
+	
+	  <table class="table table-striped">
+	    <thead>
+	      <tr>
+	        <th class="col-md-1 text-center">글번호</th>
+	        <th class="col-md-6 text-center">제목</th>
+	        <th class="col-md-1 text-center">작성자</th>
+	        <th class="col-md-1 text-center">작성일</th>
+	        <th class="col-md-1 text-center">상태</th>
+	      </tr>
+	    </thead>
+	    <c:choose>
 		<c:when test="${not empty requestScope.list}">
-		<div class="panel-group" id="acc">
+		<tbody>
 		<c:forEach items="${requestScope.list}" var="recod" begin="0" step="1">
-				<div class="panel panel-default">
-					<div class="panel-heading" style="height:35px;">
-						<div class="col-sm-1 text-left">
-							<kbd>${recod.BOARD_NUM}</kbd>
-						</div>
-						<div class="col-sm-8 text-center">
-							<a data-toggle="collapse" data-parent="#acc" href="#c${recod.BOARD_NUM}">
-							${recod.TITLE}
-							</a>
-						</div>
-						<div class="col-sm-3 text-right">
-							<span>${recod.WRITER_NM}</span>
-							<kbd>${recod.REVIEW_CNT}</kbd>
-							<span><fmt:formatDate value="${recod.WRITE_DATE}" pattern="yyyy-mm-dd"/></span>
-						</div>
-					</div>
-					<div id="c${recod.BOARD_NUM}" class="panel-collapse collapse">
-						<div class="panel-body bg-success">
-							${recod.CONT}
-							<c:if test="${not empty recod.replys}">
-							<ul class="list-group" >
-							<c:forEach items="${recod.replys}" var="replayRec" begin="0" step="1">
-						        <li class="list-group-item" style="height:35px;">
-							        <div class="col-sm-1 text-left" >
-							        	<kbd>${replayRec.BOARD_NUM}</kbd>
-							        </div>
-							        <div class="col-sm-8 text-center">
-							        	${replayRec.TITLE}
-									</div>
-									<div class="col-sm-3 text-right" >
-										<span>${replayRec.WRITER_NM}</span>
-										<kbd><fmt:formatDate value="${replayRec.WRITE_DATE}" pattern="yyyy-mm-dd"/></kbd>
-									</div>
-						        </li>
-						        <li class="list-group-item bg-primary" style="height:35px;">${replayRec.CONT}</li>
-						    </c:forEach>
-						    </ul>
-						    </c:if>
-						</div>
-					</div>
-				</div>
-		</c:forEach>
-		</div>
+	      <tr>
+	        <td class="text-center"><kbd>${recod.BOARD_NUM}</kbd></td>
+	        <td class="text-center"><a href="javascript:showModal('${recod}');">${recod.TITLE}</a><kbd>${recod.REVIEW_CNT}</kbd></td>
+	        <td class="text-center"><span>${recod.WRITER_NM}</span></td>
+	        <td class="text-center"><fmt:formatDate value="${recod.WRITE_DATE}" pattern="yyyy-mm-dd"/></td>
+	        <td class="text-center"><kbd>${recod.CATE_NM}</kbd></td>
+	      </tr>
+		      <c:if test="${not empty recod.replys}">
+				<c:forEach items="${recod.replys}" var="replayRec" begin="0" step="1">
+			<tr>
+				<td class="text-center"><kbd>${replayRec.BOARD_NUM}</kbd></td>
+		        <td class="text-center"><a href="javascript:showModal('${replayRec}');">${replayRec.TITLE}</a><kbd>${replayRec.REVIEW_CNT}</kbd></td>
+		        <td class="text-center"><span>${replayRec.WRITER_NM}</span></td>
+		        <td class="text-center"><fmt:formatDate value="${replayRec.WRITE_DATE}" pattern="yyyy-mm-dd"/></td>
+	        	<td class="text-center"><kbd>${replayRec.CATE_NM}</kbd></td>
+		    </tr>
+			    </c:forEach>
+			    </c:if>
+	    </c:forEach>
+	    </tbody>
 		</c:when>
 		<c:otherwise>
-		<div class="panel-group" id="acc">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h4 class="panel-title">
-						데이터가 없습니다.
-					</h4>
-				</div>				
-			</div>
-		</div>
+		 <tbody>
+	      <tr>
+	        <td colspan="5">데이터가 없습니다.</td>
+	      </tr>
+	    </tbody>
 		</c:otherwise>
 		</c:choose>
+	  </table>
 		
-		<!-- 페이지 버튼 -->
+	<!-- 페이지 버튼 -->
 		<c:if test="${requestScope.totalPage != 0}">
 		<nav aria-label="Page navigation">
 			<ul class="pagination">
@@ -94,4 +82,29 @@
 	</div>
 	<div class="col-md-1"></div>
 </div>
+
+<script>
+	function showModal(record) {
+		$('#qnaTitle').html(record.TITLE);
+		$('#BOARD_NUM').html(record);
+		$('#CATE_NM').html(record);
+		$('#WRITER_NM').html(record);
+		$('#WRITE_DATE').html(record);
+		$('#CONT').html(record);
+		$('#REVIEW_CNT').html(record);
+		
+// 		$('#qnaTitle').html('${record.TITLE}');
+// 		$('#BOARD_NUM').html('${record.BOARD_NUM}');
+// 		$('#CATE_NM').html('${record.CATE_NM}');
+// 		$('#WRITER_NM').html('${record.WRITER_NM}');
+// 		$('#WRITE_DATE').html('${record.WRITE_DATE}');
+// 		$('#CONT').html('${record.CONT}');
+// 		$('#REVIEW_CNT').html('${record.REVIEW_CNT}');
+		
+		$('#anaFormModal').modal('show');
+	}
+	
+
+</script>
+
 <c:import url="/jsp/common/footer.jsp"></c:import>

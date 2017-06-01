@@ -16,6 +16,7 @@ public class BoardVO {
 	private int TOT;
 	private String MEMB_ID;
 	private String QUES_CD;
+	private String CATE_NM;
 	private AttacFileVO attacFileVO;
 
 	private List<BoardVO> replys;
@@ -24,6 +25,14 @@ public class BoardVO {
 	private String code;
 	private String searchWord;
 	
+	public String getCATE_NM() {
+		return CATE_NM;
+	}
+
+	public void setCATE_NM(String cATE_NM) {
+		CATE_NM = cATE_NM;
+	}
+
 	public String getCode() {
 		return code;
 	}

@@ -22,7 +22,7 @@
         </form>
       </div>
       <div class="modal-footer bg-danger">
-        <button type="button" class="btn btn-primary">로그인</button>
+        <button type="button" class="btn btn-primary" onclick="login();">로그인</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
       </div>
     </div>

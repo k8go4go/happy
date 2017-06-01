@@ -10,6 +10,7 @@
 		<result column="WRITE_DATE" property="WRITE_DATE" />
 		<result column="REVIEW_CNT" property="REVIEW_CNT" />
 		<result column="QUES_CD" property="QUES_CD" />
+		<result column="CATE_NM" property="CATE_NM" />
 		<result column="MEMB_ID" property="MEMB_ID" />
 		<association column="TOT" property="TOT" javaType="int" select="listTot"/>
 		<collection property="files" javaType="java.util.ArrayList" ofType="AttacFileVO" 
@@ -60,7 +61,7 @@
 	
 	<select id="list" resultMap="boardList" parameterType="PageVO">
 		SELECT RN, BOARD_NUM, HIGH_BOARD_NUM, TITLE, CONT,
-			    REVIEW_CNT, WRITE_DATE, QUES_CD, MEMB_ID, TOT
+			    REVIEW_CNT, WRITE_DATE, QUES_CD, CATE_NM, MEMB_ID, TOT
 		FROM (
 			SELECT
 			    ROWNUM RN,
@@ -70,14 +71,17 @@
 			    CONT,
 			    REVIEW_CNT,
 			    WRITE_DATE,
-			    QUES_CD,
+			    B.QUES_CD,
+			    C.CATE_NM,
 			    U.MEMB_ID,
 			    0 AS TOT
 			FROM 
 			    BOARD B INNER JOIN USR U
-			    ON B.MEMB_NUM = U.MEMB_NUM
-			WHERE 
-			    QUES_CD = '2101' 
+			    ON B.MEMB_NUM = U.MEMB_NUM 
+			    INNER JOIN CD C 
+			    ON B.QUES_CD = C.CD
+<!-- 			WHERE 
+			    QUES_CD = '2101' --> 
 			) BOARD 
 		WHERE 
 			RN >= #{START} AND 
@@ -92,6 +96,7 @@
 		<result column="WRITE_DATE" property="WRITE_DATE" />
 		<result column="REVIEW_CNT" property="REVIEW_CNT" />
 		<result column="QUES_CD" property="QUES_CD" />
+		<result column="CATE_NM" property="CATE_NM" />
 		<result column="MEMB_ID" property="MEMB_ID" />
 		
 		<collection property="files" javaType="java.util.ArrayList" ofType="AttacFileVO" 
@@ -119,7 +124,7 @@
 	
 	<select id="searchList" resultMap="searchMapList">
 		SELECT RN, BOARD_NUM, HIGH_BOARD_NUM, TITLE, CONT,
-			    REVIEW_CNT, WRITE_DATE, QUES_CD, MEMB_ID, TOT
+			    REVIEW_CNT, WRITE_DATE, QUES_CD, CATE_NM, MEMB_ID, TOT
 		FROM (
 			SELECT
 			    ROWNUM RN,
@@ -129,14 +134,17 @@
 			    CONT,
 			    REVIEW_CNT,
 			    WRITE_DATE,
-			    QUES_CD,
+			    B.QUES_CD,
+			    C.CATE_NM,
 			    U.MEMB_ID,
 			    0 AS TOT
 			FROM 
 			    BOARD B INNER JOIN USR U
 			    ON B.MEMB_NUM = U.MEMB_NUM
+			    INNER JOIN CD C 
+			    ON B.QUES_CD = C.CD
 			WHERE 
-			    QUES_CD = '2101' 
+			    1 = 1 
 			<if test="CD != null">
 				<if test="CD == '9901'">
 					AND B.WRITER_NM  like '%'||#{searchWord}||'%'
@@ -154,17 +162,20 @@
 	
 	<select id="detail" parameterType="int" resultType="BoardVO">
 		SELECT 
-		    c.BOARD_NUM, 
-		    c.TITLE,
-		    c.WRITER_NM,
-		    c.WRITE_DATE,
-		    c.HIGH_BOARD_NUM, 
-		    c.REVIEW_CNT,
-		    c.QUES_CD,
+		    B.BOARD_NUM, 
+		    B.TITLE,
+		    B.WRITER_NM,
+		    B.WRITE_DATE,
+		    B.HIGH_BOARD_NUM, 
+		    B.REVIEW_CNT,
+		    B.QUES_CD,
+		    c.CATE_NM,
 		    p.MEMB_ID
 		FROM 
-		    BOARD c INNER JOIN USR p 
-		    ON c.MEMB_NUM = p.MEMB_NUM		
+		    BOARD B INNER JOIN USR p 
+		    ON B.MEMB_NUM = p.MEMB_NUM	
+		    INNER JOIN CD C 
+			ON B.QUES_CD = C.CD	
 		where 
 			c.BOARD_NUM = #{BOARD_NUM}
 	 </select>
