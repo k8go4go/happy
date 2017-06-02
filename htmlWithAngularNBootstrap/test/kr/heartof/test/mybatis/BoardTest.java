@@ -20,15 +20,15 @@ public class BoardTest {
 		SqlSession session = sqlSessionFactory.openSession();
 		
 		QnaMapper mapper = session.getMapper(QnaMapper.class);
-		list(mapper);
+		update(mapper);
 		session.commit();
 		session.close();
 	}
 	
 	public static void list(QnaMapper mapper) {
 		PageVO vo = new PageVO();
-		vo.setSTART(1);
-		vo.setEND(10);
+		vo.setSTART(11);
+		vo.setEND(20);
 		List<BoardVO> list = mapper.list(vo);
 		
 		for(BoardVO v : list) {
@@ -70,7 +70,8 @@ public class BoardTest {
 		BoardVO vo = new BoardVO();
 		vo.setTITLE("잘좀해보자 개");
 		vo.setCONT("좀 닥치고 공부하자 개");
-		vo.setBOARD_NUM(1118);
+		vo.setWRITER_NM("update");
+		vo.setBOARD_NUM(288);
 		
 		int result = mapper.update(vo);
 		System.out.println(result);

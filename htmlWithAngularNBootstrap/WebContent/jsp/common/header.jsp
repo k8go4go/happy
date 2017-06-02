@@ -16,6 +16,10 @@
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/bootstrap-theme.css">
 <link href="${contextPath}/resources/css/sweetalert.css" rel="stylesheet">
+<script src="${contextPath}/resources/js/sweetalert.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 <title>Bit Used Auction</title>
 </head>
 <body role='document'>

@@ -112,7 +112,15 @@ public class BoardVO {
 	public void setBOARD_NUM(int bOARD_NUM) {
 		BOARD_NUM = bOARD_NUM;
 	}
-
+	
+	public String getShortTITLE() {
+		if(TITLE.length() <= 25)
+			return TITLE;
+		else {
+			return TITLE.substring(0, 25) + "...";
+		}
+	}
+	
 	public String getTITLE() {
 		return TITLE;
 	}

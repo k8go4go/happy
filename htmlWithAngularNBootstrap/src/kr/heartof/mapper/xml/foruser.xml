@@ -37,6 +37,7 @@
 			ROWNUM RN,
 		    B.BOARD_NUM,
 		    B.TITLE,
+		    B.CONT,
 		    B.WRITER_NM,
 		    B.WRITE_DATE,
 		    B.HIGH_BOARD_NUM,
@@ -48,6 +49,7 @@
     		ON B.MEMB_NUM = U.MEMB_NUM
 		WHERE
 			B.HIGH_BOARD_NUM = #{BOARD_NUM}
+		ORDER BY B.BOARD_NUM		
 	</select>
 	
 	<select id="listTot" resultType="int" >
@@ -60,17 +62,18 @@
 	</select>
 	
 	<select id="list" resultMap="boardList" parameterType="PageVO">
-		SELECT RN, BOARD_NUM, HIGH_BOARD_NUM, TITLE, CONT,
+		SELECT RN, BOARD_NUM, WRITER_NM, HIGH_BOARD_NUM, TITLE, CONT,
 			    REVIEW_CNT, WRITE_DATE, QUES_CD, CATE_NM, MEMB_ID, TOT
-		FROM (
+		FROM (			
 			SELECT
 			    ROWNUM RN,
-			    BOARD_NUM, 
-			    HIGH_BOARD_NUM, 
-			    TITLE,
-			    CONT,
-			    REVIEW_CNT,
-			    WRITE_DATE,
+			    B.BOARD_NUM, 
+			    B.WRITER_NM,			    
+			    B.HIGH_BOARD_NUM, 
+			    B.TITLE,
+			    B.CONT,
+			    B.REVIEW_CNT,
+			    B.WRITE_DATE,
 			    B.QUES_CD,
 			    C.CATE_NM,
 			    U.MEMB_ID,
@@ -82,6 +85,7 @@
 			    ON B.QUES_CD = C.CD
 <!-- 			WHERE 
 			    QUES_CD = '2101' --> 
+			ORDER BY B.BOARD_NUM			    
 			) BOARD 
 		WHERE 
 			RN >= #{START} AND 
@@ -123,12 +127,13 @@
 	</select>
 	
 	<select id="searchList" resultMap="searchMapList">
-		SELECT RN, BOARD_NUM, HIGH_BOARD_NUM, TITLE, CONT,
+		SELECT RN, BOARD_NUM, WRITER_NM, HIGH_BOARD_NUM, TITLE, CONT,
 			    REVIEW_CNT, WRITE_DATE, QUES_CD, CATE_NM, MEMB_ID, TOT
 		FROM (
 			SELECT
 			    ROWNUM RN,
 			    BOARD_NUM, 
+			    WRITER_NM,
 			    HIGH_BOARD_NUM, 
 			    TITLE,
 			    CONT,
@@ -153,6 +158,7 @@
 					AND B.TITLE  like '%'||#{searchWord}||'%'
 				</if>
 			</if>    
+			ORDER BY B.BOARD_NUM	
 			) BOARD 
 		WHERE 
 			RN >= #{START} AND 
@@ -165,6 +171,7 @@
 		    B.BOARD_NUM, 
 		    B.TITLE,
 		    B.WRITER_NM,
+		    B.CONT,
 		    B.WRITE_DATE,
 		    B.HIGH_BOARD_NUM, 
 		    B.REVIEW_CNT,
@@ -184,13 +191,13 @@
 	 		INSERT INTO BOARD
 			( BOARD_NUM, TITLE, CONT, WRITER_NM, WRITE_DATE,
 			  REVIEW_CNT, MEMB_NUM, QUES_CD
-			  <if test="HIGH_BOARD_NUM != null">
+			  <if test="HIGH_BOARD_NUM != 0">
 			  	,HIGH_BOARD_NUM
 			  </if>
 			  ) VALUES 
 			(BOARD_SEQ.NEXTVAL, #{TITLE}, #{CONT}, #{WRITER_NM}, sysdate,
 				0, #{MEMB_NUM}, '2202'
-			   <if test="HIGH_BOARD_NUM != null">
+			   <if test="HIGH_BOARD_NUM != 0">
 			  		,#{HIGH_BOARD_NUM}
 			  </if>
 			)

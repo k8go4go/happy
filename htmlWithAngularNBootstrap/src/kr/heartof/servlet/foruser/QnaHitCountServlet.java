@@ -13,8 +13,8 @@ import kr.heartof.service.mapper.QnaMapper;
 import kr.heartof.util.BringSqlSession;
 import kr.heartof.vo.foruser.BoardVO;
 
-@WebServlet("/updateQna.do")
-public class QnaUpdateServlet extends HttpServlet {
+@WebServlet("/hitCountQna.do")
+public class QnaHitCountServlet extends HttpServlet {
 	private static final long serialVersionUID = 2931563842735300771L;
 	private static QnaMapper mapper = BringSqlSession.getMapper(QnaMapper.class); 
 
@@ -22,26 +22,10 @@ public class QnaUpdateServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.addHeader("Content-Type", "text/html;charset=UTF-8");
 		
-		BoardVO vo = new BoardVO();
-		vo.setTITLE(request.getParameter("TITLE"));
-		vo.setCONT(request.getParameter("CONT"));
-		vo.setWRITER_NM(request.getParameter("WRITER_NM"));
-		vo.setBOARD_NUM(Integer.parseInt(request.getParameter("BOARD_NUM")));
-		
-		int result = mapper.update(vo);
+		int result = mapper.updateHitCount(Integer.parseInt(request.getParameter("BOARD_NUM")));
 		BringSqlSession.getInstance().commit();
 		
-		String msg = null;
-		if(result > 0) {
-			msg = "수정이 완료되었습니다.";
-		} else {
-			msg = "수정이 실패하였습니다.";
-		}
-		
-		request.setAttribute("msg", msg);
-		request.setAttribute("result", result);
-		
-		RequestDispatcher dispacher = request.getServletContext().getRequestDispatcher("/qna.do?result="+result + "&msg="+msg);
+		RequestDispatcher dispacher = request.getServletContext().getRequestDispatcher("/qna.do");
 		dispacher.forward(request, response);
 	}
 }

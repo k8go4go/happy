@@ -6,7 +6,8 @@ public enum Path {
 	QNA_UDDATE_JSP("3"),
 	QNA_DELETE_JSP("4"),
 	QNA_INSERT_JSP("5"),
-	FAQ_JSP("6");
+	QNA_HITCOUNT_JSP("6"),
+	FAQ_JSP("7");
 
 	private String path;
 
