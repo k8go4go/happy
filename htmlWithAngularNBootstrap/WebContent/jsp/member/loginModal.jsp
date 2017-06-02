@@ -10,15 +10,34 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="MEMB_ID" class="form-control-label">아이디:</label>
-            <input type="text" class="form-control" id="MEMB_ID">
-          </div>
-          <div class="form-group">
-            <label for="SEC_NUM" class="form-control-label">패스워드:</label>
-            <input type="password" class="form-control" id="SEC_NUM">
-          </div>
+        <form name="loginForm">
+           <table class="table">
+			<tbody>
+				<tr>
+					<td class="text-right"><h6>회원구분</h6></td>
+		        	<td class="text-center">
+		        		<div class="btn-group" role="group" >
+						  <h6 style="display:inline;" >개인</h6>
+						  <input type="radio" id="MEMB_CD" name="MEMB_CD" checked="checked" value="2001"/>
+						  <h6 style="display:inline;">기업</h6>
+						  <input type="radio" id="MEMB_CD" name="MEMB_CD" value="2002"/>
+		          		</div>
+		        	</td>
+				</tr>
+				<tr>
+					<td class="text-right"><h6>아이디</h6></td>
+		        	<td class="text-center">
+						<input type="text" class="input-sm col-sm-10" id="MEMB_ID" onchange="" required="required">
+		        	</td>
+				</tr>
+				<tr>
+					<td class="text-right"><h6>비밀번호</h6></td>
+		        	<td class="text-center">
+						<input type="password" class="input-sm col-sm-10" id="SEC_NUM" required="required">
+		        	</td>
+				</tr>
+			  </tbody>
+			</table>  	
         </form>
       </div>
       <div class="modal-footer bg-danger">
@@ -28,3 +47,10 @@
     </div>
   </div>
 </div>
+<script>
+	var login = function () {
+		var frm = document.loginForm;
+		frm.action = '${contextPath}${pathList['8'].PATH}${pathList['8'].PATH_NM}';
+		frm.submit();
+	}
+</script>

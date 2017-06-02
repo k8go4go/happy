@@ -112,9 +112,16 @@ $(document).ready(function(){
 						</ul>
 
 						<form class="navbar-form navbar-right">
-							<button type="button" class="btn btn-info glyphicon glyphicon-eye-open" data-toggle="modal" data-target="#loginFormModal" >로그인</button>
-							<button type="button" class="btn btn-info glyphicon glyphicon-eye-open" data-toggle="modal" data-target="#joinFormModal" >회원가입</button>
-							<button type="button" class="btn btn-info glyphicon glyphicon-eye-open" >My Auction</button>
+							<c:choose>
+							<c:when test="${not empty sessionScope.user}">
+								<button type="button" class="btn btn-info glyphicon glyphicon-eye-open" >로그아웃</button>
+								<button type="button" class="btn btn-info glyphicon glyphicon-eye-open" >My Auction</button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" class="btn btn-info glyphicon glyphicon-eye-open" data-toggle="modal" data-target="#loginFormModal" >로그인</button>
+								<button type="button" class="btn btn-info glyphicon glyphicon-eye-open" data-toggle="modal" data-target="#joinFormModal" >회원가입</button>
+							</c:otherwise>
+							</c:choose>
 						</form>
 
 <c:import url="/jsp/member/loginModal.jsp"></c:import>

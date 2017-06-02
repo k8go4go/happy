@@ -3,12 +3,14 @@
 3	updateQna.do	/
 4	deleteQna.do	/
 5	insertQna.do	/
-6	hitCountQna.do	/
-7	faq.do			/
+6	faq.do			/
+7   hitCountQna.do	/
+8	login.do		/
 
 update path
     set PATH_NUM = 7
     where PATH_NUM = 6;
     commit;
     
-insert into path values (6, 'hitCountQna.do', '/'); commit;
+insert into path values (7, 'hitCountQna.do', '/'); commit;
+insert into path values (8, 'login.do', '/'); commit;

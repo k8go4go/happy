@@ -11,101 +11,83 @@
       </div>
       <div class="modal-body">
         <form id="memberJoinForm">
-          <div class="form-group">
-	          <label class="glyphicon glyphicon-edit">회원구분</label>
-	          <div class="input-group" >
-				  <span>개인</span>
-				  <input type="radio" id="MEMB_CD" />
-				  <span>기업</span>
-				  <input type="radio" id="MEMB_CD"/>
-	          </div>	
-          </div>
-          
-          <div class="form-group">
-	          <label class="glyphicon glyphicon-user">아이디</label>
-	          <div class="input-group" >
-	          	  <span class="input-group-addon" id="addon2"></span>
-	              <input type="text" class="form-control" id="MEMB_ID" onchange="" aria-describedby="addon2" required="required">
-	          	  <span class="input-group-addon" id="addon2"></span>
-	          
-	          	  <input class="form-control" type="file"/>
-	          </div>
-          </div>
-          
-          <div class="form-group">
-	          <label class="glyphicon glyphicon-qrcode">비밀번호</label>
-	          <div class="input-group" >
-	            <span class="input-group-addon" id="addon3"></span>
-	            <input type="password" class="form-control" id="SEC_NUM" aria-describedby="addon3" required="required">
-	            <span class="input-group-addon" id="addon3"></span>
-	          </div>
-	      </div>
-	      
-	       <div class="form-group">
-	          <label class="glyphicon glyphicon-barcode">비밀번호 확인</label>    
-	          <div class="input-group" >
-	            <span class="input-group-addon" id="addon4"></span>
-	            <input type="password" class="form-control" id="SEC_NUM_CONFIRM" aria-describedby="addon4" required="required">
-	            <span class="input-group-addon" id="addon4"></span>
-	          </div>
-	      </div>
-	      
-	      <div class="form-group">
-	          <label class="glyphicon glyphicon-envelope">이메일</label>      
-	          <div class="input-group" >
-	            <span class="input-group-addon" id="addon5"></span>
-	            <input type="email" class="form-control" id="EMAIL" aria-describedby="addon5" required="required">
-	            <span class="input-group-addon" id="addon5"></span>
-	          </div>
-	      </div>
-	      
-          <div class="form-group">
-	          <label class="glyphicon glyphicon-phone-alt">전화번호</label>
-	          <div class="input-group" >
-	            <span class="input-group-addon" id="addon6"></span>
-	            <input type="text" class="form-control" id="TEL_NUM" aria-describedby="addon6" required="required">
-	            <span class="input-group-addon" id="addon6"></span>
-	          </div>
-	      </div>
-	      
-	      <div class="form-group">
-	          <label class="glyphicon glyphicon-phone">핸드폰번호</label>    
-	          <div class="input-group" >
-	            <span class="input-group-addon" id="addon7"></span>
-	            <input type="text" class="form-control" id="MOBIL_NUM" aria-describedby="addon7" required="required">
-	            <span class="input-group-addon" id="addon7"></span>
-	          </div>
-	      </div>
-	      
-	      <div class="form-group">
-	          <label class="glyphicon glyphicon-bookmark">우편번호</label>    
-	          <div class="input-group" >
-	            <span class="input-group-addon" id="addon8"></span>
-	            <input type="text" class="form-control" id="ZIP_NUM" aria-describedby="addon8" required="required">
-	            <span class="input-group-addon" id="addon8"></span>
-	            <span class="input-group-btn">
-	        		<button class="btn btn-default" type="button">우편번호</button>
-	      		</span>
-	          </div>
-          </div>
-          
-          <div class="form-group">
-	          <label class="glyphicon glyphicon-home">주소</label> 
-	          <div class="input-group" >
-	            <span class="input-group-addon" id="addon9"></span>
-	            <input type="text" class="form-control" id="ADDRESS" aria-describedby="addon9">
-	            <span class="input-group-addon" id="addon9"></span>
-	          </div>
-          </div>
-          
-          <div class="form-group">
-	          <label class="glyphicon glyphicon-home">상세주소</label> 
-	          <div class="input-group" >
-	            <span class="input-group-addon" id="addon10"></span>
-	            <input type="text" class="form-control" id="DETA_ADDRESS" aria-describedby="addon10" required="required">
-	            <span class="input-group-addon" id="addon10"></span>
-	          </div>
-	      </div>    
+          <table class="table">
+			<tbody>
+				<tr>
+					<td class="text-right"><h6>회원구분</h6></td>
+		        	<td class="text-center">
+		        		<div class="input-group" >
+						  <h6 style="display:inline;">개인</h6>
+						  <input type="radio" id="MEMB_CD" />
+						  <h6 style="display:inline;">기업</h6>
+						  <input type="radio" id="MEMB_CD"/>
+		          		</div>
+		        	</td>
+				</tr>
+				<tr>
+					<td class="text-right"><h6>아이디</h6></td>
+		        	<td class="text-center">
+						<input type="text" class="input-sm col-sm-6" id="MEMB_ID" onchange="" required="required">
+						<button type="button" class="btn btn-primary" onclick="checkDuplicate();">중복확인</button>
+		        	</td>
+				</tr>
+				<tr>
+					<td class="text-right"><h6>비밀번호</h6></td>
+		        	<td class="text-center">
+						<input type="password" class="input-sm col-sm-6" id="SEC_NUM" required="required">
+		        	</td>
+				</tr>
+				<tr>
+					<td class="text-right"><h6>비밀번호확인</h6></td>
+		        	<td class="text-center">
+						<input type="password" class="input-sm col-sm-6" id="CONFIRM_SEC_NUM" required="required">
+		        	</td>
+				</tr>
+				<tr>
+					<td class="text-right"><h6>프로필 사진</h6></td>
+		        	<td class="text-center">
+						<input class="input-sm col-sm-6" type="file"/>
+		        	</td>
+				</tr>
+				<tr>
+					<td class="text-right"><h6>이메일</h6></td>
+		        	<td class="text-center">
+						<input type="email" class="input-sm col-sm-6" id="EMAIL" required="required">
+		        	</td>
+				</tr>
+				<tr>
+					<td class="text-right"><h6>전화번호</h6></td>
+		        	<td class="text-center">
+						<input type="email" class="input-sm col-sm-6" id="TEL_NUM" required="required">
+		        	</td>
+				</tr>
+				<tr>
+					<td class="text-right"><h6>핸드폰번호</h6></td>
+		        	<td class="text-center">
+						<input type="email" class="input-sm col-sm-6" id="MOBIL_NUM" required="required">
+		        	</td>
+				</tr>
+				<tr>
+					<td class="text-right"><h6>우편번호</h6></td>
+		        	<td class="text-center">
+		        		<input type="text" class=" input-sm col-sm-4" id="ZIP_NUM" onchange="" required="required">
+						<button type="button" class="btn btn-primary" onclick="">우편번호찾기</button>
+		        	</td>
+				</tr>
+				<tr>
+					<td class="text-right"><h6>주소</h6></td>
+		        	<td class="text-center">
+						<input type="email" class="input-sm col-sm-8" id="ADDRESS" required="required">
+		        	</td>
+				</tr>
+				<tr>
+					<td class="text-right"><h6>상세주소</h6></td>
+		        	<td class="text-center">
+						<input type="email" class="input-sm col-sm-8" id="DETA_ADDRESS" required="required">
+		        	</td>
+				</tr>
+			</tbody>
+		</table>
         </form>
       </div>
       
@@ -116,6 +98,3 @@
     </div>
   </div>
 </div>
-
-<script>
-</script>

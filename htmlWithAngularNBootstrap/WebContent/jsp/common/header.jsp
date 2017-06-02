@@ -6,7 +6,9 @@
 <c:set var="contextPath"  value="${pageContext.request.contextPath}" scope="request"/>
 <c:set var="menuList"  value="${applicationScope['menu']}" scope="request"/>
 <c:set var="pathList"  value="${applicationScope['path']}" scope="request"/>
-    
+
+
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -15,10 +17,10 @@
 <meta name="author" content="이상욱">
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/bootstrap-theme.css">
-<link href="${contextPath}/resources/css/sweetalert.css" rel="stylesheet">
-<script src="${contextPath}/resources/js/sweetalert.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="${contextPath}/resources/js/sweetalert.min.js"></script>
+<link href="${contextPath}/resources/css/sweetalert.css" rel="stylesheet">
 
 <title>Bit Used Auction</title>
 </head>

@@ -13,7 +13,7 @@
 <div class="row">
 	<div class="col-md-1"></div>
 	<div class="col-md-8">
-	  <h2>질문과 답변</h2>
+	  <h4>질문과 답변</h4>
 	  <table class="table table-striped">
 	    <thead>
 	      <tr>
@@ -76,7 +76,7 @@
 	        <td colspan="4" class="col-md-7 text-center">
 		        <c:if test="${requestScope.totalPage != 0}">
 			        <nav aria-label="Page navigation">
-						<ul class="pagination">
+						<ul class="pagination pagination-sm">
 							<c:if test="${requestScope.startIndicator eq 1}">
 							<li><a href="<c:url value="${pathList['2'].PATH}${pathList['2'].PATH_NM}" />?page=${start-1}&viewCount=10" 
 								aria-label="Previous"> <span
@@ -86,10 +86,10 @@
 							<c:forEach begin="${requestScope.start}" var="index" end="${requestScope.end}" step="1">
 							<c:choose>
 							<c:when test="${currentPage eq index}" >
-								<li><a class="bg-primary">${index}</a></li>
+								<li class="active"><a class="bg-primary">${index}</a></li>
 							</c:when>
 							<c:otherwise>
-								<li><a href="<c:url value="${pathList['2'].PATH}${pathList['2'].PATH_NM}" />?page=${index}&start=${(index - 1)*viewCount + 1}&end=${(index - 1)*viewCount + viewCount}">${index}</a></li>
+								<li ><a href="<c:url value="${pathList['2'].PATH}${pathList['2'].PATH_NM}" />?page=${index}&start=${(index - 1)*viewCount + 1}&end=${(index - 1)*viewCount + viewCount}">${index}</a></li>
 							</c:otherwise>
 							</c:choose>
 							</c:forEach>
@@ -102,7 +102,9 @@
 				</c:if>
 	        </td>
 	        <td class="col-md-1 text-center">
-	        	<button id="btnWrite" type="button" class="btn btn-secondary" onclick="writeQna();" >글쓰기</button>
+	        	<c:if test="${not empty sessionScope.user}">
+	        		<button id="btnWrite" type="button" class="btn btn-secondary" onclick="writeQna();" >글쓰기</button>
+	        	</c:if>
 	        </td>
 	      </tr>
 	    </tbody>
@@ -112,6 +114,8 @@
 </div>
 
 <script>
+	// qnaModal.setModifyQnaList('anaFormModal');
+	
 	$( document ).ready(function() {
 	    var result = '${requestScope.result}';
 	    var msg = '${requestScope.msg}';
@@ -184,11 +188,24 @@
 	}
 	
 	var deleteBoard = function () {
-		cancelModify();
-		var frm = document.boardModalForm;
-		frm.action = '${contextPath}${pathList['4'].PATH}${pathList['4'].PATH_NM}';
-		frm.submit();
+		swal({
+		  title: '게시물 삭제',
+		  text: "게시물을 삭제하시겠습니까?",
+		  type: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: '삭제',
+		  cancelButtonText: '취소'
+		}).then(
+			function(){
+				cancelModify();
+				var frm = document.boardModalForm;
+				frm.action = '${contextPath}${pathList['4'].PATH}${pathList['4'].PATH_NM}';
+				frm.submit();
+			}
+		);
 	}
 </script>
-
+<script type="text/javascript" src='<c:url value="/resources/js/board.js" />'></script>
 <c:import url="/jsp/common/footer.jsp"></c:import>

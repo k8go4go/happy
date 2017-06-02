@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <div class="modal fade" id="anaFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" >
    <form name="boardModalForm" method="post">
@@ -34,12 +35,18 @@
 			</table>
 	      </div>
 	      <div class="modal-footer bg-danger">
-	        <button id="btnComplete" type="button" class="btn btn-secondary" style="display: none;" data-dismiss="modal" onclick="completeModify();" >수정완료</button>
-	        <button id="btnCancel" type="button" class="btn btn-secondary" style="display: none;" onclick="cancelModify();">취소</button>
-	        
-	        <button id="btnDelete" type="button" class="btn btn-secondary" style="display: inline-block;" onclick="deleteBoard();">삭제하기</button>
-	        <button id="btnModify" type="button" class="btn btn-secondary" style="display: inline-block;" onclick="changeDisable();">수정하기</button>
-	        <button id="btnClose" type="button" class="btn btn-secondary" style="display: inline-block;" data-dismiss="modal">닫기</button>
+	      	<c:choose>
+			<c:when test="${not empty sessionScope.user}">
+		        <button id="btnComplete" type="button" class="btn btn-secondary" style="display: none;" data-dismiss="modal" onclick="completeModify();" >수정완료</button>
+		        <button id="btnCancel" type="button" class="btn btn-secondary" style="display: none;" onclick="cancelModify();">취소</button>
+		        
+		        <button id="btnDelete" type="button" class="btn btn-secondary" style="display: inline-block;" onclick="deleteBoard();">삭제하기</button>
+		        <button id="btnModify" type="button" class="btn btn-secondary" style="display: inline-block;" onclick="changeDisable();">수정하기</button>
+	        </c:when>
+			<c:otherwise>
+	        	<button id="btnClose" type="button" class="btn btn-secondary" style="display: inline-block;" data-dismiss="modal">닫기</button>
+	      	</c:otherwise>
+			</c:choose>
 	      </div>
 	    </div>
     </form>

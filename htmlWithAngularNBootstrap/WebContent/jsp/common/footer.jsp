@@ -13,8 +13,6 @@
 	</div>
 </div>
 	
-
 <script type="text/javascript" src="${contextPath}/resources/js/bootstrap.js"></script>
-<script type="text/javascript" src="${contextPath}/resources/js/sweetalert.min.js"></script>
 </body>
 </html>
