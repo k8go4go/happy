@@ -1,16 +1,15 @@
-1	main.jsp	/jsp/main/
+1	main.jsp		/jsp/main/
 2	qna.do			/
 3	updateQna.do	/
 4	deleteQna.do	/
 5	insertQna.do	/
 6	faq.do			/
-7   hitCountQna.do	/
+7	hitCountQna.do	/
 8	login.do		/
+9	joinMember.do	/
 
-update path
-    set PATH_NUM = 7
-    where PATH_NUM = 6;
-    commit;
     
 insert into path values (7, 'hitCountQna.do', '/'); commit;
 insert into path values (8, 'login.do', '/'); commit;
+insert into path values (9, 'joinMember.do', '/'); commit;
+insert into path values (10, 'duplicate.do', '/'); commit;

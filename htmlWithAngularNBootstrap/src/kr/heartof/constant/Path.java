@@ -8,7 +8,9 @@ public enum Path {
 	QNA_INSERT_JSP("5"),
 	QNA_HITCOUNT_JSP("6"),
 	FAQ_JSP("7"),
-	LOGIN_JSP("8");
+	LOGIN_JSP("8"),
+	JOIN_JSP("9"),
+	DUPLICATE_JSP("10");
 
 	private String path;
 

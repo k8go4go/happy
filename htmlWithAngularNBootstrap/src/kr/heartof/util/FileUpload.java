@@ -1,0 +1,171 @@
+package kr.heartof.util;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+public class FileUpload {
+
+	private HttpServletRequest request = null;
+
+	private File uploadDir = null;
+
+	private List<FileItem> items = null;
+
+	private Map<String, String> paramMap = null;
+
+	private long requestLimit = 100 * 1024 * 1024; // 한번에 업로드 용량은 기본 100메가
+
+	private long fileLimit = 5 * 1024 * 1024; // 업로드 가능한 파일의 용량은 기본 5메가
+
+	public FileUpload(HttpServletRequest request, String uploadDir) throws Exception {
+		this(request, new File(uploadDir), 1024 * 1024 * 3);
+	}
+
+	public FileUpload(HttpServletRequest request, File uploadDir) throws Exception {
+		this(request, uploadDir, 1024 * 1024 * 3);
+	}
+
+	public FileUpload(HttpServletRequest request, String uploadDir, long fileLimit) throws Exception {
+		this(request, new File(uploadDir), fileLimit);
+	}
+
+	public FileUpload(HttpServletRequest request, File uploadDir, long fileLimit) throws Exception {
+		this.request = request;
+		this.uploadDir = uploadDir;
+		this.fileLimit = fileLimit;
+		init();
+	}
+
+	private void init() throws Exception {
+		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+		if (!isMultipart) {
+			throw new Exception("form의 enctype을 multipart/form-data로 하세요...");
+		}
+
+		DiskFileItemFactory factory = new DiskFileItemFactory();
+		factory.setSizeThreshold(1024); // 메모리에 저장할 최대 size
+		factory.setRepository(uploadDir); // 임시 저장할 위치
+		// 업로드 핸들러 생성
+		ServletFileUpload upload = new ServletFileUpload(factory);
+		upload.setSizeMax(requestLimit); // Set overall request size constraint
+		items = upload.parseRequest(request); // Parse the request
+
+		// 파람값들을 맵에 셋팅
+		processFormField(items);
+	}
+
+	private void processFormField(List<FileItem> items) throws Exception {
+		paramMap = new HashMap<String, String>();
+		Iterator<FileItem> iter = items.iterator();
+		while (iter.hasNext()) {
+			FileItem item = iter.next();
+			if (item.isFormField()) {
+				paramMap.put(item.getFieldName(), item.getString());
+			}
+		}
+	}
+
+	private void chkFileLimit() throws Exception {
+
+		Iterator<FileItem> iter = items.iterator();
+
+		while (iter.hasNext()) {
+			FileItem item = iter.next();
+
+			if (!item.isFormField()) {
+				String fileName = new File(item.getName()).getName();
+				long fileSize = item.getSize();
+				if (fileName != null && !"".equals(fileName)) {
+					if (fileLimit < fileSize) {
+						throw new Exception(fileName + " 파일이 " + fileLimit / 1024 / 1024 + "M를 초과하였습니다.\n");
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * request상의 모든파일을 업로드한다.<br>
+	 * 
+	 * 파일명의 중복을 피하기 위해 업로드하는 파일은 파일명 뒷부분에 현재일시를 붙여서 저장한다.<br>
+	 * 
+	 * 업로드후 변경된 파일명을 map으로 리턴받아 처리한다.
+	 * 
+	 * @throws Exception
+	 * 
+	 */
+
+	public Map<String, String> uploadFiles() throws Exception {
+
+		Map<String, String> map = new HashMap<String, String>();
+		boolean writeToFile = true; // 파일에 쓸것인지 구분 플래그
+		Iterator<FileItem> iter = items.iterator();
+		chkFileLimit(); // 파일들의 사이즈 체크
+
+		while (iter.hasNext()) {
+
+			FileItem item = iter.next();
+			// Process a file upload
+			if (!item.isFormField()) {
+
+				String filePath = item.getName();
+
+				File file = new File(filePath);
+
+				String fileName = file.getName();
+
+				if (fileName != null && !"".equals(fileName)) {
+					// 파일업로드시...
+					if (writeToFile) {
+						String updFilePath = uploadDir + fileName;
+						String newFilePath = getNewFilePath(updFilePath);   
+
+						File newFile = new File(newFilePath);
+						map.put(item.getFieldName(), newFile.getName()); 
+						
+						item.write(newFile); // 파일을 쓴다.
+
+					}
+				}
+			}
+		}
+		return map;
+	}
+
+	private String getNewFilePath(String filePath) {
+		File file = new File(filePath);
+		String sDir = file.getParent();
+		File dir = new File(sDir);
+		File[] files = dir.listFiles();
+
+		for (int i = 0; i < files.length; i++) {
+			String alreadyPath = files[i].getPath();
+			if (filePath.equals(alreadyPath)) {
+				filePath = filePath + "0";
+			}
+		}
+		return filePath;
+	}
+
+	/**
+	 * 
+	 * request상의 param들을 map으로 반환한다.
+	 * 
+	 * @return Map
+	 * 
+	 */
+
+	public Map<String, String> getParamMap() {
+		return paramMap;
+	}
+}

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div class="modal fade" id="loginFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="loginFormModal" tabindex="-1" role="dialog" aria-labelledby="loginFormModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm" >
     <div class="modal-content">
       <div class="modal-header bg-danger">
@@ -10,7 +10,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form name="loginForm">
+        <form name="loginForm" method="post">
            <table class="table">
 			<tbody>
 				<tr>
@@ -18,26 +18,26 @@
 		        	<td class="text-center">
 		        		<div class="btn-group" role="group" >
 						  <h6 style="display:inline;" >개인</h6>
-						  <input type="radio" id="MEMB_CD" name="MEMB_CD" checked="checked" value="2001"/>
+						  <input type="radio" id="MEMB_CD" name="MEMB_CD" checked="checked" value="2001" onclick="memb_cd();"/>
 						  <h6 style="display:inline;">기업</h6>
-						  <input type="radio" id="MEMB_CD" name="MEMB_CD" value="2002"/>
+						  <input type="radio" id="MEMB_CD" name="MEMB_CD" value="2002" onclick="memb_cd();"/>
 		          		</div>
 		        	</td>
 				</tr>
 				<tr>
 					<td class="text-right"><h6>아이디</h6></td>
 		        	<td class="text-center">
-						<input type="text" class="input-sm col-sm-10" id="MEMB_ID" onchange="" required="required">
+						<input type="text" class="input-sm col-sm-10" id="MEMB_ID" name="MEMB_ID"  onchange="" required="required">
 		        	</td>
 				</tr>
 				<tr>
 					<td class="text-right"><h6>비밀번호</h6></td>
 		        	<td class="text-center">
-						<input type="password" class="input-sm col-sm-10" id="SEC_NUM" required="required">
+						<input type="password" class="input-sm col-sm-10" id="SEC_NUM" name="SEC_NUM" required="required">
 		        	</td>
 				</tr>
 			  </tbody>
-			</table>  	
+			</table>
         </form>
       </div>
       <div class="modal-footer bg-danger">

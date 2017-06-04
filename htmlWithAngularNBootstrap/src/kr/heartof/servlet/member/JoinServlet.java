@@ -2,7 +2,9 @@ package kr.heartof.servlet.member;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +16,7 @@ import kr.heartof.vo.member.ComUsrVO;
 import kr.heartof.vo.member.PriUsrVO;
 import kr.heartof.vo.member.UsrVO;
 
+@WebServlet("/joinMember.do")
 public class JoinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private static MemberMapper mapper = BringSqlSession.getMapper(MemberMapper.class);   
@@ -23,10 +26,8 @@ public class JoinServlet extends HttpServlet {
 
 	protected void serice(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
 		UsrVO user = null;
-		
-		if(request.getParameter("USR_CD").equals(Code.MEMBER_PRI_CD.getKey())) {
+		if(request.getParameter("MEMB_CD").equals(Code.MEMBER_PRI_CD.getKey())) {
 			user = makePrivateUser(request);
 			request.setAttribute("NM", request.getParameter("NM"));
 		} else {
@@ -34,7 +35,33 @@ public class JoinServlet extends HttpServlet {
 			request.setAttribute("CHG_NM", request.getParameter("CHG_NM"));
 		}
 		
-		request.setAttribute("USR_CD", request.getParameter("USR_CD"));
+		String msg = null;
+		int result = 0;
+		if(user.getMEMB_CD().equals(Code.MEMBER_PRI_CD.getKey())) {
+			result = mapper.newMember(user);
+			result = mapper.newPriMember((PriUsrVO)user);
+		} else {
+			result = mapper.newMember(user);
+			result = mapper.newComMember((ComUsrVO)user);
+		}
+		
+		
+//		mapper.newElecWallet(vo);
+//		mapper.newMemberShip(vo);
+//		mapper.newProfile(vo);
+		
+		request.setAttribute("MEMB_CD", request.getParameter("MEMB_CD"));
+		request.setAttribute("msg", msg);
+		request.setAttribute("result", result);
+		
+		if(result > 0) {
+			msg = "수정이 완료되었습니다.";
+		} else {
+			msg = "수정이 실패하였습니다.";
+		}
+		RequestDispatcher dispacher = request.getServletContext().getRequestDispatcher("/main.do?result="+result + "&msg="+msg);
+		dispacher.forward(request, response);
+		
 		response.sendRedirect(request.getContextPath() + "/jsp/member/memberOk.jsp");
 	}
 

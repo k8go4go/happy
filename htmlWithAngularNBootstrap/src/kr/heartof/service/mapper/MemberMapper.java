@@ -59,6 +59,8 @@ public interface MemberMapper{
 	 */
 	public UsrVO memberInfo(UsrVO vo); 
 	
+	public UsrVO login(UsrVO vo);
+	
 	/**
 	 * 회원 프로필 파일 조회
 	 * @param 공통 USR 테이블 vo 

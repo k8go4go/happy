@@ -20,33 +20,21 @@ public class LoginServlet extends HttpServlet {
 	private static MemberMapper mapper = BringSqlSession.getMapper(MemberMapper.class);
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		UsrVO user = null;
+		UsrVO vo = new UsrVO();
+		vo.setMEMB_ID(request.getParameter("MEMB_ID"));
+		vo.setMEMB_CD(request.getParameter("MEMB_CD"));
+		vo.setSEC_NUM(request.getParameter("SEC_NUM"));
 		
-		if(request.getParameter("MEMB_CD").equals(Code.MEMBER_PRI_CD.getKey())) {
-			user = new PriUsrVO();
-			user.setMEMB_CD(Code.MEMBER_PRI_CD.getKey());
-		} else {
-			user = new ComUsrVO();
-			user.setMEMB_CD(Code.MEMBER_COM_CD.getKey());
-		}
-		user.setEMAIL(request.getParameter("EMAIL"));
+		UsrVO user = mapper.login(vo);
 		
 		if(user.getMEMB_CD().equals(Code.MEMBER_PRI_CD.getKey())) {
-			mapper.newMember(user);
-			mapper.newPriMember((PriUsrVO)user);
+			System.out.println("PriUsrVO : " + ((PriUsrVO)user).toString());
+			request.getSession().setAttribute("user", ((PriUsrVO)user));
 		} else {
-			mapper.newMember(user);
-			mapper.newComMember((ComUsrVO)user);
+			System.out.println("PriUsrVO : " + ((ComUsrVO)user).toString());
+			request.getSession().setAttribute("user", ((ComUsrVO)user));
 		}
 		
-//		mapper.newElecWallet(vo);
-//		mapper.newMemberShip(vo);
-//		mapper.newProfile(vo);
-		
-		BringSqlSession.getInstance().commit();
-		
-		request.getSession().setAttribute("user", user);
 		response.sendRedirect(request.getContextPath());
 	}
 }
