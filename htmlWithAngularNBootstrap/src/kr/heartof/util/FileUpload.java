@@ -1,10 +1,14 @@
 package kr.heartof.util;
 
 import java.io.File;
+import java.io.FileDescriptor;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -75,7 +79,6 @@ public class FileUpload {
 	}
 
 	private void chkFileLimit() throws Exception {
-
 		Iterator<FileItem> iter = items.iterator();
 
 		while (iter.hasNext()) {
@@ -113,48 +116,45 @@ public class FileUpload {
 		chkFileLimit(); // 파일들의 사이즈 체크
 
 		while (iter.hasNext()) {
-
 			FileItem item = iter.next();
 			// Process a file upload
 			if (!item.isFormField()) {
-
 				String filePath = item.getName();
-
 				File file = new File(filePath);
-
 				String fileName = file.getName();
-
+				String extendFileName = getExtionFileName(fileName);
 				if (fileName != null && !"".equals(fileName)) {
 					// 파일업로드시...
 					if (writeToFile) {
-						String updFilePath = uploadDir + fileName;
-						String newFilePath = getNewFilePath(updFilePath);   
+						String updFilePath = uploadDir + saveLocation() + UUID.randomUUID().clockSequence()+"."+extendFileName;
 
-						File newFile = new File(newFilePath);
+						File newFile = new File(updFilePath);
 						map.put(item.getFieldName(), newFile.getName()); 
 						
 						item.write(newFile); // 파일을 쓴다.
-
 					}
 				}
 			}
 		}
 		return map;
 	}
-
-	private String getNewFilePath(String filePath) {
-		File file = new File(filePath);
-		String sDir = file.getParent();
-		File dir = new File(sDir);
-		File[] files = dir.listFiles();
-
-		for (int i = 0; i < files.length; i++) {
-			String alreadyPath = files[i].getPath();
-			if (filePath.equals(alreadyPath)) {
-				filePath = filePath + "0";
-			}
-		}
-		return filePath;
+	
+	private String getExtionFileName(String fileName) {
+		int lastIndex = fileName.lastIndexOf(".");
+		
+		return fileName.substring(lastIndex+1);
+	}
+	
+	private String saveLocation() {
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+		String yyyy = sdf.format(date);
+		sdf = new SimpleDateFormat("mm");
+		String mm = sdf.format(date);
+		sdf = new SimpleDateFormat("dd");
+		String dd = sdf.format(date);
+		
+		return java.io.File.separator + yyyy + java.io.File.separator + mm + java.io.File.separator + dd;
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package kr.heartof.servlet.member;
+package kr.heartof.servlet.auction;
 
 import java.io.IOException;
 
@@ -16,8 +16,8 @@ import kr.heartof.vo.member.ComUsrVO;
 import kr.heartof.vo.member.PriUsrVO;
 import kr.heartof.vo.member.UsrVO;
 
-@WebServlet("/ajax/duplicate.do")
-public class DuplicateServlet extends HttpServlet {
+@WebServlet("/ajax/aucType.do")
+public class AuctionTypeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private static MemberMapper mapper = BringSqlSession.getMapper(MemberMapper.class);   
 

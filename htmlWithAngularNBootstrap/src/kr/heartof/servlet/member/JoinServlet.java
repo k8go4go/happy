@@ -1,6 +1,7 @@
 package kr.heartof.servlet.member;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import kr.heartof.constant.Code;
 import kr.heartof.service.mapper.MemberMapper;
 import kr.heartof.util.BringSqlSession;
+import kr.heartof.util.FileUpload;
 import kr.heartof.vo.member.ComUsrVO;
 import kr.heartof.vo.member.PriUsrVO;
+import kr.heartof.vo.member.UsrFileVO;
 import kr.heartof.vo.member.UsrVO;
 
 @WebServlet("/joinMember.do")
@@ -24,15 +27,24 @@ public class JoinServlet extends HttpServlet {
         super();
     }
 
-	protected void serice(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.addHeader("Content-Type", "text/html;charset=UTF-8");
+		String profileRoot = getServletContext().getInitParameter("profile_upload");
+		FileUpload uploadFile = null;
+		try {
+			uploadFile = new FileUpload(request, profileRoot);
+			uploadFile.uploadFiles();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map<String, String> params = uploadFile.getParamMap();
+		
 		UsrVO user = null;
-		if(request.getParameter("MEMB_CD").equals(Code.MEMBER_PRI_CD.getKey())) {
-			user = makePrivateUser(request);
-			request.setAttribute("NM", request.getParameter("NM"));
+		if(params.get("MEMB_CD").equals(Code.MEMBER_PRI_CD.getKey())) {
+			user = makePrivateUser(params);
 		} else {
-			user = makeCompanyUserVO(request);
-			request.setAttribute("CHG_NM", request.getParameter("CHG_NM"));
+			user = makeCompanyUserVO(params);
 		}
 		
 		String msg = null;
@@ -45,60 +57,67 @@ public class JoinServlet extends HttpServlet {
 			result = mapper.newComMember((ComUsrVO)user);
 		}
 		
-		
 //		mapper.newElecWallet(vo);
 //		mapper.newMemberShip(vo);
-//		mapper.newProfile(vo);
+//		UsrFileVO fileVO = new UsrFileVO();		
+//		mapper.newProfile(fileVO);
 		
-		request.setAttribute("MEMB_CD", request.getParameter("MEMB_CD"));
+		// BringSqlSession.getInstance().commit();
+		
+		request.setAttribute("MEMB_CD", params.get("MEMB_CD"));
 		request.setAttribute("msg", msg);
 		request.setAttribute("result", result);
 		
 		if(result > 0) {
-			msg = "수정이 완료되었습니다.";
+			msg = "회원가입이 완료되었습니다.";
 		} else {
-			msg = "수정이 실패하였습니다.";
+			msg = "회원가입이 실패하였습니다.";
 		}
+		
 		RequestDispatcher dispacher = request.getServletContext().getRequestDispatcher("/main.do?result="+result + "&msg="+msg);
 		dispacher.forward(request, response);
-		
-		response.sendRedirect(request.getContextPath() + "/jsp/member/memberOk.jsp");
 	}
 
-	private PriUsrVO makePrivateUser(HttpServletRequest request) {
+	private PriUsrVO makePrivateUser(Map<String, String> params) {
 		PriUsrVO user = new PriUsrVO();
-		user.setADDRESS(request.getParameter("ADDRESS1"));
-		user.setDETA_ADDRESS(request.getParameter("ADDRESS2"));
+		user.setADDRESS(params.get("ADDRESS"));
+		user.setDETA_ADDRESS(params.get("DETA_ADDRESS"));
 		user.setCRE_DEG_CD("");
-		user.setEMAIL(request.getParameter("EMAIL"));
-		user.setTEL_NUM(request.getParameter("TEL_NUM"));
-		user.setMEMB_CD(request.getParameter("MEMB_CD"));
-		user.setMEMB_ID(request.getParameter("MEMB_ID"));
+		user.setEMAIL(params.get("EMAIL"));
+		user.setSEC_NUM(params.get("SEC_NUM"));
+		user.setTEL_NUM(params.get("TEL_NUM"));
+		user.setMOBIL_NUM(params.get("MOBIL_NUM"));
+		user.setMEMB_CD(params.get("MEMB_CD"));
+		user.setMEMB_ID(params.get("MEMB_ID"));
+		user.setMAIL_CD(params.get("MAIL_CD"));
 		user.setWITHDRAWAL_CD(Code.WITHDRAWAL_N_CD.getKey());
-		user.setZIP_NUM(request.getParameter("ZIPNO1") + "-" + request.getParameter("ZIPNO2"));
+		user.setZIP_NUM(params.get("ZIP_NUM"));
 		
-		user.setNM(request.getParameter("NM"));
-		user.setNM(request.getParameter("SOCIAL_NO"));
+		user.setNM(params.get("NM"));
+		user.setSOC_REG_NUM(params.get("SOC_REG_NUM"));
 		
 		return user;
 	}
 	
-	private ComUsrVO makeCompanyUserVO(HttpServletRequest request) {
+	private ComUsrVO makeCompanyUserVO(Map<String, String> params) {
 		ComUsrVO user = new ComUsrVO();
-		user.setADDRESS(request.getParameter("ADDRESS1"));
-		user.setDETA_ADDRESS(request.getParameter("ADDRESS2"));
+		user.setADDRESS(params.get("ADDRESS"));
+		user.setDETA_ADDRESS(params.get("DETA_ADDRESS"));
 		user.setCRE_DEG_CD(Code.MEMBER_CRED_DEG_OK_CD.getKey());
-		user.setEMAIL(request.getParameter("EMAIL"));
-		user.setTEL_NUM(request.getParameter("TEL_NUM"));
-		user.setMEMB_CD(request.getParameter("MEMB_CD"));
-		user.setMEMB_ID(request.getParameter("MEMB_ID"));
+		user.setEMAIL(params.get("EMAIL"));
+		user.setSEC_NUM(params.get("SEC_NUM"));
+		user.setTEL_NUM(params.get("TEL_NUM"));
+		user.setMOBIL_NUM(params.get("MOBIL_NUM"));
+		user.setMEMB_CD(params.get("MEMB_CD"));
+		user.setMAIL_CD(params.get("MAIL_CD"));
+		user.setMEMB_ID(params.get("MEMB_ID"));
 		user.setWITHDRAWAL_CD(Code.WITHDRAWAL_N_CD.getKey());
-		user.setZIP_NUM(request.getParameter("ZIPNO1") + "-" + request.getParameter("ZIPNO2"));
+		user.setZIP_NUM(params.get("ZIP_NUM"));
 		
-		user.setCORP_NM(request.getParameter("CORP_NM"));
-		user.setCEO_NM(request.getParameter("CEO_NM"));
-		user.setCHGR_NM(request.getParameter("CHGR_NM"));
-		user.setBUS_NUM(request.getParameter("BUS_NUM"));
+		user.setCORP_NM(params.get("CORP_NM"));
+		user.setCEO_NM(params.get("CEO_NM"));
+		user.setCHGR_NM(params.get("CHGR_NM"));
+		user.setBUS_NUM(params.get("BUS_NUM"));
 		
 		return user;
 	}

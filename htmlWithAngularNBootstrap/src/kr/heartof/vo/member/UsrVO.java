@@ -16,9 +16,18 @@ public class UsrVO {
 	private Date REG_DTIME;
 	private String MEMB_CD;
 	private String WITHDRAWAL_CD;
+	private String MAIL_CD;
 	
 	private UsrFileVO usrFile;
 	
+	public String getMAIL_CD() {
+		return MAIL_CD;
+	}
+
+	public void setMAIL_CD(String mAIL_CD) {
+		MAIL_CD = mAIL_CD;
+	}
+
 	public UsrFileVO getUsrFile() {
 		return usrFile;
 	}

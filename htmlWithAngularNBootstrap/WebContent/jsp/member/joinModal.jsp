@@ -355,7 +355,7 @@
 	    		var zipno = form.ZIP_NUM;
 	    		var address = form.ADDRESS;
 	    		
-	    		zipno.value = data.postcode1 +'-'+data.postcode2;
+	    		zipno.value = data.postcode1 + data.postcode2;
 	    		address.value = data.address;
 	    		
 	        }

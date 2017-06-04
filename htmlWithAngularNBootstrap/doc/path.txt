@@ -12,4 +12,6 @@
 insert into path values (7, 'hitCountQna.do', '/'); commit;
 insert into path values (8, 'login.do', '/'); commit;
 insert into path values (9, 'joinMember.do', '/'); commit;
-insert into path values (10, 'duplicate.do', '/'); commit;
+insert into path values (10, 'duplicate.do', '/ajax/'); commit;
+insert into path values (11, 'aucType.do', '/ajax/'); commit;
+insert into path values (12, 'procate.do', '/ajax/'); commit;

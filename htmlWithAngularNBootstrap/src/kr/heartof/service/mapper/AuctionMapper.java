@@ -26,4 +26,6 @@ public interface AuctionMapper{
 	public int deteteAuction(int AUC_REG_NUM);
 	
 	public int deteteAucFile(int AUC_REG_NUM);
+	
+	
 }

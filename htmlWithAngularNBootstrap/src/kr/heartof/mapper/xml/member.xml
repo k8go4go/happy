@@ -45,16 +45,19 @@
 	</select>
 
 	<insert id="newMember" parameterType="UsrVO">
-		<selectKey keyProperty="MEMB_NUM" resultType="int" order="AFTER"></selectKey>
+		<selectKey keyProperty="MEMB_NUM" resultType="int" order="BEFORE">
+			SELECT USR_SEQ.nextval FROM DUAL
+		</selectKey>
+		
 		INSERT INTO USR
 		( 
 			MEMB_NUM, MEMB_ID, SEC_NUM, EMAIL, TEL_NUM,
 			MOBIL_NUM, ZIP_NUM, ADDRESS, DETA_ADDRESS, REG_DTIME,
-			MEMB_CD, WITHDRAWAL_CD, CRE_DEG_CD, MAIL_CD) 
+			MEMB_CD, WITHDRAWAL_CD, CRE_DEG_CD, MAIL_CD
 		)
 		VALUES 
 		(
-			USR_SEQ.nextVal, #{MEMB_ID}, #{SEC_NUM}, #{EMAIL}, #{TEL_NUM},
+			#{MEMB_NUM}, #{MEMB_ID}, #{SEC_NUM}, #{EMAIL}, #{TEL_NUM},
 			#{MOBIL_NUM}, #{ZIP_NUM}, #{ADDRESS}, #{DETA_ADDRESS}, SYSDATE,
 			#{MEMB_CD}, #{WITHDRAWAL_CD}, #{CRE_DEG_CD}, #{MAIL_CD}
 		)

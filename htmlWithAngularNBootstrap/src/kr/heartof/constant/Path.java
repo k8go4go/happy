@@ -10,7 +10,9 @@ public enum Path {
 	FAQ_JSP("7"),
 	LOGIN_JSP("8"),
 	JOIN_JSP("9"),
-	DUPLICATE_JSP("10");
+	DUPLICATE_AJAX("10"),
+	AUC_TYPE_AJAX("11"),
+	PRO_DCATE_AJX("12");
 
 	private String path;
 
