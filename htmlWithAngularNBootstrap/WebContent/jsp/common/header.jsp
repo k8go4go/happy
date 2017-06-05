@@ -17,10 +17,14 @@
 <meta name="author" content="이상욱">
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/bootstrap-theme.css">
-
+<link rel="stylesheet" type="text/css" media="screen"
+     href="${contextPath}/resources/css/bootstrap-datetimepicker.min.css" charset="UTF-8">
+<link href="${contextPath}/resources/css/sweetalert.css" rel="stylesheet">
+     
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" src="${contextPath}/resources/js/sweetalert.min.js"></script>
-<link href="${contextPath}/resources/css/sweetalert.css" rel="stylesheet">
+<script type="text/javascript" src="${contextPath}/resources/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="${contextPath}/resources/js/bootstrap-datetimepicker.ko.js"></script>
 
 <title>Bit Used Auction</title>
 </head>

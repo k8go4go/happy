@@ -48,7 +48,7 @@
   </div>
 </div>
 <script>
-	var login = function () {
+	var login = function (index) {
 		var frm = document.loginForm;
 		frm.action = '${contextPath}${pathList['8'].PATH}${pathList['8'].PATH_NM}';
 		frm.submit();

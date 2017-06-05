@@ -66,7 +66,7 @@
 							<tr>
 								<td class="text-right col-sm-2"><h6>경매유형</h6></td>
 								<td class="text-center col-sm-6">
-								<select id="AUC_TYPE_NUM">
+								<select id="AUC_TYPE_NUM" name="AUC_TYPE_NUM">
 								</select>
 								</td>
 							</tr>
@@ -90,16 +90,23 @@
 							<tr>
 								<td class="text-right col-sm-2"><h6>시작시간</h6></td>
 								<td class="text-center col-sm-6">
-								<input type="text" class="input-sm col-sm-6" id="START_DTIME" name="START_DTIME"
-									required/></td>
+			                      	<div class="input-group date form_datetime1 col-md-10" data-date="2017-06-05T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+					                    <input class="input-sm col-sm-6" size="16" type="text" id="START_DTIME" name="START_DTIME" value="" readonly>
+					                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+										<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+					                </div>
+								</td>	
 							</tr>
 							<tr>
 								<td class="text-right"><h6>종료시간</h6></td>
-								<td class="text-center"><input type="text"
-									class="input-sm col-sm-6" id="END_DTIME" name="END_DTIME"
-									required/></td>
+								<td class="text-center">
+								<div class="input-group date form_datetime2 col-md-10" data-date="2017-06-05T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+					                    <input class="input-sm col-sm-6" size="16" type="text" id="END_DTIME" name="END_DTIME" value="" readonly>
+					                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+										<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+					                </div>
+								</td>
 							</tr>
-							
 							<tr>
 								<td class="text-right col-sm-2"><h6>시작가격</h6></td>
 								<td class="text-center col-sm-6"><input type="text"
@@ -128,12 +135,36 @@
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
+	$('.form_datetime1').datetimepicker({
+		format: 'yyyy-mm-dd hh:ii',
+	    language:  'ko',
+	    weekStart: 1,
+	    todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+	    showMeridian: 1
+	});
+	$('.form_datetime2').datetimepicker({
+		format: 'yyyy-mm-dd hh:ii',			
+	    language:  'ko',
+	    weekStart: 1,
+	    todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+	    showMeridian: 1
+	});	
+	
 	function regAuction() {
 		var form = $('#regAuctionForm');
 		form.method = 'post';
 		form.action = '${contextPath}${pathList['13'].PATH}${pathList['13'].PATH_NM}';
 		form.submit();
 	}
+	
 	function getCategoryThird(categoryNum) {
 		$.ajax(
 			 {

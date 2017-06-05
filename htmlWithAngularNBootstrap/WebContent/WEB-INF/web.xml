@@ -15,7 +15,7 @@
 	<context-param>
 		<description>Product File Upload Path</description>
 		<param-name>product_file_upload</param-name>
-		<param-value>/download/product</param-value>
+		<param-value>C:/project/private/git/happy/htmlWithAngularNBootstrap/WebContent/upload/product</param-value>
 	</context-param>
 	<context-param>
 		<description>Board File Upload Path</description>

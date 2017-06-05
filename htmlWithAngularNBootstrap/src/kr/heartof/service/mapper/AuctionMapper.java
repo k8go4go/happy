@@ -22,7 +22,7 @@ public interface AuctionMapper{
 	
 	public int regAuction(RegAucVO vo);
 	
-	public int regAuctionFile(RegAucVO vo);
+	public int regAuctionFile(RegAucFileVO vo);
 	
 	public int updateAuction(RegAucVO vo);
 	

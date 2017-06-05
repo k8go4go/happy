@@ -29,13 +29,13 @@ import kr.heartof.vo.member.UsrVO;
 @WebServlet("/joinMember.do")
 public class JoinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private static MemberMapper mapper = BringSqlSession.getMapper(MemberMapper.class);   
+	private MemberMapper mapper = null; 
     public JoinServlet() {
-        super();
+    	mapper = BringSqlSession.getMapper(MemberMapper.class);
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String profileRoot = getServletContext().getInitParameter("profile_upload");
+		String profileRoot = getServletContext().getInitParameter("product_file_upload");
 		FileUpload uploadFile = null;
 		Map<String, String> params = null;
 		Map<String, FileInfo> fileParams = null;
@@ -55,7 +55,6 @@ public class JoinServlet extends HttpServlet {
 		}
 		
 		int result = 0;
-		String msg = null;
 		try {
 			if(user.getMEMB_CD().equals(Code.MEMBER_PRI_CD.getKey())) {
 				result = mapper.newMember(user);
@@ -77,20 +76,14 @@ public class JoinServlet extends HttpServlet {
 			BringSqlSession.getInstance().commit();
 		} catch(Exception e) {
 			BringSqlSession.getInstance().rollback();
-			result = 0;
-			msg = e.getMessage();
+			result = 0;			
 		}
 		
+		String msg = result >= 4 ? "회원가입이 완료되었습니다." : "회원가입이 실패하였습니다.";
 		
 		request.setAttribute("MEMB_CD", params.get("MEMB_CD"));
 		request.setAttribute("msg", msg);
 		request.setAttribute("result", result);
-		
-		if(result > 0) {
-			msg = "회원가입이 완료되었습니다.";
-		} else {
-			msg = "회원가입이 실패하였습니다.";
-		}
 		
 		RequestDispatcher dispacher = request.getServletContext().getRequestDispatcher("/main.do?result="+result + "&msg="+msg);
 		dispacher.forward(request, response);
