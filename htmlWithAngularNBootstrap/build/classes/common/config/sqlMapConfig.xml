@@ -7,7 +7,7 @@
 	<properties resource="common/config/db.properties"/>
 	<!-- SQL의 결과를 담을 VO 객체들의 별칭을 설정하여 사용의 편의를 도모  -->
 	<typeAliases>
-		<typeAlias type="kr.heartof.vo.auction.AucTypeVO" alias="AucTypeVO"/>
+		<typeAlias type="kr.heartof.vo.CodeVO" alias="CodeVO"/>
 		<typeAlias type="kr.heartof.vo.auction.BiddingVO" alias="BiddingVO"/>
 		<typeAlias type="kr.heartof.vo.auction.RegAucFileVO" alias="RegAucFileVO"/>
 		<typeAlias type="kr.heartof.vo.auction.RegAucVO" alias="RegAucVO"/>
@@ -54,6 +54,8 @@
 		<mapper resource="kr/heartof/mapper/xml/member.xml"/>
 		<mapper resource="kr/heartof/mapper/xml/foruser.xml"/>
 		<mapper resource="kr/heartof/mapper/xml/product.xml"/>
+		<mapper resource="kr/heartof/mapper/xml/auction.xml"/>
+		
 		<mapper resource="kr/heartof/admin/mapper/xml/admin.xml"/>
 		<mapper resource="kr/heartof/admin/mapper/xml/path.xml"/>
 	</mappers>

@@ -18,17 +18,5 @@
 </div>
 
 <script>
-$( document ).ready(function() {
-    var result = '${requestScope.result}';
-    var msg = '${requestScope.msg}';
-    console.log(result);
-    console.log(msg);
-    if(result.length > 0) {
-    	if(result > 0)
-    		swal("처리결과", msg, "success");
-    	else
-    		swal("처리결과", msg, "error");
-    }
-});
 </script>
 <c:import url="/jsp/common/footer.jsp"></c:import>

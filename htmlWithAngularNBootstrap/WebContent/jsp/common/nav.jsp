@@ -115,7 +115,8 @@ $(document).ready(function(){
 							<c:choose>
 							<c:when test="${not empty sessionScope.user}">
 								<button type="button" class="btn btn-info" >로그아웃</button>
-								<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myAuctionFormModal">My Auction</button>
+ 								<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#regAuctionFormModal" onclick="getCategory();">경매등록</button>
+								<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myAuctionFormModal">My Auction</button>
 							</c:when>
 							<c:otherwise>
 								<button type="button" class="btn btn-info" data-toggle="modal" data-target="#loginFormModal" >로그인</button>
@@ -124,6 +125,7 @@ $(document).ready(function(){
 							</c:choose>
 						</form>
 
+<c:import url="/jsp/auction/regAuctionModal.jsp"></c:import>
 <c:import url="/jsp/member/myActionModal.jsp"></c:import>
 <c:import url="/jsp/member/loginModal.jsp"></c:import>
 <c:import url="/jsp/member/joinModal.jsp"></c:import>					

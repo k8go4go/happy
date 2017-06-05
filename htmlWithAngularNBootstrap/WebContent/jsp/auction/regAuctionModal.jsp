@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <div class="modal fade" id="regAuctionFormModal" tabindex="-1" role="dialog"
 	aria-labelledby="joinFormModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -18,13 +19,19 @@
 					<table class="table">
 					<tbody>
 						<tr>
-							<td class="text-right col-sm-2"><h6>회원구분</h6></td>
+							<td class="text-right col-sm-2"><h6>메인사진</h6></td>
 							<td class="text-left col-sm-10">
-								<h6 style="display:inline;">메인사진업로드</h6>
-								<input style="display:inline;" class="input-sm" type="file" required/>
-								
-								<h6 style="display:inline;">썸네일사진업로드</h6>
-								<input style="display:inline;" class="input-sm" type="file" required/>
+								<input style="display:inline;" class="input-sm" type="file"
+								id="M_UPLOAD" name="M_UPLOAD" 
+								required/>
+							</td>
+						</tr>
+						<tr>
+							<td class="text-right col-sm-2"><h6>썸네일사진</h6></td>
+							<td class="text-left col-sm-10">
+								<input style="display:inline;" class="input-sm" type="file"
+								id="T_UPLOAD" name="T_UPLOAD"  
+								required/>
 							</td>
 						</tr>
 						<tr>
@@ -35,27 +42,55 @@
 							</td>
 						</tr>
 						<tr></tr><tr></tr>
+						<tr>
+								<td class="text-right col-sm-2"><h6>메인분류 선택</h6></td>
+								<td class="text-center col-sm-6">
+								<select id="PROD_CATE_NUM_ROOT">
+								</select>								
+								</td>
+							</tr>
+							<tr>
+								<td class="text-right col-sm-2"><h6>중분류 선택</h6></td>
+								<td class="text-center col-sm-6">
+								<select id="PROD_CATE_NUM_SECOND">
+								</select>
+								</td>
+							</tr>
+							<tr>
+								<td class="text-right col-sm-2"><h6>선 택</h6></td>
+								<td class="text-center col-sm-6">
+								<select id="PROD_CATE_NUM">
+								</select>
+								</td>
+							</tr>
+							<tr>
+								<td class="text-right col-sm-2"><h6>경매유형</h6></td>
+								<td class="text-center col-sm-6">
+								<select id="AUC_TYPE_NUM">
+								</select>
+								</td>
+							</tr>
 					</tbody>
 					</table>
 					
 					<table class="table" id='productTable'>
 						<tbody>							
 							<tr>
-								<td class="text-right"><h6>상품명</h6></td>
-								<td class="text-center"><input type="text"
+								<td class="text-right col-sm-2"><h6>상품명</h6></td>
+								<td class="text-center col-sm-8"><input type="text"
 									class="input-sm col-sm-6" name="AUC_PROD_NM" id="AUC_PROD_NM" 
 									required />
 							</tr>
 							<tr>
-								<td class="text-right"><h6>상품설명</h6></td>
-								<td class="text-center"><textarea 
+								<td class="text-right col-sm-2"><h6>상품설명</h6></td>
+								<td class="text-center col-sm-6"><textarea 
 									class="input-sm col-sm-6" id="SHORT_CONT" name="SHORT_CONT" required ></textarea>
 								</td>
 							</tr>
 							<tr>
-								<td class="text-right"><h6>시작시간</h6></td>
-								<td class="text-center">
-								<input type="password" class="input-sm col-sm-6" id="START_DTIME" name="START_DTIME"
+								<td class="text-right col-sm-2"><h6>시작시간</h6></td>
+								<td class="text-center col-sm-6">
+								<input type="text" class="input-sm col-sm-6" id="START_DTIME" name="START_DTIME"
 									required/></td>
 							</tr>
 							<tr>
@@ -66,27 +101,15 @@
 							</tr>
 							
 							<tr>
-								<td class="text-right"><h6>시작가</h6></td>
-								<td class="text-center"><input type="text"
-									class="input-sm col-sm-6" id="START_PRICE" name="START_PRICE"  required value="011-1234-1234">
+								<td class="text-right col-sm-2"><h6>시작가격</h6></td>
+								<td class="text-center col-sm-6"><input type="text"
+									class="input-sm col-sm-6" id="START_PRICE" name="START_PRICE"  required>
 								</td>
 							</tr>
 							<tr>
-								<td class="text-right"><h6>수량</h6></td>
-								<td class="text-center"><input type="text"
+								<td class="text-right col-sm-2"><h6>수량</h6></td>
+								<td class="text-center col-sm-6"><input type="text"
 									class="input-sm col-sm-6" id="QTY" name="QTY" required />
-								</td>
-							</tr>
-							<tr>
-								<td class="text-right"><h6>상품카테고리 선택</h6></td>
-								<td class="text-center"><input type="email" name="PROD_CATE_NUM" 
-									class="input-sm col-sm-8" id="PROD_CATE_NUM" required>
-								</td>
-							</tr>
-							<tr>
-								<td class="text-right"><h6>경매유형</h6></td>
-								<td class="text-center"><input type="email" name="AUC_TYPE_NUM" 
-									class="input-sm col-sm-8" id="AUC_TYPE_NUM" required>
 								</td>
 							</tr>
 						</tbody>
@@ -105,40 +128,99 @@
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
-	$( document ).ready(function() {
+	function regAuction() {
+		var form = $('#regAuctionForm');
+		form.method = 'post';
+		form.action = '${contextPath}${pathList['13'].PATH}${pathList['13'].PATH_NM}';
+		form.submit();
+	}
+	function getCategoryThird(categoryNum) {
+		$.ajax(
+			 {
+		 		type: 'get',
+		 		data: 'PROD_CATE_NUM='+categoryNum.value,
+				url: '${contextPath}${pathList['12'].PATH}${pathList['12'].PATH_NM}',
+		 		success: function(result) {
+		 			var cate = $("#PROD_CATE_NUM");
+		 			cate.find('option').remove();
+		 			$.each(result.lowerCateVO, function(index) {
+		 				$("#PROD_CATE_NUM").append($("<option>",{
+	                  		value: result.lowerCateVO[index].PROD_CATE_NUM,
+	                  		text: result.lowerCateVO[index].PROD_CATE_NM
+	            		}));
+		 			});
+	    		}
+			}
+		);
+	}
+	
+	function getCategorySecond(categoryNum) {
+		$.ajax(
+			 {
+		 		type: 'get',
+				url: '${contextPath}${pathList['12'].PATH}${pathList['12'].PATH_NM}',
+				data: 'PROD_CATE_NUM='+categoryNum.value,
+		 		success: function(result) {
+	 				var cate = $("#PROD_CATE_NUM_SECOND");
+	 				cate.find('option').remove();
+		 			$.each(result.lowerCateVO, function(index) {
+		 				$("#PROD_CATE_NUM_SECOND").append($("<option>",{
+	                  		value: result.lowerCateVO[index].PROD_CATE_NUM,
+	                  		text: result.lowerCateVO[index].PROD_CATE_NM
+	            		}));
+		 			});
+		 			
+		 			$("#PROD_CATE_NUM_SECOND").on("change", function(event) { 
+		 				getCategoryThird(this);
+		 			});
+	 			}
+			}
+		);
+	}
+	
+	function getCategory() {
 	   // 경매 상품 카테고리 Select 표시 ajax로 가져온다.
-   		$.ajax(
-			 {
-		 		type: 'get',
-				url: '${contextPath}${pathList['10'].PATH}${pathList['10'].PATH_NM}',
-				data: 'id=' + document.getElementById('memberJoinForm').MEMB_ID.value ,
-		 		success: function(result) {
-		 			if(result == '0')
-		 				swal("아이디중복확인", "사용하실수 있는 ID 입니다.", "success");
-		 			else
-		 				swal("아이디중복확인", "사용하실수 없는ID 입니다.", "error");
-	    		},
-	    		error: function(result) {
-	    			swal("가입오류", "서버 오류입니다.", "error");
-	    		}
-			}
-		);
-   		$.ajax(
-			 {
-		 		type: 'get',
-				url: '${contextPath}${pathList['10'].PATH}${pathList['10'].PATH_NM}',
-				data: 'id=' + document.getElementById('memberJoinForm').MEMB_ID.value ,
-		 		success: function(result) {
-		 			if(result == '0')
-		 				swal("아이디중복확인", "사용하실수 있는 ID 입니다.", "success");
-		 			else
-		 				swal("아이디중복확인", "사용하실수 없는ID 입니다.", "error");
-	    		},
-	    		error: function(result) {
-	    			swal("가입오류", "서버 오류입니다.", "error");
-	    		}
-			}
-		);
-	   // 경매 유형 Select 표시 ajax로 가져온다.
-	});
+	   var optionCount = $("#PROD_CATE_NUM_ROOT option").size();
+	   if(optionCount < 1) {
+	   		$.ajax(
+				 {
+			 		type: 'get',
+					url: '${contextPath}${pathList['12'].PATH}${pathList['12'].PATH_NM}',
+			 		success: function(result) {
+		 				var cate = $("#PROD_CATE_NUM_ROOT");
+			 			$.each(result.lowerCateVO, function(index) {
+			 				$("#PROD_CATE_NUM_ROOT").append($("<option>",{
+		                  		value: result.lowerCateVO[index].PROD_CATE_NUM,
+		                  		text: result.lowerCateVO[index].PROD_CATE_NM
+		            		}));
+			 			});
+			 			
+			 			$("#PROD_CATE_NUM_ROOT").on("change", function(event) { 
+			 				getCategorySecond(this);
+			 			});
+		 			}
+				}
+			);
+	    }
+   	    // 경매 유형 Select 표시 ajax로 가져온다.
+   	    var optionCount = $("#AUC_TYPE_NUM option").size();
+		   if(optionCount < 1) {
+	   		$.ajax(
+				 {
+			 		type: 'get',
+			 		url: '${contextPath}${pathList['11'].PATH}${pathList['11'].PATH_NM}',
+			 		success: function(result) {
+			 			var cate = $("#AUC_TYPE_NUM");
+			 			var optionCount = $("#AUC_TYPE_NUM option").size();
+			 			$.each(result.LIST, function(index) {
+			 				$("#AUC_TYPE_NUM").append($("<option>",{
+		                  		value: result.LIST[index].CD,
+		                  		text: result.LIST[index].CATE_NM
+		            		}));
+			 			});
+		    		}
+				}
+			);
+	   }
+	}
 </script>

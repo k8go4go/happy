@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 	<div class="row">
 		<div class="col-md-1"></div>
 		<div class="col-md-8">
@@ -14,5 +16,19 @@
 </div>
 	
 <script type="text/javascript" src="${contextPath}/resources/js/bootstrap.js"></script>
+<script>
+$( document ).ready(function() {
+    var result = '${requestScope.result}';
+    var msg = '${requestScope.msg}';
+    console.log(result);
+    console.log(msg);
+    if(result.length > 0) {
+    	if(result > 0)
+    		swal("처리결과", msg, "success");
+    	else
+    		swal("처리결과", msg, "error");
+    }
+});
+</script>
 </body>
 </html>

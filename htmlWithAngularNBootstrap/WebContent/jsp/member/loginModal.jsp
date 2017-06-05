@@ -27,13 +27,13 @@
 				<tr>
 					<td class="text-right"><h6>아이디</h6></td>
 		        	<td class="text-center">
-						<input type="text" class="input-sm col-sm-10" id="MEMB_ID" name="MEMB_ID"  onchange="" required="required">
+						<input type="text" class="input-sm col-sm-10" id="MEMB_ID" name="MEMB_ID"  value="test1234" required>
 		        	</td>
 				</tr>
 				<tr>
 					<td class="text-right"><h6>비밀번호</h6></td>
 		        	<td class="text-center">
-						<input type="password" class="input-sm col-sm-10" id="SEC_NUM" name="SEC_NUM" required="required">
+						<input type="password" class="input-sm col-sm-10" id="SEC_NUM" name="SEC_NUM" value="testtest!1" required>
 		        	</td>
 				</tr>
 			  </tbody>

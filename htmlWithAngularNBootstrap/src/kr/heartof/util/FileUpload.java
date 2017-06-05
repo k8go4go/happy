@@ -19,15 +19,10 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 public class FileUpload {
 
 	private HttpServletRequest request = null;
-
 	private File uploadDir = null;
-
 	private List<FileItem> items = null;
-
 	private Map<String, String> paramMap = null;
-
 	private long requestLimit = 100 * 1024 * 1024; // 한번에 업로드 용량은 기본 100메가
-
 	private long fileLimit = 5 * 1024 * 1024; // 업로드 가능한 파일의 용량은 기본 5메가
 
 	public FileUpload(HttpServletRequest request, String uploadDir) throws Exception {
@@ -73,7 +68,7 @@ public class FileUpload {
 		while (iter.hasNext()) {
 			FileItem item = iter.next();
 			if (item.isFormField()) {
-				paramMap.put(item.getFieldName(), item.getString());
+				paramMap.put(item.getFieldName(), item.getString("UTF-8"));
 			}
 		}
 	}
@@ -108,9 +103,8 @@ public class FileUpload {
 	 * 
 	 */
 
-	public Map<String, String> uploadFiles() throws Exception {
-
-		Map<String, String> map = new HashMap<String, String>();
+	public Map<String, FileInfo> uploadFiles() throws Exception {
+		Map<String, FileInfo> map = new HashMap<String, FileInfo>();
 		boolean writeToFile = true; // 파일에 쓸것인지 구분 플래그
 		Iterator<FileItem> iter = items.iterator();
 		chkFileLimit(); // 파일들의 사이즈 체크
@@ -126,11 +120,14 @@ public class FileUpload {
 				if (fileName != null && !"".equals(fileName)) {
 					// 파일업로드시...
 					if (writeToFile) {
-						String updFilePath = uploadDir + saveLocation() + UUID.randomUUID().clockSequence()+"."+extendFileName;
-
+						String updFilePath = uploadDir + saveLocation(uploadDir) + new UUID(1,2).toString() +"."+extendFileName;
 						File newFile = new File(updFilePath);
-						map.put(item.getFieldName(), newFile.getName()); 
 						
+						FileInfo fileInfo = new FileInfo();
+						fileInfo.setFILE_PATH(uploadDir + saveLocation(uploadDir));
+						fileInfo.setREAL_NM(fileName);
+						fileInfo.setFILE_SIZE(item.get().length);
+						map.put(item.getFieldName(), fileInfo); 
 						item.write(newFile); // 파일을 쓴다.
 					}
 				}
@@ -145,16 +142,27 @@ public class FileUpload {
 		return fileName.substring(lastIndex+1);
 	}
 	
-	private String saveLocation() {
+	private String saveLocation(File uploadDir) {
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
 		String yyyy = sdf.format(date);
-		sdf = new SimpleDateFormat("mm");
+		
+		File dir = new File(uploadDir.getAbsolutePath() + java.io.File.separator + yyyy);
+		if(!dir.exists()) dir.mkdirs();
+		
+		sdf = new SimpleDateFormat("MM");
 		String mm = sdf.format(date);
+		
+		dir = new File(uploadDir.getAbsolutePath() + java.io.File.separator + yyyy + java.io.File.separator + mm);
+		if(!dir.exists()) dir.mkdirs();
+		
 		sdf = new SimpleDateFormat("dd");
 		String dd = sdf.format(date);
 		
-		return java.io.File.separator + yyyy + java.io.File.separator + mm + java.io.File.separator + dd;
+		dir = new File(uploadDir.getAbsolutePath() + java.io.File.separator + yyyy + java.io.File.separator + mm + java.io.File.separator +  dd);
+		if(!dir.exists()) dir.mkdirs();
+		
+		return java.io.File.separator + yyyy + java.io.File.separator + mm + java.io.File.separator + dd  + java.io.File.separator;
 	}
 
 	/**

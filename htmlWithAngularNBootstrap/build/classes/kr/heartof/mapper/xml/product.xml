@@ -23,6 +23,26 @@
 		START WITH c.PROD_CATE_NUM >= '1000'
 		CONNECT BY PRIOR c.PROD_CATE_NUM = c.HIGH_PROD_CATE_NUM
 		ORDER BY C.HIGH_PROD_CATE_NUM DESC
+	 </select>
+	 
+	 <select id="partofProdCates" resultType="ProdCateVO" >
+		SELECT 
+		    c.PROD_CATE_NUM, 
+		    c.HIGH_PROD_CATE_NUM, 
+		    c.PROD_CATE_NM,
+		    c.SHORT_CONT		   
+		FROM 
+		    PROD_CATE c
+		WHERE 
+			c.USE_CD = '2201'
+		<choose> 
+		<when test="value != null">   
+			AND c.HIGH_PROD_CATE_NUM = #{value}
+		</when>
+		<otherwise>
+		    AND c.HIGH_PROD_CATE_NUM is null
+		</otherwise>
+		</choose> 
 	</select>
 	 
 	 <insert id="insertProdCate" parameterType="ProdCateVO">

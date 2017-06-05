@@ -26,7 +26,7 @@
 								<input type="radio" id="MEMB_CD" class="input-sm" name="MEMB_CD" value="2002" onclick="memb_cd();" />
 								
 								<h6 style="display:inline;">사진업로드</h6>
-								<input style="display:inline;" class="input-sm" type="file" required/>
+								<input style="display:inline;" class="input-sm" type="file" id="UPLOADFILE" name="UPLOADFILE" required/>
 							</td>
 						</tr>
 						<tr>

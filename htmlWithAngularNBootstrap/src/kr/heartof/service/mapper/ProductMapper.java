@@ -16,6 +16,9 @@ public interface ProductMapper{
 	 * @return 조회된 상품 카테고리
 	 */
 	public List<ProdCateVO> getProdCates(String HIGH_PROD_CATE_NUM);
+	
+	public List<ProdCateVO> partofProdCates(String HIGH_PROD_CATE_NUM);
+	
 	/**
 	 * 새로운 카테고리를 삽입한다.
 	 * @param vo 새로운 카테고리 삽입

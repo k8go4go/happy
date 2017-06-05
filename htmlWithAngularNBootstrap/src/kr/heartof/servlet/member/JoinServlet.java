@@ -1,7 +1,10 @@
 package kr.heartof.servlet.member;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,8 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import kr.heartof.constant.Code;
 import kr.heartof.service.mapper.MemberMapper;
 import kr.heartof.util.BringSqlSession;
+import kr.heartof.util.FileInfo;
 import kr.heartof.util.FileUpload;
+import kr.heartof.util.MemberShipCardGenerator;
 import kr.heartof.vo.member.ComUsrVO;
+import kr.heartof.vo.member.ElecWalletVO;
+import kr.heartof.vo.member.MembershipVO;
 import kr.heartof.vo.member.PriUsrVO;
 import kr.heartof.vo.member.UsrFileVO;
 import kr.heartof.vo.member.UsrVO;
@@ -28,17 +35,17 @@ public class JoinServlet extends HttpServlet {
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.addHeader("Content-Type", "text/html;charset=UTF-8");
 		String profileRoot = getServletContext().getInitParameter("profile_upload");
 		FileUpload uploadFile = null;
+		Map<String, String> params = null;
+		Map<String, FileInfo> fileParams = null;
 		try {
 			uploadFile = new FileUpload(request, profileRoot);
-			uploadFile.uploadFiles();
+			fileParams = uploadFile.uploadFiles();
+			params = uploadFile.getParamMap();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		Map<String, String> params = uploadFile.getParamMap();
 		
 		UsrVO user = null;
 		if(params.get("MEMB_CD").equals(Code.MEMBER_PRI_CD.getKey())) {
@@ -47,22 +54,33 @@ public class JoinServlet extends HttpServlet {
 			user = makeCompanyUserVO(params);
 		}
 		
-		String msg = null;
 		int result = 0;
-		if(user.getMEMB_CD().equals(Code.MEMBER_PRI_CD.getKey())) {
-			result = mapper.newMember(user);
-			result = mapper.newPriMember((PriUsrVO)user);
-		} else {
-			result = mapper.newMember(user);
-			result = mapper.newComMember((ComUsrVO)user);
+		String msg = null;
+		try {
+			if(user.getMEMB_CD().equals(Code.MEMBER_PRI_CD.getKey())) {
+				result = mapper.newMember(user);
+				result = mapper.newPriMember((PriUsrVO)user);
+			} else {
+				result = mapper.newMember(user);
+				result = mapper.newComMember((ComUsrVO)user);
+			}
+			
+			mapper.newElecWallet(makeElecWalletVO(user));
+			mapper.newMemberShip(makeMembershipVO(user));
+			
+			if(fileParams != null) {
+				List<UsrFileVO> insertFileList = makeUsrFileVO(user, fileParams);
+				for(UsrFileVO fVo : insertFileList) 
+					mapper.newProfile(fVo);
+			}
+			
+			BringSqlSession.getInstance().commit();
+		} catch(Exception e) {
+			BringSqlSession.getInstance().rollback();
+			result = 0;
+			msg = e.getMessage();
 		}
 		
-//		mapper.newElecWallet(vo);
-//		mapper.newMemberShip(vo);
-//		UsrFileVO fileVO = new UsrFileVO();		
-//		mapper.newProfile(fileVO);
-		
-		// BringSqlSession.getInstance().commit();
 		
 		request.setAttribute("MEMB_CD", params.get("MEMB_CD"));
 		request.setAttribute("msg", msg);
@@ -77,7 +95,43 @@ public class JoinServlet extends HttpServlet {
 		RequestDispatcher dispacher = request.getServletContext().getRequestDispatcher("/main.do?result="+result + "&msg="+msg);
 		dispacher.forward(request, response);
 	}
-
+	
+	private List<UsrFileVO> makeUsrFileVO(UsrVO vo, Map<String, FileInfo> fileParams) {
+		List<UsrFileVO> fileList = new ArrayList<UsrFileVO>();
+		
+		Set<String> keys = fileParams.keySet();
+		
+		for(String key : keys) {
+			FileInfo temp = fileParams.get(key);
+			UsrFileVO usrFile = new UsrFileVO();
+			usrFile.setMEMB_NUM(vo.getMEMB_NUM());
+			usrFile.setREAL_NM(temp.getREAL_NM());
+			usrFile.setFILE_NM(temp.getFILE_NM());
+			usrFile.setFILE_SIZE(temp.getFILE_SIZE());
+			usrFile.setFILE_PATH(temp.getFILE_PATH());
+			fileList.add(usrFile);
+		}
+		return fileList;
+	}
+	
+	private ElecWalletVO makeElecWalletVO(UsrVO vo) {
+		ElecWalletVO wallet = new ElecWalletVO();
+		wallet.setPOINT(10000);
+		wallet.setMEMB_NUM(vo.getMEMB_NUM());
+		return wallet;
+	}
+	
+	private MembershipVO makeMembershipVO(UsrVO vo) {
+		MembershipVO membershipvo = new MembershipVO();
+		membershipvo.setISSUE_CNT(1);
+		membershipvo.setDEG(Code.MEMBER_DEG_GENERAL_CD.getKey());
+		membershipvo.setMSHIP_CARD_NUM(MemberShipCardGenerator.generate(16, 1).get(0));
+		membershipvo.setPOINT(10000);
+		membershipvo.setMEMB_NUM(vo.getMEMB_NUM());
+		membershipvo.setNM("비트경매멤버쉽");
+		return membershipvo;
+	}
+	
 	private PriUsrVO makePrivateUser(Map<String, String> params) {
 		PriUsrVO user = new PriUsrVO();
 		user.setADDRESS(params.get("ADDRESS"));

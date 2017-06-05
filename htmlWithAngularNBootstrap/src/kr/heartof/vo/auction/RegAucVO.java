@@ -4,29 +4,37 @@ import java.util.Date;
 import java.util.List;
 
 public class RegAucVO {
-	private int AUC_REG_NUM;
-	private String AUC_PROD_NM;
-	private String SHORT_CONT;
-	private Date REG_DTIME;
-	private Date START_DTIME;
-	private Date END_DTIME;
-	private int START_PRICE;
-	private int QTY;
-	private String APPR_CD;
-	private int MEMB_NUM;
-	private int PROD_NUM;
-	private String AUC_TYPE_NUM;
+	private int AUC_REG_NUM;           // AUC_REG_NUM
+	private String AUC_PROD_NM;        // AUC_PROD_NM
+	private String SHORT_CONT;         // SHORT_CONT
+	private Date REG_DTIME;            // REG_DTIME
+	private Date START_DTIME;          // START_DTIME
+	private Date END_DTIME;            // END_DTIME
+	private int START_PRICE;           // START_PRICE
+	private int QTY;                   // QTY
+	
+	private int MEMB_NUM;              // MEMB_NUM
+	private String APPR_CD;            // APPR_CD
+	private String PROD_CATE_NUM;      // PROD_CATE_NUM
+	private String AUC_TYPE_NUM;       // AUC_TYPE_NUM
 	
 	private List<RegAucFileVO> files;
+	private List<RegRejVO> rejs;
 	
-	private RegRejVO rej;
-	
-	public RegRejVO getRej() {
-		return rej;
+	public String getPROD_CATE_NUM() {
+		return PROD_CATE_NUM;
 	}
 
-	public void setRej(RegRejVO rej) {
-		this.rej = rej;
+	public void setPROD_CATE_NUM(String pROD_CATE_NUM) {
+		PROD_CATE_NUM = pROD_CATE_NUM;
+	}
+	
+	public List<RegRejVO> getRejs() {
+		return rejs;
+	}
+
+	public void setRejs(List<RegRejVO> rejs) {
+		this.rejs = rejs;
 	}
 
 	public List<RegAucFileVO> getFiles() {
@@ -115,14 +123,6 @@ public class RegAucVO {
 
 	public void setMEMB_NUM(int mEMB_NUM) {
 		MEMB_NUM = mEMB_NUM;
-	}
-
-	public int getPROD_NUM() {
-		return PROD_NUM;
-	}
-
-	public void setPROD_NUM(int pROD_NUM) {
-		PROD_NUM = pROD_NUM;
 	}
 
 	public String getAUC_TYPE_NUM() {
