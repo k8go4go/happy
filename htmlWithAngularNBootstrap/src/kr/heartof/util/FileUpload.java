@@ -92,15 +92,10 @@ public class FileUpload {
 	}
 
 	/**
-	 * 
 	 * request상의 모든파일을 업로드한다.<br>
-	 * 
 	 * 파일명의 중복을 피하기 위해 업로드하는 파일은 파일명 뒷부분에 현재일시를 붙여서 저장한다.<br>
-	 * 
 	 * 업로드후 변경된 파일명을 map으로 리턴받아 처리한다.
-	 * 
 	 * @throws Exception
-	 * 
 	 */
 
 	public Map<String, FileInfo> uploadFiles() throws Exception {
@@ -120,12 +115,13 @@ public class FileUpload {
 				if (fileName != null && !"".equals(fileName)) {
 					// 파일업로드시...
 					if (writeToFile) {
-						String updFilePath = uploadDir + saveLocation(uploadDir) + new UUID(1,2).toString() +"."+extendFileName;
+						String updFilePath = uploadDir + saveLocation(uploadDir) + UUID.randomUUID().toString() +"."+extendFileName;
 						File newFile = new File(updFilePath);
 						
 						FileInfo fileInfo = new FileInfo();
 						fileInfo.setFILE_PATH(uploadDir + saveLocation(uploadDir));
 						fileInfo.setREAL_NM(fileName);
+						fileInfo.setFILE_NM(newFile.getName());
 						fileInfo.setFILE_SIZE(item.get().length);
 						map.put(item.getFieldName(), fileInfo); 
 						item.write(newFile); // 파일을 쓴다.

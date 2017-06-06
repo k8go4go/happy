@@ -1,6 +1,7 @@
 package kr.heartof.vo.member;
 
 import java.util.Date;
+import java.util.List;
 
 public class UsrVO {
 	private int MEMB_NUM;
@@ -18,22 +19,22 @@ public class UsrVO {
 	private String WITHDRAWAL_CD;
 	private String MAIL_CD;
 	
-	private UsrFileVO usrFile;
+	private UsrFileVO USR_FILE;
 	
+	public UsrFileVO getUSR_FILE() {
+		return USR_FILE;
+	}
+
+	public void setUSR_FILE(UsrFileVO uSR_FILE) {
+		USR_FILE = uSR_FILE;
+	}
+
 	public String getMAIL_CD() {
 		return MAIL_CD;
 	}
 
 	public void setMAIL_CD(String mAIL_CD) {
 		MAIL_CD = mAIL_CD;
-	}
-
-	public UsrFileVO getUsrFile() {
-		return usrFile;
-	}
-
-	public void setUsrFile(UsrFileVO usrFile) {
-		this.usrFile = usrFile;
 	}
 
 	public String getWITHDRAWAL_CD() {

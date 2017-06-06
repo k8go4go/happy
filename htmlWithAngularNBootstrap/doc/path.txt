@@ -16,3 +16,5 @@ insert into path values (10, 'duplicate.do', '/ajax/'); commit;
 insert into path values (11, 'aucType.do', '/ajax/'); commit;
 insert into path values (12, 'procate.do', '/ajax/'); commit;
 insert into path values (13, 'regAuc.do', '/'); commit;
+insert into path values (14, 'logout.do', '/'); commit;
+insert into path values (15, 'updateUser.do', '/'); commit;

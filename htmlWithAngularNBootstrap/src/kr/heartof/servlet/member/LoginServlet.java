@@ -18,7 +18,6 @@ import kr.heartof.vo.member.UsrVO;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static MemberMapper mapper = BringSqlSession.getMapper(MemberMapper.class);
-
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UsrVO vo = new UsrVO();
 		vo.setMEMB_ID(request.getParameter("MEMB_ID"));
@@ -26,7 +25,7 @@ public class LoginServlet extends HttpServlet {
 		vo.setSEC_NUM(request.getParameter("SEC_NUM"));
 		
 		UsrVO user = mapper.login(vo);
-		
+		user.setUSR_FILE(mapper.memberInfoFile(user.getMEMB_NUM()));
 		if(user.getMEMB_CD().equals(Code.MEMBER_PRI_CD.getKey())) {
 			System.out.println("PriUsrVO : " + ((PriUsrVO)user).toString());
 			request.getSession().setAttribute("user", ((PriUsrVO)user));

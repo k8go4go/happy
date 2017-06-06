@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script>
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
-});
-</script>
 <style>
 .dropdown-submenu {
 	position: relative;
@@ -83,7 +78,7 @@ $(document).ready(function(){
 											<ul class="dropdown-menu">
 												<c:forEach var="menuItem" items="${menu.lowerCateVO}">
 													<li><a
-														href="${contextPath}/${menu.PROD_CATE_NUM}/${menuItem.PROD_CATE_NUM}/menu.do">${menuItem.PROD_CATE_NM}</a></li>
+														href='<c:url value="/${menu.PROD_CATE_NUM}/${menuItem.PROD_CATE_NUM}/menu.do" />'>${menuItem.PROD_CATE_NM}</a></li>
 												</c:forEach>
 											</ul>
 										<li class="divider"></li></li>
@@ -114,7 +109,7 @@ $(document).ready(function(){
 						<form class="navbar-form navbar-right">
 							<c:choose>
 							<c:when test="${not empty sessionScope.user}">
-								<button type="button" class="btn btn-info" >로그아웃</button>
+								<button type="button" class="btn btn-info" onclick="logout();">로그아웃</button>
  								<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#regAuctionFormModal" onclick="getCategory();">경매등록</button>
 								<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myAuctionFormModal">My Auction</button>
 							</c:when>

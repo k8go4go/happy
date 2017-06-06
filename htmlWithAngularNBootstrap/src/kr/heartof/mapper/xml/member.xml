@@ -96,6 +96,17 @@
 		)
 	</insert>
 
+	<update id="updateProfile" parameterType="UsrFileVO">
+		UPDATE USR_FILE
+			SET 
+				FILE_NM = #{FILE_NM},
+				FILE_PATH = #{FILE_PATH},
+				REAL_NM = #{REAL_NM},
+				FILE_SIZE = #{FILE_SIZE}
+		WHERE
+			MEMB_NUM = #{MEMB_NUM}	
+	</update>
+
 	<insert id="newElecWallet" parameterType="ElecWalletVO">
 		INSERT INTO ELEC_WALLET
 		( 
@@ -205,8 +216,8 @@
 			    A.MAIL_CD, B.NM, B.SOC_REG_NUM
 			FROM 
 			    USR A INNER JOIN PRI_USR B 
-			    	ON A.MEMB_NUM = B.MEMB_NUM AND 
-			    	   A.WITHDRAWAL_CD = '1702' 
+			    ON A.MEMB_NUM = B.MEMB_NUM AND 
+			       A.WITHDRAWAL_CD = '1702'
 		</when>
 		<otherwise>
 			SELECT 

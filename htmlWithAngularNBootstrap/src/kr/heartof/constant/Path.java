@@ -12,7 +12,10 @@ public enum Path {
 	JOIN_JSP("9"),
 	DUPLICATE_AJAX("10"),
 	AUC_TYPE_AJAX("11"),
-	PRO_DCATE_AJX("12");
+	PRO_DCATE_AJX("12"),
+	REG_AUC_JSP("13"),
+	LOGOUT_JSP("14"),	
+	UPDATE_USER_JSP("15");
 
 	private String path;
 

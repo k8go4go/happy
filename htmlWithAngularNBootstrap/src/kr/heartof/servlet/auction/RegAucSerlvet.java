@@ -1,5 +1,6 @@
 package kr.heartof.servlet.auction;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,12 +30,13 @@ public class RegAucSerlvet extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AuctionMapper mapper = BringSqlSession.getMapper(AuctionMapper.class);
-		String profileRoot = getServletContext().getInitParameter("profile_upload");
+		ServletContext servletContext = this.getServletConfig().getServletContext();
+		File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
 		FileUpload uploadFile = null;
 		RegAucVO vo = null;
 		List<RegAucFileVO> list = null;
 		try {
-			uploadFile = new FileUpload(request, profileRoot);
+			uploadFile = new FileUpload(request, repository);
 			vo = makeRegAuction(uploadFile.getParamMap());
 			list = makeFileVO(vo, uploadFile.uploadFiles());
 		} catch (Exception e) {

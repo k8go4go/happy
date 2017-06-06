@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,23 +19,22 @@ import kr.heartof.service.mapper.MemberMapper;
 import kr.heartof.util.BringSqlSession;
 import kr.heartof.util.FileInfo;
 import kr.heartof.util.FileUpload;
-import kr.heartof.util.MemberShipCardGenerator;
 import kr.heartof.vo.member.ComUsrVO;
-import kr.heartof.vo.member.ElecWalletVO;
-import kr.heartof.vo.member.MembershipVO;
 import kr.heartof.vo.member.PriUsrVO;
 import kr.heartof.vo.member.UsrFileVO;
 import kr.heartof.vo.member.UsrVO;
 
-@WebServlet("/joinMember.do")
-public class JoinServlet extends HttpServlet {
+@WebServlet("/updateUser.do")
+public class UpdateUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MemberMapper mapper = null; 
-    public JoinServlet() {
+    public UpdateUserServlet() {
     	mapper = BringSqlSession.getMapper(MemberMapper.class);
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		UsrVO loginUser = (UsrVO)request.getSession().getAttribute("user");
+		
 		ServletContext servletContext = this.getServletConfig().getServletContext();
 		File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
 		
@@ -60,21 +58,25 @@ public class JoinServlet extends HttpServlet {
 		
 		int result = 0;
 		try {
+			user.setMEMB_NUM(loginUser.getMEMB_NUM());
+			result += mapper.updateBasicMemberInfo(user);
 			if(user.getMEMB_CD().equals(Code.MEMBER_PRI_CD.getKey())) {
-				result = mapper.newMember(user);
-				result = mapper.newPriMember((PriUsrVO)user);
+				result += mapper.updatePriMemberInfo((PriUsrVO)user);
 			} else {
-				result = mapper.newMember(user);
-				result = mapper.newComMember((ComUsrVO)user);
+				result += mapper.updateComMemberInfo((ComUsrVO)user);
 			}
-			
-			mapper.newElecWallet(makeElecWalletVO(user));
-			mapper.newMemberShip(makeMembershipVO(user));
 			
 			if(fileParams != null) {
 				List<UsrFileVO> insertFileList = makeUsrFileVO(user, fileParams);
-				for(UsrFileVO fVo : insertFileList) 
-					mapper.newProfile(fVo);
+				for(UsrFileVO fVo : insertFileList) { 
+					if(loginUser.getUSR_FILE() != null) {
+						result += mapper.updateProfile(fVo);
+					} else {
+						result += mapper.newProfile(fVo);
+					}
+					
+					user.setUSR_FILE(fVo);
+				}
 			}
 			
 			BringSqlSession.getInstance().commit();
@@ -84,14 +86,11 @@ public class JoinServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		String msg = result >= 4 ? "회원가입이 완료되었습니다." : "회원가입이 실패하였습니다.";
+		String msg = result >= 4 ? "사용자정보가 변경되었습니다." : "사용자정보 변경이 실패하였습니다.";
+		request.getSession().setAttribute("user", user);
 		
-		request.setAttribute("MEMB_CD", params.get("MEMB_CD"));
-		request.setAttribute("msg", msg);
-		request.setAttribute("result", result);
-		
-		RequestDispatcher dispacher = request.getServletContext().getRequestDispatcher("/main.do?result="+result + "&msg="+msg);
-		dispacher.forward(request, response);
+		response.setContentType("text/plain");
+		response.getWriter().write("" + msg);
 	}
 	
 	private List<UsrFileVO> makeUsrFileVO(UsrVO vo, Map<String, FileInfo> fileParams) {
@@ -110,24 +109,6 @@ public class JoinServlet extends HttpServlet {
 			fileList.add(usrFile);
 		}
 		return fileList;
-	}
-	
-	private ElecWalletVO makeElecWalletVO(UsrVO vo) {
-		ElecWalletVO wallet = new ElecWalletVO();
-		wallet.setPOINT(10000);
-		wallet.setMEMB_NUM(vo.getMEMB_NUM());
-		return wallet;
-	}
-	
-	private MembershipVO makeMembershipVO(UsrVO vo) {
-		MembershipVO membershipvo = new MembershipVO();
-		membershipvo.setISSUE_CNT(1);
-		membershipvo.setDEG(Code.MEMBER_DEG_GENERAL_CD.getKey());
-		membershipvo.setMSHIP_CARD_NUM(MemberShipCardGenerator.generate(16, 1).get(0));
-		membershipvo.setPOINT(10000);
-		membershipvo.setMEMB_NUM(vo.getMEMB_NUM());
-		membershipvo.setNM("비트경매멤버쉽");
-		return membershipvo;
 	}
 	
 	private PriUsrVO makePrivateUser(Map<String, String> params) {

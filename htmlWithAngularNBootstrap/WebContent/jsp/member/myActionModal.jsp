@@ -26,7 +26,7 @@
 				  </li>				  
 				</ul>
 				<div class="tab-content">
-				<form id="myinfo" name="myinfo" class="tab-pane active" role="tabpanel">
+				<form id="myinfo" name="myinfo" class="tab-pane active" role="tabpanel" enctype="multipart/form-data">
 					<table class="table" id='memberInfoHeaderTable'>
 					<tbody>
 						<tr>
@@ -35,21 +35,28 @@
 								<c:choose>
 								<c:when test="${user.MEMB_CD eq '2001' }">
 									<h6 style="display:inline;" >개인</h6>
-									<input type="radio" id="MEMB_CD" class="input-sm" name="MEMB_CD" checked="checked"/>
+									<input type="radio" id="MEMB_CD" class="input-sm" name="MEMB_CD" checked="checked" value="${user.MEMB_CD}"/>
 								</c:when>
 								<c:otherwise>
 									<h6 style="display:inline;">기업</h6>
-									<input type="radio" id="MEMB_CD" class="input-sm" name="MEMB_CD" checked="checked" />
+									<input type="radio" id="MEMB_CD" class="input-sm" name="MEMB_CD" checked="checked" value="${user.MEMB_CD}"/>
 								</c:otherwise>
 								</c:choose>
 								<h6 style="display:inline;">사진업로드</h6>
-								<input style="display:inline;" class="input-sm" type="file" required/>
+								<input style="display:inline;" id="UPLOADFILE" name="UPLOADFILE" class="input-sm" type="file" onchange="readURL(this, 'previewProfile');" required/>
 							</td>
 						</tr>
 						<tr>
 							<td class="text-right col-sm-2" rowspan="3"><h6>프로필</h6></td>
 							<td class="text-left col-sm-10" rowspan="3">
-								<img width='150px;' height='200px;' src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MjAwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTVjNjlkMGM1ZDIgdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMnB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNWM2OWQwYzVkMiI+PHJlY3Qgd2lkdGg9IjI0MiIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI4OS44NTAwMDAzODE0Njk3MyIgeT0iMTA1LjciPjI0MngyMDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=">
+								<c:choose>
+								<c:when test="${not empty user.USR_FILE}">
+									<img id="previewProfile" width='150px;' height='200px;' src='<c:url value="/profile/image/${user.USR_FILE.REAL_NM}" />' />
+								</c:when>
+								<c:otherwise>
+									<img id="previewProfile"  width='150px;' height='200px;' src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDI0MiAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MjAwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTVjNjlkMGM1ZDIgdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMnB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNWM2OWQwYzVkMiI+PHJlY3Qgd2lkdGg9IjI0MiIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI4OS44NTAwMDAzODE0Njk3MyIgeT0iMTA1LjciPjI0MngyMDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=' />
+								</c:otherwise>
+								</c:choose>
 							</td>
 						</tr>
 						<tr></tr><tr></tr>
@@ -63,12 +70,12 @@
 							<td class="text-right col-sm-2"><h6>이름</h6></td>
 							<td class="text-right col-sm-4">
 								<input type="text"
-									class="input-sm col-sm-10" name="NM" id="NM" value="<c:out value="${user.NM}"/>" readonly="readonly"/>
+									class="input-sm col-sm-10" name="NM" id="NM" value="<c:out value="${user.NM}"/>" />
 							</td>
 							<td class="text-right col-sm-2"><h6>주민등록번호</h6></td>
 							<td class="text-right col-sm-4">
 								<input type="text"
-									class="input-sm col-sm-10" name="SOC_REG_NUM" id="SOC_REG_NUM" value="<c:out value="${user.SOC_REG_NUM}"/>" readonly="readonly"/>
+									class="input-sm col-sm-10" name="SOC_REG_NUM" id="SOC_REG_NUM" value="<c:out value="${user.SOC_REG_NUM}"/>" />
 							</td>
 						</tr>
 						</tbody>
@@ -80,18 +87,18 @@
 						<tr>
 							<td class="text-right col-sm-2"><h6>회사명</h6></td>
 							<td class="text-right col-sm-4"><input class="input-sm col-sm-10" type="text" name="CORP_NM"
-								id="CORP_NM"  value="<c:out value="${user.CORP_NM}"/>" readonly="readonly"/></td>
+								id="CORP_NM"  value="<c:out value="${user.CORP_NM}"/>" /></td>
 							<td class="text-right col-sm-2"><h6>사업자등록번호</h6></td>
 							<td class="text-right col-sm-4"><input class="input-sm col-sm-10" type="text" name="BUS_NUM"
-								id="BUS_NUM"  value="<c:out value="${user.BUS_NUM}"/>" readonly="readonly"/></td>
+								id="BUS_NUM"  value="<c:out value="${user.BUS_NUM}"/>" /></td>
 						</tr>
 						<tr>
 							<td class="text-right col-sm-2"><h6>대표자명</h6></td>
 							<td class="text-right col-sm-4"><input class="input-sm col-sm-10" type="text" name="CEO_NM"
-								id="CEO_NM"  value="<c:out value="${user.CEO_NM}"/>" readonly="readonly"/></td>
+								id="CEO_NM"  value="<c:out value="${user.CEO_NM}"/>" /></td>
 							<td class="text-right col-sm-2"><h6>담당자명</h6></td>
 							<td class="text-right col-sm-4"><input class="input-sm col-sm-10" type="text" name="CHGR_NM"
-								id="CHGR_NM" value="<c:out value="${user.CHGR_NM}" />" readonly="readonly"/></td>
+								id="CHGR_NM" value="<c:out value="${user.CHGR_NM}" />" /></td>
 						</tr>
 						</tbody>
 					</table>
@@ -103,57 +110,62 @@
 								<td class="text-right"><h6>아이디</h6></td>
 								<td class="text-center"><input type="text"
 									class="input-sm col-sm-6" name="MEMB_ID" id="MEMB_ID" value="<c:out value="${user.MEMB_ID}" />"
-									readonly="readonly" />
+									 />
 								</td>
 							</tr>
 							<tr>
 								<td class="text-right"><h6>비밀번호</h6></td>
 								<td class="text-center"><input type="password"
 									class="input-sm col-sm-6" id="SEC_NUM" name="SEC_NUM" value="<c:out value="${user.SEC_NUM}" />"
-									readonly="readonly" />
+									 />
+									<button type="button" class="btn btn-primary"
+										onclick="changePassword();">비밀번호변경</button>
 								</td>
 							</tr>
 							<tr>
 								<td class="text-right"><h6>이메일</h6></td>
 								<td class="text-center">
 									<input type="text"
-									class="input-sm col-sm-2" id="EMAIL" required value="testtest" name="EMAIL" value="<c:out value="${user.EMAIL}"/>" readonly="readonly"/>
+									class="input-sm col-sm-2" id="EMAIL" required value="testtest" name="EMAIL" value="<c:out value="${user.EMAIL}"/>" />
 								</td>
 							</tr>
 							<tr>
 								<td class="text-right"><h6>전화번호</h6></td>
 								<td class="text-center"><input type="email"
-									class="input-sm col-sm-6" id="TEL_NUM" name="TEL_NUM"  required value="<c:out value="${user.TEL_NUM}"/>" readonly="readonly"/>
+									class="input-sm col-sm-6" id="TEL_NUM" name="TEL_NUM"  required value="<c:out value="${user.TEL_NUM}"/>" />
 								</td>
 							</tr>
 							<tr>
 								<td class="text-right"><h6>핸드폰번호</h6></td>
 								<td class="text-center"><input type="email"
-									class="input-sm col-sm-6" id="MOBIL_NUM" name="MOBIL_NUM" required value="<c:out value="${user.MOBIL_NUM}"/>" readonly="readonly"/>
+									class="input-sm col-sm-6" id="MOBIL_NUM" name="MOBIL_NUM" required value="<c:out value="${user.MOBIL_NUM}"/>" />
 								</td>
 							</tr>
 							<tr>
 								<td class="text-right"><h6>우편번호</h6></td>
 								<td class="text-center"><input type="text"
 									class=" input-sm col-sm-4" id="ZIP_NUM" name="ZIP_NUM" 
-									readonly="readonly" value="<c:out value="${user.ZIP_NUM}"/>" />
-									<button type="button" class="btn btn-primary" onclick="zipSearch();">우편번호찾기</button>
+									 value="<c:out value="${user.ZIP_NUM}"/>" />
+									<button type="button" class="btn btn-primary" onclick="zipSearch();">우편번호변경</button>
 								</td>
 							</tr>
 							<tr>
 								<td class="text-right"><h6>주소</h6></td>
 								<td class="text-center"><input type="email" name="ADDRESS" 
-									class="input-sm col-sm-8" id="ADDRESS" readonly="readonly" value="<c:out value="${user.ADDRESS}"/>" />
+									class="input-sm col-sm-8" id="ADDRESS"  value="<c:out value="${user.ADDRESS}"/>" />
 								</td>
 							</tr>
 							<tr>
 								<td class="text-right"><h6>상세주소</h6></td>
 								<td class="text-center"><input type="email" name="DETA_ADDRESS" 
-									class="input-sm col-sm-8" id="DETA_ADDRESS" readonly="readonly" value="<c:out value="${user.DETA_ADDRESS}"/>" />
+									class="input-sm col-sm-8" id="DETA_ADDRESS"  value="<c:out value="${user.DETA_ADDRESS}"/>" />
 								</td>
 							</tr>
 						</tbody>
 					</table>
+					<div class="modal-footer bg-danger">
+						<button type="button" class="btn btn-primary" onclick="updateUser();">수정하기</button>						
+					</div>
 				</form>
 				<form id="myBidForm" name="myBidForm" class="tab-pane" role="tabpane2">
 					<table class="table" id='myBidTable' >
@@ -189,5 +201,28 @@
 </div>
 
 <script type="text/javascript">
-
+	function updateUser() {
+		var myinfo = $('#myinfo')[0];
+		var datas = new FormData(myinfo);
+		 $.ajax(
+			 {
+		 		type: 'post',
+		 		enctype: 'multipart/form-data',
+				url: '${contextPath}${pathList['15'].PATH}${pathList['15'].PATH_NM}',
+				data: datas ,
+				processData: false,
+				contentType: false,
+		 		success: function(result) {
+		 			swal("사용자정보변경", result.msg, "success");
+	    		},
+	    		error: function(result) {
+	    			swal("사용자정보변경", "서버 오류입니다.", "error");
+	    		}
+			}
+		);
+	}
+	
+	var logout = function() {
+		location.href = '${contextPath}${pathList['14'].PATH}${pathList['14'].PATH_NM}';
+	}
 </script>

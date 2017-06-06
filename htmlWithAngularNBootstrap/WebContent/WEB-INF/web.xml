@@ -10,50 +10,39 @@
 	<context-param>
 		<description>Profile Upload Path</description>
 		<param-name>profile_upload</param-name>
-		<param-value>C:/project/private/git/happy/htmlWithAngularNBootstrap/WebContent/upload</param-value>
+		<param-value>/upload</param-value>
 	</context-param>
 	<context-param>
 		<description>Product File Upload Path</description>
 		<param-name>product_file_upload</param-name>
-		<param-value>C:/project/private/git/happy/htmlWithAngularNBootstrap/WebContent/upload/product</param-value>
+		<param-value>/upload/product</param-value>
 	</context-param>
 	<context-param>
 		<description>Board File Upload Path</description>
 		<param-name>board_file_upload</param-name>
-		<param-value>/download/board/</param-value>
+		<param-value>/upload/board/</param-value>
 	</context-param>
-	
 	<listener>
 		<display-name>Starter For Menu Product Category</display-name>
 		<listener-class>kr.heartof.starter.Starter</listener-class>
 	</listener>
-<!-- 	<listener> -->
-<!-- 		<display-name>Checking finished Auctions</display-name> -->
-<!-- 		<listener-class>kr.heartof.starter.JobScheduler</listener-class> -->
-<!-- 	</listener> -->
-	
-<!-- 	<filter>
-		<filter-name>Encoding</filter-name>
-		<filter-class>kr.heartof.filter.KoreanLangageFilter</filter-class>
+	<listener>
+		<display-name>FileCleanerCleanup</display-name>
+		<listener-class>org.apache.commons.fileupload.servlet.FileCleanerCleanup</listener-class>
+	</listener>
+
+	<filter>
+		<filter-name>encoding</filter-name>
+		<filter-class>kr.heartof.filter.EncodingFilter</filter-class>
+		<init-param>
+			<param-name>charset</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
 	</filter>
 	<filter-mapping>
-		<filter-name>Encoding</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping> -->
-
-  <filter>
-  	<filter-name>encoding</filter-name>
-  	<filter-class>kr.heartof.filter.EncodingFilter</filter-class>
-  	<init-param>
-  		<param-name>charset</param-name>
-  		<param-value>utf-8</param-value>
-  	</init-param>
-  </filter>
-  <filter-mapping>
-  	<filter-name>encoding</filter-name>
-  	<url-pattern>*</url-pattern>
-  </filter-mapping>
-	
+		<filter-name>encoding</filter-name>
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
 	<filter>
 		<filter-name>menuFilter</filter-name>
 		<filter-class>kr.heartof.filter.MenuFilter</filter-class>
@@ -62,4 +51,14 @@
 		<filter-name>menuFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>DisplayImage</servlet-name>
+		<servlet-class>kr.heartof.servlet.ImageServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>DisplayImage</servlet-name>
+		<url-pattern>/profile/image/*</url-pattern>
+	</servlet-mapping>
 </web-app>

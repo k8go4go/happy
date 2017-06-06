@@ -51,6 +51,13 @@ public interface MemberMapper{
 	 * @return 성공하면 1, 실패하면 0
 	 */
 	public int newProfile(UsrFileVO vo);
+	/**
+	 * 회원가입시 선택된 회원구분 코드에 따른 개인 회원 부분 테이블 삽입
+	 * @param 개인 테이블 vo
+	 * @return 성공하면 1, 실패하면 0
+	 */
+	public int updateProfile(UsrFileVO vo);
+	
 	
 	/**
 	 * 회원 정보 조회
