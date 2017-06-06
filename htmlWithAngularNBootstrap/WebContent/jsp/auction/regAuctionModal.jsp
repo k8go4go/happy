@@ -5,9 +5,9 @@
 	aria-labelledby="joinFormModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header bg-danger">
+			<div class="modal-header bg-info">
 				<h4 class="modal-title glyphicon glyphicon-thumbs-up"
-					id="joinFormModalLabel">회원가입</h4>
+					id="joinFormModalLabel">경매등록</h4>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -15,7 +15,8 @@
 			</div>
 			<div class="modal-body">
 			<div class="table-responsive">
-				<form id="regAuctionForm" name="regAuctionForm" enctype="multipart/form-data">
+				<form id="regAuctionForm" name="regAuctionForm" method="post" action="${contextPath}${pathList['13'].PATH}${pathList['13'].PATH_NM}" 
+					enctype="multipart/form-data">
 					<table class="table">
 					<tbody>
 						<tr>
@@ -66,12 +67,14 @@
 							<tr>
 								<td class="text-right col-sm-2"><h6>경매유형</h6></td>
 								<td class="text-center col-sm-6">
-								<select id="AUC_TYPE_NUM" name="AUC_TYPE_NUM">
+								<select id="AUC_TYPE_NUM">
 								</select>
 								</td>
 							</tr>
 					</tbody>
 					</table>
+					<input type="hidden" name="PROD_CATE_NUM" id="PROD_CATE" />
+					<input type="hidden" name="AUC_TYPE_NUM" id="AUC_TYPE" />
 					
 					<table class="table" id='productTable'>
 						<tbody>							
@@ -125,8 +128,8 @@
 			</div>
 			</div>
 			
-			<div class="modal-footer bg-danger">
-				<button type="button" class="btn btn-primary" onclick="regAuction();">경매등록</button>
+			<div class="modal-footer bg-info">
+				<button type="submit" class="btn btn-primary" form="regAuctionForm">경매등록</button>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 			</div>
 		</div>
@@ -135,6 +138,14 @@
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
+	function changeProdCateNum(selected) {
+		document.getElementById('PROD_CATE').value = selected.value;
+	}
+	
+	function changeAucType(selected) {
+		document.getElementById('AUC_TYPE').value = selected.value;
+	}
+	
 	$('.form_datetime1').datetimepicker({
 		format: 'yyyy-mm-dd hh:ii',
 	    language:  'ko',
@@ -158,13 +169,6 @@
 	    showMeridian: 1
 	});	
 	
-	function regAuction() {
-		var form = $('#regAuctionForm');
-		form.method = 'post';
-		form.action = '${contextPath}${pathList['13'].PATH}${pathList['13'].PATH_NM}';
-		form.submit();
-	}
-	
 	function getCategoryThird(categoryNum) {
 		$.ajax(
 			 {
@@ -180,6 +184,8 @@
 	                  		text: result.lowerCateVO[index].PROD_CATE_NM
 	            		}));
 		 			});
+		 			
+		 			document.getElementById('PROD_CATE_NUM').setAttribute('onchange','changeProdCateNum(this);');
 	    		}
 			}
 		);
@@ -249,6 +255,7 @@
 		                  		text: result.LIST[index].CATE_NM
 		            		}));
 			 			});
+			 			document.getElementById('AUC_TYPE_NUM').setAttribute('onchange','changeAucType(this);');
 		    		}
 				}
 			);

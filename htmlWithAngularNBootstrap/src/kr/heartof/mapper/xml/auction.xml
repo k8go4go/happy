@@ -100,7 +100,10 @@
 			APPR_CD = '1501'
 	</select>
 	 
-	 <insert id="regAuction">
+	 <insert id="regAuction" parameterType="RegAucVO">
+	 	<selectKey keyProperty="AUC_REG_NUM" resultType="int" order="BEFORE">
+			SELECT REG_AUC_SEQ.nextval FROM DUAL
+		</selectKey>
  		INSERT INTO REG_AUC
 		(
 			AUC_REG_NUM, AUC_PROD_NM, SHORT_CONT, REG_DTIME, 
@@ -108,13 +111,13 @@
 			QTY, MEMB_NUM, PROD_CATE_NUM, APPR_CD, AUC_TYPE_NUM
 		) values 
 		(
-			REG_AUG_SEQ.nextval, #{AUC_PROD_NM}, #{SHORT_CONT}, sysdate, 
+			#{AUC_REG_NUM}, #{AUC_PROD_NM}, #{SHORT_CONT}, sysdate, 
 			#{START_DTIME}, #{END_DTIME}, #{START_PRICE},
 			#{QTY}, #{MEMB_NUM}, #{PROD_CATE_NUM}, '1503', '1801'
 		) 
 	 </insert>
 	 
-	 <insert id="regAuctionFile">
+	 <insert id="regAuctionFile" parameterType="RegAucFileVO">
  		INSERT INTO REG_AUC_FILE
 		(
 			ATTAC_FILE_NUM, FILE_NM, FILE_PATH, REAL_NM, 

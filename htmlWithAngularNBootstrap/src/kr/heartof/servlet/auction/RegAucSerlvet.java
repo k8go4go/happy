@@ -23,22 +23,28 @@ import kr.heartof.util.FileInfo;
 import kr.heartof.util.FileUpload;
 import kr.heartof.vo.auction.RegAucFileVO;
 import kr.heartof.vo.auction.RegAucVO;
+import kr.heartof.vo.member.UsrVO;
 
 @WebServlet("/regAuc.do")
 public class RegAucSerlvet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		UsrVO loginUser = (UsrVO)request.getSession().getAttribute("user");
 		AuctionMapper mapper = BringSqlSession.getMapper(AuctionMapper.class);
 		ServletContext servletContext = this.getServletConfig().getServletContext();
 		File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
 		FileUpload uploadFile = null;
+		Map<String, String> params = null;
+		Map<String, FileInfo> fileParams = null;
 		RegAucVO vo = null;
 		List<RegAucFileVO> list = null;
 		try {
 			uploadFile = new FileUpload(request, repository);
-			vo = makeRegAuction(uploadFile.getParamMap());
-			list = makeFileVO(vo, uploadFile.uploadFiles());
+			fileParams = uploadFile.uploadFiles();
+			params = uploadFile.getParamMap();
+			vo = makeRegAuction(params, loginUser);
+			list = makeFileVO(fileParams);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -47,8 +53,10 @@ public class RegAucSerlvet extends HttpServlet {
 		try {
 			result = mapper.regAuction(vo);
 		
-			for(RegAucFileVO regFile : list)
+			for(RegAucFileVO regFile : list) {
+				regFile.setAUC_REG_NUM(vo.getAUC_REG_NUM());
 				result += mapper.regAuctionFile(regFile);
+			}
 		
 			BringSqlSession.getInstance().commit();
 		} catch(Exception e) {
@@ -65,20 +73,22 @@ public class RegAucSerlvet extends HttpServlet {
 		dispacher.forward(request, response);
 	}
 	
-	private RegAucVO makeRegAuction(Map<String, String> params) throws ParseException {
+	private RegAucVO makeRegAuction(Map<String, String> params, UsrVO loginUser) throws ParseException {
 		RegAucVO aucVO = new RegAucVO();
 		aucVO.setAUC_PROD_NM(params.get("AUC_PROD_NM"));
-		aucVO.setSHORT_CONT(params.get("SHORT_CONT"));
 		aucVO.setSHORT_CONT(params.get("SHORT_CONT"));
 		aucVO.setSTART_DTIME(DateUtil.converToDate(params.get("START_DTIME")));
 		aucVO.setEND_DTIME(DateUtil.converToDate(params.get("END_DTIME")));
 		aucVO.setSTART_PRICE(Integer.parseInt(params.get("START_PRICE")));
 		aucVO.setQTY(Integer.parseInt(params.get("START_PRICE")));
+		aucVO.setMEMB_NUM(loginUser.getMEMB_NUM());
+		aucVO.setAUC_TYPE_NUM(params.get("AUC_TYPE_NUM"));
+		aucVO.setPROD_CATE_NUM(params.get("PROD_CATE_NUM"));
 		
 		return aucVO;
 	}
 	
-	private List<RegAucFileVO> makeFileVO(RegAucVO vo, Map<String, FileInfo> fileParams) {
+	private List<RegAucFileVO> makeFileVO(Map<String, FileInfo> fileParams) {
 		List<RegAucFileVO> fileList = new ArrayList<RegAucFileVO>();
 		
 		Set<String> keys = fileParams.keySet();
@@ -86,7 +96,6 @@ public class RegAucSerlvet extends HttpServlet {
 		for(String key : keys) {
 			FileInfo temp = fileParams.get(key);
 			RegAucFileVO usrFile = new RegAucFileVO();
-			usrFile.setAUC_REG_NUM(vo.getAUC_REG_NUM());
 			usrFile.setREAL_NM(temp.getREAL_NM());
 			usrFile.setFILE_NM(temp.getFILE_NM());
 			usrFile.setFILE_SIZE(temp.getFILE_SIZE());
