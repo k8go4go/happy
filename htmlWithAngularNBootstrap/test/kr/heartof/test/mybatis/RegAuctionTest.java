@@ -18,13 +18,21 @@ public class RegAuctionTest {
 		SqlSession session = sqlSessionFactory.openSession();
 		
 		AuctionMapper mapper = session.getMapper(AuctionMapper.class);
-		allProgressing(mapper);
+		aucListForMember(mapper);
 		session.commit();
 		session.close();
 	}
 	
 	public static void allProgressing(AuctionMapper mapper) {
 		List<RegAucVO> list = mapper.allProgressing();
+		
+		for(RegAucVO vo : list) {
+			System.out.println(vo.toString());
+		}
+	}
+	
+	public static void aucListForMember(AuctionMapper mapper) {
+		List<RegAucVO> list = mapper.aucListForMember(11627);
 		
 		for(RegAucVO vo : list) {
 			System.out.println(vo.toString());

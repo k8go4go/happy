@@ -3,6 +3,8 @@ package kr.heartof.vo.auction;
 import java.util.Date;
 import java.util.List;
 
+import kr.heartof.test.mybatis.RegAuctionTest;
+
 public class RegAucVO {
 	private int AUC_REG_NUM;           // AUC_REG_NUM
 	private String AUC_PROD_NM;        // AUC_PROD_NM
@@ -15,12 +17,39 @@ public class RegAucVO {
 	
 	private int MEMB_NUM;              // MEMB_NUM
 	private String APPR_CD;            // APPR_CD
+	private String APPR_NM;            // APPR_CD
+	private String PROD_CATE_NM;      // PROD_CATE_NUM
 	private String PROD_CATE_NUM;      // PROD_CATE_NUM
 	private String AUC_TYPE_NUM;       // AUC_TYPE_NUM
+	private String AUC_TYPE_NM;       // AUC_TYPE_NUM
 	
 	private List<RegAucFileVO> files;
 	private List<RegRejVO> rejs;
-	
+
+	public String getAPPR_NM() {
+		return APPR_NM;
+	}
+
+	public void setAPPR_NM(String aPPR_NM) {
+		APPR_NM = aPPR_NM;
+	}
+
+	public String getPROD_CATE_NM() {
+		return PROD_CATE_NM;
+	}
+
+	public void setPROD_CATE_NM(String pROD_CATE_NM) {
+		PROD_CATE_NM = pROD_CATE_NM;
+	}
+
+	public String getAUC_TYPE_NM() {
+		return AUC_TYPE_NM;
+	}
+
+	public void setAUC_TYPE_NM(String aUC_TYPE_NM) {
+		AUC_TYPE_NM = aUC_TYPE_NM;
+	}
+
 	public String getPROD_CATE_NUM() {
 		return PROD_CATE_NUM;
 	}
@@ -133,4 +162,13 @@ public class RegAucVO {
 		AUC_TYPE_NUM = aUC_TYPE_NUM;
 	}
 
+	@Override
+	public String toString() {
+		return "RegAucVO [AUC_REG_NUM=" + AUC_REG_NUM + ", AUC_PROD_NM=" + AUC_PROD_NM + ", SHORT_CONT=" + SHORT_CONT
+				+ ", REG_DTIME=" + REG_DTIME + ", START_DTIME=" + START_DTIME + ", END_DTIME=" + END_DTIME
+				+ ", START_PRICE=" + START_PRICE + ", QTY=" + QTY + ", MEMB_NUM=" + MEMB_NUM + ", APPR_CD=" + APPR_CD
+				+ ", APPR_NM=" + APPR_NM + ", PROD_CATE_NM=" + PROD_CATE_NM + ", PROD_CATE_NUM=" + PROD_CATE_NUM
+				+ ", AUC_TYPE_NUM=" + AUC_TYPE_NUM + ", AUC_TYPE_NM=" + AUC_TYPE_NM + ", files=" + files + ", rejs="
+				+ rejs + "]";
+	}
 }

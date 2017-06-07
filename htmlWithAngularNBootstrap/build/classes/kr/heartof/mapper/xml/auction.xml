@@ -43,6 +43,34 @@
 		ORDER BY START_DTIME ASC
 	</select>
 	
+	<select id="aucListForMember" resultType="RegAucVO" parameterType="int">
+		SELECT
+			 R.AUC_REG_NUM,
+			 R.AUC_PROD_NM,
+			 R.SHORT_CONT,
+			 R.REG_DTIME,
+			 R.START_DTIME,
+			 R.END_DTIME,
+			 R.START_PRICE,
+			 R.QTY,
+			 R.MEMB_NUM,
+			 R.PROD_CATE_NUM,
+			 R.APPR_CD,
+			 R.AUC_TYPE_NUM,
+			 PR.CATE_NM AS APPR_NM,
+			 AP.CATE_NM AS AUC_TYPE_NM,
+			 PC.PROD_CATE_NM AS PROD_CATE_NM
+		FROM 
+			REG_AUC R INNER JOIN CD PR
+			ON R.APPR_CD = PR.CD
+			INNER JOIN CD AP
+			ON R.AUC_TYPE_NUM = AP.CD
+			INNER JOIN PROD_CATE  PC
+			ON R.PROD_CATE_NUM = PC.PROD_CATE_NUM
+		WHERE
+			MEMB_NUM = ${value}
+	</select>
+	
 	<select id="cateProgressing" resultMap="aucList" >
 		SELECT
 			 AUC_REG_NUM,
@@ -108,12 +136,12 @@
 		(
 			AUC_REG_NUM, AUC_PROD_NM, SHORT_CONT, REG_DTIME, 
 			START_DTIME, END_DTIME, START_PRICE,
-			QTY, MEMB_NUM, PROD_CATE_NUM, APPR_CD, AUC_TYPE_NUM
+			QTY, MEMB_NUM, PROD_CATE_NUM, AUC_TYPE_NUM, APPR_CD
 		) values 
 		(
 			#{AUC_REG_NUM}, #{AUC_PROD_NM}, #{SHORT_CONT}, sysdate, 
 			#{START_DTIME}, #{END_DTIME}, #{START_PRICE},
-			#{QTY}, #{MEMB_NUM}, #{PROD_CATE_NUM}, '1503', '1801'
+			#{QTY}, #{MEMB_NUM}, #{PROD_CATE_NUM}, #{AUC_TYPE_NUM}, '1502'
 		) 
 	 </insert>
 	 

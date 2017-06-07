@@ -61,4 +61,14 @@
 		<servlet-name>DisplayImage</servlet-name>
 		<url-pattern>/profile/image/*</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ProductImage</servlet-name>
+		<servlet-class>kr.heartof.servlet.ProductImageServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ProductImage</servlet-name>
+		<url-pattern>/product/image/*</url-pattern>
+	</servlet-mapping>
 </web-app>

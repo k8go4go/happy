@@ -80,7 +80,7 @@ public class RegAucSerlvet extends HttpServlet {
 		aucVO.setSTART_DTIME(DateUtil.converToDate(params.get("START_DTIME")));
 		aucVO.setEND_DTIME(DateUtil.converToDate(params.get("END_DTIME")));
 		aucVO.setSTART_PRICE(Integer.parseInt(params.get("START_PRICE")));
-		aucVO.setQTY(Integer.parseInt(params.get("START_PRICE")));
+		aucVO.setQTY(Integer.parseInt(params.get("QTY")));
 		aucVO.setMEMB_NUM(loginUser.getMEMB_NUM());
 		aucVO.setAUC_TYPE_NUM(params.get("AUC_TYPE_NUM"));
 		aucVO.setPROD_CATE_NUM(params.get("PROD_CATE_NUM"));

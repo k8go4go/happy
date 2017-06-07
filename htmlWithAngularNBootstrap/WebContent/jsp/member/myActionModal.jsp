@@ -30,6 +30,12 @@
 					<table class="table" id='memberInfoHeaderTable'>
 					<tbody>
 						<tr>
+							<td class="text-right col-sm-2"><h6>경매등록정보</h6></td>
+							<td class="text-left col-sm-10">
+								<button type="button" class="btn btn-primary" onclick="doRegAuc();">경매등록정보</button>
+							</td>
+						</tr>
+						<tr>
 							<td class="text-right col-sm-2"><h6>회원구분</h6></td>
 							<td class="text-left col-sm-10">
 								<c:choose>
@@ -171,11 +177,43 @@
 					<table class="table" id='myBidTable' >
 						<tbody>
 						<tr>
-							<td class="text-right col-sm-2"><h6>이름</h6></td>
-							<td class="text-right col-sm-4">							
+							<td class="text-right col-sm-2"><h6>선 택</h6></td>
+							<td class="text-center col-sm-6">
+							<select id="PROD_CATE_NUM">
+							</select>
 							</td>
-							<td class="text-right col-sm-2"><h6>주민등록번호</h6></td>
-							<td class="text-right col-sm-4">
+						</tr>
+						<tr>
+							<td class="text-right col-sm-2"><h6>경매유형</h6></td>
+							<td class="text-center col-sm-6">
+							<select id="AUC_TYPE_NUM">
+							</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="text-right col-sm-2"><h6>상품명</h6></td>
+							<td class="text-center col-sm-8"><input type="text"
+								class="input-sm col-sm-6" name="AUC_PROD_NM" id="AUC_PROD_NM" 
+								required />
+						</tr>
+						<tr>
+							<td class="text-right col-sm-2"><h6>시작시간</h6></td>
+							<td class="text-center col-sm-6">
+		                      	<div class="input-group date form_datetime1 col-md-10" data-date="2017-06-05T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+				                    <input class="input-sm col-sm-6" size="16" type="text" id="START_DTIME" name="START_DTIME" value="" readonly>
+				                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+									<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+				                </div>
+							</td>	
+						</tr>
+						<tr>
+							<td class="text-right"><h6>종료시간</h6></td>
+							<td class="text-center">
+							<div class="input-group date form_datetime2 col-md-10" data-date="2017-06-05T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+				                    <input class="input-sm col-sm-6" size="16" type="text" id="END_DTIME" name="END_DTIME" value="" readonly>
+				                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+									<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+				                </div>
 							</td>
 						</tr>
 						</tbody>
@@ -201,6 +239,10 @@
 </div>
 
 <script type="text/javascript">
+	function doRegAuc() {
+		location.href = '${contextPath}${pathList['16'].PATH}${pathList['16'].PATH_NM}'; 
+	}
+	
 	function updateUser() {
 		var myinfo = $('#myinfo')[0];
 		var datas = new FormData(myinfo);

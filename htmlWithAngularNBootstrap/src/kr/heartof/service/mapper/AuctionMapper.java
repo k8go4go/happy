@@ -35,4 +35,7 @@ public interface AuctionMapper{
 	public List<RegRejVO> getRecRej(int AUC_REG_NUM);
 	
 	public List<CodeVO> getAucType(String HIGH_CD);
+	
+	// 회원 등록 옥션 목록
+	public List<RegAucVO> aucListForMember(int memb_num);
 }
