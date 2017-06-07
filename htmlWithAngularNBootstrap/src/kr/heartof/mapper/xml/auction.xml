@@ -107,25 +107,45 @@
 			AUC_REG_NUM = #{AUC_REG_NUM}		
 	</select>
 	
-	<select id="detail" resultType="RegAucVO">
+	<select id="getRegAucFile" parameterType="int" resultType="RegAucFileVO">
 		SELECT
-			 AUC_REG_NUM,
-			 AUC_PROD_NM,
-			 SHORT_CONT,
-			 REG_DTIME,
-			 START_DTIME,
-			 END_DTIME,
-			 START_PRICE,
-			 QTY,
-			 MEMB_NUM,
-			 PROD_CATE_NUM,
-			 APPR_CD,
-			 AUC_TYPE_NUM
-		FROM 
-			REG_AUC
+			 ATTAC_FILE_NUM,
+			 FILE_NM,
+			 FILE_PATH,
+			 REAL_NM,
+			 FILE_SIZE
+		FROM 		
+			REG_AUC_FILE 	
 		WHERE
-			AUC_REG_NUM = #{AUC_REG_NUM} AND
-			APPR_CD = '1501'
+			ATTAC_FILE_NUM = #{value}		
+	</select>
+	
+	<select id="detail" resultType="RegAucVO" parameterType="int">
+		SELECT
+			 R.AUC_REG_NUM,
+			 R.AUC_PROD_NM,
+			 R.SHORT_CONT,
+			 R.REG_DTIME,
+			 R.START_DTIME,
+			 R.END_DTIME,
+			 R.START_PRICE,
+			 R.QTY,
+			 R.MEMB_NUM,
+			 R.PROD_CATE_NUM,
+			 R.APPR_CD,
+			 R.AUC_TYPE_NUM,
+			 PR.CATE_NM AS APPR_NM,
+			 AP.CATE_NM AS AUC_TYPE_NM,
+			 PC.PROD_CATE_NM AS PROD_CATE_NM
+		FROM 
+			REG_AUC R INNER JOIN CD PR
+			ON R.APPR_CD = PR.CD
+			INNER JOIN CD AP
+			ON R.AUC_TYPE_NUM = AP.CD
+			INNER JOIN PROD_CATE  PC
+			ON R.PROD_CATE_NUM = PC.PROD_CATE_NUM
+		WHERE
+			R.AUC_REG_NUM = ${value}			
 	</select>
 	 
 	 <insert id="regAuction" parameterType="RegAucVO">

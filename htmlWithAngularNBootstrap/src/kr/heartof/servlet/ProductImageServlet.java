@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 
+import kr.heartof.service.mapper.AuctionMapper;
+import kr.heartof.util.BringSqlSession;
+import kr.heartof.vo.auction.RegAucFileVO;
 import kr.heartof.vo.member.UsrFileVO;
 import kr.heartof.vo.member.UsrVO;
 
@@ -20,15 +23,24 @@ public class ProductImageServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		UsrVO user = (UsrVO)request.getSession().getAttribute("user");
-		UsrFileVO fileVO = user.getUSR_FILE();
-		if(fileVO == null) return;
+		String URLAfterWebDomain = request.getRequestURI();
+		
+		if(URLAfterWebDomain.contains("/product/image/") == false)   
+            return;
+		
+		String paths[] = URLAfterWebDomain.split("/");
+		
+		String relativeImagePath = paths[paths.length - 1]; 
+		System.out.println(relativeImagePath);
+		RegAucFileVO fileVO = BringSqlSession.getMapper(AuctionMapper.class).getRegAucFile(Integer.parseInt(relativeImagePath));
+		
 		
 		BufferedInputStream in = null;
 		ByteArrayOutputStream bStream = null;
 		try {
+			System.out.println(fileVO.getFILE_PATH() + fileVO.getFILE_NM());
 			in = new BufferedInputStream(
-					new FileInputStream(new File(fileVO.getFILE_PATH() + fileVO.getFILE_NM())));
+				 new FileInputStream(new File(fileVO.getFILE_PATH() + fileVO.getFILE_NM())));
 			bStream = new ByteArrayOutputStream();
 			int imgByte;
 			while ((imgByte = in.read()) != -1) {
@@ -49,6 +61,5 @@ public class ProductImageServlet extends HttpServlet {
 			if (in != null) 
 				try { in.close(); } catch (Exception ei) {}
 		}
-
 	}
 }

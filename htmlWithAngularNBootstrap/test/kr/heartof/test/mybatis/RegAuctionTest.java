@@ -18,7 +18,7 @@ public class RegAuctionTest {
 		SqlSession session = sqlSessionFactory.openSession();
 		
 		AuctionMapper mapper = session.getMapper(AuctionMapper.class);
-		aucListForMember(mapper);
+		detail(mapper);
 		session.commit();
 		session.close();
 	}
@@ -37,5 +37,10 @@ public class RegAuctionTest {
 		for(RegAucVO vo : list) {
 			System.out.println(vo.toString());
 		}
+	}
+	
+	public static void detail(AuctionMapper mapper) {
+		RegAucVO vo = mapper.detail(71);
+		System.out.println(vo.toString());
 	}
 }

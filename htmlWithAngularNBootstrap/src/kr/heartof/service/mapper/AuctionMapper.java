@@ -38,4 +38,6 @@ public interface AuctionMapper{
 	
 	// 회원 등록 옥션 목록
 	public List<RegAucVO> aucListForMember(int memb_num);
+	
+	public RegAucFileVO getRegAucFile(int value);
 }
