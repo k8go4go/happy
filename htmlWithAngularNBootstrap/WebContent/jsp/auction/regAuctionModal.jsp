@@ -239,7 +239,7 @@
 		 			});
 		 			
 		 			$('#PROD_CATE_NUM').on('change', function (e) {
-		 				$('#PROD_CATE').val(this.selected.val);
+		 				$('#PROD_CATE').val($('#PROD_CATE_NUM option:selected').val());
 		 			});
 	    		}
 			}
@@ -310,13 +310,10 @@
 		                  		text: result.LIST[index].CATE_NM
 		            		}));
 			 			});
-			 			$('#AUC_TYPE_NUM').on(
-			 				{
-			 					'change': function () {
-			 						$('#AUC_TYPE').val(this.selected.val);
-			 					}
-			 				}
-			 			);
+			 			$('#AUC_TYPE_NUM').on('change', function (e) {
+		 					$('#AUC_TYPE').val($('#AUC_TYPE_NUM option:selected').val());
+		 					console.log($('#AUC_TYPE').val());
+			 			});
 		    		}
 				}
 			);

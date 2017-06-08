@@ -59,7 +59,7 @@
 				<div class="container-fluid">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
-						<a class="navbar-brand" data-toggle="tooltip" title="홈으로.." href="<c:url value="${pathList['1'].PATH}${pathList['1'].PATH_NM}" />"> <img width="30" height="30"
+						<a class="navbar-brand" data-toggle="tooltip" title="홈으로.." href="<c:url value="/main.do" />"> <img width="30" height="30"
 							class="d-inline-block align-middle"
 							src="${contextPath}/resources/imgs/brand.png">
 						</a>
