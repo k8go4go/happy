@@ -129,7 +129,7 @@
 			</div>
 			
 			<div class="modal-footer bg-info">
-				<button type="submit" class="btn btn-primary" form="regAuctionForm">경매등록</button>
+				<button id='checkBtn' type="button" class="btn btn-primary" form="regAuctionForm">경매등록</button>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 			</div>
 		</div>
@@ -138,13 +138,66 @@
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
-	function changeProdCateNum(selected) {
-		document.getElementById('PROD_CATE').value = selected.value;
-	}
-	
-	function changeAucType(selected) {
-		document.getElementById('AUC_TYPE').value = selected.value;
-	}
+	$('#checkBtn').on('click', function(e) {
+		var f = $('#regAuctionForm');
+		
+		if(f.START_DTIME == '' || f.END_DTIME == '') {
+			swal('경매등록오류', '시작/종료시간은 필수사항입니다.', 'error');
+			return;
+		}
+		
+		if(f.M_UPLOAD == '' || f.T_UPLOAD == '') {
+			swal('경매등록오류', '사진은 필수사항입니다.', 'error');
+			return;
+		}
+		
+		if(f.PROD_CATE_NUM == '') {
+			swal('경매등록오류', '상품카테고리를 선택해주세요', 'error');
+			return;
+		}
+		
+		if(f.AUC_TYPE_NUM == '') {
+			swal('경매등록오류', '경매유형을 선택해주세요', 'error');
+			return;
+		}
+		
+		if(f.AUC_PROD_NM == '') {
+			swal('경매등록오류', '등록 상품명을 입력해주세요', 'error');
+			return;
+		}
+		
+		if(f.SHORT_CONT == '') {
+			swal('경매등록오류', '등록 상품 설명을 입력해주세요', 'error');
+			return;
+		}
+		
+		if(f.START_PRICE == '') {
+			swal('경매등록오류', '시작가를 천원단위로 입력해주세요', 'error');
+			return;
+		}
+		
+		if(f.QTY == '') {
+			swal('경매등록오류', '등록 상품 수량을 입력해주세요', 'error');
+			return;
+		}
+		
+		var sDate = Date.parse(f.START_DTIME);
+		var eDate = Date.parse(f.END_DTIME);
+		
+		var currentTimt = new Date();
+		currentTimt.setDate(7);
+		if(sDate > currentTimt) {
+			swal('경매등록오류', '시작시간은 1주일 이후로 등록가능합니다.', 'error');
+			return;
+		}
+		
+		if(sDate >= eDate) {
+			swal('경매등록오류', '시작시간은 종료일 보다 클수 없습니다.', 'error');
+			return;
+		}
+		
+		f.submit();
+	});
 	
 	$('.form_datetime1').datetimepicker({
 		format: 'yyyy-mm-dd hh:ii',
@@ -185,7 +238,9 @@
 	            		}));
 		 			});
 		 			
-		 			document.getElementById('PROD_CATE_NUM').setAttribute('onchange','changeProdCateNum(this);');
+		 			$('#PROD_CATE_NUM').on('change', function (e) {
+		 				$('#PROD_CATE').val(this.selected.val);
+		 			});
 	    		}
 			}
 		);
@@ -255,7 +310,13 @@
 		                  		text: result.LIST[index].CATE_NM
 		            		}));
 			 			});
-			 			document.getElementById('AUC_TYPE_NUM').setAttribute('onchange','changeAucType(this);');
+			 			$('#AUC_TYPE_NUM').on(
+			 				{
+			 					'change': function () {
+			 						$('#AUC_TYPE').val(this.selected.val);
+			 					}
+			 				}
+			 			);
 		    		}
 				}
 			);

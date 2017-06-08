@@ -75,6 +75,7 @@ public class Starter implements ServletContextListener{
 	public void contextDestroyed(ServletContextEvent sce) {
 		ServletContext context = sce.getServletContext();
 		context.removeAttribute("menu");
+		context.removeAttribute("path");
 		
 		BringSqlSession.sessionClose();
 	}

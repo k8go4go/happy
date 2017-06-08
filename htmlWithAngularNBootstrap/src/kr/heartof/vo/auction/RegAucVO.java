@@ -19,12 +19,31 @@ public class RegAucVO {
 	private String APPR_CD;            // APPR_CD
 	private String APPR_NM;            // APPR_CD
 	private String PROD_CATE_NM;      // PROD_CATE_NUM
+	private String HIGH_PROD_CATE_NM;
 	private String PROD_CATE_NUM;      // PROD_CATE_NUM
 	private String AUC_TYPE_NUM;       // AUC_TYPE_NUM
 	private String AUC_TYPE_NM;       // AUC_TYPE_NUM
 	
+	private int TOT;
+	
 	private List<RegAucFileVO> files;
 	private List<RegRejVO> rejs;
+	
+	public String getHIGH_PROD_CATE_NM() {
+		return HIGH_PROD_CATE_NM;
+	}
+
+	public void setHIGH_PROD_CATE_NM(String hIGH_PROD_CATE_NM) {
+		HIGH_PROD_CATE_NM = hIGH_PROD_CATE_NM;
+	}
+
+	public int getTOT() {
+		return TOT;
+	}
+
+	public void setTOT(int tOT) {
+		TOT = tOT;
+	}
 
 	public String getAPPR_NM() {
 		return APPR_NM;

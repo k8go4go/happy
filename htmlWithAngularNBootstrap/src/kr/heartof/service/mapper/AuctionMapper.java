@@ -6,6 +6,7 @@ import kr.heartof.vo.CodeVO;
 import kr.heartof.vo.auction.RegAucFileVO;
 import kr.heartof.vo.auction.RegAucVO;
 import kr.heartof.vo.auction.RegRejVO;
+import kr.heartof.vo.foruser.PageVO;
 
 /**
  * 옥션 관련 MAPPER
@@ -26,7 +27,7 @@ public interface AuctionMapper{
 	
 	public int updateAuction(RegAucVO vo);
 	
-	public int updateAuctionFile(RegAucVO vo);
+	public int updateAuctionFile(RegAucFileVO vo);
 	
 	public int deteteAuction(int AUC_REG_NUM);
 	
@@ -40,4 +41,9 @@ public interface AuctionMapper{
 	public List<RegAucVO> aucListForMember(int memb_num);
 	
 	public RegAucFileVO getRegAucFile(int value);
+	
+	// 메인 
+	public List<RegAucVO> listProductingForMain(String PROD_CATE_NUM);
+	
+	public List<RegAucVO> listProductThisMonthForMain(PageVO vo);
 }

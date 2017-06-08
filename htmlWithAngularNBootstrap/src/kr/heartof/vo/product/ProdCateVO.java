@@ -14,7 +14,7 @@ public class ProdCateVO {
 	private String PARENT_HIGH_PROD_CATE_NUM;
 	
 	private List<ProdCateVO> lowerCateVO;
-	
+
 	public List<ProdCateVO> getLowerCateVO() {
 		return lowerCateVO;
 	}
