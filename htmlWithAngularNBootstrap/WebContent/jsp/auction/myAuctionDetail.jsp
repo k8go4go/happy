@@ -50,7 +50,6 @@
 			<input type="hidden" name="ATTAC_FILE_NUM1" value="${fileListVO[0].ATTAC_FILE_NUM}" />
 			<input type="hidden" name="ATTAC_FILE_NUM2" value="${fileListVO[1].ATTAC_FILE_NUM}" />
 			<input type="hidden" name="PROD_CATE_NUM" value="${aucVO.PROD_CATE_NUM}" />
-			<input type="hidden" name="PROD_CATE_NUM" value="${aucVO.PROD_CATE_NUM}" />
 			<input type="hidden" name="AUC_TYPE_NUM" value="${aucVO.AUC_TYPE_NUM}" />
 			<input type="hidden" name="AUC_REG_NUM" value="${aucVO.AUC_REG_NUM}" />
 			

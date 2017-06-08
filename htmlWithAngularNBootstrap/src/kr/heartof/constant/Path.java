@@ -17,7 +17,9 @@ public enum Path {
 	LOGOUT_JSP("14"),	
 	UPDATE_USER_JSP("15"),
 	REG_AUC_LIST_JSP("16"),
-	REG_AUC_DETAIL_JSP("16");
+	REG_AUC_DETAIL_JSP("17"),
+	UPDATE_REG_AUC_JSP("18"),
+	COMMON_AUC_DETAIL_JSP("19");
 
 	private String path;
 

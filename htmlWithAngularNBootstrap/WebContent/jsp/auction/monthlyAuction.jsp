@@ -40,12 +40,12 @@
 				</c:choose>
 				<div class="caption">
 					<h5><kbd>${regAuc.AUC_PROD_NM}</kbd></h5>
-					<p>시작일 : <fmt:formatDate value="${regAuc.START_DTIME}" pattern="yyyy-mm-dd"/></p>
-					<p>종료일 : <fmt:formatDate value="${regAuc.END_DTIME}" pattern="yyyy-mm-dd"/></p>
+					<p>시작일 : <fmt:formatDate value="${regAuc.START_DTIME}" pattern="yyyy-MM-dd"/></p>
+					<p>종료일 : <fmt:formatDate value="${regAuc.END_DTIME}" pattern="yyyy-MM-dd"/></p>
 					<p>시작가 : ${regAuc.START_PRICE}</p>
 					<p>수량 : ${regAuc.QTY}</p>
 					<p>
-						<a href="#" class="btn btn-primary" role="button">상세보기</a>
+						<a href="${contextPath}${pathList['19'].PATH}${pathList['19'].PATH_NM}?no=${regAuc.AUC_REG_NUM}" class="btn btn-primary" role="button">상세보기</a>
 					</p>
 				</div>
 			</div>

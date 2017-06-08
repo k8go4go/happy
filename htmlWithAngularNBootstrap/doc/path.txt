@@ -21,3 +21,4 @@ insert into path values (15, 'updateUser.do', '/'); commit;
 insert into path values (16, 'regAucList.do', '/'); commit;
 insert into path values (17, 'regAucDetail.do', '/'); commit;
 insert into path values (18, 'updateRegAuc.do', '/'); commit;
+insert into path values (19, 'commonAucDetail.do', '/'); commit;

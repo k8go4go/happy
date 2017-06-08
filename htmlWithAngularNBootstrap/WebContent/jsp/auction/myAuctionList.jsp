@@ -29,10 +29,10 @@
 					<td class="text-center col-sm-1"><a href="${contextPath}${pathList['17'].PATH}${pathList['17'].PATH_NM}?no=${regAuc.AUC_REG_NUM}" ><small>${regAuc.AUC_TYPE_NM}</small></a></td>
 					<td class="text-center col-sm-3"><a href="${contextPath}${pathList['17'].PATH}${pathList['17'].PATH_NM}?no=${regAuc.AUC_REG_NUM}" ><small>${regAuc.AUC_PROD_NM}</small></a></td>
 					<td class="text-center col-sm-2"><a href="${contextPath}${pathList['17'].PATH}${pathList['17'].PATH_NM}?no=${regAuc.AUC_REG_NUM}" ><small>
-					<fmt:formatDate value="${regAuc.START_DTIME}" pattern="yyyy-mm-dd"/>
+					<fmt:formatDate value="${regAuc.START_DTIME}" pattern="yyyy-MM-dd"/>
 					</small></a></td>
 					<td class="text-center col-sm-2"><a href="${contextPath}${pathList['17'].PATH}${pathList['17'].PATH_NM}?no=${regAuc.AUC_REG_NUM}" ><small>
-					<fmt:formatDate value="${regAuc.START_DTIME}" pattern="yyyy-mm-dd"/>
+					<fmt:formatDate value="${regAuc.START_DTIME}" pattern="yyyy-MM-dd"/>
 					</small></a></td>
 					<td class="text-center col-sm-2"><a href="${contextPath}${pathList['17'].PATH}${pathList['17'].PATH_NM}?no=${regAuc.AUC_REG_NUM}" ><small>${regAuc.START_PRICE}</small></a></td>
 					<td class="text-center col-sm-1"><a href="${contextPath}${pathList['17'].PATH}${pathList['17'].PATH_NM}?no=${regAuc.AUC_REG_NUM}" ><small>${regAuc.QTY}</small></a></td>
