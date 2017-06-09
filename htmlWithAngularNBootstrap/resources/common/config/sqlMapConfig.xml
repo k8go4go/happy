@@ -34,7 +34,9 @@
 		<typeAlias type="kr.heartof.vo.member.UsrFileVO" alias="UsrFileVO"/>
 		
 		<typeAlias type="kr.heartof.vo.product.ProdCateVO" alias="ProdCateVO"/>
-		<typeAlias type="kr.heartof.vo.product.ProdVO" alias="ProdVO"/>		
+		<typeAlias type="kr.heartof.vo.product.ProdVO" alias="ProdVO"/>
+				
+		<typeAlias type="kr.heartof.admin.vo.MgrVO" alias="MgrVO"/>		
 	</typeAliases>
 	
 	
@@ -56,7 +58,8 @@
 		<mapper resource="kr/heartof/mapper/xml/product.xml"/>
 		<mapper resource="kr/heartof/mapper/xml/auction.xml"/>
 		
-		<mapper resource="kr/heartof/admin/mapper/xml/admin.xml"/>
+		<mapper resource="kr/heartof/admin/mapper/xml/adminMember.xml"/>
+		<mapper resource="kr/heartof/admin/mapper/xml/adminAuction.xml"/>
 		<mapper resource="kr/heartof/admin/mapper/xml/path.xml"/>
 	</mappers>
 </configuration>

@@ -1,7 +1,5 @@
 package kr.heartof.admin.mapper;
 
-import java.util.Date;
-
 public class PathVO {
 	private int PATH_NUM;
 	private String PATH_NM;

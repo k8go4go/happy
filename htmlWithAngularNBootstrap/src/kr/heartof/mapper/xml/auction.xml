@@ -184,7 +184,7 @@
 		(
 			#{AUC_REG_NUM}, #{AUC_PROD_NM}, #{SHORT_CONT}, sysdate, 
 			#{START_DTIME}, #{END_DTIME}, #{START_PRICE},
-			#{QTY}, #{MEMB_NUM}, #{PROD_CATE_NUM}, #{AUC_TYPE_NUM}, '1502'
+			#{QTY}, #{MEMB_NUM}, #{PROD_CATE_NUM}, #{AUC_TYPE_NUM}, '1500'
 		) 
 	 </insert>
 	 

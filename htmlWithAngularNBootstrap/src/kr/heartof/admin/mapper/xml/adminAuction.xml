@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.heartof.admin.mapper.AdminAuctionMapper">
+	 <resultMap type="RegAucVO" id="adminAucList">
+		<id column="AUC_REG_NUM" property="AUC_REG_NUM" />
+		<result column="AUC_PROD_NM" property="AUC_PROD_NM" />
+		<result column="SHORT_CONT" property="SHORT_CONT" />
+		<result column="REG_DTIME" property="REG_DTIME" />
+		<result column="START_DTIME" property="START_DTIME" />
+		<result column="END_DTIME" property="END_DTIME" />
+		<result column="START_PRICE" property="START_PRICE" />
+		<result column="QTY" property="QTY" />
+		<result column="MEMB_NUM" property="MEMB_NUM" />
+		<result column="APPR_CD" property="APPR_CD" />
+		<result column="PROD_CATE_NUM" property="PROD_CATE_NUM" />
+		<result column="PROD_CATE_NM" property="PROD_CATE_NM" />
+		<result column="AUC_TYPE_NUM" property="AUC_TYPE_NUM" />
+		<collection property="files" javaType="java.util.ArrayList" ofType="RegAucFileVO" 
+			column="AUC_REG_NUM" select="listRegAucFile"/>
+		<collection property="rejs" javaType="java.util.ArrayList" ofType="RegRejVO" 
+			column="AUC_REG_NUM" select="getRecRej"/>
+	</resultMap>
+	 
+	<select id="needApprCD" resultMap="adminAucList">
+	 	SELECT
+			 R.AUC_REG_NUM,
+			 R.AUC_PROD_NM,
+			 R.SHORT_CONT,
+			 R.REG_DTIME,
+			 R.START_DTIME,
+			 R.END_DTIME,
+			 R.START_PRICE,
+			 R.QTY,
+			 R.MEMB_NUM,
+			 R.PROD_CATE_NUM,
+			 R.APPR_CD,
+			 R.AUC_TYPE_NUM,
+			 PR.CATE_NM AS APPR_NM,
+			 AP.CATE_NM AS AUC_TYPE_NM,
+			 PC.PROD_CATE_NM AS PROD_CATE_NM
+		FROM 
+			REG_AUC R INNER JOIN CD PR
+			ON R.APPR_CD = PR.CD
+			INNER JOIN CD AP
+			ON R.AUC_TYPE_NUM = AP.CD
+			INNER JOIN PROD_CATE  PC
+			ON R.PROD_CATE_NUM = PC.PROD_CATE_NUM
+		WHERE
+			R.APPR_CD = '1500'
+	</select>
+
+	<select id="listRegAucFile" parameterType="int" resultType="RegAucFileVO">
+		SELECT
+			 ATTAC_FILE_NUM,
+			 FILE_NM,
+			 FILE_PATH,
+			 REAL_NM,
+			 FILE_SIZE
+		FROM 		
+			REG_AUC_FILE 	
+		WHERE
+			AUC_REG_NUM = #{AUC_REG_NUM}		
+	</select>
+	
+	<select id="getRecRej" resultType="RegRejVO" parameterType="int">
+	 	SELECT AUC_REG_NUM, REG_REJ_REAS
+	 	FROM REG_REJ
+	 	WHERE
+	 		AUC_REG_NUM = #{AUC_REG_NUM}
+	</select> 
+	
+	<select id="doneApprCD" resultMap="adminAucList">
+	 	SELECT
+			 R.AUC_REG_NUM,
+			 R.AUC_PROD_NM,
+			 R.SHORT_CONT,
+			 R.REG_DTIME,
+			 R.START_DTIME,
+			 R.END_DTIME,
+			 R.START_PRICE,
+			 R.QTY,
+			 R.MEMB_NUM,
+			 R.PROD_CATE_NUM,
+			 R.APPR_CD,
+			 R.AUC_TYPE_NUM,
+			 PR.CATE_NM AS APPR_NM,
+			 AP.CATE_NM AS AUC_TYPE_NM,
+			 PC.PROD_CATE_NM AS PROD_CATE_NM
+		FROM 
+			REG_AUC R INNER JOIN CD PR
+			ON R.APPR_CD = PR.CD
+			INNER JOIN CD AP
+			ON R.AUC_TYPE_NUM = AP.CD
+			INNER JOIN PROD_CATE  PC
+			ON R.PROD_CATE_NUM = PC.PROD_CATE_NUM
+		WHERE
+			AUC_REG_NUM = '1500'
+	</select>
+	
+	<select id="detail" resultType="RegAucVO" parameterType="int">
+		SELECT
+			 R.AUC_REG_NUM,
+			 R.AUC_PROD_NM,
+			 R.SHORT_CONT,
+			 R.REG_DTIME,
+			 R.START_DTIME,
+			 R.END_DTIME,
+			 R.START_PRICE,
+			 R.QTY,
+			 R.MEMB_NUM,
+			 R.PROD_CATE_NUM,
+			 R.APPR_CD,
+			 R.AUC_TYPE_NUM,
+			 PR.CATE_NM AS APPR_NM,
+			 AP.CATE_NM AS AUC_TYPE_NM,
+			 PC.PROD_CATE_NM AS PROD_CATE_NM
+		FROM 
+			REG_AUC R INNER JOIN CD PR
+			ON R.APPR_CD = PR.CD
+			INNER JOIN CD AP
+			ON R.AUC_TYPE_NUM = AP.CD
+			INNER JOIN PROD_CATE  PC
+			ON R.PROD_CATE_NUM = PC.PROD_CATE_NUM
+		WHERE
+			R.AUC_REG_NUM = ${value}			
+	</select>
+	
+	<update id="updateApprCD" parameterType="RegAucVO" >
+		UPDATE REG_AUC
+			SET 
+				APPR_CD = #{APPR_CD}
+		WHERE
+			AUC_REG_NUM = #{AUC_REG_NUM}		
+	</update>
+	
+	<insert id="insertRegRej" parameterType="RegRejVO">
+		INSERT INTO REC_REJ (AUC_REG_NUM, REG_REJ_REAS) 
+		VALUES (#{AUC_REG_NUM}, #{REG_REJ_REAS})
+	</insert>
+</mapper>

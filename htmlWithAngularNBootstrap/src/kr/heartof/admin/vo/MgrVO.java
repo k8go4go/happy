@@ -1,4 +1,4 @@
-package kr.heartof.admin.mapper;
+package kr.heartof.admin.vo;
 
 import java.util.Date;
 
@@ -14,8 +14,26 @@ public class MgrVO {
 	private int HIGH_MGR_NUM;
 	
 	private String MEMB_CD;
+	private String MEMB_CD_NM;
 	private String MAIL_CD;	
+	private String MAIL_CD_NM;
 	
+	public String getMEMB_CD_NM() {
+		return MEMB_CD_NM;
+	}
+
+	public void setMEMB_CD_NM(String mEMB_CD_NM) {
+		MEMB_CD_NM = mEMB_CD_NM;
+	}
+
+	public String getMAIL_CD_NM() {
+		return MAIL_CD_NM;
+	}
+
+	public void setMAIL_CD_NM(String mAIL_CD_NM) {
+		MAIL_CD_NM = mAIL_CD_NM;
+	}
+
 	public String getMEMB_CD() {
 		return MEMB_CD;
 	}

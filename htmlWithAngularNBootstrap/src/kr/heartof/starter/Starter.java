@@ -9,7 +9,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import kr.heartof.admin.mapper.AdminMapper;
+import kr.heartof.admin.mapper.PathMapper;
 import kr.heartof.admin.mapper.PathVO;
 import kr.heartof.service.mapper.ProductMapper;
 import kr.heartof.util.BringSqlSession;
@@ -21,7 +21,7 @@ public class Starter implements ServletContextListener{
 		ServletContext context = sce.getServletContext();
 		
 		ProductMapper mapper = BringSqlSession.getInstance().getMapper(ProductMapper.class);
-		AdminMapper pathMapper = BringSqlSession.getInstance().getMapper(AdminMapper.class);
+		PathMapper pathMapper = BringSqlSession.getInstance().getMapper(PathMapper.class);
 		List<ProdCateVO> temp = mapper.getProdCates(null);
 		List<ProdCateVO> height = makeHighestMenu(temp);
 		makeSecondMenu(height, temp);

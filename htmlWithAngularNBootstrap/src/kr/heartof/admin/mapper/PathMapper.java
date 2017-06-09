@@ -2,6 +2,8 @@ package kr.heartof.admin.mapper;
 
 import java.util.List;
 
-public interface AdminMapper {
+import kr.heartof.admin.vo.MgrVO;
+
+public interface PathMapper {
 	public List<PathVO> path() ;
 }

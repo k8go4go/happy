@@ -22,3 +22,7 @@ insert into path values (16, 'regAucList.do', '/'); commit;
 insert into path values (17, 'regAucDetail.do', '/'); commit;
 insert into path values (18, 'updateRegAuc.do', '/'); commit;
 insert into path values (19, 'commonAucDetail.do', '/'); commit;
+insert into path values (20, 'adminLogin.do', '/admin/'); commit;
+insert into path values (21, 'main.jsp', '/admin/main/'); commit;
+insert into path values (22, 'apprCDDetail.do', '/admin/'); commit;
+insert into path values (23, 'apprCDProcess.do', '/admin/'); commit;

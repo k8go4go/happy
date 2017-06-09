@@ -19,7 +19,12 @@ public enum Path {
 	REG_AUC_LIST_JSP("16"),
 	REG_AUC_DETAIL_JSP("17"),
 	UPDATE_REG_AUC_JSP("18"),
-	COMMON_AUC_DETAIL_JSP("19");
+	COMMON_AUC_DETAIL_JSP("19"),
+	ADMIN_LOGIN_JSP("20"),
+	ADMIN_MAIN_JSP("21"),
+	APPR_CD_JSP("21");
+	
+	
 
 	private String path;
 

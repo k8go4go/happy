@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.heartof.admin.mapper.AdminMemberMapper">
+	 <select id="adminLogin" parameterType="MgrVO" resultType="MgrVO">
+	 	SELECT 
+			M.MGR_NUM       ,
+			M.MGR_NM        ,
+			M.MEMB_ID       ,
+			M.SEC_NUM       ,
+			M.EMAIL         ,
+			M.TEL_NUM       ,
+			M.MOBIL_NUM     ,
+			M.REG_DTIME     ,
+			M.HIGH_MGR_NUM  ,
+			M.MEMB_CD       ,
+			M.MAIL_CD       ,
+			D.CATE_NM AS MEMB_CD_NM, 
+			C.CATE_NM AS MAIL_CD_NM 
+		FROM 
+			MGR M INNER JOIN CD D
+				ON M.MEMB_CD = D.CD 
+			INNER JOIN CD C
+				ON M.MAIL_CD = C.CD			
+		WHERE
+			MEMB_ID = #{MEMB_ID} AND
+			SEC_NUM = #{SEC_NUM}
+	 </select>
+</mapper>

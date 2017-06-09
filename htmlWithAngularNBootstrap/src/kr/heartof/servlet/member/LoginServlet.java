@@ -17,8 +17,8 @@ import kr.heartof.vo.member.UsrVO;
 @WebServlet("/login.do")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static MemberMapper mapper = BringSqlSession.getMapper(MemberMapper.class);
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		MemberMapper mapper = BringSqlSession.getMapper(MemberMapper.class);
 		UsrVO vo = new UsrVO();
 		vo.setMEMB_ID(request.getParameter("MEMB_ID"));
 		vo.setMEMB_CD(request.getParameter("MEMB_CD"));
