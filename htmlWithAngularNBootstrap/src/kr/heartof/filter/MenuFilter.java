@@ -21,16 +21,17 @@ public class MenuFilter implements Filter {
 			chain.doFilter(request, response);
 		} else {  // menu.do 호출로 인한 값을 변경한다.
 			String requestURI = req.getRequestURI().toString().trim();
-			String uri[] = requestURI.replaceAll("/menu.do", "").split("/");
+			String uri[] = requestURI.split("/");
 			request.setAttribute("first", uri[2]);
 			request.setAttribute("second", uri[3]);
-			req.getServletContext().getRequestDispatcher("/menu.do").forward(req, (HttpServletResponse)response);
+			
+			req.getServletContext().getRequestDispatcher("/" + uri[4]).forward(req, (HttpServletResponse)response);
 		}
 	}
 
 	private boolean excludeUrl(HttpServletRequest request) {
 		String uri = request.getRequestURI().toString().trim();
-		if (uri.endsWith("/menu.do")) {
+		if (uri.endsWith("/menu.do") || uri.endsWith("/ingmenu.do") ) {
 			return false;
 		} else {
 			return true;

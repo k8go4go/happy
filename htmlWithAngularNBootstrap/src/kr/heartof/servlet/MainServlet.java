@@ -44,7 +44,23 @@ public class MainServlet extends HttpServlet {
 		@SuppressWarnings("unchecked")
 		List<ProdCateVO> height = (List<ProdCateVO>)request.getServletContext().getAttribute("menu");
 		AuctionMapper mapper = BringSqlSession.getMapper(AuctionMapper.class);
-		Map<String, List<RegAucVO>> mainMap = new HashMap<>();
+		// 진행중인 경매 가져오기
+		Map<String, List<RegAucVO>> ingMap = new HashMap<>();
+		for(ProdCateVO ho : height) {
+			for(ProdCateVO lo : ho.getLowerCateVO()) {
+				PageVO vo = new PageVO();
+				vo.setSTART(1);
+				vo.setEND(3);
+				vo.setSearchWord(lo.getPROD_CATE_NUM());
+				List<RegAucVO> listAuc = mapper.listProductingForMain(vo);
+				
+				if(listAuc != null && listAuc.size() > 0)
+					ingMap.put(lo.getPROD_CATE_NUM(), listAuc);
+			}
+		}
+		
+		// 이달의 경매 
+		Map<String, List<RegAucVO>> monthlyMap = new HashMap<>();
 		for(ProdCateVO ho : height) {
 			for(ProdCateVO lo : ho.getLowerCateVO()) {
 				PageVO vo = new PageVO();
@@ -54,10 +70,12 @@ public class MainServlet extends HttpServlet {
 				List<RegAucVO> listAuc = mapper.listProductThisMonthForMain(vo);
 				
 				if(listAuc != null && listAuc.size() > 0)
-					mainMap.put(lo.getPROD_CATE_NUM(), listAuc);
+					monthlyMap.put(lo.getPROD_CATE_NUM(), listAuc);
 			}
 		}
-		
-		request.setAttribute("mainAuction", mainMap);
+		System.out.println("monthlyMap : " + monthlyMap.size());
+		System.out.println("ingMap : " + ingMap.size());
+		request.setAttribute("mainAuction", monthlyMap); 
+		request.setAttribute("mainIngAuction", ingMap);
 	}
 }

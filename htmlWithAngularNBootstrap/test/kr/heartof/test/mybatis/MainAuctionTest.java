@@ -25,7 +25,7 @@ public class MainAuctionTest {
 	}
 	
 	public static void listProductForMain(AuctionMapper mapper) {
-		List<RegAucVO> list = mapper.listProductingForMain("4700");
+		List<RegAucVO> list = mapper.listProducting("4700");
 		
 		for(RegAucVO v : list) {
 			System.out.println(v);

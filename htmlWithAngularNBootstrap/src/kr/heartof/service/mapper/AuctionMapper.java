@@ -42,8 +42,15 @@ public interface AuctionMapper{
 	
 	public RegAucFileVO getRegAucFile(int value);
 	
-	// 메인 
-	public List<RegAucVO> listProductingForMain(String PROD_CATE_NUM);
+	// 메인 - 진행중인 경매	
+	public List<RegAucVO> listProductingForMain(PageVO vo);
 	
+	// 메인 - 이달의 경매
 	public List<RegAucVO> listProductThisMonthForMain(PageVO vo);
+	
+	// 서브 - 진행중인 경매 모든 목록
+	public List<RegAucVO> listProducting(String HIGH_PROD_CATE_NUM);
+	
+	// 서브 - 이달의 경매 모든 목록
+	public List<RegAucVO> listProduct(String HIGH_PROD_CATE_NUM);
 }

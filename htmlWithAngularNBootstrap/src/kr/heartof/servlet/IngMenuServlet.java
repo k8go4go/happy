@@ -13,9 +13,9 @@ import kr.heartof.service.mapper.AuctionMapper;
 import kr.heartof.util.BringSqlSession;
 import kr.heartof.vo.auction.RegAucVO;
 
-@WebServlet("/menu.do")
-public class MenuServlet extends HttpServlet {
-    public MenuServlet() {
+@WebServlet("/ingmenu.do")
+public class IngMenuServlet extends HttpServlet {
+    public IngMenuServlet() {
     }
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,11 +23,11 @@ public class MenuServlet extends HttpServlet {
 		System.out.println(request.getAttribute("second"));
 		
 		AuctionMapper mapper = BringSqlSession.getMapper(AuctionMapper.class);
-		List<RegAucVO> list = mapper.listProduct((String)request.getAttribute("second"));
+		List<RegAucVO> list = mapper.listProducting((String)request.getAttribute("second"));
 		request.setAttribute("list", list);
 		// second로 경매 상품을 조회 한다.
 		// 경매 상품 조회에 대한 결과를 detail.do로 넘긴다
 		
-		request.getServletContext().getRequestDispatcher("/jsp/auction/catemonthly.jsp").forward(request, response);
+		request.getServletContext().getRequestDispatcher("/jsp/auction/ingAuction.jsp").forward(request, response);
 	}
 }

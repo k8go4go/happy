@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
@@ -9,7 +9,7 @@
 	<tr>
 		<td class="text-left">
 		<h5>${mainAuction[0].HIGH_PROD_CATE_NM}</h5>
-		<h6><kbd>ÀÌ´ÞÀÇ ÃÖ°í  °æ¸Å</kbd></h6>
+		<h6><kbd>ì´ë‹¬ì˜ ìµœê³   ê²½ë§¤</kbd></h6>
 		</td>
 		<td colspan="2" class="text-right">
 			<nav aria-label="Page navigation">
@@ -40,12 +40,12 @@
 				</c:choose>
 				<div class="caption">
 					<h5><kbd>${list.AUC_PROD_NM}</kbd></h5>
-					<p>½ÃÀÛÀÏ : <fmt:formatDate value="${list.START_DTIME}" pattern="yyyy-MM-dd"/></p>
-					<p>Á¾·áÀÏ : <fmt:formatDate value="${list.END_DTIME}" pattern="yyyy-MM-dd"/></p>
-					<p>½ÃÀÛ°¡ : ${list.START_PRICE}</p>
-					<p>¼ö·® : ${list.QTY}</p>
+					<p>ì‹œìž‘ì¼ : <fmt:formatDate value="${list.START_DTIME}" pattern="yyyy-MM-dd"/></p>
+					<p>ì¢…ë£Œì¼ : <fmt:formatDate value="${list.END_DTIME}" pattern="yyyy-MM-dd"/></p>
+					<p>ì‹œìž‘ê°€ : ${list.START_PRICE}</p>
+					<p>ìˆ˜ëŸ‰ : ${list.QTY}</p>
 					<p>
-						<a href="${contextPath}${pathList['19'].PATH}${pathList['19'].PATH_NM}?no=${regAuc.AUC_REG_NUM}" class="btn btn-primary" role="button">»ó¼¼º¸±â</a>
+						<a href="${contextPath}${pathList['19'].PATH}${pathList['19'].PATH_NM}?no=${regAuc.AUC_REG_NUM}" class="btn btn-primary" role="button">ìƒì„¸ë³´ê¸°</a>
 					</p>
 				</div>
 			</div>
