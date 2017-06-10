@@ -1,11 +1,12 @@
 package kr.heartof.util;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import kr.heartof.admin.mapper.PathVO;
 
 public class PathUtil {
-	private static Map<String, PathVO> path;
+	private static Map<String, PathVO> path = new HashMap<>();
 	public static void setPath(Map<String, PathVO> p){
 		path = p;
 	}

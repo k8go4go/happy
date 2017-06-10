@@ -14,19 +14,27 @@ import kr.heartof.constant.Code;
 import kr.heartof.util.BringSqlSession;
 import kr.heartof.vo.auction.RegAucFileVO;
 import kr.heartof.vo.auction.RegAucVO;
+import kr.heartof.vo.auction.RegRejVO;
 
-@WebServlet("/admin/apprCDProcess.do")
-public class ApprCDProcessSerlvet extends HttpServlet {
+@WebServlet("/admin/apprRejProcess.do")
+public class ApprRejProcessSerlvet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AdminAuctionMapper mapper = BringSqlSession.getMapper(AdminAuctionMapper.class);
-		int result = 0;
+		
+		RegRejVO jvo = new RegRejVO();
+		jvo.setAUC_REG_NUM(Integer.parseInt(request.getParameter("AUC_REG_NUM")));
+		jvo.setREG_REJ_REAS(request.getParameter("REJ_REAS"));
+		
 		RegAucVO vo = new RegAucVO();
-		vo.setAPPR_CD(Code.REG_AUC_APPROVAL_Y_CD.getKey());
+		vo.setAPPR_CD(Code.REG_AUC_APPROVAL_N_CD.getKey());
 		vo.setAUC_REG_NUM(Integer.parseInt(request.getParameter("AUC_REG_NUM")));
+		
+		int result = 0;
 		try {
-			result = mapper.updateApprCD(vo);
+			result += mapper.updateApprCD(vo);
+			result += mapper.insertRegRej(jvo);
 			BringSqlSession.getInstance().commit();
 		} catch (Exception e) {
 			BringSqlSession.getInstance().rollback();
@@ -34,15 +42,17 @@ public class ApprCDProcessSerlvet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		String msg = "";
-		if(result > 0) {
-			msg = "승인처리가 완료되었습니다.";
+		
+		String msg = "";		
+		if(result == 2) {
+			msg = "승인거부처리가 완료되었습니다.";
 		} else {
-			msg = "승인처리가 실패하였습니다.";
+			msg = "승인거부처리가 실패하였습니다.";
 		}
 		
 		request.setAttribute("result", result);
 		request.setAttribute("msg", msg);
+		
 		
 		request.getServletContext().getRequestDispatcher("/admin/adminMain.do").forward(request, response);
 	}

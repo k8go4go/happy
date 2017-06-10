@@ -30,7 +30,13 @@
 		</c:if>
 		
 		<form id="apprCDForm" name="apprCDForm" method="post"
-			action="${contextPath}${pathList['23'].PATH}${pathList['23'].PATH_NM}">			
+			action="${contextPath}${pathList['23'].PATH}${pathList['23'].PATH_NM}">		
+			<c:if test="${aucVO.APPR_CD != '1500' }">
+				<div class="text-center col-sm-10">
+					<h4>승인처리</h4>
+					<h5><kbd>${aucVO.APPR_NM}</kbd></h5>
+				</div>
+			</c:if>	
 			<table class="table" id='productTable'>
 				<tbody>
 					<tr>
@@ -86,19 +92,27 @@
 						<td class="text-right col-sm-2"><h6>거부사유</h6></td>
 						<td class="text-left col-sm-6"><textarea
 								class="text-left input-sm col-sm-6" id="REJ_REAS" name="REJ_REAS"
-								required></textarea></td>
+								required>${regRejVO.REG_REJ_REAS}</textarea></td>
 					</tr>
 				</tbody>
 				<tfoot>
 					<tr>
 						<td colspan="2" class="text-center col-sm-8">
-							<button id="apprCDChangeBtn" type="button" class="btn btn-primary">승인</button>
-							<button id="apprCDCancelBtn" type="button" class="btn btn-primary">거부</button>
+							<c:if test="${aucVO.APPR_CD == '1500' }">
+								<button id="apprCDChangeBtn" type="button" class="btn btn-primary">승인</button>
+								<button id="apprCDCancelBtn" type="button" class="btn btn-primary">거부</button>
+							</c:if>
 							<button id="backBtn" type="button" class="btn btn-info">돌아가기</button>
 						</td>
 					</tr>
 				</tfoot>
 			</table>
+			<input type="hidden" class="input-sm col-sm-6" id="AUC_REG_NUM" name="AUC_REG_NUM" value="${aucVO.AUC_REG_NUM}" readonly="readonly" />
+		</form>
+		<form id="apprRejForm" name="apprRejForm" method="post"
+			action="${contextPath}${pathList['24'].PATH}${pathList['24'].PATH_NM}">
+			<input type="hidden" class="input-sm col-sm-6" id="AUC_REG_NUM" name="AUC_REG_NUM" value="${aucVO.AUC_REG_NUM}" />		
+			<input type="hidden" class="input-sm col-sm-6" id="REJ_REAS" name="REJ_REAS" />		
 		</form>
 	</div>
 	<div class="col-md-1"></div>
@@ -110,19 +124,23 @@
 	});
 	
 	$('#apprCDChangeBtn').on('click', function(e) {
-		var reason = $('#REJ_REAS');
-		
-		if(reason.val == '') {
-			swal('승인상유오류', '거부시 거부사유를 기입하셔야 합니다.','error');
-			return false;
-		}
-		
 		var f = $('#apprCDForm');
 		f.submit();
 	});
 	
 	$('#apprCDCancelBtn').on('click', function(e) {
-		$('#REJ_REAS').val = '';
+		var reason = $('#REJ_REAS');
+		
+		if(reason.val() == '') {
+			swal('승인거부오류', '거부시 거부사유를 기입하셔야 합니다.','error');
+			return false;
+		}
+		$("input[name='REJ_REAS']").val($('#REJ_REAS').val());
+		
+		console.log($("input[name='REJ_REAS']").val());
+		
+		var f = $('#apprRejForm');
+		f.submit();
 	});
 </script>
 <c:import url="/jsp/admin/common/adminFooter.jsp"></c:import>

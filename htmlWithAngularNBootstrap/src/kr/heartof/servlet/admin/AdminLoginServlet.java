@@ -33,21 +33,18 @@ public class AdminLoginServlet extends HttpServlet {
 		vo.setSEC_NUM(request.getParameter("SEC_NUM"));
 		
 		MgrVO user = mapper.adminLogin(vo);
-		request.getSession().setAttribute("mgr", user);
-		makeProcessList(request, user);
-		request.getServletContext().getRequestDispatcher(
-				PathUtil.getPath(Path.ADMIN_MAIN_JSP) + 
-				PathUtil.getPathNM(Path.ADMIN_MAIN_JSP)).forward(request, response);
-	}
-	
-	private void makeProcessList(HttpServletRequest request, MgrVO user) {
-		if(user != null) {
-			AdminAuctionMapper mapper = BringSqlSession.getMapper(AdminAuctionMapper.class);
-			List<RegAucVO> list = mapper.needApprCD();
-			request.setAttribute("needApprCD", list);
-			
-			List<RegAucVO> donelist = mapper.doneApprCD();
-			request.setAttribute("doneApprCD", donelist);
+		if(user != null)
+			request.getSession().setAttribute("mgr", user);
+		else{
+			request.getServletContext().getRequestDispatcher("/jsp/admin/adminIndex.jsp").forward(request, response);
+		}
+		
+		if(PathUtil.getPath(Path.ADMIN_MAIN_SERVLET) == null) {
+			request.getServletContext().getRequestDispatcher("/jsp/admin/adminIndex.jsp").forward(request, response);
+		} else {
+			request.getServletContext().getRequestDispatcher(
+					PathUtil.getPath(Path.ADMIN_MAIN_SERVLET) + 
+					PathUtil.getPathNM(Path.ADMIN_MAIN_SERVLET)).forward(request, response);
 		}
 	}
 }

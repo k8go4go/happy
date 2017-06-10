@@ -15,6 +15,8 @@ public interface AdminAuctionMapper {
 	
 	public List<RegAucFileVO> listRegAucFile(int AUC_REG_NUM);
 	
+	public RegRejVO getRecRej(int AUC_REG_NUM);
+	
 	public int updateApprCD(RegAucVO vo);
 	
 	public int insertRegRej(RegRejVO vo);

@@ -109,7 +109,7 @@
 						<form class="navbar-form navbar-right">
 							<c:choose>
 							<c:when test="${not empty sessionScope.user}">
-								<button type="button" class="btn btn-info" onclick="logout();">로그아웃</button>
+								<button type="button" id="logout" class="btn btn-info" >로그아웃</button>
  								<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#regAuctionFormModal" onclick="getCategory();">경매등록</button>
 								<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myAuctionFormModal">My Auction</button>
 							</c:when>

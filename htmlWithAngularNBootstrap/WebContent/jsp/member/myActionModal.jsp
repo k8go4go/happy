@@ -264,7 +264,7 @@
 		);
 	}
 	
-	var logout = function() {
+	$('#logout').on('click', function(e) {
 		location.href = '${contextPath}${pathList['14'].PATH}${pathList['14'].PATH_NM}';
-	}
+	}) 
 </script>

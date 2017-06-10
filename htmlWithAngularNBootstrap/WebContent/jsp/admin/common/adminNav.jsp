@@ -59,7 +59,7 @@
 				<div class="container-fluid">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
-						<a class="navbar-brand" data-toggle="tooltip" title="홈으로.." href="<c:url value="/amdin/adminMain.do" />"> <img width="30" height="30"
+						<a class="navbar-brand" data-toggle="tooltip" title="홈으로.." href="<c:url value="/admin/adminMain.do" />"> <img width="30" height="30"
 							class="d-inline-block align-middle"
 							src="${contextPath}/resources/imgs/brand.png">
 						</a>
@@ -68,7 +68,7 @@
 				<form class="navbar-form navbar-left">
 					<c:choose>
 					<c:when test="${not empty sessionScope.mgr}">
-						<button type="button" class="btn btn-info" onclick="logout();">로그아웃</button>
+						<button type="button" id="adminLogout" class="btn btn-info" >로그아웃</button>
 						<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myAuctionFormModal">Auction List</button>
 					</c:when>
 					<c:otherwise>
@@ -97,3 +97,8 @@
 		</div>
 		<div class="col-md-1"></div>
 	</div>
+<script>
+	$('#adminLogout').on('click', function (e) {
+		location.href = '${contextPath}${pathList['25'].PATH}${pathList['25'].PATH_NM}';
+	})
+</script>	
