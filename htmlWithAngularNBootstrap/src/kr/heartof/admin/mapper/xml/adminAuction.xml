@@ -131,7 +131,7 @@
 			SET 
 				APPR_CD = #{APPR_CD}
 		WHERE
-			AUC_REG_NUM = #{AUC_REG_NUM}		
+			AUC_REG_NUM = #{AUC_REG_NUM}	
 	</update>
 	
 	<insert id="insertRegRej" parameterType="RegRejVO">

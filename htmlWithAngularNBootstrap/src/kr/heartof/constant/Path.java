@@ -26,7 +26,9 @@ public enum Path {
 	AMDIN_APPR_CD_PROCESS("23"),
 	AMDIN_APPR_REJECT_JSP("24"),
 	ADMIN_LOGOUT_JSP("25"),
-	ADMIN_MAIN_JSP("26");
+	ADMIN_MAIN_JSP("26"),
+	AJAX_MONTHLY_PAGE_JSP("27"),
+	MONTHLY_PAGE_JSP("28");
 
 	private String path;
 

@@ -3,7 +3,6 @@ package kr.heartof.servlet.foruser;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,10 +17,10 @@ import kr.heartof.vo.foruser.BoardVO;
 @WebServlet("/qna.do")
 public class QnaServlet extends HttpServlet {
 	private static final long serialVersionUID = -6604503467292740840L;
-	private static QnaMapper mapper = BringSqlSession.getMapper(QnaMapper.class); 
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		QnaMapper mapper = BringSqlSession.getMapper(QnaMapper.class); 
 		response.addHeader("Content-Type", "text/html;charset=UTF-8");
 		PageUtil util = new PageUtil(PageUtil.BLOCKPAGE_5);
 		util.setMapper(mapper);

@@ -74,11 +74,11 @@
 								<ul class="dropdown-menu multi-level" role="menu"
 									aria-labelledby="dropdownMenu">
 									<c:forEach var="menu" items="${menuList}">
-										<li class="dropdown-submenu"><a tabindex="-1" href="">${menu.PROD_CATE_NM}</a>
+										<li class="dropdown-submenu"><a tabindex="-1">${menu.PROD_CATE_NM}</a>
 											<ul class="dropdown-menu">
 												<c:forEach var="menuItem" items="${menu.lowerCateVO}">
-													<li><a
-														href='<c:url value="/${menu.PROD_CATE_NUM}/${menuItem.PROD_CATE_NUM}/menu.do" />'>${menuItem.PROD_CATE_NM}</a></li>
+													<li><a href='<c:url value="/${menu.PROD_CATE_NUM}/${menuItem.PROD_CATE_NUM}/menu.do" />'>
+													   ${menuItem.PROD_CATE_NM}</a></li>
 												</c:forEach>
 											</ul>
 										<li class="divider"></li></li>
@@ -94,11 +94,11 @@
 								<ul class="dropdown-menu multi-level" role="menu"
 									aria-labelledby="dropdownMenu">
 									<c:forEach var="menu" items="${menuList}">
-										<li class="dropdown-submenu"><a tabindex="-1" href="">${menu.PROD_CATE_NM}</a>
+										<li class="dropdown-submenu"><a tabindex="-1">${menu.PROD_CATE_NM}</a>
 											<ul class="dropdown-menu">
 												<c:forEach var="menuItem" items="${menu.lowerCateVO}">
-													<li><a
-														href='<c:url value="/${menu.PROD_CATE_NUM}/${menuItem.PROD_CATE_NUM}/ingmenu.do" />'>${menuItem.PROD_CATE_NM}</a></li>
+													<li><a href='<c:url value="/${menu.PROD_CATE_NUM}/${menuItem.PROD_CATE_NUM}/ingmenu.do" />'>
+														${menuItem.PROD_CATE_NM}</a></li>
 												</c:forEach>
 											</ul>
 										<li class="divider"></li></li>

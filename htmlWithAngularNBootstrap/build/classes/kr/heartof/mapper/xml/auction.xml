@@ -35,9 +35,9 @@
 		<result column="PROD_CATE_NUM" property="PROD_CATE_NUM" />
 		<result column="PROD_CATE_NM" property="PROD_CATE_NM" />
 		<result column="HIGH_PROD_CATE_NM" property="HIGH_PROD_CATE_NM" />
+		<result column="HIGH_PROD_CATE_NUM" property="HIGH_PROD_CATE_NUM" />
 		<result column="AUC_TYPE_NUM" property="AUC_TYPE_NUM" />
-		<association column="PROD_CATE_NUM" property="TOT" javaType="String"
-			select="listTot"/>
+		<association column="PROD_CATE_NUM" property="TOT" javaType="int" select="listTotMonth" />
 		<collection property="files" javaType="java.util.ArrayList"  ofType="RegAucFileVO" 
 			column="AUC_REG_NUM" select="listRegAucFile"/>
 		<collection property="rejs" javaType="java.util.ArrayList" ofType="RegRejVO" 
@@ -256,7 +256,36 @@
 			HIGH_CD = #{HIGH_CD}
 	 </select>
 	 
-	 <select id="listProductingForMain" parameterType="String" resultMap="aucList">
+	 <select id="listProduct" parameterType="String" resultMap="aucList">
+		SELECT
+		     AUC_REG_NUM,
+		     AUC_PROD_NM,
+		     SHORT_CONT,
+		     REG_DTIME,
+		     START_DTIME,
+		     END_DTIME,
+		     START_PRICE,
+		     QTY,
+		     MEMB_NUM,
+		     PROD_CATE_NUM,
+		     APPR_CD,
+		     AUC_TYPE_NUM
+		FROM 
+		    REG_AUC
+		WHERE
+		    PROD_CATE_NUM in (
+		    	SELECT 
+		    		PROD_CATE_NUM 
+		    	FROM PROD_CATE 
+		    	WHERE 
+		    		HIGH_PROD_CATE_NUM = #{HIGH_PROD_CATE_NUM} 
+		    )
+		    AND LAST_DAY(SYSDATE) > R.END_DTIME
+		    AND R.APPR_CD = '1501' 	
+		ORDER BY START_DTIME ASC	 	
+	 </select>
+	 
+	 <select id="listProducting" parameterType="String" resultMap="aucList">
 	 	SELECT
 		     AUC_REG_NUM,
 		     AUC_PROD_NM,
@@ -286,7 +315,7 @@
 		ORDER BY START_DTIME ASC
 	 </select>
 
-	<select id="listTot" resultType="int" parameterType="String" >
+	<select id="listTotMonth" resultType="int" parameterType="String" >
 			SELECT
 		 	     COUNT(*) AS TOT
 			FROM 
@@ -297,14 +326,16 @@
 			    		PROD_CATE_NUM 
 			    	FROM PROD_CATE 
 			    	WHERE 
-			    		HIGH_PROD_CATE_NUM = #{HIGH_PROD_CATE_NUM} 
+			    		HIGH_PROD_CATE_NUM = (SELECT HIGH_PROD_CATE_NUM FROM PROD_CATE 
+			    							  WHERE PROD_CATE_NUM = #{PROD_CATE_NUM}	
+			    		) 
 			    )
 			    AND LAST_DAY(SYSDATE) > END_DTIME
 			    AND APPR_CD = '1501'	
 			ORDER BY END_DTIME ASC 
 	</select>
-	 
-	  <select id="listProductThisMonthForMain" parameterType="PageVO" resultMap="mainAucList">
+	
+	<select id="listProductingForMain" parameterType="PageVO" resultMap="mainAucList">
 	 	SELECT * FROM (
 		    SELECT
 		         ROWNUM RN,
@@ -321,6 +352,51 @@
 		         R.APPR_CD,
 		         R.AUC_TYPE_NUM,
 		         P.PROD_CATE_NM,
+		         PA.HIGH_PROD_CATE_NUM,
+		         PA.PROD_CATE_NM AS HIGH_PROD_CATE_NM,
+		         0 AS TOT
+		    FROM 
+		        REG_AUC R INNER JOIN PROD_CATE P
+		        ON R.PROD_CATE_NUM = P.PROD_CATE_NUM
+		        INNER JOIN PROD_CATE PA
+		        ON P.HIGH_PROD_CATE_NUM = PA.PROD_CATE_NUM
+		    WHERE
+		        R.PROD_CATE_NUM in (
+		            SELECT 
+		                PROD_CATE_NUM 
+		            FROM PROD_CATE 
+		            WHERE 
+		                HIGH_PROD_CATE_NUM = #{searchWord} 
+		        )
+		        AND END_DTIME > SYSDATE
+			    AND SYSDATE > START_DTIME
+			    AND APPR_CD = '1501' 	
+		    ORDER BY R.END_DTIME ASC
+		) A
+		WHERE 
+		    A.RN >= #{START} AND
+		    #{END} >= A.RN
+	 </select>
+	
+	 
+	<select id="listProductThisMonthForMain" parameterType="PageVO" resultMap="mainAucList">
+	 	SELECT * FROM (
+		    SELECT
+		         ROWNUM RN,
+		         R.AUC_REG_NUM,
+		         R.AUC_PROD_NM,
+		         R.SHORT_CONT,
+		         R.REG_DTIME,
+		         R.START_DTIME,
+		         R.END_DTIME,
+		         R.START_PRICE,
+		         R.QTY,
+		         R.MEMB_NUM,
+		         R.PROD_CATE_NUM,
+		         R.APPR_CD,
+		         R.AUC_TYPE_NUM,
+		         P.PROD_CATE_NM,
+		         PA.HIGH_PROD_CATE_NUM,
 		         PA.PROD_CATE_NM AS HIGH_PROD_CATE_NM,
 		         0 AS TOT
 		    FROM 
@@ -341,7 +417,7 @@
 		    ORDER BY R.END_DTIME ASC
 		) A
 		WHERE 
-		    A.RN >= #{START} AND 
+		    A.RN >= #{START} AND
 		    #{END} >= A.RN
 	 </select>
 </mapper>

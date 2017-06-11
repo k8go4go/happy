@@ -35,9 +35,9 @@
 		<result column="PROD_CATE_NUM" property="PROD_CATE_NUM" />
 		<result column="PROD_CATE_NM" property="PROD_CATE_NM" />
 		<result column="HIGH_PROD_CATE_NM" property="HIGH_PROD_CATE_NM" />
+		<result column="HIGH_PROD_CATE_NUM" property="HIGH_PROD_CATE_NUM" />
 		<result column="AUC_TYPE_NUM" property="AUC_TYPE_NUM" />
-		<association column="PROD_CATE_NUM" property="TOT" javaType="String"
-			select="listTot"/>
+		<association column="PROD_CATE_NUM" property="TOT" javaType="int" select="listTotMonth" />
 		<collection property="files" javaType="java.util.ArrayList"  ofType="RegAucFileVO" 
 			column="AUC_REG_NUM" select="listRegAucFile"/>
 		<collection property="rejs" javaType="java.util.ArrayList" ofType="RegRejVO" 
@@ -315,7 +315,7 @@
 		ORDER BY START_DTIME ASC
 	 </select>
 
-	<select id="listTot" resultType="int" parameterType="String" >
+	<select id="listTotMonth" resultType="int" parameterType="String" >
 			SELECT
 		 	     COUNT(*) AS TOT
 			FROM 
@@ -326,7 +326,9 @@
 			    		PROD_CATE_NUM 
 			    	FROM PROD_CATE 
 			    	WHERE 
-			    		HIGH_PROD_CATE_NUM = #{HIGH_PROD_CATE_NUM} 
+			    		HIGH_PROD_CATE_NUM = (SELECT HIGH_PROD_CATE_NUM FROM PROD_CATE 
+			    							  WHERE PROD_CATE_NUM = #{PROD_CATE_NUM}	
+			    		) 
 			    )
 			    AND LAST_DAY(SYSDATE) > END_DTIME
 			    AND APPR_CD = '1501'	
@@ -350,6 +352,7 @@
 		         R.APPR_CD,
 		         R.AUC_TYPE_NUM,
 		         P.PROD_CATE_NM,
+		         PA.HIGH_PROD_CATE_NUM,
 		         PA.PROD_CATE_NM AS HIGH_PROD_CATE_NM,
 		         0 AS TOT
 		    FROM 
@@ -393,6 +396,7 @@
 		         R.APPR_CD,
 		         R.AUC_TYPE_NUM,
 		         P.PROD_CATE_NM,
+		         PA.HIGH_PROD_CATE_NUM,
 		         PA.PROD_CATE_NM AS HIGH_PROD_CATE_NM,
 		         0 AS TOT
 		    FROM 

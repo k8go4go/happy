@@ -79,7 +79,7 @@
 						<ul class="pagination pagination-sm">
 							<c:if test="${requestScope.startIndicator eq 1}">
 							<li><a href="<c:url value="${pathList['2'].PATH}${pathList['2'].PATH_NM}" />?page=${start-1}&viewCount=10" 
-								aria-label="Previous"> <span
+								aria-label="Previous"><span
 									aria-hidden="true">&laquo;</span>
 							</a></li>
 							</c:if>

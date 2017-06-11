@@ -25,6 +25,7 @@ public class ApprCDProcessSerlvet extends HttpServlet {
 		RegAucVO vo = new RegAucVO();
 		vo.setAPPR_CD(Code.REG_AUC_APPROVAL_Y_CD.getKey());
 		vo.setAUC_REG_NUM(Integer.parseInt(request.getParameter("AUC_REG_NUM")));
+		
 		try {
 			result = mapper.updateApprCD(vo);
 			BringSqlSession.getInstance().commit();

@@ -9,7 +9,9 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import kr.heartof.admin.mapper.AdminAuctionMapper;
+import kr.heartof.constant.Code;
 import kr.heartof.vo.auction.RegAucVO;
+import kr.heartof.vo.foruser.PageVO;
 
 public class MainAuctionTest {
 	public static void main(String[] args) throws IOException {
@@ -18,7 +20,7 @@ public class MainAuctionTest {
 		SqlSession session = sqlSessionFactory.openSession();
 		
 		AdminAuctionMapper mapper = session.getMapper(AdminAuctionMapper.class);
-		doneApprCD(mapper);
+		updateApprCD(mapper);
 		session.commit();
 		session.close();
 	}
@@ -37,5 +39,14 @@ public class MainAuctionTest {
 		for(RegAucVO v : list) {
 			System.out.println(v);
 		}
+	}
+	
+	public static void updateApprCD(AdminAuctionMapper mapper) {
+		RegAucVO  vo = new RegAucVO();
+		vo.setAPPR_CD(Code.REG_AUC_APPROVAL_Y_CD.getKey());
+		vo.setAUC_REG_NUM(15);
+		int result = mapper.updateApprCD(vo);
+		
+		System.out.println("updateApprCD : " + result);
 	}
 }

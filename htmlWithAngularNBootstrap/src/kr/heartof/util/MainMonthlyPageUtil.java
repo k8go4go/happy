@@ -5,17 +5,18 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import kr.heartof.constant.Code;
-import kr.heartof.service.mapper.QnaMapper;
-import kr.heartof.vo.foruser.BoardVO;
+import kr.heartof.service.mapper.AuctionMapper;
+import kr.heartof.vo.auction.RegAucVO;
 import kr.heartof.vo.foruser.PageVO;
 
-public class PageUtil {
+public class MainMonthlyPageUtil {
 	// 한 화면에 보여질 게시물 갯수 정보
 	public static final int PAGE_3 = 3;
 	public static final int PAGE_10 = 10;
 	public static final int PAGE_20 = 20;
 	public static final int PAGE_30 = 30;
 
+	public static final int BLOCKPAGE_3 = 3;
 	public static final int BLOCKPAGE_5 = 5;
 	public static final int BLOCKPAGE_10 = 10;
 	public static final int BLOCKPAGE_15 = 15;
@@ -25,9 +26,9 @@ public class PageUtil {
 	private int currentPage;  // 현재 페이지 번호
 	private int total;
 	
-	private QnaMapper mapper;
+	private AuctionMapper mapper;
 	private PageVO pageVO = new PageVO();
-	public PageUtil(int showBlockPageCount) {
+	public MainMonthlyPageUtil(int showBlockPageCount) {
 		this.showBlockPageCount = showBlockPageCount;
 	}
 
@@ -44,7 +45,7 @@ public class PageUtil {
 		}
 	}
 
-	public int getCurrentPageFromClinet() {
+	public int getCurrentPageFromClinet() { 
 		return currentPage;
 	}
 
@@ -61,19 +62,20 @@ public class PageUtil {
 		return viewCount;
 	}
 
-	public List<BoardVO> getRequestBoardList() {
-		List<BoardVO> boardList = null;
-		if(pageVO.getCD() == null) {
-			boardList = mapper.list(pageVO);
-			if(boardList.size() > 0) 
-				total = boardList.get(0).getTOT();
-			return boardList;
-		} else {
-			boardList = mapper.list(pageVO);
-			if(boardList.size() > 0) 
-				total = boardList.get(0).getTOT();
-			return boardList;
-		}
+	public List<RegAucVO> getRequestlistProductingForMain(String search) {
+		pageVO.setSearchWord(search);
+		List<RegAucVO> listAuc = mapper.listProductingForMain(pageVO);
+		if(listAuc.size() > 0) 
+			total = listAuc.get(0).getTOT();
+		return listAuc;
+	}
+	
+	public List<RegAucVO> getRequestlistProductThisMonthForMain(String search) {
+		pageVO.setSearchWord(search);
+		List<RegAucVO> listAuc = mapper.listProductThisMonthForMain(pageVO);
+		if(listAuc.size() > 0) 
+			total = listAuc.get(0).getTOT();
+		return listAuc;
 	}
 
 	public int getStart() {
@@ -101,9 +103,15 @@ public class PageUtil {
 	}
 
 	public int endIndicator() {
+		System.out.println("(getTotalBlcok() " + getTotalBlcok());
+		System.out.println("(getTotalBlcok() - 1) * showBlockPageCount : " + ((getTotalBlcok() - 1) * showBlockPageCount));
 		return (getTotalBlcok() - 1) * showBlockPageCount >= currentPage ? 1 : 0;
 	}
-
+	
+	public void setViewCount(int v) {
+		viewCount = v;
+	}
+	
 	public final void setHttpServletRequest(HttpServletRequest request) {
 		if (request.getParameter("page") != null) {
 			currentPage = Integer.parseInt(request.getParameter("page"));
@@ -114,7 +122,7 @@ public class PageUtil {
 		if (request.getParameter("viewCount") != null) {
 			viewCount = Integer.parseInt(request.getParameter("viewCount"));
 		} else {
-			viewCount = PAGE_10;
+			viewCount = PAGE_3;
 		}
 		
 		if (request.getParameter("total") != null) {
@@ -130,7 +138,7 @@ public class PageUtil {
 		if (request.getParameter("end") != null) {
 			pageVO.setEND(Integer.parseInt(request.getParameter("end")));
 		} else {
-			pageVO.setEND(10);
+			pageVO.setEND(3);
 		}
 		
 		if (request.getParameter("search") != null) {
@@ -150,7 +158,7 @@ public class PageUtil {
 		return viewCount;
 	}
 
-	public void setMapper(QnaMapper mapper) {
+	public void setMapper(AuctionMapper mapper) {
 		this.mapper = mapper;
 	}
 }

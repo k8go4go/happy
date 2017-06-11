@@ -27,7 +27,7 @@ public class MenuServlet extends HttpServlet {
 		request.setAttribute("list", list);
 		// second로 경매 상품을 조회 한다.
 		// 경매 상품 조회에 대한 결과를 detail.do로 넘긴다
-		
-		request.getServletContext().getRequestDispatcher("/jsp/auction/catemonthly.jsp").forward(request, response);
+		request.setAttribute("viewCount", "30");
+		request.getServletContext().getRequestDispatcher("/jsp/auction/monthlyGroupList.jsp").forward(request, response);
 	}
 }

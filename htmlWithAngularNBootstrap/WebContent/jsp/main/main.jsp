@@ -12,7 +12,7 @@
 		<!-- 진행중인 경매 -->
 		<c:import url="/jsp/auction/ingAuction.jsp"></c:import>		
 		<!-- 이달의 최고 경매 -->
-		<c:import url="/jsp/auction/monthlyAuction.jsp"></c:import>		
+		<c:import url="/jsp/auction/monthlyAuctionWithoutAjax.jsp"></c:import>		
 	</div>
 	<div class="col-md-1"></div>
 </div>

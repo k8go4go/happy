@@ -9,29 +9,42 @@
 	<c:forEach items="${mainIngAuction}" var="list">	
 		<table class="table">
 		<tbody>
-			<c:if test="${fn:length(list.value) > 0}">
 			<tr>
 				<td class="text-left">
-				<h5>${list.value[0].HIGH_PROD_CATE_NM}</h5>
+				<h5>${list.value.list[0].HIGH_PROD_CATE_NM}</h5>
 				<h6><kbd>진행중인 경매</kbd></h6>
 				</td>
 				<td colspan="2" class="text-right">
+					<c:if test="${list.value.totalPage != 0}">
 					<nav aria-label="Page navigation">
 						<ul class="pagination pagination-sm">
-							<li><a href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
-							<li><a href="#" class="bg-primary">1</a></li>
-							<li><a href="#" class="bg-primary">2</a></li>
-							<li><a href="#" class="bg-primary">3</a></li>
-							<li><a href="#" class="bg-primary">4</a></li>
-							<li><a href="#" class="bg-primary">5</a></li>
-							<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span>
+							<c:if test="${list.value.startIndicator eq 1}">
+							<li><a href="<c:url value="${pathList['2'].PATH}${pathList['2'].PATH_NM}" />?page=${list.value - 1}&viewCount=3" 
+								aria-label="Previous"><span
+									aria-hidden="true">&laquo;</span>
 							</a></li>
+							</c:if>
+							<c:forEach begin="${list.value.start}" var="index" end="${list.value.end}" step="1">
+								<c:choose>
+								<c:when test="${list.value.currentPage eq index}" >
+									<li class="active"><a class="bg-primary">${index}</a></li>
+								</c:when>
+								<c:otherwise>
+									<li ><a href="<c:url value="${pathList['2'].PATH}${pathList['2'].PATH_NM}" />?page=${index}&start=${(index - 1) * list.value.viewCount + 1}&end=${(index - 1)* list.value.viewCount + list.value.viewCount}">${index}</a></li>
+								</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<c:if test="${list.value.endIndicator eq 1}">
+							<li><a href="<c:url value="${pathList['2'].PATH}${pathList['2'].PATH_NM}" />?page=${list.value.end + 1}&viewCount=3" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+							</a></li>
+							</c:if>
 						</ul>
 					</nav>
+					</c:if>
 				</td>
 			</tr>
 			<tr>
-				<c:forEach items="${list.value}" var="regAuc">
+				<c:forEach items="${list.value.list}" var="regAuc">
 				<td class="text-right col-md-4">
 					<div class="thumbnail">
 						<c:choose>
@@ -56,7 +69,6 @@
 				</td>
 				</c:forEach>
 			</tr>
-			</c:if>
 		</tbody>
 		</table>
 	</c:forEach>
