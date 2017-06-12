@@ -31,3 +31,4 @@ insert into path values (25, 'adminLogout.do', '/admin/'); commit
 insert into path values (26, 'main.jsp', '/jsp/admin/main/'); commit;
 insert into path values (27, 'monthlyPage.do', '/ajax/'); commit;
 insert into path values (28, 'monthlyWithoutPage.do', '/'); commit;
+insert into path values (29, 'newBidding.do', '/'); commit;

@@ -28,7 +28,8 @@ public enum Path {
 	ADMIN_LOGOUT_JSP("25"),
 	ADMIN_MAIN_JSP("26"),
 	AJAX_MONTHLY_PAGE_JSP("27"),
-	MONTHLY_PAGE_JSP("28");
+	MONTHLY_PAGE_JSP("28"),
+	NEW_BIDDING_SERLVET("29");
 
 	private String path;
 

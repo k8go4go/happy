@@ -8,7 +8,16 @@ public class BiddingVO {
 	private Date BID_DTIME;
 	private int BID_NUM;
 	private String MEMB_ID;
+	private int MEMB_NUM;
 		
+	public int getMEMB_NUM() {
+		return MEMB_NUM;
+	}
+
+	public void setMEMB_NUM(int mEMB_NUM) {
+		MEMB_NUM = mEMB_NUM;
+	}
+
 	public String getMEMB_ID() {
 		return MEMB_ID;
 	}

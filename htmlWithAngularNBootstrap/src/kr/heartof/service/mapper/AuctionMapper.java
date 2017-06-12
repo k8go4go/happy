@@ -59,6 +59,10 @@ public interface AuctionMapper{
 	
 	public List<BiddingVO> biddingHistoryList(int AUC_REG_NUM);
 	
+	public int maxBiddingPrice(int AUC_REG_NUM);
+	
+	public int getBidNum(RegAucVO vo);
+	
 	public int newbiddingHistory(BiddingVO vod);
 	// 입찰등록자
 	public List<RegBiddingVO> biddingRegList(int AUC_REG_NUM);
