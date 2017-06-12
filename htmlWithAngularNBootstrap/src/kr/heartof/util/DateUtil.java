@@ -15,4 +15,13 @@ public class DateUtil {
 		return format.format(date);
 	}
 	
+	public static boolean before(Date target) {
+		Date now = new Date();
+		return now.before(target);
+	}
+	
+	public static boolean after(Date target) {
+		Date now = new Date();
+		return now.after(target);
+	}
 }

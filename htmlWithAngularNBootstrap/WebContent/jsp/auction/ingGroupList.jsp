@@ -95,7 +95,7 @@
 					<tr>
 						<td colspan="3" class="text-cetner col">
 							<div class="panel panel-danger text-cetner">
-							    <div class="panel-body"><h5>이달의 경매 물품이 없습니다.</h5></div>
+							    <div class="panel-body"><h5>진행중인  경매 물품이 없습니다.</h5></div>
 							</div>
 						</td>
 					</tr>

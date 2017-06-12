@@ -463,11 +463,11 @@
 			ON R.MEMB_NUM = U.MEMB_NUM
 		WHERE
 			R.AUC_REG_NUM = #{AUC_REG_NUM}
-		ORDER BY B.BID_DTIME DESC			
+		ORDER BY B.BID_PRICE DESC			
 	 </select>
 	 
 	 <insert id="newbiddingHistory" parameterType="BiddingVO">
-	 	INSERT INTO REG_BIDDING
+	 	INSERT INTO BIDDING
 	 		(BID_PRICE_REG_NUM, BID_PRICE, BID_DTIME, BID_NUM) VALUES 
 	 		(BID_SEQ.NEXTVAL, #{BID_PRICE}, SYSDATE, #{BID_NUM})
 	 </insert>

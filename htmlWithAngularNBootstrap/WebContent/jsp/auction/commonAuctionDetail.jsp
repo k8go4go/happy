@@ -118,12 +118,25 @@
 					<tr>
 						<td colspan="2" class="text-center col-sm-8">
 							<c:if test="${not empty sessionScope.user}">
+								<jsp:useBean id="now" class="java.util.Date" />
+								<fmt:formatDate var="eDate" value='${aucVO.END_DTIME}' pattern='yyyy-MM-dd hh:mm'/>
+								<fmt:formatDate var="sDate" value='${aucVO.START_DTIME}' pattern='yyyy-MM-dd hh:mm'/>
+								<fmt:formatDate var="today" value="${now}" pattern="yyyy-MM-dd hh:mm"/>
+								
+								<c:if test="${eDate > today}">
+									<c:choose>
+									<c:when test="${sDate > today}">
+										<button id="regBiddingBtn" type="button" class="btn btn-info">입찰입장</button>
+									</c:when>
+									<c:otherwise>
+										<button id="newBiddingBtn" type="button" class="btn btn-primary">입찰하기</button>
+									</c:otherwise>
+									</c:choose>
+								</c:if>
+								
+								<button id="regBiddingListBtn" type="button" class="btn btn-success">입찰자목록</button>
+								<button id="biddingHistoryBtn" type="button" class="btn btn-warning">입찰내역보기</button>
 							</c:if>
-							<button id="regBiddingBtn" type="button" class="btn btn-info">입찰입장</button>
-							<button id="regBiddingListBtn" type="button" class="btn btn-success">입찰자목록</button>
-							<button id="biddingHistoryBtn" type="button" class="btn btn-warning">입찰내역보기</button>
-							<button id="newBiddingBtn" type="button" class="btn btn-primary">입찰하기</button>
-							
 							<button id="backBtn" type="button" class="btn btn-danger">돌아가기</button>
 						</td>
 					</tr>
@@ -136,13 +149,14 @@
 <c:import url="/jsp/auction/biddingHistoryModal.jsp"></c:import>
 <c:import url="/jsp/auction/regbiddingListModal.jsp"></c:import>
 <c:import url="/jsp/auction/newBiddingModal.jsp"></c:import>
+<c:import url="/jsp/auction/enterRegbiddingModal.jsp"></c:import>
 <script>
 	$('#backBtn').on('click', function(e) {
 		history.back(-1);
 	});
 	
 	$('#regBiddingBtn').on('click', function(e) {
-		
+		$("#enterRegbiddingModal").modal();
 	})
 	
 	$('#regBiddingListBtn').on('click', function(e) {

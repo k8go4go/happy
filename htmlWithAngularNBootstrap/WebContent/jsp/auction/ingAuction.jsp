@@ -18,26 +18,7 @@
 					<c:if test="${list.value.totalPage != 0}">
 					<nav aria-label="Page navigation">
 						<ul class="pagination pagination-sm">
-							<c:if test="${list.value.startIndicator eq 1}">
-							<li><a href="<c:url value="${pathList['2'].PATH}${pathList['2'].PATH_NM}" />?page=${list.value - 1}&viewCount=3" 
-								aria-label="Previous"><span
-									aria-hidden="true">&laquo;</span>
-							</a></li>
-							</c:if>
-							<c:forEach begin="${list.value.start}" var="index" end="${list.value.end}" step="1">
-								<c:choose>
-								<c:when test="${list.value.currentPage eq index}" >
-									<li class="active"><a class="bg-primary">${index}</a></li>
-								</c:when>
-								<c:otherwise>
-									<li ><a href="<c:url value="${pathList['2'].PATH}${pathList['2'].PATH_NM}" />?page=${index}&start=${(index - 1) * list.value.viewCount + 1}&end=${(index - 1)* list.value.viewCount + list.value.viewCount}">${index}</a></li>
-								</c:otherwise>
-								</c:choose>
-							</c:forEach>
-							<c:if test="${list.value.endIndicator eq 1}">
-							<li><a href="<c:url value="${pathList['2'].PATH}${pathList['2'].PATH_NM}" />?page=${list.value.end + 1}&viewCount=3" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-							</a></li>
-							</c:if>
+							<li ><a href="<c:url value="${pathList['30'].PATH}${pathList['30'].PATH_NM}?viewCount=30&HIGH_PROD_CATE_NM=${list.value.list[0].HIGH_PROD_CATE_NM}&PROD_CATE_NUM=${list.value.GROUP_CATE_NUM}&end=30" />">전체보기</a></li>
 						</ul>
 					</nav>
 					</c:if>

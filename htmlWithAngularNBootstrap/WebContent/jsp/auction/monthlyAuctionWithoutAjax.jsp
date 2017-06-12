@@ -16,7 +16,7 @@
 				</td>
 				<td colspan="2" class="text-right">
 					<nav aria-label="Page navigation">
-						<ul id="t_${list.value.list[0].HIGH_PROD_CATE_NUM}_ul" class="pagination pagination-sm">
+						<ul class="pagination pagination-sm">
 							<li ><a href="<c:url value="${pathList['28'].PATH}${pathList['28'].PATH_NM}?viewCount=30&HIGH_PROD_CATE_NM=${list.value.list[0].HIGH_PROD_CATE_NM}&PROD_CATE_NUM=${list.value.GROUP_CATE_NUM}&end=30" />">전체보기</a></li>
 						</ul>
 					</nav>

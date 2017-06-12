@@ -2,14 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<div class="modal fade" id="newbiddingModal" tabindex="-1" role="dialog" aria-labelledby="newbiddingModalLabel" aria-hidden="true">
+<div class="modal fade" id="enterRegbiddingModal" tabindex="-1" role="dialog" aria-labelledby="enterRegbiddingModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header bg-danger">
 				<h4 class="modal-title glyphicon glyphicon-thumbs-up"
-					id="biddingHistoryModalLabel">입찰 내역</h4>
+					id="enterRegbiddingModalLabel">입찰자 입장</h4>
 				<button type="button" class="close" data-dismiss="modal"
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -17,8 +16,8 @@
 			</div>
 			<div class="modal-body">
 			<div class="table-responsive">				
-				<form id="newbiddingModalForm" name="newbiddingModalForm" class="tab-pane" role="tabpane3">
-					<table class="table" id='newbiddingModalTable' >
+				<form id="enterRegBidForm" name="enterRegBidForm" class="tab-pane" role="tabpane3">
+					<table class="table" id='enterRegbiddingModalTable' >
 						<tbody>
 							<tr>
 								<td class="text-right col-sm-2"><h6>경매유형</h6></td>
@@ -70,93 +69,55 @@
 							<tr>
 								<td class="text-right col-sm-2"><h6>수량</h6></td>
 								<td class="text-center col-sm-6"><input type="text"
-									class="input-sm col-sm-6" 
+									class="input-sm col-sm-6" id="QTY" name="QTY"
 									value="${aucVO.QTY}" readonly="readonly" /></td>
-							</tr>
-							<tr>
-								<td class="text-right col-sm-2"><h6>최종가격</h6></td>
-								<td class="text-center col-sm-6">
-									<c:choose>
-									<c:when test="${fn:length(aucVO.biddingList) > 0}">
-									<input type="text"
-									class="input-sm col-sm-6" value="<fmt:formatNumber value="${aucVO.biddingList['0'].BID_PRICE}" pattern="###,###,###"/>" 
-									readonly="readonly" />
-									</c:when>
-									<c:otherwise>
-									<input type="text"
-									class="input-sm col-sm-6" value="입찰된 금액이 없습니다." 
-									readonly="readonly" />
-									</c:otherwise>
-									</c:choose>
-									</td>
-							</tr>
-							<tr>
-								<td class="text-right col-sm-2"><h6>가격</h6></td>
-								<td class="text-center col-sm-6"><input type="text"
-									class="input-sm col-sm-6" id="BID_PRICE" name="BID_PRICE" /></td>
 							</tr>
 						</tbody>
 						<tfoot>
 							<tr>
 								<td colspan="2" class="text-center col-sm-8">
-									<button id="reGoBtn" type="button" class="btn btn-primary">입찰등록</button>
-									<button id="cancelBtn" type="button" class="btn btn-info">취소</button>
+								<c:if test="${not empty sessionScope.user}">
+									<jsp:useBean id="now" class="java.util.Date" />
+									<fmt:formatDate var="sDate" value='${aucVO.END_DTIME}' pattern='yyyy-MM-dd hh:mm'/>
+									<fmt:formatDate var="eDate" value='${aucVO.START_DTIME}' pattern='yyyy-MM-dd hh:mm'/>
+									<fmt:formatDate var="today" value="${now}" pattern="yyyy-MM-dd hh:mm"/>
+									
+									<c:if test="${sDate > today}">
+										<button id="enterReGoBtn" type="button" class="btn btn-primary">입장</button>
+									</c:if>
+								</c:if>
+										<button id="enterCancelBtn" type="button" class="btn btn-info">취소</button>
 								</td>
 							</tr>
 						</tfoot>
 					</table>
-					<input type="hidden" id="MEMB_ID" name="MEMB_ID" value="${sessionScope.user.MEMB_ID}" />
 				</form>
 			</div>
 			</div>
 		</div>
 	</div>
 </div>
-
 <script>
-$('#cancelBtn').on('click', function(e) {
-	$("#newbiddingModal").modal("hide");
-	$('#BID_PRICE').val('');
+$('#enterCancelBtn').on('click', function(e) {
+	$("#enterRegbiddingModal").modal("hide");
 });
 
-$('#reGoBtn').on('click', function(e) {
-	var bid_price = $('#BID_PRICE');
-	
-	var highest_price = parseInt('${aucVO.biddingList['0'].BID_PRICE}');
-	
-	if(!bid_price) {
-		swal('입찰오류', '입찰가를 등록해주시기 바랍니다.', 'error');
-		return ;
-	}
-	
-	if(bid_price.val() == 0 || bid_price.val() < 0) {
-		swal('입찰오류', '입찰가는 0원이하를 등록할수 없습니다.', 'error');
-		return;
-	}
-	
-	if(!highest_price) {
-		if(highest_price > parseInt(bid_price.val())) {
-			swal('입찰오류', '최고금액보다 낮은 금액으로 입찰할 수 없습니다.', 'error');
-			return;
-		}
-	}
-
+$('#enterReGoBtn').on('click', function(e) {
 	$.ajax(
 		{
-			url : '${contextPath}${pathList['29'].PATH}${pathList['29'].PATH_NM}',
-			data :
-				'BID_PRICE=' + $('#BID_PRICE').val() + '&AUC_REG_NUM='+ $('#AUC_REG_NUM').val(), 
+			url : '${contextPath}${pathList['31'].PATH}${pathList['31'].PATH_NM}',
+			data : 'BID_QTY=' + '${aucVO.QTY}' + '&AUC_REG_NUM='+ $('#AUC_REG_NUM').val(), 
 			type: 'get',
 			success : function (result) {
 				var parseJon = JSON.parse(result);
 				if(parseJon.result == 1) {
-					swal('입찰 성공', parseJon.msg, 'success');
+					swal('입찰자 입장 성공', parseJon.msg, 'success');
 					setTimeout(function() {
 						location.reload();						
 					}, 1000);
 					return;
 				}
-				swal('오류', parseJon.msg, 'error');
+				swal('입찰자 입장 실패', parseJon.msg, 'error');
 				return;
 			},
 			error : function (result) {
@@ -165,5 +126,4 @@ $('#reGoBtn').on('click', function(e) {
 		}
 	);
 });
-
 </script>
