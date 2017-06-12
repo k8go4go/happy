@@ -13,7 +13,7 @@
 		<form id="regAucModifyForm" name="regAucModifyForm" method="post"
 			action="${contextPath}${pathList['18'].PATH}${pathList['18'].PATH_NM}"
 			enctype="multipart/form-data">
-			<c:if test="${not empty fileListVO }">
+			<c:if test="${not empty aucVO.files }">
 			<table class="table">
 				<tbody>
 					<tr>
@@ -36,9 +36,9 @@
 						<td class="text-right col-sm-2" rowspan="3"><h6>상품사진</h6></td>
 						<td class="text-left col-sm-10" rowspan="3"><img
 							id="mainUpdatePreview" width='150px;' height='200px;'
-							src='<c:url value="/product/image/${fileListVO[0].ATTAC_FILE_NUM}" />'>
+							src='<c:url value="/product/image/${aucVO.files[0].ATTAC_FILE_NUM}" />'>
 							<img id="secUpdatePreview" width='150px;' height='200px;'
-							src='<c:url value="/product/image/${fileListVO[1].ATTAC_FILE_NUM}" />'>
+							src='<c:url value="/product/image/${aucVO.files[1].ATTAC_FILE_NUM}" />'>
 						</td>
 					</tr>
 					<tr></tr>
@@ -47,8 +47,8 @@
 			</table>
 			</c:if>
 			
-			<input type="hidden" name="ATTAC_FILE_NUM1" value="${fileListVO[0].ATTAC_FILE_NUM}" />
-			<input type="hidden" name="ATTAC_FILE_NUM2" value="${fileListVO[1].ATTAC_FILE_NUM}" />
+			<input type="hidden" name="ATTAC_FILE_NUM1" value="${aucVO.files[0].ATTAC_FILE_NUM}" />
+			<input type="hidden" name="ATTAC_FILE_NUM2" value="${aucVO.files[1].ATTAC_FILE_NUM}" />
 			<input type="hidden" name="PROD_CATE_NUM" value="${aucVO.PROD_CATE_NUM}" />
 			<input type="hidden" name="AUC_TYPE_NUM" value="${aucVO.AUC_TYPE_NUM}" />
 			<input type="hidden" name="AUC_REG_NUM" value="${aucVO.AUC_REG_NUM}" />
@@ -75,9 +75,7 @@
 						<td class="text-right col-sm-2"><h6>상품설명</h6></td>
 						<td class="text-left col-sm-6"><textarea
 								class="text-left input-sm col-sm-6" id="SHORT_CONT" name="SHORT_CONT"
-								required>
-					${aucVO.SHORT_CONT}
-					</textarea></td>
+								required>${aucVO.SHORT_CONT}</textarea></td>
 					</tr>
 					<tr>
 						<td class="text-right col-sm-2"><h6>시작시간</h6></td>
@@ -119,8 +117,14 @@
 				<tfoot>
 					<tr>
 						<td colspan="2" class="text-center col-sm-8">
+							<c:if test="${not empty sessionScope.user}">
+							</c:if>
+							<button id="regBiddingBtn" type="button" class="btn btn-info">입찰입장</button>
+							<button id="regBiddingListBtn" type="button" class="btn btn-success">입찰자목록</button>
+							<button id="biddingHistoryBtn" type="button" class="btn btn-warning">입찰내역보기</button>
 							<button id="biddingBtn" type="button" class="btn btn-primary">입찰하기</button>
-							<button id="backBtn" type="button" class="btn btn-info">돌아가기</button>
+							
+							<button id="backBtn" type="button" class="btn btn-danger">돌아가기</button>
 						</td>
 					</tr>
 				</tfoot>
@@ -129,11 +133,29 @@
 	</div>
 	<div class="col-md-1"></div>
 </div>
-
+<c:import url="/jsp/auction/biddingHistoryModal.jsp"></c:import>
+<c:import url="/jsp/auction/regbiddingListModal.jsp"></c:import>
 <script>
 	$('#backBtn').on('click', function(e) {
 		history.back(-1);
 	});
+	
+	$('#regBiddingBtn').on('click', function(e) {
+		
+	})
+	
+	$('#regBiddingListBtn').on('click', function(e) {
+		$("#regbiddingListModal").modal();
+	})
+	
+	$('#biddingHistoryBtn').on('click', function(e) {
+		$("#biddingHistoryModal").modal();
+	})
+	
+	$('#biddingBtn').on('click', function(e) {
+		
+	})
+	
 </script>
 <c:import url="/jsp/common/footer.jsp"></c:import>
 

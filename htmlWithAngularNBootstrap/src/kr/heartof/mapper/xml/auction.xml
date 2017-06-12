@@ -44,6 +44,9 @@
 			column="AUC_REG_NUM" select="getRecRej"/>
 	</resultMap>
 	
+	
+	
+	
 	<select id="allProgressing" resultMap="aucList">
 		SELECT
 			 AUC_REG_NUM,
@@ -143,34 +146,6 @@
 			ATTAC_FILE_NUM = #{value}		
 	</select>
 	
-	<select id="detail" resultType="RegAucVO" parameterType="int">
-		SELECT
-			 R.AUC_REG_NUM,
-			 R.AUC_PROD_NM,
-			 R.SHORT_CONT,
-			 R.REG_DTIME,
-			 R.START_DTIME,
-			 R.END_DTIME,
-			 R.START_PRICE,
-			 R.QTY,
-			 R.MEMB_NUM,
-			 R.PROD_CATE_NUM,
-			 R.APPR_CD,
-			 R.AUC_TYPE_NUM,
-			 PR.CATE_NM AS APPR_NM,
-			 AP.CATE_NM AS AUC_TYPE_NM,
-			 PC.PROD_CATE_NM AS PROD_CATE_NM
-		FROM 
-			REG_AUC R INNER JOIN CD PR
-			ON R.APPR_CD = PR.CD
-			INNER JOIN CD AP
-			ON R.AUC_TYPE_NUM = AP.CD
-			INNER JOIN PROD_CATE  PC
-			ON R.PROD_CATE_NUM = PC.PROD_CATE_NUM
-		WHERE
-			R.AUC_REG_NUM = ${value}			
-	</select>
-	 
 	 <insert id="regAuction" parameterType="RegAucVO">
 	 	<selectKey keyProperty="AUC_REG_NUM" resultType="int" order="BEFORE">
 			SELECT REG_AUC_SEQ.nextval FROM DUAL
@@ -280,8 +255,8 @@
 		    	WHERE 
 		    		HIGH_PROD_CATE_NUM = #{HIGH_PROD_CATE_NUM} 
 		    )
-		    AND LAST_DAY(SYSDATE) > R.END_DTIME
-		    AND R.APPR_CD = '1501' 	
+		    AND LAST_DAY(SYSDATE) > END_DTIME
+		    AND APPR_CD = '1501' 	
 		ORDER BY START_DTIME ASC	 	
 	 </select>
 	 
@@ -420,4 +395,108 @@
 		    A.RN >= #{START} AND
 		    #{END} >= A.RN
 	 </select>
+<!-- 입찰 관려  -->	 
+	<resultMap type="RegAucVO" id="aucDetail">
+		<id column="AUC_REG_NUM" property="AUC_REG_NUM" />
+		<result column="AUC_PROD_NM" property="AUC_PROD_NM" />
+		<result column="SHORT_CONT" property="SHORT_CONT" />
+		<result column="REG_DTIME" property="REG_DTIME" />
+		<result column="START_DTIME" property="START_DTIME" />
+		<result column="END_DTIME" property="END_DTIME" />
+		<result column="START_PRICE" property="START_PRICE" />
+		<result column="QTY" property="QTY" />
+		<result column="MEMB_NUM" property="MEMB_NUM" />
+		<result column="APPR_CD" property="APPR_CD" />
+		<result column="PROD_CATE_NUM" property="PROD_CATE_NUM" />
+		<result column="PROD_CATE_NM" property="PROD_CATE_NM" />
+		<result column="HIGH_PROD_CATE_NM" property="HIGH_PROD_CATE_NM" />
+		<result column="HIGH_PROD_CATE_NUM" property="HIGH_PROD_CATE_NUM" />
+		<result column="AUC_TYPE_NUM" property="AUC_TYPE_NUM" />		
+		<collection property="files" javaType="java.util.ArrayList"  ofType="RegAucFileVO" 
+			column="AUC_REG_NUM" select="listRegAucFile"/>
+		<collection property="biddingList" javaType="java.util.ArrayList" ofType="BiddingVO" 
+			column="AUC_REG_NUM" select="biddingHistoryList"/>
+		<collection property="biddingRegList" javaType="java.util.ArrayList" ofType="RegBiddingVO" 
+			column="AUC_REG_NUM" select="biddingRegList"/>			
+	 </resultMap>
+	
+	 <select id="detail" resultMap="aucDetail" parameterType="int">
+		SELECT
+			 R.AUC_REG_NUM,
+			 R.AUC_PROD_NM,
+			 R.SHORT_CONT,
+			 R.REG_DTIME,
+			 R.START_DTIME,
+			 R.END_DTIME,
+			 R.START_PRICE,
+			 R.QTY,
+			 R.MEMB_NUM,
+			 R.PROD_CATE_NUM,
+			 R.APPR_CD,
+			 R.AUC_TYPE_NUM,
+			 PR.CATE_NM AS APPR_NM,
+			 AP.CATE_NM AS AUC_TYPE_NM,
+			 PC.PROD_CATE_NM AS PROD_CATE_NM
+		FROM 
+			REG_AUC R INNER JOIN CD PR
+			ON R.APPR_CD = PR.CD
+			INNER JOIN CD AP
+			ON R.AUC_TYPE_NUM = AP.CD
+			INNER JOIN PROD_CATE  PC
+			ON R.PROD_CATE_NUM = PC.PROD_CATE_NUM
+		WHERE
+			R.AUC_REG_NUM = ${value}			
+	 </select>
+	 
+	 <select id="biddingHistoryList" parameterType="int" resultType="BiddingVO"> 
+	 	SELECT
+	 		B.BID_PRICE_REG_NUM ,
+			B.BID_PRICE         ,
+			B.BID_DTIME         ,
+			B.BID_NUM           ,
+			U.MEMB_ID
+		FROM 
+			BIDDING B INNER JOIN REG_BIDDING R
+			ON B.BID_NUM = R.BID_NUM 
+			INNER JOIN USR U
+			ON R.MEMB_NUM = U.MEMB_NUM
+		WHERE
+			R.AUC_REG_NUM = #{AUC_REG_NUM}
+		ORDER BY B.BID_DTIME DESC			
+	 </select>
+	 
+	 <insert id="newbiddingHistory" parameterType="BiddingVO">
+	 	INSERT INTO REG_BIDDING
+	 		(BID_PRICE_REG_NUM, BID_PRICE, BID_DTIME, BID_NUM) VALUES 
+	 		(BID_SEQ.NEXTVAL, #{BID_PRICE}, SYSDATE, #{BID_NUM})
+	 </insert>
+	 
+	 <select id="biddingRegList" parameterType="int" resultType="RegBiddingVO"> 
+		SELECT 
+			R.BID_NUM,
+			R.MEMB_NUM,
+			R.AUC_REG_NUM,
+			R.BID_QTY,
+			R.REG_DTIME,
+			U.MEMB_ID, 
+			U.EMAIL || '@' || EP.CATE_NM AS EMAIL,
+			U.MEMB_CD,
+			AP.CATE_NM
+		FROM 
+			REG_BIDDING R INNER JOIN USR U
+				ON R.MEMB_NUM = U.MEMB_NUM
+			INNER JOIN CD AP
+				ON U.MEMB_CD = AP.CD
+			INNER JOIN CD EP
+				ON U.MAIL_CD = EP.CD
+		WHERE
+			U.CRE_DEG_CD != '1302' -- 멤버 신용 등급이 양호한 경우
+			AND R.AUC_REG_NUM = #{AUC_REG_NUM}
+	 </select>
+	 
+	 <insert id="newBiddingReg" parameterType="RegBiddingVO">
+	 	INSERT INTO REG_BIDDING
+	 		(BID_NUM, MEMB_NUM, AUC_REG_NUM, BID_QTY, REG_DTIME) VALUES 
+	 		(BID_REG_SEQ.NEXTVAL, #{MEMB_NUM}, #{AUC_REG_NUM}, #{BID_QTY}, SYSDATE)
+	 </insert>
 </mapper>

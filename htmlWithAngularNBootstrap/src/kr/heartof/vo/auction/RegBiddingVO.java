@@ -8,6 +8,33 @@ public class RegBiddingVO {
 	private int AUC_REG_NUM;
 	private int BID_QTY;
 	private Date REG_DTIME;
+	private String MEMB_ID;
+	private String EMAIL;
+	private String CATE_NM;
+
+	public String getEMAIL() {
+		return EMAIL;
+	}
+
+	public void setEMAIL(String eMAIL) {
+		EMAIL = eMAIL;
+	}
+
+	public String getCATE_NM() {
+		return CATE_NM;
+	}
+
+	public void setCATE_NM(String cATE_NM) {
+		CATE_NM = cATE_NM;
+	}
+
+	public String getMEMB_ID() {
+		return MEMB_ID;
+	}
+
+	public void setMEMB_ID(String mEMB_ID) {
+		MEMB_ID = mEMB_ID;
+	}
 
 	public int getBID_NUM() {
 		return BID_NUM;
@@ -49,4 +76,9 @@ public class RegBiddingVO {
 		REG_DTIME = rEG_DTIME;
 	}
 
+	@Override
+	public String toString() {
+		return "RegBiddingVO [BID_NUM=" + BID_NUM + ", MEMB_NUM=" + MEMB_NUM + ", AUC_REG_NUM=" + AUC_REG_NUM
+				+ ", BID_QTY=" + BID_QTY + ", REG_DTIME=" + REG_DTIME + ", MEMB_ID=" + MEMB_ID + "]";
+	}
 }

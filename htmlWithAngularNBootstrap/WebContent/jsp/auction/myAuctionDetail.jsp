@@ -75,9 +75,7 @@
 						<td class="text-right col-sm-2"><h6>상품설명</h6></td>
 						<td class="text-left col-sm-6"><textarea
 								class="text-left input-sm col-sm-6" id="SHORT_CONT" name="SHORT_CONT"
-								required>
-					${aucVO.SHORT_CONT}
-					</textarea></td>
+								required>${aucVO.SHORT_CONT}</textarea></td>
 					</tr>
 					<tr>
 						<td class="text-right col-sm-2"><h6>시작시간</h6></td>

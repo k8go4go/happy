@@ -29,7 +29,25 @@ public class RegAucVO {
 	
 	private List<RegAucFileVO> files;
 	private List<RegRejVO> rejs;
+	private List<BiddingVO> biddingList;
+	private List<RegBiddingVO> biddingRegList;
 	
+	public List<RegBiddingVO> getBiddingRegList() {
+		return biddingRegList;
+	}
+
+	public void setBiddingRegList(List<RegBiddingVO> biddingRegList) {
+		this.biddingRegList = biddingRegList;
+	}
+
+	public List<BiddingVO> getBiddingList() {
+		return biddingList;
+	}
+
+	public void setBiddingList(List<BiddingVO> biddingList) {
+		this.biddingList = biddingList;
+	}
+
 	public String getHIGH_PROD_CATE_NUM() {
 		return HIGH_PROD_CATE_NUM;
 	}

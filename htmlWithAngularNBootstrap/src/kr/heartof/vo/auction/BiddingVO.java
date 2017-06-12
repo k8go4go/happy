@@ -7,6 +7,15 @@ public class BiddingVO {
 	private int BID_PRICE;
 	private Date BID_DTIME;
 	private int BID_NUM;
+	private String MEMB_ID;
+		
+	public String getMEMB_ID() {
+		return MEMB_ID;
+	}
+
+	public void setMEMB_ID(String mEMB_ID) {
+		MEMB_ID = mEMB_ID;
+	}
 
 	public int getBID_PRICE_REG_NUM() {
 		return BID_PRICE_REG_NUM;
@@ -40,4 +49,9 @@ public class BiddingVO {
 		BID_NUM = bID_NUM;
 	}
 
+	@Override
+	public String toString() {
+		return "BiddingVO [BID_PRICE_REG_NUM=" + BID_PRICE_REG_NUM + ", BID_PRICE=" + BID_PRICE + ", BID_DTIME="
+				+ BID_DTIME + ", BID_NUM=" + BID_NUM + "]";
+	}
 }

@@ -19,7 +19,7 @@ public class MainAuctionTest {
 		SqlSession session = sqlSessionFactory.openSession();
 		
 		AuctionMapper mapper = session.getMapper(AuctionMapper.class);
-		listProductingForMain(mapper);
+		listProduct(mapper);
 		session.commit();
 		session.close();
 	}
@@ -54,5 +54,12 @@ public class MainAuctionTest {
 		
 		for(RegAucVO v : list)
 			System.out.println(v.getTOT());
+	}
+	
+	public static void listProduct(AuctionMapper mapper) {
+		List<RegAucVO> list = mapper.listProduct("4100");
+		
+		for(RegAucVO v : list)
+			System.out.println(v);
 	}
 }

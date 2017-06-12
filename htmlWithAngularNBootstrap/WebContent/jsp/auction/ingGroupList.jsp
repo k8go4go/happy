@@ -16,7 +16,7 @@
 				<tr>
 					<td class="text-left">
 					<h5>${list.HIGH_PROD_CATE_NM}</h5>
-					<h6><kbd>이달의  경매</kbd></h6>
+					<h6><kbd>진행중인  경매</kbd></h6>
 					</td>
 					<td colspan="2" class="text-right">
 						<c:if test="${list.totalPage != 0}">
@@ -89,7 +89,7 @@
 				<tbody>
 					<tr>
 						<td colspan="3" class="text-left">
-						<h6><kbd>이달의  경매</kbd></h6>
+						<h6><kbd>진행중인  경매</kbd></h6>
 						</td>
 					</tr>
 					<tr>

@@ -36,15 +36,30 @@ public class AdminLoginServlet extends HttpServlet {
 		if(user != null)
 			request.getSession().setAttribute("mgr", user);
 		else{
+			makeProcessList(request, user);
 			request.getServletContext().getRequestDispatcher("/jsp/admin/adminIndex.jsp").forward(request, response);
 		}
 		
 		if(PathUtil.getPath(Path.ADMIN_MAIN_SERVLET) == null) {
 			request.getServletContext().getRequestDispatcher("/jsp/admin/adminIndex.jsp").forward(request, response);
 		} else {
+			makeProcessList(request, user);
 			request.getServletContext().getRequestDispatcher(
 					PathUtil.getPath(Path.ADMIN_MAIN_SERVLET) + 
 					PathUtil.getPathNM(Path.ADMIN_MAIN_SERVLET)).forward(request, response);
+		}
+	}
+	
+	private void makeProcessList(HttpServletRequest request, MgrVO user) {
+		request.removeAttribute("needApprCD");
+		request.removeAttribute("doneApprCD");
+		if(user != null) {
+			AdminAuctionMapper mapper = BringSqlSession.getMapper(AdminAuctionMapper.class);
+			List<RegAucVO> list = mapper.needApprCD();
+			request.setAttribute("needApprCD", list);
+			
+			List<RegAucVO> donelist = mapper.doneApprCD();
+			request.setAttribute("doneApprCD", donelist);
 		}
 	}
 }

@@ -115,34 +115,46 @@ public class MainMonthlyPageUtil {
 	public final void setHttpServletRequest(HttpServletRequest request) {
 		if (request.getParameter("page") != null) {
 			currentPage = Integer.parseInt(request.getParameter("page"));
+		} else if(request.getAttribute("page") != null){
+			currentPage = Integer.parseInt((String)request.getAttribute("page"));
 		} else {
 			this.currentPage = 1;
 		}
 		
 		if (request.getParameter("viewCount") != null) {
 			viewCount = Integer.parseInt(request.getParameter("viewCount"));
+		} else if(request.getAttribute("viewCount") != null){
+			viewCount = Integer.parseInt((String)request.getAttribute("viewCount"));
 		} else {
 			viewCount = PAGE_3;
 		}
 		
 		if (request.getParameter("total") != null) {
 			total = Integer.parseInt(request.getParameter("total"));
-		} 
+		} else if(request.getAttribute("total") != null){
+			total = Integer.parseInt((String)request.getAttribute("total"));
+		}
 		
 		if (request.getParameter("start") != null) {
 			pageVO.setSTART(Integer.parseInt(request.getParameter("start")));
+		} else if(request.getAttribute("start") != null){
+			pageVO.setSTART(Integer.parseInt((String)request.getAttribute("start")));
 		} else {
 			pageVO.setSTART(1);
 		}
 		
 		if (request.getParameter("end") != null) {
 			pageVO.setEND(Integer.parseInt(request.getParameter("end")));
+		} else if(request.getAttribute("end") != null){
+			pageVO.setEND(Integer.parseInt((String)request.getAttribute("end")));
 		} else {
 			pageVO.setEND(3);
 		}
 		
 		if (request.getParameter("search") != null) {
 			pageVO.setSearchWord(request.getParameter("search"));
+		} else if(request.getAttribute("search") != null){
+			pageVO.setSearchWord((String)request.getAttribute("search"));
 		} 
 		
 		if (request.getParameter("option") != null) {

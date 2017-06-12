@@ -21,11 +21,12 @@ public class MenuFilter implements Filter {
 			chain.doFilter(request, response);
 		} else {  // menu.do 호출로 인한 값을 변경한다.
 			String requestURI = req.getRequestURI().toString().trim();
-			String high_prod_name = (String)request.getAttribute("HIGH_PROD_CATE_NM");
 			String uri[] = requestURI.split("/");
 			request.setAttribute("first", uri[2]);
 			request.setAttribute("second", uri[3]);
-			request.setAttribute("HIGH_PROD_CATE_NM", high_prod_name);
+			request.setAttribute("HIGH_PROD_CATE_NM", req.getParameter("HIGH_PROD_CATE_NM"));
+			request.setAttribute("viewCount", "30");
+			request.setAttribute("end", "30");
 			req.getServletContext().getRequestDispatcher("/" + uri[4]).forward(req, (HttpServletResponse)response);
 		}
 	}

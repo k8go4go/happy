@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.heartof.service.mapper.AuctionMapper;
 import kr.heartof.util.BringSqlSession;
+import kr.heartof.util.MainMonthlyPageUtil;
+import kr.heartof.vo.auction.AuctionPageObject;
 import kr.heartof.vo.auction.RegAucVO;
 
 @WebServlet("/ingmenu.do")
@@ -19,15 +21,42 @@ public class IngMenuServlet extends HttpServlet {
     }
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getAttribute("first"));
-		System.out.println(request.getAttribute("second"));
+		AuctionPageObject obj = makePageObject(request);
 		
-		AuctionMapper mapper = BringSqlSession.getMapper(AuctionMapper.class);
-		List<RegAucVO> list = mapper.listProducting((String)request.getAttribute("second"));
-		request.setAttribute("list", list);
 		// second로 경매 상품을 조회 한다.
-		// 경매 상품 조회에 대한 결과를 detail.do로 넘긴다
 		
-		request.getServletContext().getRequestDispatcher("/jsp/auction/ingAuction.jsp").forward(request, response);
+		request.setAttribute("list", obj);
+		request.getServletContext().getRequestDispatcher("/jsp/auction/ingGroupList.jsp").forward(request, response);
+	}
+	
+	private AuctionPageObject makePageObject (HttpServletRequest request) {
+		AuctionMapper mapper = BringSqlSession.getMapper(AuctionMapper.class); 
+		MainMonthlyPageUtil util = new MainMonthlyPageUtil(MainMonthlyPageUtil.BLOCKPAGE_5);
+		util.setMapper(mapper);
+		util.setHttpServletRequest(request);
+		int currentPage = util.getCurrentPageFromClinet();
+		List<RegAucVO> sendList = util.getRequestlistProductingForMain((String)request.getAttribute("second"));
+		
+		int totalPage = util.getTotalPage();
+		int startIndicator = util.startIndicator();
+		int endIndicator = util.endIndicator();
+		int viewCount = util.viewCount();
+		int start = util.getStart();
+		int end = util.getEnd();
+		
+		AuctionPageObject obj = new AuctionPageObject();
+		obj.setList(sendList);
+		if(sendList != null && sendList.size() > 0)
+			obj.setTotal(sendList.get(0).getTOT());
+		obj.setTotalPage(totalPage);
+		obj.setStart(start);
+		obj.setEnd(end);
+		obj.setStartIndicator(startIndicator);
+		obj.setEndIndicator(endIndicator);
+		obj.setViewCount(viewCount);
+		obj.setCurrentPage(currentPage);
+		obj.setHIGH_PROD_CATE_NM((String)request.getAttribute("HIGH_PROD_CATE_NM"));
+		obj.setGROUP_CATE_NUM((String)request.getAttribute("second"));
+		return obj;
 	}
 }

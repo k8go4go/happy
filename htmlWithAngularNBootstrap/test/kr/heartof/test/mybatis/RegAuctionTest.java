@@ -57,7 +57,7 @@ public class RegAuctionTest {
 	}
 	
 	public static void detail(AuctionMapper mapper) {
-		RegAucVO vo = mapper.detail(71);
+		List<RegAucVO> vo = mapper.detail(71);
 		System.out.println(vo.toString());
 	}
 }

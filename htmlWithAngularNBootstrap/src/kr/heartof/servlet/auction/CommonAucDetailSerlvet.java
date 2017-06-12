@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.heartof.service.mapper.AuctionMapper;
 import kr.heartof.util.BringSqlSession;
-import kr.heartof.vo.auction.RegAucFileVO;
 import kr.heartof.vo.auction.RegAucVO;
-import kr.heartof.vo.member.UsrVO;
 
 @WebServlet("/commonAucDetail.do")
 public class CommonAucDetailSerlvet extends HttpServlet {
@@ -23,10 +21,10 @@ public class CommonAucDetailSerlvet extends HttpServlet {
 		AuctionMapper mapper = BringSqlSession.getMapper(AuctionMapper.class);
 		
 		int id = Integer.parseInt(request.getParameter("no"));
-		RegAucVO aucVO = mapper.detail(id);
-		List<RegAucFileVO> fileList = mapper.listRegAucFile(id);
-		request.setAttribute("aucVO", aucVO);
-		request.setAttribute("fileListVO", fileList);
+		List<RegAucVO> aucVO = mapper.detail(id);
+		
+		if(aucVO != null && aucVO.size() > 0)
+			request.setAttribute("aucVO", aucVO.get(0));
 		
 		request.getServletContext().getRequestDispatcher("/jsp/auction/commonAuctionDetail.jsp").forward(request, response);
 	}

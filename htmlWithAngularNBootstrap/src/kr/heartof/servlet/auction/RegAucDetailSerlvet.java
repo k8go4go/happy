@@ -24,10 +24,10 @@ public class RegAucDetailSerlvet extends HttpServlet {
 		AuctionMapper mapper = BringSqlSession.getMapper(AuctionMapper.class);
 		
 		int id = Integer.parseInt(request.getParameter("no"));
-		RegAucVO aucVO = mapper.detail(id);
-		List<RegAucFileVO> fileList = mapper.listRegAucFile(id);
-		request.setAttribute("aucVO", aucVO);
-		request.setAttribute("fileListVO", fileList);
+		List<RegAucVO> aucVO = mapper.detail(id);
+		
+		if(aucVO != null && aucVO.size() > 0)
+			request.setAttribute("aucVO", aucVO.get(0));
 		
 		request.getServletContext().getRequestDispatcher("/jsp/auction/myAuctionDetail.jsp").forward(request, response);
 	}

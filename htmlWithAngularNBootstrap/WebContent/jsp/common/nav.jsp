@@ -70,14 +70,14 @@
 						<ul class="nav navbar-nav">
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown" role="button" aria-haspopup="true"
-								aria-expanded="false"> 진행중인 경매 <span class="caret"></span></a>
+								aria-expanded="false">이달의 경매<span class="caret"></span></a>
 								<ul class="dropdown-menu multi-level" role="menu"
 									aria-labelledby="dropdownMenu">
 									<c:forEach var="menu" items="${menuList}">
 										<li class="dropdown-submenu"><a tabindex="-1">${menu.PROD_CATE_NM}</a>
 											<ul class="dropdown-menu">
 												<c:forEach var="menuItem" items="${menu.lowerCateVO}">
-													<li><a href='<c:url value="/${menu.PROD_CATE_NUM}/${menuItem.PROD_CATE_NUM}/menu.do" />'>
+													<li><a href='<c:url value="/${menu.PROD_CATE_NUM}/${menuItem.PROD_CATE_NUM}/menu.do?HIGH_PROD_CATE_NM=${menu.PROD_CATE_NM}" />'>
 													   ${menuItem.PROD_CATE_NM}</a></li>
 												</c:forEach>
 											</ul>
@@ -90,14 +90,14 @@
 						<ul class="nav navbar-nav">
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown" role="button" aria-haspopup="true"
-								aria-expanded="false"> 이달의 경매 <span class="caret"></span></a>
+								aria-expanded="false">진행중인 경매<span class="caret"></span></a>
 								<ul class="dropdown-menu multi-level" role="menu"
 									aria-labelledby="dropdownMenu">
 									<c:forEach var="menu" items="${menuList}">
 										<li class="dropdown-submenu"><a tabindex="-1">${menu.PROD_CATE_NM}</a>
 											<ul class="dropdown-menu">
 												<c:forEach var="menuItem" items="${menu.lowerCateVO}">
-													<li><a href='<c:url value="/${menu.PROD_CATE_NUM}/${menuItem.PROD_CATE_NUM}/ingmenu.do" />'>
+													<li><a href='<c:url value="/${menu.PROD_CATE_NUM}/${menuItem.PROD_CATE_NUM}/ingmenu.do?HIGH_PROD_CATE_NM=${menu.PROD_CATE_NM}" />'>
 														${menuItem.PROD_CATE_NM}</a></li>
 												</c:forEach>
 											</ul>

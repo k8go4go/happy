@@ -3,8 +3,10 @@ package kr.heartof.service.mapper;
 import java.util.List;
 
 import kr.heartof.vo.CodeVO;
+import kr.heartof.vo.auction.BiddingVO;
 import kr.heartof.vo.auction.RegAucFileVO;
 import kr.heartof.vo.auction.RegAucVO;
+import kr.heartof.vo.auction.RegBiddingVO;
 import kr.heartof.vo.auction.RegRejVO;
 import kr.heartof.vo.foruser.PageVO;
 
@@ -18,8 +20,6 @@ public interface AuctionMapper{
 	public List<RegAucVO> cateProgressing(String PROD_CATE_NUM);
 	
 	public List<RegAucFileVO> listRegAucFile(int AUC_REG_NUM);
-	
-	public RegAucVO detail(int AUC_REG_NUM);
 	
 	public int regAuction(RegAucVO vo);
 	
@@ -53,4 +53,15 @@ public interface AuctionMapper{
 	
 	// 서브 - 이달의 경매 모든 목록
 	public List<RegAucVO> listProduct(String HIGH_PROD_CATE_NUM);
+	
+	// 입찰 목록 관련
+	public List<RegAucVO> detail(int AUC_REG_NUM);
+	
+	public List<BiddingVO> biddingHistoryList(int AUC_REG_NUM);
+	
+	public int newbiddingHistory(BiddingVO vod);
+	// 입찰등록자
+	public List<RegBiddingVO> biddingRegList(int AUC_REG_NUM);
+	
+	public int newBiddingReg(RegBiddingVO vod);
 }
