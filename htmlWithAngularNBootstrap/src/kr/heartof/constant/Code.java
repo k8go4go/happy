@@ -114,6 +114,15 @@ public enum Code {
 	PROD_CATE_Y_CD("2201", "사용"),
 	PROD_CATE_N_CD("2202", "미사용"),
 	
+	
+	AUC_ING_CD ("2300", "경매진행여부"),
+	AUC_APPR_ING_CD("2301", "심사중"),
+	AUC_START_BEFORE_CD("2302", "경매시작전"),
+	AUC_START_ING_CD("2303", "경매시작"),
+	AUC_END_CD("2304", "경매종료"),
+	AUC_BIDDED_CD("2305", "낙찰"),
+	AUC_NO_BIDDED_CD("2306", "낙찰없음"),
+	
 /*	9900 검색구분코드
 	9901 작성자
 	9902 제목*/	

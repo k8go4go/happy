@@ -19,7 +19,7 @@
 			column="BOARD_NUM" select="listReplys"/>			
 	</resultMap>
 	
-	<select id="listAttachFile" parameterType="int" resultType="AttacFileVO">
+	<select id="listAttachFile" parameterType="int" resultType="AttacFileVO" useCache="false" flushCache="true">
 		SELECT
 			ATTAC_FILE_NUM,
 			FILE_NM,
@@ -32,7 +32,7 @@
 			BOARD_NUM = #{BOARD_NUM} 		
 	</select>
 	
-	<select id="listReplys" parameterType="int" resultType="BoardVO">
+	<select id="listReplys" parameterType="int" resultType="BoardVO" useCache="false" flushCache="true">
 		SELECT 
 			ROWNUM RN,
 		    B.BOARD_NUM,
@@ -52,7 +52,7 @@
 		ORDER BY B.BOARD_NUM		
 	</select>
 	
-	<select id="listTot" resultType="int" >
+	<select id="listTot" resultType="int" useCache="false" flushCache="true">
 			SELECT
 			    COUNT(*) AS TOT
 			FROM 
@@ -61,35 +61,47 @@
 			    QUES_CD = '2101' 
 	</select>
 	
-	<select id="list" resultMap="boardList" parameterType="PageVO">
-		SELECT RN, BOARD_NUM, WRITER_NM, HIGH_BOARD_NUM, TITLE, CONT,
-			    REVIEW_CNT, WRITE_DATE, QUES_CD, CATE_NM, MEMB_ID, TOT
-		FROM (			
-			SELECT
-			    ROWNUM RN,
-			    B.BOARD_NUM, 
-			    B.WRITER_NM,			    
-			    B.HIGH_BOARD_NUM, 
-			    B.TITLE,
-			    B.CONT,
-			    B.REVIEW_CNT,
-			    B.WRITE_DATE,
-			    B.QUES_CD,
-			    C.CATE_NM,
-			    U.MEMB_ID,
-			    0 AS TOT
-			FROM 
-			    BOARD B INNER JOIN USR U
-			    ON B.MEMB_NUM = U.MEMB_NUM 
-			    INNER JOIN CD C 
-			    ON B.QUES_CD = C.CD
-<!-- 			WHERE 
-			    QUES_CD = '2101' --> 
-			ORDER BY B.BOARD_NUM			    
-			) BOARD 
-		WHERE 
-			RN >= #{START} AND 
-			#{END} >= RN
+	<select id="list" resultMap="boardList" parameterType="PageVO" useCache="false" flushCache="true">
+		SELECT * FROM 
+		    (
+		    SELECT ROWNUM RN, 
+		        A.BOARD_NUM, 
+		        A.WRITER_NM,			    
+		        A.HIGH_BOARD_NUM, 
+		        A.TITLE,
+		        A.CONT,
+		        A.REVIEW_CNT,
+		        A.WRITE_DATE,
+		        A.QUES_CD,
+		        A.CATE_NM,
+		        A.MEMB_ID,
+		        A.TOT
+		    FROM (
+		        SELECT
+		            B.BOARD_NUM, 
+		            B.WRITER_NM,			    
+		            B.HIGH_BOARD_NUM, 
+		            B.TITLE,
+		            B.CONT,
+		            B.REVIEW_CNT,
+		            B.WRITE_DATE,
+		            B.QUES_CD,
+		            C.CATE_NM,
+		            U.MEMB_ID,
+		            0 AS TOT
+		        FROM 
+		            BOARD B INNER JOIN USR U
+		            ON B.MEMB_NUM = U.MEMB_NUM 
+		            INNER JOIN CD C 
+		            ON B.QUES_CD = C.CD 
+		        where    
+		            B.QUES_CD = '2101'
+		        ORDER BY B.BOARD_NUM DESC
+		    ) A
+		) B
+		WHERE
+		     B.RN >= #{START} AND 
+		     #{END} >= B.RN
 	</select>
 	
 	<resultMap type="BoardVO" id="searchMapList">
@@ -109,7 +121,7 @@
 			column="BOARD_NUM" select="listReplys"/>			
 	</resultMap>
 	
-	<select id="searchListTot" resultType="int" >
+	<select id="searchListTot" resultType="int" useCache="false" flushCache="true" >
 			SELECT
 			    COUNT(*) AS TOT
 			FROM 
@@ -126,7 +138,7 @@
 			</if>
 	</select>
 	
-	<select id="searchList" resultMap="searchMapList">
+	<select id="searchList" resultMap="searchMapList" useCache="false" flushCache="true">
 		SELECT RN, BOARD_NUM, WRITER_NM, HIGH_BOARD_NUM, TITLE, CONT,
 			    REVIEW_CNT, WRITE_DATE, QUES_CD, CATE_NM, MEMB_ID, TOT
 		FROM (
@@ -166,7 +178,7 @@
 	</select>
 	
 	
-	<select id="detail" parameterType="int" resultType="BoardVO">
+	<select id="detail" parameterType="int" resultType="BoardVO" useCache="false" flushCache="true">
 		SELECT 
 		    B.BOARD_NUM, 
 		    B.TITLE,
@@ -187,7 +199,7 @@
 			c.BOARD_NUM = #{BOARD_NUM}
 	 </select>
 	 
-	 <insert id="insert" parameterType="BoardVO">
+	 <insert id="insert" parameterType="BoardVO" >
 	 		INSERT INTO BOARD
 			( BOARD_NUM, TITLE, CONT, WRITER_NM, WRITE_DATE,
 			  REVIEW_CNT, MEMB_NUM, QUES_CD

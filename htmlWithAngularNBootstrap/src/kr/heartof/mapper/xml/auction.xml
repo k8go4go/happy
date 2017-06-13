@@ -44,10 +44,7 @@
 			column="AUC_REG_NUM" select="getRecRej"/>
 	</resultMap>
 	
-	
-	
-	
-	<select id="allProgressing" resultMap="aucList">
+	<select id="allProgressing" resultMap="aucList" >
 		SELECT
 			 AUC_REG_NUM,
 			 AUC_PROD_NM,
@@ -483,7 +480,7 @@
 	 </select>
 	 
 	 <select id="maxBiddingPrice" parameterType="int" resultType="int">
-	 	SELECT MAX(BI.BID_PRICE) as BID_PRICE
+	 	SELECT NVL(MAX(BI.BID_PRICE), 0) as BID_PRICE
 		FROM 
 		    REG_AUC RA INNER JOIN REG_BIDDING RB
 		    ON RA.AUC_REG_NUM = RB.AUC_REG_NUM

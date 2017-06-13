@@ -138,4 +138,21 @@
 		INSERT INTO REG_REJ (AUC_REG_NUM, REG_REJ_REAS) 
 		VALUES (#{AUC_REG_NUM}, #{REG_REJ_REAS})
 	</insert>
+	
+	<select id="selectRegAucForBatch" resultType="RegAucVO">
+		SELECT
+		     RA.AUC_REG_NUM,
+		     RA.START_DTIME,
+		     RA.END_DTIME,
+		     RA.MEMB_NUM,
+		     SB.SBID_NUM
+		FROM 
+		    REG_AUC RA LEFT JOIN SUCC_BIDDING SB
+		    ON RA.AUC_REG_NUM = SB.AUC_REG_NUM
+		WHERE
+		    SYSDATE > END_DTIME
+		    AND APPR_CD = '1501' 	
+		    AND SB.AUC_REG_NUM IS NULL
+		ORDER BY END_DTIME ASC;
+	</select>
 </mapper>

@@ -1,5 +1,8 @@
 package kr.heartof.service.mapper;
 
+import java.util.List;
+
+import kr.heartof.vo.auction.BiddingVO;
 import kr.heartof.vo.member.ComUsrVO;
 import kr.heartof.vo.member.ElecWalletVO;
 import kr.heartof.vo.member.MembershipVO;
@@ -146,4 +149,9 @@ public interface MemberMapper{
 	 * @return
 	 */
 	public int changePasswd(UsrVO newPasswd);
+	
+	/**
+	 * 나의 입찰 리스트 정보 가져오기
+	 */
+	public List<BiddingVO> myBiddingHistory(String MEMB_ID);
 }

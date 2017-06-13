@@ -34,3 +34,4 @@ insert into path values (28, 'monthlyWithoutPage.do', '/'); commit;
 insert into path values (29, 'newBidding.do', '/'); commit;
 insert into path values (30, 'ingAuction.do', '/'); commit;
 insert into path values (31, 'enterRegBidding.do', '/'); commit;
+insert into path values (32, 'myBiddingHistory.do', '/'); commit;

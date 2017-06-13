@@ -321,4 +321,28 @@
 		WHERE 
 			MEMB_NUM = #{MEMB_NUM}
 	</update>
+	
+	<select id="myBiddingHistory" parameterType="String" resultType="BiddingVO"> 
+		SELECT
+		    B.BID_PRICE_REG_NUM ,
+		    B.BID_PRICE         ,
+		    B.BID_DTIME         ,
+		    B.BID_NUM           ,
+		    U.MEMB_ID			,
+		    U.MEMB_NUM          ,
+		    RA.AUC_PROD_NM      ,
+		    RA.REG_DTIME        ,
+		    RA.START_DTIME      ,
+		    RA.END_DTIME        
+		FROM 
+		    BIDDING B INNER JOIN REG_BIDDING R
+		    ON B.BID_NUM = R.BID_NUM 
+		    INNER JOIN USR U
+		    ON R.MEMB_NUM = U.MEMB_NUM
+		    INNER JOIN REG_AUC RA
+		    ON R.AUC_REG_NUM = RA.AUC_REG_NUM
+		WHERE
+		    U.MEMB_ID = 'test1'
+		ORDER BY B.BID_PRICE DESC		
+	 </select>
 </mapper>

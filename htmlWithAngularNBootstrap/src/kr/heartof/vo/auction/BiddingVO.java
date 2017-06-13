@@ -9,7 +9,43 @@ public class BiddingVO {
 	private int BID_NUM;
 	private String MEMB_ID;
 	private int MEMB_NUM;
-		
+	private String AUC_PROD_NM;
+	private Date REG_DTIME;
+	private Date START_DTIME;
+	private Date END_DTIME;
+	
+	public String getAUC_PROD_NM() {
+		return AUC_PROD_NM;
+	}
+
+	public void setAUC_PROD_NM(String aUC_PROD_NM) {
+		AUC_PROD_NM = aUC_PROD_NM;
+	}
+
+	public Date getREG_DTIME() {
+		return REG_DTIME;
+	}
+
+	public void setREG_DTIME(Date rEG_DTIME) {
+		REG_DTIME = rEG_DTIME;
+	}
+
+	public Date getSTART_DTIME() {
+		return START_DTIME;
+	}
+
+	public void setSTART_DTIME(Date sTART_DTIME) {
+		START_DTIME = sTART_DTIME;
+	}
+
+	public Date getEND_DTIME() {
+		return END_DTIME;
+	}
+
+	public void setEND_DTIME(Date eND_DTIME) {
+		END_DTIME = eND_DTIME;
+	}
+
 	public int getMEMB_NUM() {
 		return MEMB_NUM;
 	}

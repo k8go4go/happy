@@ -103,8 +103,6 @@ public class MainMonthlyPageUtil {
 	}
 
 	public int endIndicator() {
-		System.out.println("(getTotalBlcok() " + getTotalBlcok());
-		System.out.println("(getTotalBlcok() - 1) * showBlockPageCount : " + ((getTotalBlcok() - 1) * showBlockPageCount));
 		return (getTotalBlcok() - 1) * showBlockPageCount >= currentPage ? 1 : 0;
 	}
 	

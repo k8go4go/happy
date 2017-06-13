@@ -25,11 +25,16 @@ public class BringSqlSession {
 	}
 
 	public static <T> T getMapper(Class<T> arg) {
+		if(session == null) {
+			session = getInstance();
+		} else {
+			session.clearCache();
+		}
 		return session.getMapper(arg);
 	}
 
 	public static void sessionClose() {
-		session.clearCache();
-		session.close();
+		if(session != null)
+			session.close();
 	}
 }

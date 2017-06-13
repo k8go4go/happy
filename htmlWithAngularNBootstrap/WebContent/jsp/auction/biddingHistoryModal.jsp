@@ -16,7 +16,7 @@
 			</div>
 			<div class="modal-body">
 			<div class="table-responsive">				
-				<form id="mySBidForm" name="biddingHistoryForm" class="tab-pane" role="tabpane3">
+				<form id="biddingHistoryForm" name="biddingHistoryForm" class="tab-pane" role="tabpane3">
 					<c:choose>
 					<c:when test="${not empty aucVO.biddingList }">
 					<table class="table" id='biddingHistoryTable' >

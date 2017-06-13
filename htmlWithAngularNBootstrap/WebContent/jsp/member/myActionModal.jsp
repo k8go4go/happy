@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="modal fade" id="myAuctionFormModal" tabindex="-1" role="dialog" aria-labelledby="myAuctionFormModalLabel" aria-hidden="true">
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<div class="modal fade" id="myAuctionFormModal" tabindex="-1" role="dialog" 
+				aria-labelledby="myAuctionFormModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header bg-danger">
@@ -19,7 +22,7 @@
 				    <a class="nav-link active" data-toggle="tab" href="#myinfo" role="tab">회원정보</a>
 				  </li>
 				  <li class="nav-item">
-				    <a class="nav-link" data-toggle="tab" href="#myBidForm" role="tab">입찰정보</a>
+				    <a id='myBiddingHistory' class="nav-link" data-toggle="tab" href="#myBiddingHistoryForm" role="tab">입찰정보</a>
 				  </li>
 				  <li class="nav-item">
 				    <a class="nav-link" data-toggle="tab" href="#mySBidForm" role="tab">낙찰정보</a>
@@ -32,7 +35,7 @@
 						<tr>
 							<td class="text-right col-sm-2"><h6>경매등록정보</h6></td>
 							<td class="text-left col-sm-10">
-								<button type="button" class="btn btn-primary" onclick="doRegAuc();">경매등록정보</button>
+								<button id='doRegAuc' type="button" class="btn btn-primary">경매등록정보</button>
 							</td>
 						</tr>
 						<tr>
@@ -170,52 +173,22 @@
 						</tbody>
 					</table>
 					<div class="modal-footer bg-danger">
-						<button type="button" class="btn btn-primary" onclick="updateUser();">수정하기</button>						
+						<button id='modifyUser' type="button" class="btn btn-primary">수정하기</button>						
 					</div>
 				</form>
-				<form id="myBidForm" name="myBidForm" class="tab-pane" role="tabpane2">
-					<table class="table" id='myBidTable' >
+				<form id="myBiddingHistoryForm" name="myBiddingHistoryForm" class="tab-pane" role="tabpane3">
+					<table class="table" id='biddingHistoryTable' >
+						<thead>
+							<tr>
+								<th class="text-right col-sm-1"><small>번호</small></th>
+								<th class="text-right col-sm-3"><small>경매상품명</small></th>
+								<th class="text-right col-sm-2"><small>시작일자</small></th>
+								<th class="text-right col-sm-2"><small>종료일자</small></th>
+								<th class="text-right col-sm-2"><small>입찰가</small></th>
+								<th class="text-right col-sm-2"><small>입찰일자</small></th>
+							</tr>
+						</thead>
 						<tbody>
-						<tr>
-							<td class="text-right col-sm-2"><h6>선 택</h6></td>
-							<td class="text-center col-sm-6">
-							<select id="PROD_CATE_NUM">
-							</select>
-							</td>
-						</tr>
-						<tr>
-							<td class="text-right col-sm-2"><h6>경매유형</h6></td>
-							<td class="text-center col-sm-6">
-							<select id="AUC_TYPE_NUM">
-							</select>
-							</td>
-						</tr>
-						<tr>
-							<td class="text-right col-sm-2"><h6>상품명</h6></td>
-							<td class="text-center col-sm-8"><input type="text"
-								class="input-sm col-sm-6" name="AUC_PROD_NM" id="AUC_PROD_NM" 
-								required />
-						</tr>
-						<tr>
-							<td class="text-right col-sm-2"><h6>시작시간</h6></td>
-							<td class="text-center col-sm-6">
-		                      	<div class="input-group date form_datetime1 col-md-10" data-date="2017-06-05T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-				                    <input class="input-sm col-sm-6" size="16" type="text" id="START_DTIME" name="START_DTIME" value="" readonly>
-				                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-									<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-				                </div>
-							</td>	
-						</tr>
-						<tr>
-							<td class="text-right"><h6>종료시간</h6></td>
-							<td class="text-center">
-							<div class="input-group date form_datetime2 col-md-10" data-date="2017-06-05T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-				                    <input class="input-sm col-sm-6" size="16" type="text" id="END_DTIME" name="END_DTIME" value="" readonly>
-				                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-									<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-				                </div>
-							</td>
-						</tr>
 						</tbody>
 					</table>
 				</form>
@@ -239,11 +212,61 @@
 </div>
 
 <script type="text/javascript">
-	function doRegAuc() {
-		location.href = '${contextPath}${pathList['16'].PATH}${pathList['16'].PATH_NM}'; 
+	function dateFormat(date){
+	  //2016/12/28
+	  //string
+	  //return에 '/' 부분을 마음대로 바꿀 수 있음
+	  var year = date.getFullYear();
+	  var month = (1 + date.getMonth()); // month는 0부터시작함.
+	  month = month >= 10 ? month : '0' + month; // 두자리수 맞춰줌
+	  var day = date.getDate();
+	  day = day >= 10 ? day : '0' + day; // 두자리 수 맞춰줌
+
+	  return  year + '/' + month + '/' + day;
 	}
 	
-	function updateUser() {
+	$('#myBiddingHistory').on('click', function(){
+		console.log('check');			
+		$.ajax(
+			 {
+		 		type: 'get',
+				url: '${contextPath}${pathList['32'].PATH}${pathList['32'].PATH_NM}',
+		 		success: function(result) {
+		 			if(result.result) {
+		 				swal("입찰내역 정보", "입찰내역 정보가 없습니다.", "error");
+		 				$('#biddingHistoryTable > tbody > tr').remove();
+		 				var emptyTr = "<tr><td class='text-right'>입찰내역 정보가 없습니다.</td></tr>" 
+		 				$('#biddingHistoryTable > tbody').html(emptyTr);
+		 			} else {
+		 				if(result.length > 0) {
+		 					$('#biddingHistoryTable > tbody > tr').remove();
+		 					var tag;
+							for(var i=0; i < result.length; i++) {
+								tag += '<tr>';
+								tag += '<td class="text-right"><small>'+result[i].BID_PRICE_REG_NUM+'</small></td>';
+								tag += '<td class="text-right"><small>'+result[i].AUC_PROD_NM+'</small></td>';
+								tag += '<td class="text-right"><small>'+dateFormat(new Date(result[i].START_DTIME))+'</small></td>';
+								tag += '<td class="text-right"><small>'+dateFormat(new Date(result[i].END_DTIME))+'</small></td>';
+								tag += '<td class="text-right"><small>'+result[i].BID_PRICE+'</small></td>';
+								tag += '<td class="text-right"><small>'+dateFormat(new Date(result[i].BID_DTIME))+'</small></td>';
+								tag += '</tr>';
+							}
+		 					$('#biddingHistoryTable > tbody').html(tag);
+		 				}
+		 			}
+	    		},
+	    		error: function(result) {
+	    			swal("사용자정보변경", "서버 오류입니다.", "error");
+	    		}
+			}
+		);
+	});
+
+	$('#doRegAuc').on('click', function () {
+		location.href = '${contextPath}${pathList['16'].PATH}${pathList['16'].PATH_NM}'; 
+	});
+	
+	$('#modifyUser').on('click', function() {
 		var myinfo = $('#myinfo')[0];
 		var datas = new FormData(myinfo);
 		 $.ajax(
@@ -262,7 +285,7 @@
 	    		}
 			}
 		);
-	}
+	});
 	
 	$('#logout').on('click', function(e) {
 		location.href = '${contextPath}${pathList['14'].PATH}${pathList['14'].PATH_NM}';

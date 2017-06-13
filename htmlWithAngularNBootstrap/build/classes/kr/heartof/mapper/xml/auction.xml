@@ -44,10 +44,7 @@
 			column="AUC_REG_NUM" select="getRecRej"/>
 	</resultMap>
 	
-	
-	
-	
-	<select id="allProgressing" resultMap="aucList">
+	<select id="allProgressing" resultMap="aucList" >
 		SELECT
 			 AUC_REG_NUM,
 			 AUC_PROD_NM,
@@ -454,7 +451,8 @@
 			B.BID_PRICE         ,
 			B.BID_DTIME         ,
 			B.BID_NUM           ,
-			U.MEMB_ID
+			U.MEMB_ID			,
+			U.MEMB_NUM
 		FROM 
 			BIDDING B INNER JOIN REG_BIDDING R
 			ON B.BID_NUM = R.BID_NUM 
@@ -462,14 +460,37 @@
 			ON R.MEMB_NUM = U.MEMB_NUM
 		WHERE
 			R.AUC_REG_NUM = #{AUC_REG_NUM}
-		ORDER BY B.BID_DTIME DESC			
+		ORDER BY B.BID_PRICE DESC			
 	 </select>
 	 
 	 <insert id="newbiddingHistory" parameterType="BiddingVO">
-	 	INSERT INTO REG_BIDDING
+	 	INSERT INTO BIDDING
 	 		(BID_PRICE_REG_NUM, BID_PRICE, BID_DTIME, BID_NUM) VALUES 
 	 		(BID_SEQ.NEXTVAL, #{BID_PRICE}, SYSDATE, #{BID_NUM})
 	 </insert>
+	 
+	 <select id="getBidNum" parameterType="RegAucVO" resultType="int">
+	 	SELECT 
+		    BID_NUM 
+		FROM 
+		    REG_BIDDING 
+		WHERE 
+		    MEMB_NUM = #{MEMB_NUM} AND 
+		    AUC_REG_NUM = #{AUC_REG_NUM}
+	 </select>
+	 
+	 <select id="maxBiddingPrice" parameterType="int" resultType="int">
+	 	SELECT NVL(MAX(BI.BID_PRICE), 0) as BID_PRICE
+		FROM 
+		    REG_AUC RA INNER JOIN REG_BIDDING RB
+		    ON RA.AUC_REG_NUM = RB.AUC_REG_NUM
+		    INNER JOIN BIDDING BI
+		    ON RB.BID_NUM = BI.BID_NUM
+		WHERE
+		    RA.AUC_REG_NUM = #{AUC_REG_NUM}
+	 	
+	 	
+	 </select>
 	 
 	 <select id="biddingRegList" parameterType="int" resultType="RegBiddingVO"> 
 		SELECT 

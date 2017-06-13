@@ -2,10 +2,8 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
-	<!-- 설정파일에서 사용할 프로퍼티의 파일의 경로 지정: classpath -->
 	<properties resource="common/config/db.properties"/>
-	<!-- SQL의 결과를 담을 VO 객체들의 별칭을 설정하여 사용의 편의를 도모  -->
+
 	<typeAliases>
 		<typeAlias type="kr.heartof.vo.CodeVO" alias="CodeVO"/>
 		<typeAlias type="kr.heartof.vo.auction.BiddingVO" alias="BiddingVO"/>
@@ -36,9 +34,9 @@
 		<typeAlias type="kr.heartof.vo.product.ProdCateVO" alias="ProdCateVO"/>
 		<typeAlias type="kr.heartof.vo.product.ProdVO" alias="ProdVO"/>
 				
-		<typeAlias type="kr.heartof.admin.vo.MgrVO" alias="MgrVO"/>		
+		<typeAlias type="kr.heartof.admin.vo.MgrVO" alias="MgrVO"/>	
+		<typeAlias type="kr.heartof.admin.vo.BatchRegAucVO" alias="BatchRegAucVO"/>	
 	</typeAliases>
-	
 	
 	<environments default="development">
 		<environment id="development">
@@ -60,6 +58,7 @@
 		
 		<mapper resource="kr/heartof/admin/mapper/xml/adminMember.xml"/>
 		<mapper resource="kr/heartof/admin/mapper/xml/adminAuction.xml"/>
+		<mapper resource="kr/heartof/admin/mapper/xml/batchAuction.xml"/>
 		<mapper resource="kr/heartof/admin/mapper/xml/path.xml"/>
 	</mappers>
 </configuration>
