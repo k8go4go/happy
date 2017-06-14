@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
+
 import com.google.gson.Gson;
 
 import kr.heartof.service.mapper.ProductMapper;
@@ -20,7 +22,9 @@ public class ProCateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProductMapper mapper = BringSqlSession.getMapper(ProductMapper.class);
+		SqlSession sqlSession = BringSqlSession.getSqlSessionInstance();
+		ProductMapper mapper = sqlSession.getMapper(ProductMapper.class);
+
 		response.setCharacterEncoding("UTF-8");
 		String PROD_CATE_NUM = request.getParameter("PROD_CATE_NUM");
 		

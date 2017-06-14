@@ -2,7 +2,6 @@ package kr.heartof.servlet.auction;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.ibatis.session.SqlSession;
 
 import com.google.gson.Gson;
 
@@ -27,7 +28,8 @@ public class EnterRegBiddingSerlvet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UsrVO loginUser = (UsrVO)request.getSession().getAttribute("user");
-		AuctionMapper mapper = BringSqlSession.getMapper(AuctionMapper.class);
+		SqlSession sqlSession = BringSqlSession.getSqlSessionInstance();
+		AuctionMapper mapper = sqlSession.getMapper(AuctionMapper.class);
 		
 		int result = 0;
 		try {
@@ -40,7 +42,7 @@ public class EnterRegBiddingSerlvet extends HttpServlet {
 			if(vo.size() > 0) {
 				if(DateUtil.before(vo.get(0).getSTART_DTIME())) { // 오늘 보다 이전이기 때문에 시작
 					result = mapper.newBiddingReg(rvo);
-					BringSqlSession.getInstance().commit();
+					sqlSession.commit();
 				} else {
 					result = -1;
 				}
@@ -49,7 +51,7 @@ public class EnterRegBiddingSerlvet extends HttpServlet {
 			}
 		} catch(Exception e) {
 			result = 0;
-			BringSqlSession.getInstance().rollback();
+			sqlSession.rollback();
 			e.printStackTrace();
 		}
 		

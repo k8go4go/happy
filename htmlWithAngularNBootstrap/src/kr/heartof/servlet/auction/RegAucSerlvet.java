@@ -16,7 +16,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
+
 import kr.heartof.service.mapper.AuctionMapper;
+import kr.heartof.service.mapper.QnaMapper;
 import kr.heartof.util.BringSqlSession;
 import kr.heartof.util.DateUtil;
 import kr.heartof.util.FileInfo;
@@ -31,7 +34,9 @@ public class RegAucSerlvet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UsrVO loginUser = (UsrVO)request.getSession().getAttribute("user");
-		AuctionMapper mapper = BringSqlSession.getMapper(AuctionMapper.class);
+		SqlSession sqlSession = BringSqlSession.getSqlSessionInstance();
+		AuctionMapper mapper = sqlSession.getMapper(AuctionMapper.class);
+		
 		ServletContext servletContext = this.getServletConfig().getServletContext();
 		File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
 		FileUpload uploadFile = null;
@@ -58,11 +63,11 @@ public class RegAucSerlvet extends HttpServlet {
 				result += mapper.regAuctionFile(regFile);
 			}
 		
-			BringSqlSession.getInstance().commit();
+			sqlSession.commit();
 		} catch(Exception e) {
 			result = 0;
+			sqlSession.rollback();
 			e.printStackTrace();
-			BringSqlSession.getInstance().rollback();
 		}
 		
 		String msg = result == 3 ? "경매등록이완료되었습니다." : "경매등록이 실패하였습니다.";

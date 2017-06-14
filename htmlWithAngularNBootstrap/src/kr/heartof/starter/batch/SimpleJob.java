@@ -2,6 +2,7 @@ package kr.heartof.starter.batch;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -14,44 +15,45 @@ public class SimpleJob implements Job{
 	public void execute(JobExecutionContext context)
 	        throws JobExecutionException {
 		System.out.println("==================Batch 시작");
-		BatchAuctionMapper mapper = BringSqlSession.getMapper(BatchAuctionMapper.class);
+		SqlSession sqlSession = BringSqlSession.getSqlSessionInstance();
+		BatchAuctionMapper mapper = sqlSession.getMapper(BatchAuctionMapper.class);
 		try {
 			mapper.updateBatch2301();
-			BringSqlSession.getInstance().commit();
+			sqlSession.commit();
 		} catch(Exception e) {
-			BringSqlSession.getInstance().rollback();
+			sqlSession.rollback();
 			e.printStackTrace();
 		}
 		
 		try {
 			mapper.updateBatch2304();
-			BringSqlSession.getInstance().commit();
+			sqlSession.commit();
 		} catch(Exception e) {
-			BringSqlSession.getInstance().rollback();
+			sqlSession.rollback();
 			e.printStackTrace();
 		}
 		
 		try {
 			mapper.updateBatch2302();
-			BringSqlSession.getInstance().commit();
+			sqlSession.commit();
 		} catch(Exception e) {
-			BringSqlSession.getInstance().rollback();
+			sqlSession.rollback();
 			e.printStackTrace();
 		}
 		
 		try {
 			mapper.updateBatch2303();
-			BringSqlSession.getInstance().commit();
+			sqlSession.commit();
 		} catch(Exception e) {
-			BringSqlSession.getInstance().rollback();
+			sqlSession.rollback();
 			e.printStackTrace();
 		}
 		
 		try {
 			mapper.updateBatch2305();
-			BringSqlSession.getInstance().commit();
+			sqlSession.commit();
 		} catch(Exception e) {
-			BringSqlSession.getInstance().rollback();
+			sqlSession.rollback();
 			e.printStackTrace();
 		}
 		
@@ -64,9 +66,9 @@ public class SimpleJob implements Job{
 					mapper.updateBatch2306(vo.getAUC_REG_NUM());
 				}
 			}
-			BringSqlSession.getInstance().commit();
+			sqlSession.commit();
 		} catch(Exception e) {
-			BringSqlSession.getInstance().rollback();
+			sqlSession.rollback();
 			e.printStackTrace();
 		}
 		

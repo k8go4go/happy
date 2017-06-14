@@ -1,7 +1,6 @@
 package kr.heartof.servlet.admin;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,10 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
+
 import kr.heartof.admin.mapper.AdminAuctionMapper;
 import kr.heartof.constant.Code;
 import kr.heartof.util.BringSqlSession;
-import kr.heartof.vo.auction.RegAucFileVO;
 import kr.heartof.vo.auction.RegAucVO;
 
 @WebServlet("/admin/apprCDProcess.do")
@@ -20,7 +20,8 @@ public class ApprCDProcessSerlvet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AdminAuctionMapper mapper = BringSqlSession.getMapper(AdminAuctionMapper.class);
+		SqlSession sqlSession = BringSqlSession.getSqlSessionInstance();
+		AdminAuctionMapper mapper = sqlSession.getMapper(AdminAuctionMapper.class);
 		int result = 0;
 		RegAucVO vo = new RegAucVO();
 		vo.setAPPR_CD(Code.REG_AUC_APPROVAL_Y_CD.getKey());
@@ -28,9 +29,9 @@ public class ApprCDProcessSerlvet extends HttpServlet {
 		
 		try {
 			result = mapper.updateApprCD(vo);
-			BringSqlSession.getInstance().commit();
+			sqlSession.commit();
 		} catch (Exception e) {
-			BringSqlSession.getInstance().rollback();
+			sqlSession.rollback();
 			result = 0;
 			e.printStackTrace();
 		}

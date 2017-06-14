@@ -9,12 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
+
 import kr.heartof.service.mapper.AuctionMapper;
 import kr.heartof.util.BringSqlSession;
 import kr.heartof.util.MainMonthlyPageUtil;
 import kr.heartof.vo.auction.AuctionPageObject;
 import kr.heartof.vo.auction.RegAucVO;
-import kr.heartof.vo.foruser.PageVO;
 
 @WebServlet("/menu.do")
 public class MenuServlet extends HttpServlet {
@@ -30,7 +31,8 @@ public class MenuServlet extends HttpServlet {
 	}
 	
 	private AuctionPageObject makePageObject (HttpServletRequest request) {
-		AuctionMapper mapper = BringSqlSession.getMapper(AuctionMapper.class); 
+		SqlSession sqlSession = BringSqlSession.getSqlSessionInstance();
+		AuctionMapper mapper = sqlSession.getMapper(AuctionMapper.class); 
 		MainMonthlyPageUtil util = new MainMonthlyPageUtil(MainMonthlyPageUtil.BLOCKPAGE_5);
 		util.setMapper(mapper);
 		util.setHttpServletRequest(request);

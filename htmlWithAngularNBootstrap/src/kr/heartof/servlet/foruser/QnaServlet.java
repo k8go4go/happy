@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
+
 import kr.heartof.service.mapper.QnaMapper;
 import kr.heartof.util.BringSqlSession;
 import kr.heartof.util.PageUtil;
@@ -20,7 +22,9 @@ public class QnaServlet extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		QnaMapper mapper = BringSqlSession.getMapper(QnaMapper.class); 
+		SqlSession sqlSession = BringSqlSession.getSqlSessionInstance();
+		QnaMapper mapper = sqlSession.getMapper(QnaMapper.class);
+		
 		response.addHeader("Content-Type", "text/html;charset=UTF-8");
 		PageUtil util = new PageUtil(PageUtil.BLOCKPAGE_5);
 		util.setMapper(mapper);

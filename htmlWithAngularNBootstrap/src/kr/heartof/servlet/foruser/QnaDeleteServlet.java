@@ -9,24 +9,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
+
 import kr.heartof.service.mapper.QnaMapper;
 import kr.heartof.util.BringSqlSession;
-import kr.heartof.vo.foruser.BoardVO;
 
 @WebServlet("/deleteQna.do")
 public class QnaDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 2931563842735300771L;
-	private static QnaMapper mapper = BringSqlSession.getMapper(QnaMapper.class); 
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		SqlSession sqlSession = BringSqlSession.getSqlSessionInstance();
+		QnaMapper mapper = sqlSession.getMapper(QnaMapper.class);
+		
 		response.addHeader("Content-Type", "text/html;charset=UTF-8");
 		
 		int board_num = Integer.parseInt(request.getParameter("BOARD_NUM"));
-		System.out.println(board_num);
 		
-		int result = mapper.delete(board_num);
-		BringSqlSession.getInstance().commit();
+		int result = 0;
+		try{
+			result = mapper.delete(board_num);
+			sqlSession.commit();
+		}catch(Exception e) {
+			sqlSession.rollback();
+			result = 0;
+			e.printStackTrace();
+		}
 		
 		String msg = null;
 		if(result > 0) {

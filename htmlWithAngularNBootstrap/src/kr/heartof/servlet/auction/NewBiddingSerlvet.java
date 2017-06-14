@@ -9,9 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
+
 import com.google.gson.Gson;
 
 import kr.heartof.service.mapper.AuctionMapper;
+import kr.heartof.service.mapper.MemberMapper;
 import kr.heartof.util.BringSqlSession;
 import kr.heartof.vo.ResultJSon;
 import kr.heartof.vo.auction.BiddingVO;
@@ -24,7 +27,8 @@ public class NewBiddingSerlvet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UsrVO loginUser = (UsrVO)request.getSession().getAttribute("user");
-		AuctionMapper mapper = BringSqlSession.getMapper(AuctionMapper.class);
+		SqlSession sqlSession = BringSqlSession.getSqlSessionInstance();
+		AuctionMapper mapper = sqlSession.getMapper(AuctionMapper.class);
 		
 		int result = 0;
 		try {
@@ -35,20 +39,28 @@ public class NewBiddingSerlvet extends HttpServlet {
 			int maxPrice = mapper.maxBiddingPrice(Integer.parseInt(request.getParameter("AUC_REG_NUM")));
 			int bidNum = mapper.getBidNum(rvo);
 			
+			if(bidNum == 0) {
+				response.setContentType("text/plain;charset=utf-8");
+				PrintWriter out = response.getWriter();
+				out.write(makeJson("입찰입장하지 않아 입찰에 참여할수 없습니다.", String.valueOf(-1)));
+				out.close();
+				return;
+			}
+			
 			BiddingVO vo = new BiddingVO();
 			vo.setBID_PRICE(Integer.parseInt(request.getParameter("BID_PRICE")));
 			vo.setBID_NUM(bidNum);
 			
 			if(maxPrice < Integer.parseInt(request.getParameter("BID_PRICE"))) {
 				result = mapper.newbiddingHistory(vo);
-				BringSqlSession.getInstance().commit(); 
+				sqlSession.commit(); 
 			} else {
 				result = -1;
 			}
 		} catch(Exception e) {
 			result = 0;
 			e.printStackTrace();
-			BringSqlSession.getInstance().rollback();
+			sqlSession.rollback();
 		}
 		
 		String msg = result == 1 ? "입찰 등록이 완료되었습니다" : "입찰 등록이 실패되었습니다";

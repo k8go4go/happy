@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
+
 import kr.heartof.admin.mapper.AdminAuctionMapper;
 import kr.heartof.constant.Code;
 import kr.heartof.util.BringSqlSession;
@@ -21,7 +23,8 @@ public class ApprRejProcessSerlvet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AdminAuctionMapper mapper = BringSqlSession.getMapper(AdminAuctionMapper.class);
+		SqlSession sqlSession = BringSqlSession.getSqlSessionInstance();
+		AdminAuctionMapper mapper = sqlSession.getMapper(AdminAuctionMapper.class);
 		
 		RegRejVO jvo = new RegRejVO();
 		jvo.setAUC_REG_NUM(Integer.parseInt(request.getParameter("AUC_REG_NUM")));
@@ -35,9 +38,9 @@ public class ApprRejProcessSerlvet extends HttpServlet {
 		try {
 			result += mapper.updateApprCD(vo);
 			result += mapper.insertRegRej(jvo);
-			BringSqlSession.getInstance().commit();
+			sqlSession.commit();
 		} catch (Exception e) {
-			BringSqlSession.getInstance().rollback();
+			sqlSession.rollback();
 			result = 0;
 			e.printStackTrace();
 		}

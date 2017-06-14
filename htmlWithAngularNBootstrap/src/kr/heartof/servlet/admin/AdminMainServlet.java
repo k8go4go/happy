@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
+
 import kr.heartof.admin.mapper.AdminAuctionMapper;
 import kr.heartof.admin.mapper.PathVO;
 import kr.heartof.admin.vo.MgrVO;
@@ -45,7 +47,9 @@ public class AdminMainServlet extends HttpServlet {
 		request.removeAttribute("needApprCD");
 		request.removeAttribute("doneApprCD");
 		if(user != null) {
-			AdminAuctionMapper mapper = BringSqlSession.getMapper(AdminAuctionMapper.class);
+			SqlSession sqlSession = BringSqlSession.getSqlSessionInstance();
+			AdminAuctionMapper mapper = sqlSession.getMapper(AdminAuctionMapper.class);
+			
 			List<RegAucVO> list = mapper.needApprCD();
 			request.setAttribute("needApprCD", list);
 			

@@ -10,19 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 
 import kr.heartof.service.mapper.AuctionMapper;
 import kr.heartof.util.BringSqlSession;
 import kr.heartof.vo.auction.RegAucFileVO;
-import kr.heartof.vo.member.UsrFileVO;
-import kr.heartof.vo.member.UsrVO;
 
 public class ProductImageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		SqlSession sqlSession = BringSqlSession.getSqlSessionInstance();
+		AuctionMapper mapper = sqlSession.getMapper(AuctionMapper.class);
+		
 		String URLAfterWebDomain = request.getRequestURI();
 		
 		if(URLAfterWebDomain.contains("/product/image/") == false)   
@@ -32,7 +34,7 @@ public class ProductImageServlet extends HttpServlet {
 		
 		String relativeImagePath = paths[paths.length - 1]; 
 		System.out.println(relativeImagePath);
-		RegAucFileVO fileVO = BringSqlSession.getMapper(AuctionMapper.class).getRegAucFile(Integer.parseInt(relativeImagePath));
+		RegAucFileVO fileVO = mapper.getRegAucFile(Integer.parseInt(relativeImagePath));
 		
 		
 		BufferedInputStream in = null;

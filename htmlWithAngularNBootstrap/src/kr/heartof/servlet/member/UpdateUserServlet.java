@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
+
 import kr.heartof.constant.Code;
 import kr.heartof.service.mapper.MemberMapper;
 import kr.heartof.util.BringSqlSession;
@@ -27,13 +29,12 @@ import kr.heartof.vo.member.UsrVO;
 @WebServlet("/updateUser.do")
 public class UpdateUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private MemberMapper mapper = null; 
-    public UpdateUserServlet() {
-    	mapper = BringSqlSession.getMapper(MemberMapper.class);
-    }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UsrVO loginUser = (UsrVO)request.getSession().getAttribute("user");
+		
+		SqlSession sqlSession = BringSqlSession.getSqlSessionInstance();
+		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
 		
 		ServletContext servletContext = this.getServletConfig().getServletContext();
 		File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
@@ -79,9 +80,9 @@ public class UpdateUserServlet extends HttpServlet {
 				}
 			}
 			
-			BringSqlSession.getInstance().commit();
+			sqlSession.commit();
 		} catch(Exception e) {
-			BringSqlSession.getInstance().rollback();
+			sqlSession.rollback();
 			result = 0;			
 			e.printStackTrace();
 		}

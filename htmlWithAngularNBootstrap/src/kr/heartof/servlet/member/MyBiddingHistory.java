@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
+
 import com.google.gson.Gson;
 
 import kr.heartof.service.mapper.MemberMapper;
@@ -24,7 +26,8 @@ public class MyBiddingHistory extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UsrVO user = (UsrVO)request.getSession().getAttribute("user");
 		
-		MemberMapper mapper = BringSqlSession.getMapper(MemberMapper.class);
+		SqlSession sqlSession = BringSqlSession.getSqlSessionInstance();
+		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
 		
 		List<BiddingVO> list = mapper.myBiddingHistory(user.getMEMB_ID());
 		

@@ -16,9 +16,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.heartof.constant.Code;
+import org.apache.ibatis.session.SqlSession;
+
 import kr.heartof.service.mapper.AuctionMapper;
-import kr.heartof.service.mapper.ProductMapper;
 import kr.heartof.util.BringSqlSession;
 import kr.heartof.util.DateUtil;
 import kr.heartof.util.FileInfo;
@@ -33,7 +33,9 @@ public class UpdateRegAucSerlvet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UsrVO loginUser = (UsrVO)request.getSession().getAttribute("user");
-		AuctionMapper mapper = BringSqlSession.getMapper(AuctionMapper.class);
+		SqlSession sqlSession = BringSqlSession.getSqlSessionInstance();
+		AuctionMapper mapper = sqlSession.getMapper(AuctionMapper.class);
+		
 		ServletContext servletContext = this.getServletConfig().getServletContext();
 		File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
 		FileUpload uploadFile = null;
@@ -60,20 +62,22 @@ public class UpdateRegAucSerlvet extends HttpServlet {
 				result += mapper.updateAuctionFile(regFile);
 			}
 		
-			BringSqlSession.getInstance().commit();
+			sqlSession.commit();
 		} catch(Exception e) {
+			sqlSession.rollback();
 			result = 0;
 			e.printStackTrace();
-			BringSqlSession.getInstance().rollback();
 		}
 		
-		String msg = result == 3 ? "경매수정이완료되었습니다." : "경매수정이 실패하였습니다.";
+		
+		String msg = result >=  1 ? "경매수정이완료되었습니다." : "경매수정이 실패하였습니다.";
 		request.setAttribute("msg", msg);
 		request.setAttribute("result", result);
 		request.setAttribute("aucVO", vo);
 		request.setAttribute("fileListVO", list);
 		
-		RequestDispatcher dispacher = request.getServletContext().getRequestDispatcher("/regAucList.do?result="+result + "&msg="+msg);
+		response.setContentType("text/html;charset=utf-8;");
+		RequestDispatcher dispacher = request.getServletContext().getRequestDispatcher("/regAucDetail.do?no="+vo.getAUC_REG_NUM());
 		dispacher.forward(request, response);
 	}
 	

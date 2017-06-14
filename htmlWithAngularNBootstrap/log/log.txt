@@ -1,32 +1,23 @@
-▶  DEBUG 22:54:37.028 [main] org.apache.ibatis.logging.LogFactory[setImplementation:135] - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
-▶  DEBUG 22:54:37.607 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[forceCloseAll:316] - PooledDataSource forcefully closed/removed all connections.
-▶  DEBUG 22:54:37.607 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[forceCloseAll:316] - PooledDataSource forcefully closed/removed all connections.
-▶  DEBUG 22:54:37.608 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[forceCloseAll:316] - PooledDataSource forcefully closed/removed all connections.
-▶  DEBUG 22:54:37.608 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[forceCloseAll:316] - PooledDataSource forcefully closed/removed all connections.
-▶  DEBUG 22:54:37.895 [main] org.apache.ibatis.transaction.jdbc.JdbcTransaction[openConnection:136] - Opening JDBC Connection
-▶  DEBUG 22:54:38.470 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[popConnection:387] - Created connection 1151755506.
-▶  DEBUG 22:54:38.471 [main] org.apache.ibatis.transaction.jdbc.JdbcTransaction[setDesiredAutoCommit:100] - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@44a664f2]
-▶  DEBUG 22:54:38.472 [main] kr.heartof.service.mapper.AuctionMapper.listProductThisMonthForMain[debug:159] - ==>  Preparing: SELECT * FROM ( SELECT ROWNUM RN, R.AUC_REG_NUM, R.AUC_PROD_NM, R.SHORT_CONT, R.REG_DTIME, R.START_DTIME, R.END_DTIME, R.START_PRICE, R.QTY, R.MEMB_NUM, R.PROD_CATE_NUM, R.APPR_CD, R.AUC_TYPE_NUM, P.PROD_CATE_NM, PA.PROD_CATE_NM AS HIGH_PROD_CATE_NM, 0 AS TOT FROM REG_AUC R INNER JOIN PROD_CATE P ON R.PROD_CATE_NUM = P.PROD_CATE_NUM INNER JOIN PROD_CATE PA ON P.HIGH_PROD_CATE_NUM = PA.PROD_CATE_NUM WHERE R.PROD_CATE_NUM in ( SELECT PROD_CATE_NUM FROM PROD_CATE WHERE HIGH_PROD_CATE_NUM = ? ) AND LAST_DAY(SYSDATE) > R.END_DTIME AND R.APPR_CD = '1501' ORDER BY R.END_DTIME ASC ) A WHERE A.RN >= ? AND ? >= A.RN 
-▶  DEBUG 22:54:38.542 [main] kr.heartof.service.mapper.AuctionMapper.listProductThisMonthForMain[debug:159] - ==> Parameters: 4700(String), 1(Integer), 3(Integer)
-▶  DEBUG 22:54:38.568 [main] kr.heartof.service.mapper.AuctionMapper.listProductThisMonthForMain[debug:159] - <==      Total: 0
-▶  DEBUG 22:54:38.569 [main] org.apache.ibatis.transaction.jdbc.JdbcTransaction[resetAutoCommit:122] - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@44a664f2]
-▶  DEBUG 22:54:38.569 [main] org.apache.ibatis.transaction.jdbc.JdbcTransaction[close:90] - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@44a664f2]
-▶  DEBUG 22:54:38.570 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[pushConnection:344] - Returned connection 1151755506 to pool.
-▶  DEBUG 23:28:29.002 [main] org.apache.ibatis.logging.LogFactory[setImplementation:135] - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
-▶  DEBUG 23:28:29.144 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[forceCloseAll:316] - PooledDataSource forcefully closed/removed all connections.
-▶  DEBUG 23:28:29.144 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[forceCloseAll:316] - PooledDataSource forcefully closed/removed all connections.
-▶  DEBUG 23:28:29.144 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[forceCloseAll:316] - PooledDataSource forcefully closed/removed all connections.
-▶  DEBUG 23:28:29.145 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[forceCloseAll:316] - PooledDataSource forcefully closed/removed all connections.
-▶  DEBUG 23:28:29.302 [main] org.apache.ibatis.transaction.jdbc.JdbcTransaction[openConnection:136] - Opening JDBC Connection
-▶  DEBUG 23:28:29.904 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[popConnection:387] - Created connection 1151755506.
-▶  DEBUG 23:28:29.905 [main] org.apache.ibatis.transaction.jdbc.JdbcTransaction[setDesiredAutoCommit:100] - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@44a664f2]
-▶  DEBUG 23:28:29.906 [main] kr.heartof.service.mapper.AuctionMapper.regAuction!selectKey[debug:159] - ==>  Preparing: SELECT REG_AUC_SEQ.nextval FROM DUAL 
-▶  DEBUG 23:28:29.975 [main] kr.heartof.service.mapper.AuctionMapper.regAuction!selectKey[debug:159] - ==> Parameters: 
-▶  DEBUG 23:28:30.008 [main] kr.heartof.service.mapper.AuctionMapper.regAuction!selectKey[debug:159] - <==      Total: 1
-▶  DEBUG 23:28:30.009 [main] kr.heartof.service.mapper.AuctionMapper.regAuction[debug:159] - ==>  Preparing: INSERT INTO REG_AUC ( AUC_REG_NUM, AUC_PROD_NM, SHORT_CONT, REG_DTIME, START_DTIME, END_DTIME, START_PRICE, QTY, MEMB_NUM, PROD_CATE_NUM, AUC_TYPE_NUM, APPR_CD ) values ( ?, ?, ?, sysdate, ?, ?, ?, ?, ?, ?, ?, '1502' ) 
-▶  DEBUG 23:28:30.010 [main] kr.heartof.service.mapper.AuctionMapper.regAuction[debug:159] - ==> Parameters: 82(Integer), 이순형바보(String), 이순형바보(String), 2017-06-09 15:25:00.0(Timestamp), 2017-06-09 17:55:00.0(Timestamp), 1000(Integer), 1(Integer), 11643(Integer), 2202(String), 1804(String)
-▶  DEBUG 23:28:30.011 [main] kr.heartof.service.mapper.AuctionMapper.regAuction[debug:159] - <==    Updates: 1
-▶  DEBUG 23:28:30.011 [main] org.apache.ibatis.transaction.jdbc.JdbcTransaction[commit:69] - Committing JDBC Connection [oracle.jdbc.driver.T4CConnection@44a664f2]
-▶  DEBUG 23:28:30.012 [main] org.apache.ibatis.transaction.jdbc.JdbcTransaction[resetAutoCommit:122] - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@44a664f2]
-▶  DEBUG 23:28:30.013 [main] org.apache.ibatis.transaction.jdbc.JdbcTransaction[close:90] - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@44a664f2]
-▶  DEBUG 23:28:30.013 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[pushConnection:344] - Returned connection 1151755506 to pool.
+▶  DEBUG 11:48:19.599 [main] org.apache.ibatis.logging.LogFactory[setImplementation:135] - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+▶  DEBUG 11:48:19.937 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[forceCloseAll:316] - PooledDataSource forcefully closed/removed all connections.
+▶  DEBUG 11:48:19.937 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[forceCloseAll:316] - PooledDataSource forcefully closed/removed all connections.
+▶  DEBUG 11:48:19.938 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[forceCloseAll:316] - PooledDataSource forcefully closed/removed all connections.
+▶  DEBUG 11:48:19.938 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[forceCloseAll:316] - PooledDataSource forcefully closed/removed all connections.
+▶  DEBUG 11:48:20.251 [main] org.apache.ibatis.transaction.jdbc.JdbcTransaction[openConnection:136] - Opening JDBC Connection
+▶  DEBUG 11:48:20.640 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[popConnection:387] - Created connection 29591262.
+▶  DEBUG 11:48:20.640 [main] org.apache.ibatis.transaction.jdbc.JdbcTransaction[setDesiredAutoCommit:100] - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@1c386de]
+▶  DEBUG 11:48:20.642 [main] kr.heartof.service.mapper.AuctionMapper.detail[debug:159] - ==>  Preparing: SELECT R.AUC_REG_NUM, R.AUC_PROD_NM, R.SHORT_CONT, R.REG_DTIME, R.START_DTIME, R.END_DTIME, R.START_PRICE, R.QTY, R.MEMB_NUM, R.PROD_CATE_NUM, R.APPR_CD, R.AUC_TYPE_NUM, PR.CATE_NM AS APPR_NM, AP.CATE_NM AS AUC_TYPE_NM, PC.PROD_CATE_NM AS PROD_CATE_NM FROM REG_AUC R INNER JOIN CD PR ON R.APPR_CD = PR.CD INNER JOIN CD AP ON R.AUC_TYPE_NUM = AP.CD INNER JOIN PROD_CATE PC ON R.PROD_CATE_NUM = PC.PROD_CATE_NUM WHERE R.AUC_REG_NUM = 22 
+▶  DEBUG 11:48:20.753 [main] kr.heartof.service.mapper.AuctionMapper.detail[debug:159] - ==> Parameters: 
+▶  DEBUG 11:48:20.797 [main] kr.heartof.service.mapper.AuctionMapper.listRegAucFile[debug:159] - ====>  Preparing: SELECT ATTAC_FILE_NUM, FILE_NM, FILE_PATH, REAL_NM, FILE_SIZE FROM REG_AUC_FILE WHERE AUC_REG_NUM = ? 
+▶  DEBUG 11:48:20.798 [main] kr.heartof.service.mapper.AuctionMapper.listRegAucFile[debug:159] - ====> Parameters: 22(Integer)
+▶  DEBUG 11:48:20.799 [main] kr.heartof.service.mapper.AuctionMapper.listRegAucFile[debug:159] - <====      Total: 0
+▶  DEBUG 11:48:20.800 [main] kr.heartof.service.mapper.AuctionMapper.biddingHistoryList[debug:159] - ====>  Preparing: SELECT B.BID_PRICE_REG_NUM , B.BID_PRICE , B.BID_DTIME , B.BID_NUM , U.MEMB_ID , U.MEMB_NUM FROM BIDDING B INNER JOIN REG_BIDDING R ON B.BID_NUM = R.BID_NUM INNER JOIN USR U ON R.MEMB_NUM = U.MEMB_NUM WHERE R.AUC_REG_NUM = ? ORDER BY B.BID_PRICE DESC 
+▶  DEBUG 11:48:20.800 [main] kr.heartof.service.mapper.AuctionMapper.biddingHistoryList[debug:159] - ====> Parameters: 22(Integer)
+▶  DEBUG 11:48:20.801 [main] kr.heartof.service.mapper.AuctionMapper.biddingHistoryList[debug:159] - <====      Total: 0
+▶  DEBUG 11:48:20.802 [main] kr.heartof.service.mapper.AuctionMapper.biddingRegList[debug:159] - ====>  Preparing: SELECT R.BID_NUM, R.MEMB_NUM, R.AUC_REG_NUM, R.BID_QTY, R.REG_DTIME, U.MEMB_ID, U.EMAIL || '@' || EP.CATE_NM AS EMAIL, U.MEMB_CD, AP.CATE_NM FROM REG_BIDDING R INNER JOIN USR U ON R.MEMB_NUM = U.MEMB_NUM INNER JOIN CD AP ON U.MEMB_CD = AP.CD INNER JOIN CD EP ON U.MAIL_CD = EP.CD WHERE U.CRE_DEG_CD != '1302' -- 멤버 신용 등급이 양호한 경우 AND R.AUC_REG_NUM = ? 
+▶  DEBUG 11:48:20.803 [main] kr.heartof.service.mapper.AuctionMapper.biddingRegList[debug:159] - ====> Parameters: 22(Integer)
+▶  DEBUG 11:48:20.805 [main] kr.heartof.service.mapper.AuctionMapper.biddingRegList[debug:159] - <====      Total: 0
+▶  DEBUG 11:48:20.805 [main] kr.heartof.service.mapper.AuctionMapper.detail[debug:159] - <==      Total: 1
+▶  DEBUG 11:48:20.806 [main] org.apache.ibatis.transaction.jdbc.JdbcTransaction[resetAutoCommit:122] - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@1c386de]
+▶  DEBUG 11:48:20.806 [main] org.apache.ibatis.transaction.jdbc.JdbcTransaction[close:90] - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@1c386de]
+▶  DEBUG 11:48:20.807 [main] org.apache.ibatis.datasource.pooled.PooledDataSource[pushConnection:344] - Returned connection 29591262 to pool.

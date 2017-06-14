@@ -13,7 +13,7 @@
 		<form id="regAucModifyForm" name="regAucModifyForm" method="post"
 			action="${contextPath}${pathList['18'].PATH}${pathList['18'].PATH_NM}"
 			enctype="multipart/form-data">
-			<c:if test="${not empty fileListVO }">
+			<c:if test="${not empty aucVO.files }">
 			<table class="table">
 				<tbody>
 					<tr>
@@ -36,9 +36,9 @@
 						<td class="text-right col-sm-2" rowspan="3"><h6>상품사진</h6></td>
 						<td class="text-left col-sm-10" rowspan="3"><img
 							id="mainUpdatePreview" width='150px;' height='200px;'
-							src='<c:url value="/product/image/${fileListVO[0].ATTAC_FILE_NUM}" />'>
+							src='<c:url value="/product/image/${aucVO.files[0].ATTAC_FILE_NUM}" />'>
 							<img id="secUpdatePreview" width='150px;' height='200px;'
-							src='<c:url value="/product/image/${fileListVO[1].ATTAC_FILE_NUM}" />'>
+							src='<c:url value="/product/image/${aucVO.files[1].ATTAC_FILE_NUM}" />'>
 						</td>
 					</tr>
 					<tr></tr>
@@ -180,13 +180,18 @@
 		var eDate = new Date(f.END_DTIME.value);
 		
 		var currentTime = new Date();
-		currentTime.setDate(7);
+		currentTime.setDate(currentTime.getDate() + 7);
 		if(sDate < currentTime) {
 			swal('경매등록오류', '시작시간은 1주일 이후로 등록가능합니다.', 'error');
 			return false;
 		}
 		
-		if(sDate >= eDate) {
+		if(eDate < currentTime) {
+			swal('경매등록오류', '종료시간은 1주일 이후로 등록가능합니다.', 'error');
+			return false;
+		}
+		
+		if(sDate > eDate) {
 			swal('경매등록오류', '시작시간은 종료일 보다 클수 없습니다.', 'error');
 			return false;
 		}

@@ -22,7 +22,7 @@
 			column="AUC_REG_NUM" select="getRecRej"/>
 	</resultMap>
 	 
-	<select id="needApprCD" resultMap="adminAucList">
+	<select id="needApprCD" resultMap="adminAucList" flushCache="true" useCache="false">
 	 	SELECT
 			 R.AUC_REG_NUM,
 			 R.AUC_PROD_NM,
@@ -50,7 +50,7 @@
 			R.APPR_CD = '1500'
 	</select>
 
-	<select id="listRegAucFile" parameterType="int" resultType="RegAucFileVO">
+	<select id="listRegAucFile" parameterType="int" resultType="RegAucFileVO" flushCache="true" useCache="false">
 		SELECT
 			 ATTAC_FILE_NUM,
 			 FILE_NM,
@@ -63,14 +63,14 @@
 			AUC_REG_NUM = #{AUC_REG_NUM}		
 	</select>
 	
-	<select id="getRecRej" resultType="RegRejVO" parameterType="int">
+	<select id="getRecRej" resultType="RegRejVO" parameterType="int" flushCache="true" useCache="false">
 	 	SELECT AUC_REG_NUM, REG_REJ_REAS
 	 	FROM REG_REJ
 	 	WHERE
 	 		AUC_REG_NUM = #{AUC_REG_NUM}
 	</select> 
 	
-	<select id="doneApprCD" resultMap="adminAucList">
+	<select id="doneApprCD" resultMap="adminAucList" flushCache="true" useCache="false">
 	 	SELECT
 			 R.AUC_REG_NUM,
 			 R.AUC_PROD_NM,
@@ -98,7 +98,7 @@
 			R.APPR_CD != '1500'
 	</select>
 	
-	<select id="detail" resultType="RegAucVO" parameterType="int">
+	<select id="detail" resultType="RegAucVO" parameterType="int" flushCache="true" useCache="false">
 		SELECT
 			 R.AUC_REG_NUM,
 			 R.AUC_PROD_NM,
@@ -139,7 +139,7 @@
 		VALUES (#{AUC_REG_NUM}, #{REG_REJ_REAS})
 	</insert>
 	
-	<select id="selectRegAucForBatch" resultType="RegAucVO">
+	<select id="selectRegAucForBatch" resultType="RegAucVO" flushCache="true" useCache="false">
 		SELECT
 		     RA.AUC_REG_NUM,
 		     RA.START_DTIME,

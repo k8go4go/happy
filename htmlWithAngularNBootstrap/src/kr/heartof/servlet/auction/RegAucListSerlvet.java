@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
+
 import kr.heartof.service.mapper.AuctionMapper;
 import kr.heartof.util.BringSqlSession;
 import kr.heartof.vo.auction.RegAucVO;
@@ -18,9 +20,11 @@ import kr.heartof.vo.member.UsrVO;
 public class RegAucListSerlvet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UsrVO loginUser = (UsrVO)request.getSession().getAttribute("user");
-		AuctionMapper mapper = BringSqlSession.getMapper(AuctionMapper.class);
+		SqlSession sqlSession = BringSqlSession.getSqlSessionInstance();
+		AuctionMapper mapper = sqlSession.getMapper(AuctionMapper.class);
+		
 		List<RegAucVO> list = mapper.aucListForMember(loginUser.getMEMB_NUM());
 		
 		request.setAttribute("list", list);

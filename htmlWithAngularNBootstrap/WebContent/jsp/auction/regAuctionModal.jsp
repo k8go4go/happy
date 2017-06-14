@@ -184,14 +184,19 @@
 		var sDate = Date.parse(f.START_DTIME);
 		var eDate = Date.parse(f.END_DTIME);
 		
-		var currentTimt = new Date();
-		currentTimt.setDate(7);
-		if(sDate > currentTimt) {
+		var currentTime = new Date();
+		currentTimt.setDate(currentTime.getDate() + 7);
+		if(sDate < currentTime) {
 			swal('경매등록오류', '시작시간은 1주일 이후로 등록가능합니다.', 'error');
 			return;
 		}
 		
-		if(sDate >= eDate) {
+		if(eDate < currentTime) {
+			swal('경매등록오류', '시작시간은 1주일 이후로 등록가능합니다.', 'error');
+			return;
+		}
+		
+		if(sDate > eDate) {
 			swal('경매등록오류', '시작시간은 종료일 보다 클수 없습니다.', 'error');
 			return;
 		}

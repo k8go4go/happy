@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
+
 import kr.heartof.admin.mapper.AdminAuctionMapper;
 import kr.heartof.admin.mapper.AdminMemberMapper;
 import kr.heartof.admin.vo.MgrVO;
@@ -27,7 +29,8 @@ public class AdminLoginServlet extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		AdminMemberMapper mapper = BringSqlSession.getMapper(AdminMemberMapper.class);
+		SqlSession sqlSession = BringSqlSession.getSqlSessionInstance();
+		AdminMemberMapper mapper = sqlSession.getMapper(AdminMemberMapper.class);
 		MgrVO vo = new MgrVO();
 		vo.setMEMB_ID(request.getParameter("MEMB_ID"));
 		vo.setSEC_NUM(request.getParameter("SEC_NUM"));
@@ -54,7 +57,8 @@ public class AdminLoginServlet extends HttpServlet {
 		request.removeAttribute("needApprCD");
 		request.removeAttribute("doneApprCD");
 		if(user != null) {
-			AdminAuctionMapper mapper = BringSqlSession.getMapper(AdminAuctionMapper.class);
+			SqlSession sqlSession = BringSqlSession.getSqlSessionInstance();
+			AdminAuctionMapper mapper = sqlSession.getMapper(AdminAuctionMapper.class);
 			List<RegAucVO> list = mapper.needApprCD();
 			request.setAttribute("needApprCD", list);
 			

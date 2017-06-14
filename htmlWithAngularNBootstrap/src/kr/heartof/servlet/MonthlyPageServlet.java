@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
+
 import com.google.gson.Gson;
 
 import kr.heartof.service.mapper.AuctionMapper;
@@ -36,7 +38,8 @@ public class MonthlyPageServlet extends HttpServlet {
 	}
 	
 	private AuctionPageObject makePageObject (HttpServletRequest request) {
-		AuctionMapper mapper = BringSqlSession.getMapper(AuctionMapper.class); 
+		SqlSession sqlSession = BringSqlSession.getSqlSessionInstance();
+		AuctionMapper mapper = sqlSession.getMapper(AuctionMapper.class);
 		MainMonthlyPageUtil util = new MainMonthlyPageUtil(MainMonthlyPageUtil.BLOCKPAGE_3);
 		util.setMapper(mapper);
 		util.setHttpServletRequest(request);

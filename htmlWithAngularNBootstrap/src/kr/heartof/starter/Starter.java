@@ -9,6 +9,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import org.apache.ibatis.session.SqlSession;
+
 import kr.heartof.admin.mapper.PathMapper;
 import kr.heartof.admin.mapper.PathVO;
 import kr.heartof.service.mapper.ProductMapper;
@@ -16,12 +18,15 @@ import kr.heartof.util.BringSqlSession;
 import kr.heartof.vo.product.ProdCateVO;
 
 public class Starter implements ServletContextListener{
+	private SqlSession sqlSession = null;
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		ServletContext context = sce.getServletContext();
+		sqlSession = BringSqlSession.getSqlSessionInstance();
+		ProductMapper mapper = sqlSession.getMapper(ProductMapper.class);
+		PathMapper pathMapper = sqlSession.getMapper(PathMapper.class);
 		
-		ProductMapper mapper = BringSqlSession.getInstance().getMapper(ProductMapper.class);
-		PathMapper pathMapper = BringSqlSession.getInstance().getMapper(PathMapper.class);
+		
 		List<ProdCateVO> temp = mapper.getProdCates(null);
 		List<ProdCateVO> height = makeHighestMenu(temp);
 		makeSecondMenu(height, temp);
@@ -77,6 +82,6 @@ public class Starter implements ServletContextListener{
 		context.removeAttribute("menu");
 		context.removeAttribute("path");
 		
-		BringSqlSession.sessionClose();
+		sqlSession.close();
 	}
 }

@@ -1,7 +1,6 @@
 package kr.heartof.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,13 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
+import org.apache.ibatis.session.SqlSession;
 
-import kr.heartof.constant.Path;
 import kr.heartof.service.mapper.AuctionMapper;
 import kr.heartof.util.BringSqlSession;
 import kr.heartof.util.MainMonthlyPageUtil;
-import kr.heartof.util.PathUtil;
 import kr.heartof.vo.auction.AuctionPageObject;
 import kr.heartof.vo.auction.RegAucVO;
 
@@ -33,7 +30,9 @@ public class MonthlyPageWithoutAjaxServlet extends HttpServlet {
 	}
 	
 	private AuctionPageObject makePageObject (HttpServletRequest request) {
-		AuctionMapper mapper = BringSqlSession.getMapper(AuctionMapper.class); 
+		SqlSession sqlSession = BringSqlSession.getSqlSessionInstance();
+		AuctionMapper mapper = sqlSession.getMapper(AuctionMapper.class);
+		
 		MainMonthlyPageUtil util = new MainMonthlyPageUtil(MainMonthlyPageUtil.BLOCKPAGE_5);
 		util.setMapper(mapper);
 		util.setHttpServletRequest(request);

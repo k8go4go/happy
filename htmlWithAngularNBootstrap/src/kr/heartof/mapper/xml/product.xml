@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.heartof.service.mapper.ProductMapper">
-	<select id="getProdCates" resultType="ProdCateVO" parameterType="String">
+	<select id="getProdCates" resultType="ProdCateVO" parameterType="String" flushCache="true" useCache="false">
 		SELECT 
 		    c.PROD_CATE_NUM, 
 		    c.HIGH_PROD_CATE_NUM, 
@@ -25,7 +25,7 @@
 		ORDER BY C.HIGH_PROD_CATE_NUM DESC
 	 </select>
 	 
-	 <select id="partofProdCates" resultType="ProdCateVO" >
+	 <select id="partofProdCates" resultType="ProdCateVO" flushCache="true" useCache="false">
 		SELECT 
 		    c.PROD_CATE_NUM, 
 		    c.HIGH_PROD_CATE_NUM, 

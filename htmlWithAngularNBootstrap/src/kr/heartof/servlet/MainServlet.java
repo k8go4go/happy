@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
+
 import kr.heartof.admin.mapper.PathVO;
 import kr.heartof.constant.Path;
 import kr.heartof.service.mapper.AuctionMapper;
@@ -19,7 +21,6 @@ import kr.heartof.util.MainMonthlyPageUtil;
 import kr.heartof.util.PathUtil;
 import kr.heartof.vo.auction.AuctionPageObject;
 import kr.heartof.vo.auction.RegAucVO;
-import kr.heartof.vo.foruser.PageVO;
 import kr.heartof.vo.product.ProdCateVO;
 
 @WebServlet("/main.do")
@@ -45,7 +46,9 @@ public class MainServlet extends HttpServlet {
 	private void setMainPage(HttpServletRequest request, HttpServletResponse response) {
 		@SuppressWarnings("unchecked")
 		List<ProdCateVO> height = (List<ProdCateVO>)request.getServletContext().getAttribute("menu");
-		AuctionMapper mapper = BringSqlSession.getMapper(AuctionMapper.class);
+		SqlSession sqlSession = BringSqlSession.getSqlSessionInstance();
+		AuctionMapper mapper = sqlSession.getMapper(AuctionMapper.class);
+		
 		MainMonthlyPageUtil util = new MainMonthlyPageUtil(MainMonthlyPageUtil.BLOCKPAGE_3);
 		util.setMapper(mapper);
 		util.setHttpServletRequest(request);
