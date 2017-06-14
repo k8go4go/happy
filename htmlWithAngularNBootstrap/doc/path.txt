@@ -1,37 +1,32 @@
-1	main.jsp		/jsp/main/
-2	qna.do			/
-3	updateQna.do	/
-4	deleteQna.do	/
-5	insertQna.do	/
-6	faq.do			/
-7	hitCountQna.do	/
-8	login.do		/
-9	joinMember.do	/
-
-    
-insert into path values (7, 'hitCountQna.do', '/'); commit;
-insert into path values (8, 'login.do', '/'); commit;
-insert into path values (9, 'joinMember.do', '/'); commit;
-insert into path values (10, 'duplicate.do', '/ajax/'); commit;
-insert into path values (11, 'aucType.do', '/ajax/'); commit;
-insert into path values (12, 'procate.do', '/ajax/'); commit;
-insert into path values (13, 'regAuc.do', '/'); commit;
-insert into path values (14, 'logout.do', '/'); commit;
-insert into path values (15, 'updateUser.do', '/'); commit;
-insert into path values (16, 'regAucList.do', '/'); commit;
-insert into path values (17, 'regAucDetail.do', '/'); commit;
-insert into path values (18, 'updateRegAuc.do', '/'); commit;
-insert into path values (19, 'commonAucDetail.do', '/'); commit;
-insert into path values (20, 'adminLogin.do', '/admin/'); commit;
-insert into path values (21, 'adminMain.do', '/admin/'); commit;
-insert into path values (22, 'apprCDDetail.do', '/admin/'); commit;
-insert into path values (23, 'apprCDProcess.do', '/admin/'); commit;
-insert into path values (24, 'apprRejProcess.do', '/admin/'); commit;
-insert into path values (25, 'adminLogout.do', '/admin/'); commit
-insert into path values (26, 'main.jsp', '/jsp/admin/main/'); commit;
-insert into path values (27, 'monthlyPage.do', '/ajax/'); commit;
-insert into path values (28, 'monthlyWithoutPage.do', '/'); commit;
-insert into path values (29, 'newBidding.do', '/'); commit;
-insert into path values (30, 'ingAuction.do', '/'); commit;
-insert into path values (31, 'enterRegBidding.do', '/'); commit;
-insert into path values (32, 'myBiddingHistory.do', '/'); commit;
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (1,'main.jsp','/jsp/main/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (2,'qna.do','/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (6,'faq.do','/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (4,'deleteQna.do','/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (5,'insertQna.do','/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (3,'updateQna.do','/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (7,'hitCountQna.do','/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (8,'login.do','/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (9,'joinMember.do','/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (10,'duplicate.do','/ajax/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (11,'aucType.do','/ajax/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (12,'procate.do','/ajax/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (13,'regAuc.do','/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (14,'logout.do','/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (15,'updateUser.do','/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (16,'regAucList.do','/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (17,'regAucDetail.do','/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (18,'updateRegAuc.do','/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (19,'commonAucDetail.do','/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (20,'adminLogin.do','/admin/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (21,'main.jsp','/jsp/admin/main/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (22,'apprCDDetail.do','/admin/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (23,'apprCDProcess.do','/admin/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (24,'apprRejProcess.do','/admin/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (25,'adminLogout.do','/admin/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (27,'monthlyPage.do','/ajax/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (28,'monthlyWithoutPage.do','/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (26,'main.jsp','/jsp/admin/main/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (29,'newBidding.do','/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (30,'ingAuction.do','/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (31,'enterRegBidding.do','/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (32,'myBiddingHistory.do','/');

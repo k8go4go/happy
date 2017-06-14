@@ -124,13 +124,21 @@ public class PageUtil {
 		if (request.getParameter("start") != null) {
 			pageVO.setSTART(Integer.parseInt(request.getParameter("start")));
 		} else {
-			pageVO.setSTART(1);
+			if(currentPage > 1) {
+				pageVO.setSTART((currentPage - 1) * viewCount + 1);
+			} else { 	
+				pageVO.setSTART(1);
+			}
 		}
 		
 		if (request.getParameter("end") != null) {
 			pageVO.setEND(Integer.parseInt(request.getParameter("end")));
 		} else {
-			pageVO.setEND(10);
+			if(currentPage > 1) {
+				pageVO.setEND(currentPage * viewCount);
+			} else { 	
+				pageVO.setEND(10);
+			}
 		}
 		
 		if (request.getParameter("search") != null) {

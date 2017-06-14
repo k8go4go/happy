@@ -138,7 +138,11 @@ public class MainMonthlyPageUtil {
 		} else if(request.getAttribute("start") != null){
 			pageVO.setSTART(Integer.parseInt((String)request.getAttribute("start")));
 		} else {
-			pageVO.setSTART(1);
+			if(currentPage > 1) {
+				pageVO.setSTART((currentPage - 1) * viewCount + 1);
+			} else {
+				pageVO.setSTART(1);
+			}
 		}
 		
 		if (request.getParameter("end") != null) {
@@ -146,7 +150,11 @@ public class MainMonthlyPageUtil {
 		} else if(request.getAttribute("end") != null){
 			pageVO.setEND(Integer.parseInt((String)request.getAttribute("end")));
 		} else {
-			pageVO.setEND(3);
+			if(currentPage > 1) {
+				pageVO.setEND(currentPage * viewCount);
+			} else {
+				pageVO.setEND(3);
+			}
 		}
 		
 		if (request.getParameter("search") != null) {
