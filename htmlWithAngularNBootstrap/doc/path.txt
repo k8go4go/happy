@@ -30,3 +30,5 @@ Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (29,'newBidding.do','/');
 Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (30,'ingAuction.do','/');
 Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (31,'enterRegBidding.do','/');
 Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (32,'myBiddingHistory.do','/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (33,'statistics.do','/admin/');
+Insert into LEE.PATH (PATH_NUM,PATH_NM,PATH) values (34,'usrList.do','/admin/');

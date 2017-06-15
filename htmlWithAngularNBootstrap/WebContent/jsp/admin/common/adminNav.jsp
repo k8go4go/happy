@@ -69,7 +69,7 @@
 					<c:choose>
 					<c:when test="${not empty sessionScope.mgr}">
 						<button type="button" id="adminLogout" class="btn btn-info" >로그아웃</button>
-						<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myAuctionFormModal">Auction List</button>
+						<button type="button" id="usrList" class="btn btn-danger" >회원정보보기</button>
 					</c:when>
 					<c:otherwise>
 						<button type="button" class="btn btn-info" data-toggle="modal" data-target="#amdinloginFormModal" >로그인</button>
@@ -84,9 +84,8 @@
 								data-toggle="dropdown" role="button" aria-haspopup="true"
 								aria-expanded="false">통계정보<span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li><a href="#">통계현황</a></li>
+									<li><a id="statistics">통계현황</a></li>
 									<li role="separator" class="divider"></li>
-									<li><a href="#">About US</a></li>
 								</ul></li>
 						</ul>
 					</div>
@@ -101,4 +100,12 @@
 	$('#adminLogout').on('click', function (e) {
 		location.href = '${contextPath}${pathList['25'].PATH}${pathList['25'].PATH_NM}';
 	})
+	
+	$('#usrList').on('click', function (e) {
+		location.href = '${contextPath}${pathList['34'].PATH}${pathList['34'].PATH_NM}';
+	})
+	
+	$('#statistics').on('click', function (e) {
+		location.href = '${contextPath}${pathList['33'].PATH}${pathList['33'].PATH_NM}';
+	});
 </script>	

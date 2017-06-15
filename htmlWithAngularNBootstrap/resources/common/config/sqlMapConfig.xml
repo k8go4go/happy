@@ -35,6 +35,7 @@
 		<typeAlias type="kr.heartof.vo.product.ProdVO" alias="ProdVO"/>
 				
 		<typeAlias type="kr.heartof.admin.vo.MgrVO" alias="MgrVO"/>	
+		<typeAlias type="kr.heartof.admin.vo.StaticsVO" alias="StaticsVO"/>	
 		<typeAlias type="kr.heartof.admin.vo.BatchRegAucVO" alias="BatchRegAucVO"/>	
 	</typeAliases>
 	

@@ -26,4 +26,8 @@
 			MEMB_ID = #{MEMB_ID} AND
 			SEC_NUM = #{SEC_NUM}
 	 </select>
+	 
+	 <select id="allUsrList" resultType="UsrVO">
+	 	SELECT * FROM USR
+	 </select>
 </mapper>

@@ -61,8 +61,7 @@
 		FROM 
 			REG_AUC
 		WHERE
-			END_DTIME > SYSDATE
-			AND APPR_CD = '1501' 	
+			APPR_CD = '1501' 	
 		ORDER BY START_DTIME ASC
 	</select>
 	
@@ -466,7 +465,17 @@
 	 <insert id="newbiddingHistory" parameterType="BiddingVO">
 	 	INSERT INTO BIDDING
 	 		(BID_PRICE_REG_NUM, BID_PRICE, BID_DTIME, BID_NUM) VALUES 
-	 		(BID_SEQ.NEXTVAL, #{BID_PRICE}, SYSDATE, #{BID_NUM})
+	 		(BID_SEQ.NEXTVAL, #{BID_PRICE}, 
+	 		<choose>
+	 		<when test="BID_DTIME != null">
+	 			#{BID_DTIME}
+	 		</when>
+	 		<otherwise>
+	 			SYSDATE
+	 		</otherwise>
+	 		</choose> 
+	 		, 
+	 		#{BID_NUM})
 	 </insert>
 	 
 	 <select id="getBidNum" parameterType="RegAucVO" resultType="int" flushCache="true" useCache="false">
@@ -518,6 +527,15 @@
 	 <insert id="newBiddingReg" parameterType="RegBiddingVO">
 	 	INSERT INTO REG_BIDDING
 	 		(BID_NUM, MEMB_NUM, AUC_REG_NUM, BID_QTY, REG_DTIME) VALUES 
-	 		(BID_REG_SEQ.NEXTVAL, #{MEMB_NUM}, #{AUC_REG_NUM}, #{BID_QTY}, SYSDATE)
+	 		(BID_REG_SEQ.NEXTVAL, #{MEMB_NUM}, #{AUC_REG_NUM}, #{BID_QTY},
+	 		<choose>
+	 			<when test="REG_DTIME != null">
+	 				#{REG_DTIME}
+	 			</when>
+	 			<otherwise>
+	 				SYSDATE
+	 			</otherwise>
+	 		</choose> 
+	 		)
 	 </insert>
 </mapper>

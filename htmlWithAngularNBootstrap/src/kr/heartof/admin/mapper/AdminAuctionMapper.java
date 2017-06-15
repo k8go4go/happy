@@ -2,6 +2,7 @@ package kr.heartof.admin.mapper;
 
 import java.util.List;
 
+import kr.heartof.admin.vo.StaticsVO;
 import kr.heartof.vo.auction.RegAucFileVO;
 import kr.heartof.vo.auction.RegAucVO;
 import kr.heartof.vo.auction.RegRejVO;
@@ -20,4 +21,10 @@ public interface AdminAuctionMapper {
 	public int updateApprCD(RegAucVO vo);
 	
 	public int insertRegRej(RegRejVO vo);
+	
+	public List<StaticsVO> memberRegStat();
+	
+	public List<StaticsVO> enterBiddingStat();
+
+	public List<StaticsVO> bidPriceStat();
 }

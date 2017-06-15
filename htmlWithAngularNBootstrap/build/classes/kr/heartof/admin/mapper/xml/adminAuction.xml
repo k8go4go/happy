@@ -155,4 +155,120 @@
 		    AND SB.AUC_REG_NUM IS NULL
 		ORDER BY END_DTIME ASC;
 	</select>
+	
+	<select id="memberRegStat" resultType="StaticsVO">
+		SELECT
+		    MEMB_ID, 
+		    YYYY, 
+		    SUM("01") AS SUM_1, 
+		    SUM("02") AS SUM_2, 
+		    SUM("03") AS SUM_3, 
+		    SUM("04") AS SUM_4, 
+		    SUM("05") AS SUM_5, 
+		    SUM("06") AS SUM_6,
+		    SUM("07") AS SUM_7, 
+		    SUM("08") AS SUM_8, 
+		    SUM("09") AS SUM_9, 
+		    SUM("10") AS SUM_10, 
+		    SUM("11") AS SUM_11, 
+		    SUM("12") AS SUM_12,
+		    SUM(QTY) AS TOT
+		FROM(
+		        SELECT U.MEMB_ID, TO_CHAR(R.REG_DTIME,'YYYY') AS YYYY, TO_CHAR(R.REG_DTIME,'MM') AS MM, TO_CHAR(R.REG_DTIME,'DD') AS DD, QTY
+		        , DECODE(TO_CHAR(R.REG_DTIME,'MM'), '01', QTY, 0) AS "01"
+		        , DECODE(TO_CHAR(R.REG_DTIME,'MM'), '02', QTY, 0) AS "02"
+		        , DECODE(TO_CHAR(R.REG_DTIME,'MM'), '03', QTY, 0) AS "03"
+		        , DECODE(TO_CHAR(R.REG_DTIME,'MM'), '04', QTY, 0) AS "04"
+		        , DECODE(TO_CHAR(R.REG_DTIME,'MM'), '05', QTY, 0) AS "05"
+		        , DECODE(TO_CHAR(R.REG_DTIME,'MM'), '06', QTY, 0) AS "06"
+		        , DECODE(TO_CHAR(R.REG_DTIME,'MM'), '07', QTY, 0) AS "07"
+		        , DECODE(TO_CHAR(R.REG_DTIME,'MM'), '08', QTY, 0) AS "08"
+		        , DECODE(TO_CHAR(R.REG_DTIME,'MM'), '09', QTY, 0) AS "09"
+		        , DECODE(TO_CHAR(R.REG_DTIME,'MM'), '10', QTY, 0) AS "10"
+		        , DECODE(TO_CHAR(R.REG_DTIME,'MM'), '11', QTY, 0) AS "11"
+		        , DECODE(TO_CHAR(R.REG_DTIME,'MM'), '12', QTY, 0) AS "12"
+		        FROM REG_AUC R INNER JOIN USR U
+		        ON R.MEMB_NUM = U.MEMB_NUM
+		)GROUP BY MEMB_ID, YYYY
+		ORDER BY MEMB_ID ASC, YYYY ASC
+	</select>
+	<select id="enterBiddingStat" resultType="StaticsVO">
+		SELECT
+		    BID_NUM, 
+		    YYYY, 
+		    SUM("01") AS SUM_1, 
+		    SUM("02") AS SUM_2, 
+		    SUM("03") AS SUM_3, 
+		    SUM("04") AS SUM_4, 
+		    SUM("05") AS SUM_5, 
+		    SUM("06") AS SUM_6,
+		    SUM("07") AS SUM_7, 
+		    SUM("08") AS SUM_8, 
+		    SUM("09") AS SUM_9, 
+		    SUM("10") AS SUM_10, 
+		    SUM("11") AS SUM_11, 
+		    SUM("12") AS SUM_12,
+		    SUM(BID_QTY) AS TOT
+		FROM(
+		        SELECT BID_NUM, TO_CHAR(REG_DTIME,'YYYY') AS YYYY, TO_CHAR(REG_DTIME,'MM') AS MM, TO_CHAR(REG_DTIME,'DD') AS DD, BID_QTY
+		        , DECODE(TO_CHAR(REG_DTIME,'MM'), '01', BID_QTY, 0) AS "01"
+		        , DECODE(TO_CHAR(REG_DTIME,'MM'), '02', BID_QTY, 0) AS "02"
+		        , DECODE(TO_CHAR(REG_DTIME,'MM'), '03', BID_QTY, 0) AS "03"
+		        , DECODE(TO_CHAR(REG_DTIME,'MM'), '04', BID_QTY, 0) AS "04"
+		        , DECODE(TO_CHAR(REG_DTIME,'MM'), '05', BID_QTY, 0) AS "05"
+		        , DECODE(TO_CHAR(REG_DTIME,'MM'), '06', BID_QTY, 0) AS "06"
+		        , DECODE(TO_CHAR(REG_DTIME,'MM'), '07', BID_QTY, 0) AS "07"
+		        , DECODE(TO_CHAR(REG_DTIME,'MM'), '08', BID_QTY, 0) AS "08"
+		        , DECODE(TO_CHAR(REG_DTIME,'MM'), '09', BID_QTY, 0) AS "09"
+		        , DECODE(TO_CHAR(REG_DTIME,'MM'), '10', BID_QTY, 0) AS "10"
+		        , DECODE(TO_CHAR(REG_DTIME,'MM'), '11', BID_QTY, 0) AS "11"
+		        , DECODE(TO_CHAR(REG_DTIME,'MM'), '12', BID_QTY, 0) AS "12"
+		        FROM REG_BIDDING
+		--        WHERE TO_CHAR(TIME_ID,'YYYY') BETWEEN 1999 AND 2000 --특정년도 범위
+		
+		--        AND TO_CHAR(TIME_ID,'YYYYMM') = '199801'  --특정년월
+		--        AND TO_CHAR(TIME_ID,'MM') = 05 --특정달만
+		)GROUP BY BID_NUM, YYYY
+		ORDER BY BID_NUM ASC, YYYY ASC
+	</select>
+	
+	<select id="bidPriceStat" resultType="StaticsVO">
+		SELECT
+			BID_PRICE,
+		    YYYY, 
+		    SUM("01") AS SUM_1, 
+		    SUM("02") AS SUM_2, 
+		    SUM("03") AS SUM_3, 
+		    SUM("04") AS SUM_4, 
+		    SUM("05") AS SUM_5, 
+		    SUM("06") AS SUM_6,
+		    SUM("07") AS SUM_7, 
+		    SUM("08") AS SUM_8, 
+		    SUM("09") AS SUM_9, 
+		    SUM("10") AS SUM_10, 
+		    SUM("11") AS SUM_11, 
+		    SUM("12") AS SUM_12,
+		    SUM(BID_PRICE) AS TOT
+		FROM(
+		        SELECT TO_CHAR(BID_DTIME,'YYYY') AS YYYY, TO_CHAR(BID_DTIME,'MM') AS MM, TO_CHAR(BID_DTIME,'DD') AS DD, BID_PRICE
+		        , DECODE(TO_CHAR(BID_DTIME,'MM'), '01', BID_PRICE, 0) AS "01"
+		        , DECODE(TO_CHAR(BID_DTIME,'MM'), '02', BID_PRICE, 0) AS "02"
+		        , DECODE(TO_CHAR(BID_DTIME,'MM'), '03', BID_PRICE, 0) AS "03"
+		        , DECODE(TO_CHAR(BID_DTIME,'MM'), '04', BID_PRICE, 0) AS "04"
+		        , DECODE(TO_CHAR(BID_DTIME,'MM'), '05', BID_PRICE, 0) AS "05"
+		        , DECODE(TO_CHAR(BID_DTIME,'MM'), '06', BID_PRICE, 0) AS "06"
+		        , DECODE(TO_CHAR(BID_DTIME,'MM'), '07', BID_PRICE, 0) AS "07"
+		        , DECODE(TO_CHAR(BID_DTIME,'MM'), '08', BID_PRICE, 0) AS "08"
+		        , DECODE(TO_CHAR(BID_DTIME,'MM'), '09', BID_PRICE, 0) AS "09"
+		        , DECODE(TO_CHAR(BID_DTIME,'MM'), '10', BID_PRICE, 0) AS "10"
+		        , DECODE(TO_CHAR(BID_DTIME,'MM'), '11', BID_PRICE, 0) AS "11"
+		        , DECODE(TO_CHAR(BID_DTIME,'MM'), '12', BID_PRICE, 0) AS "12"
+		        FROM BIDDING
+		--        WHERE TO_CHAR(TIME_ID,'YYYY') BETWEEN 1999 AND 2000 --특정년도 범위
+		
+		--        AND TO_CHAR(TIME_ID,'YYYYMM') = '199801'  --특정년월
+		--        AND TO_CHAR(TIME_ID,'MM') = 05 --특정달만
+		)GROUP BY BID_PRICE, YYYY
+		ORDER BY BID_PRICE ASC, YYYY ASC
+	</select>
 </mapper>

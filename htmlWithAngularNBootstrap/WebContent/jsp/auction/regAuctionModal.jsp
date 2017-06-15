@@ -185,7 +185,7 @@
 		var eDate = Date.parse(f.END_DTIME);
 		
 		var currentTime = new Date();
-		currentTimt.setDate(currentTime.getDate() + 7);
+		currentTime.setDate(currentTime.getDate() + 7);
 		if(sDate < currentTime) {
 			swal('경매등록오류', '시작시간은 1주일 이후로 등록가능합니다.', 'error');
 			return;
