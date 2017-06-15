@@ -44,7 +44,7 @@
 			column="AUC_REG_NUM" select="getRecRej"/>
 	</resultMap>
 	
-	<select id="allProgressing" resultMap="aucList" flushCache="true" useCache="false">
+	<select id="allProgressing" resultMap="aucList" >
 		SELECT
 			 AUC_REG_NUM,
 			 AUC_PROD_NM,
@@ -65,7 +65,7 @@
 		ORDER BY START_DTIME ASC
 	</select>
 	
-	<select id="aucListForMember" resultType="RegAucVO" parameterType="int" flushCache="true" useCache="false">
+	<select id="aucListForMember" resultType="RegAucVO" parameterType="int" >
 		SELECT
 			 R.AUC_REG_NUM,
 			 R.AUC_PROD_NM,
@@ -93,7 +93,7 @@
 			MEMB_NUM = ${value}
 	</select>
 	
-	<select id="cateProgressing" resultMap="aucList" flushCache="true" useCache="false">
+	<select id="cateProgressing" resultMap="aucList" >
 		SELECT
 			 AUC_REG_NUM,
 			 AUC_PROD_NM,
@@ -116,7 +116,7 @@
 		ORDER BY START_DTIME ASC					
 	</select>
 	
-	<select id="listRegAucFile" parameterType="int" resultType="RegAucFileVO" flushCache="true" useCache="false">
+	<select id="listRegAucFile" parameterType="int" resultType="RegAucFileVO" >
 		SELECT
 			 ATTAC_FILE_NUM,
 			 FILE_NM,
@@ -129,7 +129,7 @@
 			AUC_REG_NUM = #{AUC_REG_NUM}		
 	</select>
 	
-	<select id="getRegAucFile" parameterType="int" resultType="RegAucFileVO" flushCache="true" useCache="false">
+	<select id="getRegAucFile" parameterType="int" resultType="RegAucFileVO" >
 		SELECT
 			 ATTAC_FILE_NUM,
 			 FILE_NM,
@@ -227,7 +227,7 @@
 			HIGH_CD = #{HIGH_CD}
 	 </select>
 	 
-	 <select id="listProduct" parameterType="String" resultMap="aucList" flushCache="true" useCache="false">
+	 <select id="listProduct" parameterType="String" resultMap="aucList" >
 		SELECT
 		     AUC_REG_NUM,
 		     AUC_PROD_NM,
@@ -256,7 +256,7 @@
 		ORDER BY START_DTIME ASC	 	
 	 </select>
 	 
-	 <select id="listProducting" parameterType="String" resultMap="aucList" flushCache="true" useCache="false">
+	 <select id="listProducting" parameterType="String" resultMap="aucList" >
 	 	SELECT
 		     AUC_REG_NUM,
 		     AUC_PROD_NM,
@@ -286,7 +286,7 @@
 		ORDER BY START_DTIME ASC
 	 </select>
 
-	<select id="listTotMonth" resultType="int" parameterType="String" flushCache="true" useCache="false">
+	<select id="listTotMonth" resultType="int" parameterType="String" >
 			SELECT
 		 	     COUNT(*) AS TOT
 			FROM 
@@ -306,7 +306,7 @@
 			ORDER BY END_DTIME ASC 
 	</select>
 	
-	<select id="listProductingForMain" parameterType="PageVO" resultMap="mainAucList" flushCache="true" useCache="false">
+	<select id="listProductingForMain" parameterType="PageVO" resultMap="mainAucList" >
 	 	SELECT * FROM (
 		    SELECT
 		         ROWNUM RN,
@@ -350,7 +350,7 @@
 	 </select>
 	
 	 
-	<select id="listProductThisMonthForMain" parameterType="PageVO" resultMap="mainAucList" flushCache="true" useCache="false">
+	<select id="listProductThisMonthForMain" parameterType="PageVO" resultMap="mainAucList" >
 	 	SELECT * FROM (
 		    SELECT
 		         ROWNUM RN,
@@ -416,7 +416,7 @@
 			column="AUC_REG_NUM" select="biddingRegList"/>			
 	 </resultMap>
 	
-	 <select id="detail" resultMap="aucDetail" parameterType="int" flushCache="true" useCache="false">
+	 <select id="detail" resultMap="aucDetail" parameterType="int" >
 		SELECT
 			 R.AUC_REG_NUM,
 			 R.AUC_PROD_NM,
@@ -444,7 +444,7 @@
 			R.AUC_REG_NUM = ${value}			
 	 </select>
 	 
-	 <select id="biddingHistoryList" parameterType="int" resultType="BiddingVO" flushCache="true" useCache="false"> 
+	 <select id="biddingHistoryList" parameterType="int" resultType="BiddingVO" > 
 	 	SELECT
 	 		B.BID_PRICE_REG_NUM ,
 			B.BID_PRICE         ,
@@ -478,7 +478,7 @@
 	 		#{BID_NUM})
 	 </insert>
 	 
-	 <select id="getBidNum" parameterType="RegAucVO" resultType="int" flushCache="true" useCache="false">
+	 <select id="getBidNum" parameterType="RegAucVO" resultType="int" >
 	 	SELECT 
 		    NVL(MAX(BID_NUM), 0) AS BID_NUM 
 		FROM 
@@ -488,7 +488,7 @@
 		    AUC_REG_NUM = #{AUC_REG_NUM}
 	 </select>
 	 
-	 <select id="maxBiddingPrice" parameterType="int" resultType="int" flushCache="true" useCache="false">
+	 <select id="maxBiddingPrice" parameterType="int" resultType="int" >
 	 	SELECT NVL(MAX(BI.BID_PRICE), 0) as BID_PRICE
 		FROM 
 		    REG_AUC RA INNER JOIN REG_BIDDING RB
@@ -501,7 +501,7 @@
 	 	
 	 </select>
 	 
-	 <select id="biddingRegList" parameterType="int" resultType="RegBiddingVO" flushCache="true" useCache="false"> 
+	 <select id="biddingRegList" parameterType="int" resultType="RegBiddingVO" > 
 		SELECT 
 			R.BID_NUM,
 			R.MEMB_NUM,

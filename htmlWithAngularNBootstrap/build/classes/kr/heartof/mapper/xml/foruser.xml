@@ -19,7 +19,7 @@
 			column="BOARD_NUM" select="listReplys"/>			
 	</resultMap>
 	
-	<select id="listAttachFile" parameterType="int" resultType="AttacFileVO" useCache="false" flushCache="true">
+	<select id="listAttachFile" parameterType="int" resultType="AttacFileVO" >
 		SELECT
 			ATTAC_FILE_NUM,
 			FILE_NM,
@@ -32,7 +32,7 @@
 			BOARD_NUM = #{BOARD_NUM} 		
 	</select>
 	
-	<select id="listReplys" parameterType="int" resultType="BoardVO" useCache="false" flushCache="true">
+	<select id="listReplys" parameterType="int" resultType="BoardVO" >
 		SELECT 
 			ROWNUM RN,
 		    B.BOARD_NUM,
@@ -52,7 +52,7 @@
 		ORDER BY B.BOARD_NUM		
 	</select>
 	
-	<select id="listTot" resultType="int" useCache="false" flushCache="true">
+	<select id="listTot" resultType="int" >
 			SELECT
 			    COUNT(*) AS TOT
 			FROM 
@@ -61,7 +61,7 @@
 			    QUES_CD = '2101' 
 	</select>
 	
-	<select id="list" resultMap="boardList" parameterType="PageVO" useCache="false" flushCache="true">
+	<select id="list" resultMap="boardList" parameterType="PageVO" >
 		SELECT * FROM 
 		    (
 		    SELECT ROWNUM RN, 
@@ -121,7 +121,7 @@
 			column="BOARD_NUM" select="listReplys"/>			
 	</resultMap>
 	
-	<select id="searchListTot" resultType="int" useCache="false" flushCache="true" >
+	<select id="searchListTot" resultType="int"  >
 			SELECT
 			    COUNT(*) AS TOT
 			FROM 
@@ -138,7 +138,7 @@
 			</if>
 	</select>
 	
-	<select id="searchList" resultMap="searchMapList" useCache="false" flushCache="true">
+	<select id="searchList" resultMap="searchMapList" >
 		SELECT RN, BOARD_NUM, WRITER_NM, HIGH_BOARD_NUM, TITLE, CONT,
 			    REVIEW_CNT, WRITE_DATE, QUES_CD, CATE_NM, MEMB_ID, TOT
 		FROM (
@@ -178,7 +178,7 @@
 	</select>
 	
 	
-	<select id="detail" parameterType="int" resultType="BoardVO" useCache="false" flushCache="true">
+	<select id="detail" parameterType="int" resultType="BoardVO" >
 		SELECT 
 		    B.BOARD_NUM, 
 		    B.TITLE,

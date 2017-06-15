@@ -35,7 +35,7 @@
 		<result column="SOC_REG_NUM" property="SOC_REG_NUM" />
 	</resultMap>
 	
-	<select id="duplicateID" parameterType="String" resultType="int" flushCache="true" useCache="false">
+	<select id="duplicateID" parameterType="String" resultType="int" >
 		SELECT 
 			COUNT(MEMB_ID) 
 		FROM 
@@ -131,7 +131,7 @@
 		)
 	</insert>
 
-	<select id="duplicateCardNumber" parameterType="String" resultType="int" flushCache="true" useCache="false">
+	<select id="duplicateCardNumber" parameterType="String" resultType="int" >
 		SELECT 
 			COUNT(MSHIP_CARD_NUM) 
 		FROM 
@@ -140,7 +140,7 @@
 			MSHIP_CARD_NUM = #{MSHIP_CARD_NUM}
 	</select>
 	
-	<select id="findID" parameterType="UsrVO" resultMap="usrinfo" flushCache="true" useCache="false">
+	<select id="findID" parameterType="UsrVO" resultMap="usrinfo" >
 		<choose>
 		<when test="MEMB_CD == '2001'">
 			SELECT 
@@ -180,7 +180,7 @@
 			MEMB_ID = #{MEMB_ID}		
 	</update>
 	
-	<select id="memberInfo" parameterType="UsrVO" resultMap="usrinfo" flushCache="true" useCache="false">
+	<select id="memberInfo" parameterType="UsrVO" resultMap="usrinfo" >
 		<choose>
 		<when test="MEMB_CD == '2001'">
 			SELECT 
@@ -322,7 +322,7 @@
 			MEMB_NUM = #{MEMB_NUM}
 	</update>
 	
-	<select id="myBiddingHistory" parameterType="String" resultType="BiddingVO" flushCache="true" useCache="false"> 
+	<select id="myBiddingHistory" parameterType="String" resultType="BiddingVO" > 
 		SELECT
 		    B.BID_PRICE_REG_NUM ,
 		    B.BID_PRICE         ,

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.heartof.admin.mapper.BatchAuctionMapper">
+	 <!-- 심사중으로 변경하기 -->
+	 <update id="updateBatch2301">
+	 <![CDATA[
+	 	UPDATE REG_AUC
+		    SET AUC_ING_CD = '2301'
+		WHERE
+		    AUC_REG_NUM IN (SELECT AUC_REG_NUM FROM REG_AUC WHERE APPR_CD = '1500') AND
+		    AUC_ING_CD <> '2301'
+		    AND START_DTIME > SYSDATE
+	  ]]>	    
+	 </update>
+	 
+	 <!-- 심사중 1502 인경우 경매종료로 전환  -->
+	 <update id="updateBatch2304">
+	 <![CDATA[
+	 	UPDATE REG_AUC
+		    SET AUC_ING_CD = '2304'
+		WHERE
+		    AUC_REG_NUM IN (SELECT AUC_REG_NUM FROM REG_AUC WHERE APPR_CD = '1502') AND
+		    AUC_ING_CD <> '2304'
+	  ]]>	    
+	 </update>
+	 
+	 <!-- 심사 승인이 된경우 경매전으로 변경 -->
+	 <update id="updateBatch2302">
+	 <![CDATA[
+		UPDATE REG_AUC
+		    SET AUC_ING_CD = '2302'
+		WHERE
+		    AUC_REG_NUM IN (SELECT AUC_REG_NUM FROM REG_AUC WHERE APPR_CD = '1501') AND
+		    AUC_ING_CD <> '2302' AND AUC_ING_CD = '2301'
+		    AND START_DTIME > SYSDATE
+	  ]]>	    
+	 </update>
+	<!-- 경매가 종료되었으면 종료 경매 종료로 변경 -->	 
+	 <update id="updateBatch2303">
+	 <![CDATA[
+		 UPDATE REG_AUC
+		    SET AUC_ING_CD = '2303'
+		 WHERE
+		    AUC_REG_NUM IN (SELECT AUC_REG_NUM FROM REG_AUC WHERE APPR_CD = '1501') AND
+		    AUC_ING_CD <> '2303' AND AUC_ING_CD = '2302'
+		    AND START_DTIME < SYSDATE    
+	  ]]>	    
+	 </update>
+	<!-- 경매가 종료되었고 비딩이 진행되었으면 낙찰로 변경 -->	 
+	 <update id="updateBatch2305">
+	 <![CDATA[
+		UPDATE REG_AUC
+		    SET AUC_ING_CD = '2305'
+		WHERE
+		    AUC_REG_NUM IN (SELECT AUC_REG_NUM FROM REG_AUC WHERE APPR_CD = '1501') AND
+		    AUC_ING_CD <> '2305' AND 
+		    AUC_ING_CD = '2304' AND 
+		    AUC_ING_CD <> '2306' AND
+		    END_DTIME < SYSDATE      
+	  ]]>	    
+	 </update>
+	 
+	 <select id="resultBidding" resultType="BatchRegAucVO">
+	 	SELECT 
+		    NVL(MAX(BI.BID_PRICE), 0) AS BID_PRICE, 
+		    BI.BID_PRICE_REG_NUM, 
+		    RA.AUC_ING_CD, 
+		    RA.AUC_REG_NUM
+		FROM 
+		    REG_AUC RA INNER JOIN REG_BIDDING RB
+		    ON RA.AUC_REG_NUM = RB.AUC_REG_NUM
+		    INNER JOIN BIDDING BI
+		    ON RB.BID_NUM = BI.BID_NUM
+		GROUP BY BI.BID_PRICE_REG_NUM, RA.AUC_ING_CD, RA.AUC_REG_NUM
+		HAVING RA.AUC_ING_CD = '2304'
+	 </select>
+	 <!-- 경매가 종료되었고 비딩이 안되었을 경우 -->
+	 <update id="updateBatch2306" parameterType="int">
+		UPDATE REG_AUC
+		    SET AUC_ING_CD = '2306'
+		WHERE
+		    AUC_REG_NUM = #{AUC_REG_NUM}	    
+	 </update>
+	 
+	 <insert id="newSbidding" parameterType="BatchRegAucVO">
+	 	INSERT INTO SUCC_BIDDING
+	 	(SBID_NUM, SBID_DATE, SBID_PRICE, AUC_REG_NUM ) VALUES (#{BID_PRICE_REG_NUM}, SYSDATE, #{BID_PRICE}, #{AUC_REG_NUM});
+	 </insert>
+</mapper>
