@@ -342,7 +342,7 @@
 		    INNER JOIN REG_AUC RA
 		    ON R.AUC_REG_NUM = RA.AUC_REG_NUM
 		WHERE
-		    U.MEMB_ID = 'test1'
+		    U.MEMB_ID = #{MEMB_ID}
 		ORDER BY B.BID_PRICE DESC		
 	 </select>
 </mapper>
