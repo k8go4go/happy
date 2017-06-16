@@ -52,8 +52,8 @@ public class ProductImageServlet extends HttpServlet {
 			response.setContentType("image/jpeg");
 			response.setContentLength(bStream.toByteArray().length);
 			bStream.writeTo(response.getOutputStream());
-			response.getOutputStream().flush();
-			response.getOutputStream().close();
+//			response.getOutputStream().flush();
+//			response.getOutputStream().close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

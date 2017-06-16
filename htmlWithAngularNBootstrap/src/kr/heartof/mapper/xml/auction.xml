@@ -139,7 +139,7 @@
 		FROM 		
 			REG_AUC_FILE 	
 		WHERE
-			ATTAC_FILE_NUM = #{value}		
+			ATTAC_FILE_NUM = #{value}	
 	</select>
 	
 	 <insert id="regAuction" parameterType="RegAucVO">
@@ -383,7 +383,7 @@
 		            WHERE 
 		                HIGH_PROD_CATE_NUM = #{searchWord} 
 		        )
-		        AND LAST_DAY(SYSDATE) > R.END_DTIME
+		        AND TO_CHAR(LAST_DAY(SYSDATE),'YYYYMMDD') >= TO_CHAR(END_DTIME,'YYYYMMDD')
 		        AND R.APPR_CD = '1501' 	
 		    ORDER BY R.END_DTIME ASC
 		) A
