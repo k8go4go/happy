@@ -4,11 +4,8 @@
 		<div class="col-md-1"></div>
 		<div class="col-md-8">
 			<footer class="text-muted">
-			    <p class="float-right">
-			      <a href="#">Back to top</a>
-			    </p>
-			    <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-			    <p>New to Bootstrap? <a href="#">Visit the homepage</a> or read our <a href="#">getting started guide</a>.</p>
+			    <p>We are &copy; the future of IT world</p>
+			    <p>Did you see the Used Bit Action? You should visit the our homepage. We developed it with Jquery, Ajax, Quartz, Mybatis, Oracle, Servlet and so on</p>
 			</footer>
 		</div>
 	<div class="col-md-1"></div>
