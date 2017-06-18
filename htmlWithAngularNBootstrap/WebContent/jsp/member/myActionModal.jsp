@@ -196,9 +196,9 @@
 					<table class="table" id='mySBidTable' >
 						<tbody>
 						<tr>
-							<td class="text-right col-sm-2"><h6>회사명</h6></td>
+							<td class="text-right col-sm-2"><h6>낙찰번호</h6></td>
 							<td class="text-right col-sm-4"></td>
-							<td class="text-right col-sm-2"><h6>사업자등록번호</h6></td>
+							<td class="text-right col-sm-2"><h6>낙찰금액</h6></td>
 							<td class="text-right col-sm-4"></td>
 						</tr>
 						</tbody>

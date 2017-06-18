@@ -4,6 +4,7 @@
 <mapper namespace="kr.heartof.service.mapper.ProductMapper">
 	<select id="getProdCates" resultType="ProdCateVO" parameterType="String" >
 		SELECT 
+		    DISTINCT
 		    c.PROD_CATE_NUM, 
 		    c.HIGH_PROD_CATE_NUM, 
 		    c.PROD_CATE_NM,
@@ -16,13 +17,10 @@
 		    PROD_CATE c LEFT JOIN PROD_CATE p 
 		    ON p.PROD_CATE_NUM = c.HIGH_PROD_CATE_NUM
 		WHERE 
-			c.USE_CD = '2201'    
-		<if test="HIGH_PROD_CATE_NUM != null">   
-		    AND c.HIGH_PROD_CATE_NUM = #{HIGH_PROD_CATE_NUM} 
-		</if>    
+		    c.USE_CD = '2201'       
 		START WITH c.PROD_CATE_NUM >= '1000'
 		CONNECT BY PRIOR c.PROD_CATE_NUM = c.HIGH_PROD_CATE_NUM
-		ORDER BY C.HIGH_PROD_CATE_NUM DESC
+		ORDER BY C.HIGH_PROD_CATE_NUM DESC, c.PROD_CATE_NUM ASC
 	 </select>
 	 
 	 <select id="partofProdCates" resultType="ProdCateVO" >

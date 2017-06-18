@@ -8,19 +8,25 @@
 
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="http://code.highcharts.com/highcharts-3d.js"></script>
-	<div id="regAucStat" style="height: 500px"></div>
-    <div id="regBiddingStat" style="height: 500px"></div>
-    <div id="biddingStat" style="height: 500px"></div>
+	<div id="regAucStat" style="height: 600px;"></div>
+    <div id="regBiddingStat" style="height: 600px;"></div>
+    <div id="biddingStat" style="height: 600px;"></div>
 <script>
 $(function () {
 	var json = JSON.parse('${datas1}');
 	var categoriesData = ['1월', '2월', '3월', '4월', '5월', '6월',
         '7월', '8월', '9월', '10월', '11월', '12월']; 
     var seriesData = json; 
-	
+     
+    var json2 = JSON.parse('${datas2}');
+    var seriesData2 = json2; 
+    
+    var json3 = JSON.parse('${datas3}');
+    var seriesData3 = json3;
+    
     Highcharts.chart('regAucStat', {
         title: {
-            text: '회원별 경매 등록 월별 통계',
+            text: '경매 등록 월별 통계[회원별]',
             x: -20 //center
         },
         subtitle: {
@@ -74,7 +80,7 @@ $(function () {
             }
         },
         title: {
-            text: '경매별 경매 입장 월별 통계',
+            text: '경매 입장 월별 통계[경매별]',
             x: -20 //center
         },
         subtitle: {
@@ -103,7 +109,7 @@ $(function () {
             verticalAlign: 'middle',
             borderWidth: 0
         },
-        series: seriesData
+        series: seriesData2
     });
     
     Highcharts.chart('biddingStat', {
@@ -118,7 +124,7 @@ $(function () {
             }
         },
         title: {
-            text: '경매별 경매 입찰 월별 통계',
+            text: '경매 입찰 월별 통계[경매별]',
             x: -20 //center
         },
         subtitle: {
@@ -143,7 +149,7 @@ $(function () {
                 color: '#808080'
             }]
         },
-        series: seriesData
+        series: seriesData3
     });
 });
 </script>
