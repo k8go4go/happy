@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<button onclick="doAction(1);">태그 선택자</button>
+	<button onclick="doAction(2);">아이디 선택자</button>
+	<button onclick="doAction(3);">클래스 선택자</button>
+	<div>테스트1</div>
+	<div id="a">테스트2</div>
+	<div class="b">테스트3</div>
+	<script>
+		function doAction(type) {
+			var obj;
+			switch (type) {
+			case 1:
+				obj = document.querySelector("div");
+				break;
+			case 2:
+				obj = document.querySelector("#a");
+				break;
+			case 3:
+				obj = document.querySelector(".b");
+				break;
+			}
+			console.log(obj.innerHTML);
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

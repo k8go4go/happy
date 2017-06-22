@@ -1,0 +1,14 @@
+- org.springframework.web 패키지 생성
+  : DispatcherServlet 생성 및 코드 작성
+  : Controller 인터페이스 생성 및 코드 작성
+  
+- 코드 변경
+  : kr.co.mlec.board.servlet -> kr.co.mlec.board.controller 로 변경
+  : kr.co.mlec.login.servlet -> kr.co.mlec.login.controller 로 변경
+  : kr.co.mlec.main -> kr.co.mlec.main.controller 로 변경
+	- 위의 패키지들 하위의 클래스에 아래 부분 공통 적용
+    - Servlet 이름을 Controller 로 변경
+    - Controller 인터페이스 상속 받도록 변경
+    - 예외처리 구문 삭제함
+  : jsp 각 파일의 경로를 .do로 변경  
+  

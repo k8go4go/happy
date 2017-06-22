@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+	
+	function calClosure(num1, num2) {
+		return function (comm) {
+			switch (comm) {
+			case "+": return num1 + num2;
+			case "-": return num1 - num2;
+			case "*": return num1 * num2;
+			case "/": return num1 / num2;
+			}
+		}
+	}
+	
+	var cal = calClosure(10, 5);
+	console.log(cal("+"));   // 15
+	console.log(cal("-"));   // 5
+	console.log(cal("*"));   // 50
+	console.log(cal("/"));   // 2	
+	</script>
+</body>
+</html>

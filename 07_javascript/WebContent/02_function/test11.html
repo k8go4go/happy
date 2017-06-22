@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+	var scope = "전역";
+	function func () {
+		console.log(scope);
+		var scope = "지역";
+		function inner() {
+			console.log(scope);
+		}
+		inner();
+	}
+	func();
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

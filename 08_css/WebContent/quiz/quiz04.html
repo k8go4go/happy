@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+button {
+	width: 110px;  height: 110px;
+}
+.spinner {
+    width: 100px;
+    height: 100px;
+    animation:spin 2s linear infinite;
+}
+@keyframes spin { 
+    100% {
+	    transform:rotate(360deg);
+    }
+}
+</style>
+</head>
+<body>
+    <button>
+        버튼 클릭하세요
+    </button>
+	<script>
+		document.querySelector("button").addEventListener("click", function () {
+			this.innerHTML = "<img src='../images/spinner.jpg' class='spinner'>";
+			this.disabled = true;
+		});		
+	</script>
+</body>
+</html>

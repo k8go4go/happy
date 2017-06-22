@@ -1,0 +1,79 @@
+<!-- 
+	팝업창 띄우기
+	
+	window.open(url, target, option);
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<button onclick="openPop(1);">팝업창1</button>	
+	<button onclick="openPop(2);">팝업창2</button>	
+	<button onclick="openPop(3);">팝업창3</button>	
+	<button onclick="openPop(4);">팝업창4</button>
+	
+	<h1 id="result"></h1>
+		
+<script>
+function openPop(type) {
+	switch (type) {
+	case 1:
+		window.open(
+				"http://www.naver.com", 
+				"pop1",
+				"width=400, height=300"
+		);
+		break;
+	case 2:
+		window.open(
+				"http://www.naver.com", 
+				"",
+				"width=400, height=300"
+		);
+		break;
+	case 3:
+		console.log(screen.width, screen.height);
+		var left = (screen.width - 400) / 2;
+		var top  = (screen.height - 300) / 2;
+		window.open(
+				"http://www.naver.com", 
+				"",
+				"top=" + top + ", left=" + left + ", width=400, height=300"
+		);
+		break;
+	case 4:
+		window.open(
+				"exam01_child.html", 
+				"",
+				"width=400, height=300"
+		);
+		break;
+	}
+}
+
+function doResult(msg) {
+	// msg를 id가 result인 엘리먼트의 innerHTML에 적용시킨다.
+	var result = document.querySelector("#result");
+	result.innerHTML = msg;
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		function Member(id, name, age) {
+			this.id = id;
+			this.name = name;
+			this.age = age;
+		}
+		Member.prototype.email = "a@a.com";
+		
+		var m1 = new Member("a", "aaa", 22);
+		console.log(m1.email);
+		
+		m1.email = "b@b.com";
+		console.log(m1.email);
+		
+		var m2 = new Member("a", "aaa", 22);
+		console.log(m2.email);
+		
+		delete m1.email;
+		console.log(m1.email);
+		
+		delete m2.email;
+		console.log(m2.email);
+		
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

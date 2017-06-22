@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>3초 동안 누가 많이 클릭하나</h1>
+	<div id="view">
+		<button onclick="doAction();">클릭</button>
+		<div id="result"></div>
+	</div>
+	
+	<script>
+		function doAction() {
+			var result = 
+				document.querySelector("#result");
+			if (!result.innerText) {
+				result.innerText = 0;
+			} 
+			result.innerText = 
+				parseInt(result.innerText) + 1;
+		}
+		setTimeout(function () {
+			var view = 
+				document.querySelector("#view");
+			
+			var result = 
+				document.querySelector("#result");
+			
+			
+			view.innerText = result.innerText + "회 클릭하였습니다.";
+		}, 3000);
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+

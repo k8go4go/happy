@@ -1,0 +1,43 @@
+<!-- 
+	함수의 매개변수 처리
+	arguments : 함수의 매개변수를 포함하고 있는 함수 내부의
+	                     프로퍼티(유사배열 객체)
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		function argsFunc() {
+			/*
+			for (var key in arguments) {
+				console.log(key, arguments[key]);
+			}
+			*/
+			console.log(arguments.length);
+			for (var i = 0; i < arguments.length; i++) {
+				console.log(arguments[i]);
+			}
+		}
+		console.dir(argsFunc);
+		
+		argsFunc(10);
+		argsFunc(1, 2, 3);
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

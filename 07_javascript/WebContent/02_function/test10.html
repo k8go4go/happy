@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+	function arrFor(arr, cb) {
+		for (var i = 0; i < arr.length; i++) {
+			cb(i, arr[i]);
+		}		
+	}
+	
+	var arr = [1, 2, 3, 4, 5];
+	var sum = 0;
+	/*
+	for (var i = 0; i < arr.length; i++) {
+		sum += arr[i];
+	}
+	*/
+	// 콜백함수 사용으로 변환
+	arrFor(arr, function (i, val) {
+		sum += val;
+	});
+	
+	console.log("배열의 합", sum);
+	
+	var evenSum = 0;
+	/*
+	for (var i = 0; i < arr.length; i++) {
+		if (i % 2 == 0) {
+			evenSum += arr[i];
+		}
+	}
+	*/
+	arrFor(arr, function (i, val) {
+		if (i % 2 == 0) {
+			evenSum += val;
+		}
+	});
+	console.log("짝수의 합", evenSum);
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

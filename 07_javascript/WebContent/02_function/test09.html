@@ -1,0 +1,48 @@
+<!-- 
+	콜백함수 : 함수를 결과로 리턴하기
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		/*
+		function func() {
+			function callback() {
+				console.log("콜백 실행됨");
+			}
+// 			return callback();
+			return callback;
+		}	
+		*/
+		
+		// 익명함수로 변환
+		function func() {
+			return function() {
+				console.log("콜백 실행됨");
+			};
+		}	
+		/*
+		var myCall = func();
+		myCall();
+		*/
+		func()();
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

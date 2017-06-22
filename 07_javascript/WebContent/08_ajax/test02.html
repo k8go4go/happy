@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/library.js"></script>
+</head>
+<body>
+	<h1>Ajax 호출(서블릿)</h1>
+	<div id="result"></div>
+	<br>
+	<button>호출</button>
+	<script>
+		$("button").on("click", function () {
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState == 4) {
+					if (xhr.status == 200) {
+						$("#result").html(xhr.responseText);
+					}
+				}
+			};
+			xhr.open("GET", "test02", true);
+			xhr.send();
+		});
+	</script>	
+		
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

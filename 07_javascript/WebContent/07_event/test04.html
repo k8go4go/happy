@@ -1,0 +1,55 @@
+<!-- 
+	이벤트 강제 발생 시키기
+	객체.이벤트타입();
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	button {
+		width: 200px;
+		height: 100px;
+		color: white;
+		background: tomato;
+		border: 2px solid black;
+		font-size: 25px;
+	}
+	span { font-size: 25px; }
+</style>
+</head>
+<body>
+	<button>클릭</button>
+	<span>0</span>
+	
+	<script>
+		var btn = document.querySelector("button");
+		var span = document.querySelector("span");
+		
+		btn.addEventListener("click", function(e) {
+			span.innerHTML = parseInt(span.innerHTML) + 1;
+		});
+		
+		setInterval(function() {
+			// 버튼 클릭
+			btn.click();
+		}, 1000);
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

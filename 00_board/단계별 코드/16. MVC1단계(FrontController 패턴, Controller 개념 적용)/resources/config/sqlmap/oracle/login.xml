@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.mlec.login.mapper.LoginMapper">
+
+	<resultMap id="loginMap" type="Login">
+	    <result column="id" property="id" />
+	    <result column="pass" property="pass" />
+	    <result column="name" property="name" />
+	</resultMap>
+	
+	<select id="selectLogin" parameterType="Login" resultMap="loginMap">
+	    select *         
+		  from tb_user  
+		 where id = #{id}
+		   and pass = #{pass}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,34 @@
+employee.txt 파일내용
+-------------------------
+김철수:29:기획부:3000
+나철김:25:영업부:2500
+다철수:25:편집부:2900
+김일수:21:자바부:3300
+김봉수:33:언어부:3500
+-------------------------
+
+Exam03.java 파일내용
+----------------------------------------------------------------------------------------------------
+public class Exam03 {
+    public static void main(String[] args) {
+        try {
+            searchEmployeeInfo("iodata/employee.txt", "김");
+            searchEmployeeInfo("iodata/employee.txt", "다");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * 
+     * @param readFileName : 읽을 파일명
+     * @param lastName     : 찾을 성씨
+     * @throws Exception
+     */
+    public static void searchEmployeeInfo(String readFileName, String lastName) 
+            throws Exception {
+
+        // 내용 구현
+    }   
+}
+----------------------------------------------------------------------------------------------------

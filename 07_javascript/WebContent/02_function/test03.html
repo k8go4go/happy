@@ -1,0 +1,44 @@
+<!-- 
+	- 함수의 오버로딩을 지원하지 않는다.
+	- 동일한 이름의 함수가 있을 경우 덮어쓰기 방식으로 처리된다.
+	- 함수 호출시 매개변수의 개수는 호출에 상관없다.
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		var func = function () {
+			console.log(0);
+		};
+		func();
+		function func() {
+			console.log(1);
+		}
+		func();
+		function func() {
+			console.log(2);
+		}
+		func();
+		function func(num1, num2, num3) {
+			console.log(3);
+		}
+		func(1, 2, 3);
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

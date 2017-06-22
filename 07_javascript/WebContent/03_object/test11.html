@@ -1,0 +1,61 @@
+<!-- 
+	자바스크립트 생성자
+	
+	- 일반 함수
+	- 대문자로 시작(선택적) : Date, Number, Object, String..
+	- 함수에 클래스의 역활을 부여 : new 와 함께 사용
+	- 생성자 함수내에서 this는 생성된 객체를 나타낸다.
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+	/*
+		function member(id, name, age) {
+			return {id: id, name: name, age: age};
+		}
+	*/
+		function Member(id, name, age) {
+			this.id = id;
+			this.name = name;
+			this.age = age;
+// 			this.info = function () {
+// 				console.log(this.id, this.name, this.age);
+// 			};
+		}	
+	
+		var m1 = new Member("kim", "김신", 22);
+		/*
+		m1.info = function () {
+			console.log(this.id, this.name, this.age);
+		};
+		*/
+// 		console.log(m1);
+		m1.info();
+		
+		var m2 = new Member("lee", "이우영", 33);
+// 		console.log(m2);
+		m2.info();
+		
+		
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

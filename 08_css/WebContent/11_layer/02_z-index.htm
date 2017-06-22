@@ -1,0 +1,42 @@
+<html>
+<head>
+<title> z-index 변경 </title>
+<meta charset="utf-8" />
+<style type="text/css">
+	#layer1 {
+		position: absolute;
+		left: 200px;  top: 200px;
+		font-size: 100px;
+		color: yellow;
+		z-index: 99999;
+	}
+	
+	#layer2 {
+		position: absolute;
+		left: 210px;  top: 210px;
+		font-size: 100px;
+		color: tomato;
+		z-index: 1;
+	}
+</style>
+<body>
+	<div align="center">
+	   <h3> [ z-index 활용 ] </h3>
+	   <hr />
+	</div>
+	<div id="layer1">Java94</div>
+	<div id="layer2">Java94</div>
+	
+	<div id="layer3">
+	   layer-3
+	</div>
+	
+	<div id="layer4">
+	   layer-4
+	</div>
+	
+	<div id="layer5">
+	   layer-5
+	</div>
+</body>
+</html>

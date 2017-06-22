@@ -1,0 +1,48 @@
+<!-- 
+	객체의 프로퍼티 삭제
+	
+	delete 객체.프로퍼티명
+	
+	delete 객체 :  불가능, 객체 삭제는 불가능
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		var obj = {
+			"id": "hong",
+			"name": "홍길동",
+			"email": "hong@a.com",
+			"info": function () {
+				console.log(this.id, this.name, this.email);
+			} 
+		};
+		
+		obj.info();
+		
+		delete obj.name;
+		
+		obj.info();
+		
+		delete obj;
+
+		obj.info();
+		
+		
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

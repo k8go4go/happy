@@ -1,0 +1,63 @@
+<!-- 
+	with(객체) {
+		// 객체 생략하고 프로퍼티 접근 가능
+	}
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		var member = {
+			id: "hong",
+			setId: function (id) {
+				this.id = id;
+			},
+			getId: function () {
+				return this.id;
+			}
+		};
+		
+		console.log( member.getId() );
+		member.setId("tester");
+		console.log( member.getId() );
+		
+		function getId() {
+			return "aaa";
+		}
+		
+		with (member) {
+			console.log( getId() );
+			setId("tester");
+			console.log( getId() );
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

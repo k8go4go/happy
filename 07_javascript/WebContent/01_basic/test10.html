@@ -1,0 +1,52 @@
+<!-- 
+	false 인 경우
+	null, undefined, 0, '', NaN
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		// !!는 데이터가 가지고 있는 값을 boolean으로 
+		// 출력할 때 사용
+		console.log("!!0", !!0);
+		console.log("!!''", !!'');
+		console.log("!!null", !!null);
+		console.log("!!undefined", !!undefined);
+		console.log("!!NaN", !!NaN);
+		
+		var id;
+		if (id) {
+			console.log("id가 값이 있는 경우임...");
+		}
+		else {
+			console.log("id가 값이 없는 경우임...");
+			id = 200;
+		}
+		console.log("id", id);
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

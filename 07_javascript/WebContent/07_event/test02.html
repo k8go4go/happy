@@ -1,0 +1,64 @@
+<!-- 
+	이벤트 객체
+	이벤트가 발생하게 되면 발생된 이벤트에 대한 정보를 
+	가지고 있는 객체
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	button {
+		width: 200px;
+		height: 100px;
+		color: white;
+		background: tomato;
+		border: 2px solid black;
+		font-size: 25px;
+	}
+</style>
+</head>
+<body>
+	<button id="btn1">시작</button>
+	<button id="btn2">종료</button>
+	
+	<script>
+		var btn = document.querySelectorAll("button");
+		for (var i = 0; i < btn.length; i++) {
+			btn[i].onclick = function(e) {
+// 				console.dir(e);
+
+				// 이벤트 발생한 대상 객체 : button
+				var obj = e.target;
+				console.log(obj.innerHTML);
+				
+				// 좌표값을 이용한 작업
+				// 이벤트 발생 대상 객체의 좌표
+				console.log(obj.offsetLeft, obj.offsetTop);
+				
+				// 이벤트 발생 객체와 클릭된 위치와의 차이
+				console.log(e.offsetX, e.offsetY);
+				
+				// 브라우져와의 거리
+				console.log(e.clientX, e.clientY);
+				
+				// 스크린에서의 거리
+				console.log(e.screenX, e.screenY);
+				
+			};
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

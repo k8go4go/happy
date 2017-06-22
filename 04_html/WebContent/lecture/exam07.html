@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	table {
+		width: 500px;
+	}
+	table, th, td {
+		border: 1px solid #444;
+	}
+</style>
+</head>
+<body>
+	<h1>테이블 연습</h1>
+	
+	<!-- 
+		table, tr, td, th, tbody, thead, tfoot	
+		tr 태그는 table 태그 또는 tbody, thread, tfoot
+		td, th 태그는 tr 태그에 포함되어 있어야 한다.	
+	 -->
+	 <table>
+	 	<thead>
+		 	<tr>
+			 	<th>번호1</th>
+			 	<th>번호2</th>
+		 	</tr>
+	 	</thead>
+	 	<tr>
+		 	<td>1</td>
+		 	<td>2</td>
+	 	</tr>
+	 	<tr>
+		 	<td>3</td>
+		 	<td>4</td>
+	 	</tr>
+	 </table>
+	 
+	 <!-- colspan -->
+	 <h1>테이블 연습 2(컬럼 합치기)</h1>
+	 <table>
+	 	<thead>
+		 	<tr>
+			 	<th>번호1</th>
+			 	<th>번호2</th>
+		 	</tr>
+	 	</thead>
+	 	<tr>
+		 	<td>1</td>
+		 	<td>2</td>
+	 	</tr>
+	 	<tr>
+		 	<td>3</td>
+		 	<td>4</td>
+	 	</tr>
+	 	<tr>
+		 	<td colspan="2">5</td>
+	 	</tr>
+	 </table>
+	 	 
+	 <!-- rowspan -->
+	 <h1>테이블 연습 3(행 합치기)</h1>
+	 <table>
+	 	<thead>
+		 	<tr>
+			 	<th>번호1</th>
+			 	<th>번호2</th>
+		 	</tr>
+	 	</thead>
+	 	<tr>
+		 	<td rowspan="2">1</td>
+		 	<td>2</td>
+	 	</tr>
+	 	<tr>
+		 	<td>3</td>
+	 	</tr>
+	 	<tr>
+		 	<td>5</td>
+		 	<td>6</td>
+	 	</tr>
+	 </table>	 
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

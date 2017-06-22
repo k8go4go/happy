@@ -1,0 +1,52 @@
+<!-- 
+	콜백함수 : 매개변수에 함수 넘기기
+	
+	함수가 한번만 사용된다면 익명함수의 사용을 권장
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+	function func(callback) {
+		callback();
+	}
+	
+	function myCall() {
+		console.log("myCall 호출됨");
+	}
+	
+// 	func( myCall() );
+// 	func( myCall );
+	// 익명함수 활용
+	func(function () {
+		console.log("myCall 호출됨");
+	});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

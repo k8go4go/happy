@@ -1,0 +1,110 @@
+<!-- 
+	select option의 동적 추가 및 삭제
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form name="mForm">
+		<button type="button" onclick="add();">추가</button>
+		<button type="button" onclick="del();">삭제</button>
+		<select name="hobby">
+			<option value="">선택하세요</option>
+		</select>
+	</form>
+	
+	<script>
+		function add() {
+			var selObj = document.mForm.hobby;
+			
+			// 세번째 방식
+			// innerHTML 활용
+			selObj.innerHTML += "<option value='0'>Option-0</option>";
+			
+			// 두번째 방식. Dom API 활용방식
+			/*
+			   <option value="0">Option-0</option>
+			   
+			   var opt = document.createElement("option");
+			   <option></option>
+			   
+			   opt.value = 0;
+			   <option value="0"></option>
+			   
+			   var text = document.createTextNode("Option-0");
+			   Option-0
+			   
+			   opt.appendChild(text);
+			   <option value="0">Option-0</option>
+			   
+			   selObj.appendChild(opt);
+			   <select>
+			   	   ...
+				   <option value="0">Option-0</option>
+			   </select>
+			*/
+			/*
+			var opt = document.createElement("option");
+			opt.value = 0;
+			var text = document.createTextNode("Option-0");
+			opt.appendChild(text);
+			selObj.appendChild(opt);
+			*/
+			
+			/*
+			// 첫번째 추가 방식
+			// select 객체의 option 항목들에 접근
+			var optArr = selObj.options;
+			optArr[optArr.length] = new Option("Option-0", "0");
+			*/
+		}
+		function del() {
+			var selObj = document.mForm.hobby;
+			// options 배열에서 항목을 null로 설정 
+			var optArr = selObj.options;
+			// 마지막 요소 삭제
+			// optArr[optArr.length -1] = null;
+			
+			// 하나의 항목만 남겨두고 삭제
+			/*
+			for (var i = optArr.length -1; i > 0; i--) {
+				optArr[i] = null;
+			}
+			*/
+			
+			// 배열의 길이를 조절
+			optArr.length = 1;
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

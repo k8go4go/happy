@@ -1,0 +1,41 @@
+<!-- 
+	함수안의 함수(내부 함수)
+	- 내부함수의 호출은 자신이 선언된 외부함수에서만
+	   접근이 가능하다.
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		function outerFunc() {
+			console.log("outerFunc()");
+			function innerFunc() {
+				console.log("innerFunc()");
+			}
+			innerFunc();  // 호출가능
+		}
+// 		innerFunc();  // 에러		
+		
+		outerFunc();
+		
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

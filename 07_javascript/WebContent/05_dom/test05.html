@@ -1,0 +1,63 @@
+<!-- 
+	속성 추가, 변경
+	
+	dom api 활용방식 : 사용자 정의 속성 설정이 가능
+	사용자 정의 속성은 웹 표준에 어긋난다.
+	data-속성명
+	
+	
+	객체.setAttribute("data-속성명", "값");
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/library.js"></script>
+</head>
+<body>
+	<button onclick="doAdd();">추가</button>
+	<div id="list"></div>	
+
+	<script>
+		/*
+			추가버튼 클릭 시
+			img 엘리먼트 생성 후 id가 list인 엘리먼트에 자식 추가
+			img 엘리먼트의 src 속성으로 pic1.jpg
+			넓이(200), 높이(150)을 설정
+			
+			<div id="list">
+				<img src="pic1.jpg" width="200" height="150">
+		    </div>
+		*/
+		function doAdd() {
+			// <img>
+// 			var imgEl = document.createElement("img");
+			var imgEl = $("<img>");
+			
+			//	<img src="pic1.jpg" width="200" height="150">
+			imgEl.setAttribute("src", "pic1.jpg");
+			imgEl.setAttribute("width", 200);
+			imgEl.setAttribute("height", 150);
+			
+			// 사용자 정의 속성 : 설정
+			imgEl.setAttribute("data-msg", "test");
+			
+			
+			
+			$("#list").appendChild(imgEl);
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

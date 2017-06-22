@@ -1,0 +1,48 @@
+<!-- 
+	this  
+	: 상황에 따라서 결정
+	
+	객체의 프로퍼티 함수 호출 시 함수 안에서의 this는 
+	함수를 호출한 객체에 바인딩 된다.
+	
+	전역함수 안에서의 this는 전역객체(window)에 바인딩 된다.
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		var member1 = { name: "홍길동" };
+		var member2 = { name: "이순신" };
+		
+		function msg () {
+			console.log( 
+					this.name + "님이 입장하였습니다." );
+		}
+		member1.msg = msg;
+		member2.msg = msg;
+		
+		member1.msg();
+		member2.msg();
+		
+		window.name = "윈도우";
+		msg();
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

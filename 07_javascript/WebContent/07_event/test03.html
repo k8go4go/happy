@@ -1,0 +1,64 @@
+<!-- 
+	표준 이벤트 방식
+	html
+	----------------------
+	<button></button>
+	
+	script
+	----------------------
+	var btn = document.querySelector("button");
+	btn.addEventListener(이벤트 타입, 콜백함수(이벤트리스너), 전파여부);
+	
+	btn.addEventListener("click", test, true/false);
+	function test() {} 
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	button {
+		width: 200px;
+		height: 100px;
+		color: white;
+		background: tomato;
+		border: 2px solid black;
+		font-size: 25px;
+	}
+</style>
+</head>
+<body>
+	<button id="btn1">시작</button>
+	<button id="btn2">종료</button>
+
+	<script>
+		var btn = document.querySelectorAll("button");
+		for (var i = 0; i < btn.length; i++) {
+			btn[i].addEventListener("click", function(e) {
+				var obj = e.target;
+				console.log(obj.offsetLeft, obj.offsetTop);	
+				console.log(e.offsetX, e.offsetY);	
+				console.log(e.clientX, e.clientY);	
+				console.log(e.screenX, e.screenY);	
+			});
+		}
+	</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		var msg = "글로벌 영역";
+		var obj = {
+			msg: "obj",
+			func1: function () {
+				var fn1 = this;
+				console.log("func1", this.msg);
+				function func2() {
+					console.log("func2", fn1.msg);
+				}
+				func2();
+			}
+		}
+		obj.func1();
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

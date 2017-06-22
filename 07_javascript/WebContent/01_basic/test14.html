@@ -1,0 +1,69 @@
+<!-- 
+	배열
+	- 크기가 동적으로 변경된다.
+	- 크기가 지정되어 있지 않은 경우에도 데이터의 입력 가능
+	- 여러가지 데이터 타입의 값들을 하나의 배열에 입력 할 수 있다.
+	- 배열의 생성 :  []  또는 Array() 활용
+	- 배열의 길이 : 배열의이름.length, 가장 큰 인덱스 + 1 한 값이다.
+	
+	- 배열의 인덱스 위치에 문자열을 넣을 수 있다.
+	  (배열은 객체 데이터 타입)
+	- 문자열을 키로 사용한 경우에는 크기에 포함되지 않는다.
+	- 문자열을 키로 사용하는 것은 권장하지 않는다.  
+	             
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		var arr = [];
+		console.log("arr.length", arr.length);
+		console.log("arr[0]", arr[0]);
+		// 크기가 지정되지 않아도 값을 입력할 수 있다.
+		arr[0] = 10;		
+		arr[2] = 30;
+		console.log("arr[0]", arr[0]);
+		console.log("arr[1]", arr[1]);
+		console.log("arr[2]", arr[2]);
+		// 배열의이름.length, 가장 큰 인덱스 + 1 한 값이다.
+		console.log("arr.length", arr.length);
+		
+		// 문자열을 키로 사용한 경우에는 크기에 포함되지 않는다
+		arr["id"] = "mlec";
+		console.log("arr.length", arr.length);
+		
+		// 객체의 값을 확인 : for in 반복
+		console.log("arr 객체의 키, 값 확인");
+		for (var key in arr) {
+			console.log(key, arr[key]);
+		}
+		
+		console.log(arr);
+		
+		arr["99"] = "input";
+		console.log(arr.length);
+		
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

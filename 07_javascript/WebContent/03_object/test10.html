@@ -1,0 +1,64 @@
+<!-- 
+	객체 활용
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		/*
+			3명의 사용자 정보를 관리
+			kim    김    22
+			lee    이    33
+			koo    쿠    44
+		*/
+		/*
+		var m1 = {id: "kim", name: "김", age: 22};
+		var m2 = {id: "lee", name: "이", age: 33};
+		var m3 = {id: "koo", name: "쿠", age: 44};
+		console.log(m1.id, m1.name, m1.age);
+		console.log(m2.id, m2.name, m2.age);
+		console.log(m3.id, m3.name, m3.age);
+		*/
+		/*
+		var arr = [
+			{id: "kim", name: "김", age: 22},
+			{id: "lee", name: "이", age: 33},
+			{id: "koo", name: "쿠", age: 44}
+		];
+		for (var i = 0; i < arr.length; i++) {
+			console.log(arr[i].id, arr[i].name, arr[i].age);
+		}
+		*/
+		function member(id, name, age) {
+			return {id: id, name: name, age: age};
+		}
+		
+		var arr = [
+			member("kim", "김", 22),
+			member("lee", "이", 33),
+			member("koo", "쿠", 44)
+		];
+		for (var i = 0; i < arr.length; i++) {
+			console.log(arr[i].id, arr[i].name, arr[i].age);
+		}
+		
+		
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

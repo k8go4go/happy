@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<button onclick="createPop();">생성</button>
+	<button onclick="movePop();">이동</button>
+	<button onclick="sizePop();">사이즈 변경</button>
+	
+	<script>
+		var pop;
+		function createPop() {
+			pop = window.open("", "", "width=400, height=400");
+			
+			/*
+			// 팝업창 무한 발생
+			sizePop();
+			pop.onunload = function () {
+				createPop();
+			}
+			*/
+		}
+		function movePop() {
+			// 절대좌표
+// 			pop.moveTo(200, 200);			
+			// 상대좌표
+			pop.moveBy(30, 30);			
+		}
+		function sizePop() {
+			// 절대값 변경
+// 			pop.resizeTo(500, 500);
+			// 상대값 변경
+// 			pop.resizeBy(30, 30);
+			
+			// 화면 채우기
+			pop.resizeBy(screen.width, screen.height);
+		}
+	</script>
+	
+</body>
+</html>
+
+
+
+
+

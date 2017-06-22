@@ -1,0 +1,39 @@
+data1.txt 파일내용
+-------------------------
+Wind Direction
+Wind Speed
+Temperature
+Humidity
+-------------------------
+
+data2.txt 파일내용
+-------------------------
+WindDirection
+wind Speed
+temPerature
+Humidity!
+-------------------------
+
+Exam01.java 파일내용
+----------------------------------------------------------------------------------------------------
+import java.io.*; 
+
+public class Exam01 { 
+
+    public static void dataCheck(String file1 , String file2) throws Exception{
+        // 구현하세요~ ---------------------------------------------------
+        // 비교 대상 파일인 file1 과 file2 에는 문자열 데이터의 라인수가 같다고 가정합니다~!!
+
+        // --------------------------------------------------------------
+    }   
+    
+    // main 메서드는 수정하지 마세요.
+    public static void main(String[] args) throws Exception {       
+        try {
+            dataCheck("iodata/data1.txt", "iodata/data2.txt");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }    
+}
+----------------------------------------------------------------------------------------------------

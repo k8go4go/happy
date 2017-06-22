@@ -1,0 +1,33 @@
+<!-- 
+	javascript 파일을 별도로 생성해서 참조하는 방식
+	순서
+	1. .js 확장자를 가진 파일을 생성
+	2. 스크립트 파일을 사용하려는 html 문서에서
+	   <script src="외부파일의 위치"></script>
+	주의
+	<script src="..">여기에 스크립트 넣으면 실행 안됨</script>   
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>외부 스크립트 파일 참조</h1>
+	<script src="test02.js">alert(2);</script>
+	<script>
+		alert(2);
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

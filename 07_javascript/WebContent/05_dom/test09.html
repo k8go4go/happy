@@ -1,0 +1,45 @@
+<!-- 
+	자신의 부모 : parentNode
+	삭제 처리 : removeChild  - 
+	
+	parentNode.removeChild(삭제할 엘리먼트)
+	parentNode.appendChild(추가할 엘리먼트)
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<button onclick="doAdd()">추가</button>
+	<button onclick="doDel()">삭제</button>
+	
+	<div id="list"></div>
+	
+	<script>
+	function doAdd() {
+		var list = document.querySelector("#list");
+		list.innerHTML += "<h1>테스트</h1>";
+	}
+	
+	function doDel() {
+		var h1Obj = document.querySelector("h1");
+		h1Obj.parentNode.removeChild(h1Obj);
+	}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

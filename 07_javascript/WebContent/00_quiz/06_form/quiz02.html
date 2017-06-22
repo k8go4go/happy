@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	* { margin: 0px; padding: 0px; }
+	
+	ul { 
+		list-style: none;
+		margin: 20px;
+		width: 120px;
+		height: 150px;
+ 		float: left; 
+	}
+	
+	li {
+		background: #888;
+		width: 120px;
+		height: 30px;
+		padding: 2px;
+	}
+	
+	#result {
+ 		float: left; 
+	    border: 5px solid tomato;
+	    margin-top: 20px;
+	    width: 500px;
+	    height: 60px;
+		box-sizing: border-box;
+		line-height: 50px;
+	}
+	
+	span {
+		padding-left: 10px;
+	}
+	
+	.close {
+		margin-left: 2px;
+		vertical-align: text-bottom;
+	}
+</style>
+<script src="../../js/library.js"></script>
+</head>
+<body>
+<ul id="memberUL">
+	<li>
+		<input type="checkbox" id="c_1" value="JAVA" />
+		<label for="c_1">JAVA</label>
+	</li>
+	<li>
+		<input type="checkbox" id="c_2" value="SQL" />
+		<label for="c_2">SQL</label>
+	</li>
+	<li>
+		<input type="checkbox" id="c_3" value="HTML" />
+		<label for="c_3">HTML</label>
+	</li>
+	<li>
+		<input type="checkbox" id="c_4" value="CSS" />
+		<label for="c_4">CSS</label>
+	</li>
+	<li>
+		<input type="checkbox" id="c_5" value="JAVASCRIPT" />
+		<label for="c_5">JAVASCRIPT</label>
+	</li>
+</ul>
+
+<div id="result"></div>
+
+<script>
+	$("input[type=checkbox]").on("click", doAction);
+
+	function doAction() {
+		var id = this.id.replace("c_", "");
+		if (this.checked) add(id, this.value); 
+		else              del(id);
+	}
+	
+	function add(id, val) {
+		var result = $("#result");
+		var html = "<span id='s_" + id + "'>" + val
+		         +       "<button class='close' onclick='allDel(" + id + ")'>X</button>"
+		         + "</span>";
+		result.html(result.html() + html); 
+	}
+	
+	function del(id) {
+		$("#s_" + id).remove();
+	}
+	
+	function allDel(id) {
+		// 화면 제거
+		del(id);
+		// 체크 상태 변경
+		$("#c_" + id).prop("checked", false);
+	}
+</script>
+</body>
+</html>

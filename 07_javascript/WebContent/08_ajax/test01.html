@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/library.js"></script>
+</head>
+<body>
+	<h1>Ajax 통신으로 서버에서 받은 메세지</h1>
+	<div id="result"></div>
+	<br>
+	<button>Ajax 호출</button>
+	
+	<script>
+		/*
+		$("button").click(function () {
+			
+		});
+		*/
+		/*
+		$("button").on("click", function () {
+			var xhr = new XMLHttpRequest();
+			// 콜백함수 적용
+			xhr.onreadystatechange = function () {
+				// readyState : 0 - 4 변한다.
+				// 4 : 서버에서 모든 응답이 왔을때
+				if (xhr.readyState == 4) {
+					// 서버의 응답이 정상 처리되었을 경우
+					if (xhr.status == 200) {
+						// 서버 응답결과 출력하기
+						$("#result").html(xhr.responseText);
+					}
+				}
+			};
+			// 비동기 방식 서버요청
+			// 요청방식, 호출페이지, 동기/비동기
+			xhr.open("GET", "hello.jsp", true);
+			xhr.send();
+		});
+		*/
+		
+		$.ajax();
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

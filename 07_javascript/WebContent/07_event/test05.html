@@ -1,0 +1,45 @@
+<!-- 
+	 기본 이벤트 중지시키기
+	 : 이벤트객체.preventDefault();
+	 : e.preventDefault();
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>	
+	<form id="f1" onsubmit="return chkForm();">
+		<button>확인</button>
+	</form>	
+	<form id="f2">
+		<button>확인</button>
+	</form>	
+	
+	<script>
+		var f = document.querySelector("#f2");
+		f.onsubmit = function (e) {
+			alert("form 서브밋 들어옴");
+			// 서브밋 중지하기(기본 이벤트 중지)
+// 			e.preventDefault();
+
+			// 기본 설정된 이벤트 중지 + 이벤트 전파 중지
+			return false;
+		};
+	
+		function chkForm() {
+			return false;
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

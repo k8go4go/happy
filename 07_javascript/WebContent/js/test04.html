@@ -1,0 +1,54 @@
+<!-- 
+	innerHTML, innerText
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="library.js"></script>
+</head>
+<body>
+	<button onclick="doAction(1)">HTML 추출</button>
+	<button onclick="doAction(2)">HTML 설정</button>
+	<button onclick="doAction(3)">Text 추출</button>
+	<button onclick="doAction(4)">Text 설정</button>
+	
+	<div id="list">연습1</div>
+	
+	<script>
+		function doAction(type) {
+			switch (type) {
+			case 1:
+// 				console.log("html추출", $("#list").innerHTML);
+				console.log("html추출", $("#list").html());
+				break;
+			case 2:
+// 				$("#list").innerHTML = "<h1>태그 추가</h1>";
+				$("#list").html("<h1>태그 추가</h1>");
+				break;
+			case 3:
+// 				console.log("text추출", $("#list").innerText);
+				console.log("text추출", $("#list").text());
+				break;
+			case 4:
+// 				$("#list").innerText = "<h1>태그 추가</h1>";
+				$("#list").text("<h1>태그 추가</h1>");
+				break;
+			}
+		} 
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

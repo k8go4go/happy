@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+	function Member(id) {
+		this.id = id;
+	}		
+	Member.prototype = {
+		info: function () {
+			console.log(this.id);
+		}	
+	}
+	
+	Member.prototype.consturctor = Member;
+	var m = new Member("hong");
+	console.log(m);
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

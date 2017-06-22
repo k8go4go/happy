@@ -1,0 +1,60 @@
+<!-- 
+	이벤트 전파
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	div, h1 {
+		border: 3px solid black;
+		margin: 20px;
+	}
+</style>
+</head>
+<body>
+	<div id="outer">
+		<div id="inner">
+			<h1 id="h1Obj">이벤트 전파</h1>
+		</div>
+	</div>
+	<div id="debug"></div>	
+	
+	<script>
+		var outer = document.querySelector("#outer");		
+		var inner = document.querySelector("#inner");		
+		var h1obj = document.querySelector("#h1Obj");
+		
+		outer.addEventListener("click", function(e) {
+			debug("outer");
+		});
+		inner.addEventListener("click", function(e) {
+			debug("inner");
+		});
+		h1obj.addEventListener("click", function(e) {
+			debug("h1obj");
+			// 이벤트 전파 중지
+			e.stopPropagation();
+		});
+		
+		function debug(msg) {
+			var d = document.querySelector("#debug");
+			d.innerHTML += msg + "<br>";
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

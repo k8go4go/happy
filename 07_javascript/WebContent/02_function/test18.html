@@ -1,0 +1,52 @@
+<!-- 
+	특정 엘리먼트 접근하기
+	var element = document.querySelector("css selector");
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+</head>
+<body>
+	<div>
+		<button onclick="start();">시작</button>
+		<button onclick="stop();">중지</button>
+	</div>
+	<div id="timeDiv">시작 버튼을 누르세요</div>
+	
+	<script>
+		var timer;
+		function start() {
+			var date = new Date();
+			var time = date.toLocaleTimeString();
+			var timeDiv = 
+				document.querySelector("#timeDiv");
+			timeDiv.innerHTML = time;
+			timer = setTimeout(start, 1000);
+		}
+		function stop() {
+			clearTimeout(timer);
+		}
+		/*
+		console.dir(timeDiv);
+		console.log(timeDiv.innerHTML);
+		console.log(timeDiv.innerText);
+		*/
+		
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

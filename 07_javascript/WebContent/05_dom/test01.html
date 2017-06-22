@@ -1,0 +1,75 @@
+<!-- 
+	dom api
+	<h1>test</h1>
+	
+	엘리먼트 노드 생성하기
+	var ele = document.createElement("엘리먼트명");
+	var ele = document.createElement("h1");
+	
+	텍스트 노드 생성하기
+	var txNode = document.createTextNode("텍스트");
+	var txNode = document.createTextNode("test");
+	
+	특정 엘리먼트의 자식으로 추가
+	parentNode.appendChild(childNode);
+	ele.appendChild(txNode);
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<button onclick="doAdd(1);">H1추가</button>
+	<button onclick="doAdd(2);">DIV추가</button>
+	<div id="list1">H1 추가 영역</div>
+	<div id="list2">DIV 추가 영역</div>
+	
+	<script>
+	function doAdd(type) {
+		// type = 1 일 경우 H1 엘리먼트 생성 후 
+		// id가 list1인 div 영역에 추가
+		// type = 2 일 경우 div 엘리먼트 생성 후 
+		// id가 list2인 div 영역에 추가
+		var ele,
+		    text;
+		switch (type) {
+		case 1:
+			ele = document.createElement("h1");
+			text = document.createTextNode("h1");
+			break;
+		case 2:	
+			ele = document.createElement("div");
+			text = document.createTextNode("div");		
+			break;
+		}
+		// 생성된 엘리먼트에 텍스트 노드 추가
+		// <h1>h1</h1>,   <div>div</div>
+		ele.appendChild(text);
+		
+		// 엘리먼트를 추가할 div 가져오기
+		var listEl = document.querySelector(
+				"#list" + type
+		);
+		
+		// div에 새롭게 생성한 엘리먼트 추가하기
+		listEl.appendChild(ele);
+		
+	}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

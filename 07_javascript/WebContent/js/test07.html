@@ -1,0 +1,83 @@
+<!-- 
+	form이 submit 되는 시점에 호출
+	
+	onsubmit="return false;"  : submit 취소됨
+	onsubmit="return false; 이외의 "  : submit 실행
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="library.js"></script>
+</head>
+<body>
+	<form name="mForm" onsubmit="return doAction();" 
+	      action="result.html">
+		id: <input type="text" name="id" /><br>
+		pass: <input type="text" name="pass" /><br>
+		pass 확인: <input type="text" name="pass2" /><br>
+		<button type="button" onclick="doAction()">전송</button>
+	</form>
+	
+	<script>
+		function doAction() {
+			// id, pass, pass확인  입력이 되지 않은 경우
+			// return false 반환
+			var f = document.mForm;
+			
+			var pass = $("input[name=pass]");
+			var pass2 = $("input[name=pass2]");
+			
+			if ($("input[name=id]").val() == "") {
+				alert("아이디를 입력하세요");
+				$("input[name=id]").focus();
+				return false;
+			}
+			
+			if (pass.val() == "") {
+				alert("pass를 입력하세요");
+				pass.focus();
+				return false;
+			}
+			
+			if (pass2.val() == "") {
+				alert("pass 확인을 입력하세요");
+				pass2.focus();
+				return false;
+			}
+			
+			if (pass.val() != pass2.val()) {
+				alert("pass를 확인하세요");
+				
+				pass2.val("");
+				
+				pass.select();
+				pass.focus();
+				
+				return false;
+			}
+			
+			// 모든 체크가 올바르다면 폼을 서브밋 한다.
+			// 폼의 action을 변경해야 할경우
+			f.action = "aaa.html";
+			f.submit();
+		}
+	</script>
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

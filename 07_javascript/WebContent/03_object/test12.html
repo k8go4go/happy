@@ -1,0 +1,47 @@
+<!-- 
+	prototype 공간 활용
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		function Member(id, name, age) {
+			this.id = id;
+			this.name = name;
+			this.age = age;
+		}	
+		Member.prototype.info = function () {
+			console.log(this.id, this.name, this.age);
+		};
+	
+		var m1 = new Member("kim", "김신", 22);
+		m1.info = function () {
+			console.log("m1의 정보", this.id, this.name, this.age);
+		};
+		m1.info();
+		
+		var m2 = new Member("lee", "이우영", 33);
+		m2.info();
+		
+		
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

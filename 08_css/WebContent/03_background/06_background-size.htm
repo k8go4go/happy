@@ -1,0 +1,55 @@
+<!-- 
+	background-size : auto, 크기지정, 백분율, 
+	                : cover(엘리먼트의 큰쪽을 기준으로 확대 또는 축소)
+	                : contain(엘리먼트의 작은쪽을 기준으로 확대 또는 축소) 
+	
+	background-size : 배경 이미지의 크기 지정
+	//  넓이가 줄어드는 비율만큼 높이도 비율단위로 줄어든다.
+    background-size : 200px;
+    background-size : 200px 150px;
+    background-size : 50%;
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+	img {
+		margin-top: 10px;
+	}
+	#contain {
+		width: 574px;  height: 358px;
+		/* 배경이미지 지정 */
+		background: url("../images/pic4.jpg") no-repeat;
+		
+		/* 배경이미지 크기 조절 */
+		background-size: 287px 358px;
+		background-size: 287px 179px;
+		background-size: 287px;
+		background-size: 50%;
+		
+		border: 1px solid black;
+		width: 90%; height: 200px;
+		background-size: contain;
+	}
+	#cover {
+		background: url("../images/pic4.jpg") no-repeat;
+		border: 1px solid black;
+		width: 90%; height: 200px;
+		background-size: cover;
+	}
+	
+</style>
+</head>
+<body>
+    <div id="contain"></div>
+    <div id="cover"></div>
+    <img src="../images/pic4.jpg" />
+</body>
+</html>
+
+
+
+
+
+

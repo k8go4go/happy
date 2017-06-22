@@ -1,0 +1,67 @@
+<!-- 
+	고전 이벤트 방식
+	<button onclick="test()" style="....">클릭</button>
+	
+	<button>클릭</button>
+		
+	var btn = document.querySelector("button");
+	btn.onclick = test;
+	function test() {}
+	
+	btn.onclick = function() {};
+	
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	button {
+		width: 200px;
+		height: 100px;
+		color: white;
+		background: tomato;
+		border: 2px solid black;
+		font-size: 25px;
+	}
+</style>
+</head>
+<body>
+	<button id="btn1">시작</button>
+	<button id="btn2">종료</button>
+	
+	<script>
+		var btn1 = document.querySelector("#btn1");
+		var btn2 = document.querySelector("#btn2");
+		btn1.onclick = test1;
+// 		btn2.disabled = true;
+		function test1() {
+			alert(this.innerHTML);
+			this.onclick = null;
+			
+// 			btn1.disabled = true;
+// 			btn2.disabled = false;
+			btn2.onclick = test2;
+		}
+		function test2() {
+			alert(this.innerHTML);
+			this.onclick = null;
+			btn1.onclick = test1;
+// 			btn1.disabled = false;
+// 			btn2.disabled = true;
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

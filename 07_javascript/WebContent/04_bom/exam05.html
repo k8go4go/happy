@@ -1,0 +1,53 @@
+<!-- 
+	navigator
+	
+	userAgent : 접속한 사용자의 시스템 정보등을 가져온다.
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		console.log(navigator.userAgent);
+		var msg;
+		var agent = navigator.userAgent;
+		if (agent.indexOf("iPhone") != -1) {
+			msg = "iPhone 에서 접속함";
+		}
+		else if (agent.indexOf("Android") != -1) {
+			msg = "Android 에서 접속함";
+		}
+		else if (agent.indexOf("Chrome") != -1) {
+			msg = "Chrome 에서 접속함";
+		}
+		alert(msg);
+		
+	</script>
+</body>
+</html>
+
+<!-- 
+http://www.naver.com
+http://m.naver.com
+핸드폰 브라우져
+http://www.naver.com
+이동
+http://m.naver.com
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+

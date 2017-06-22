@@ -1,0 +1,41 @@
+<!-- 
+	즉시 실행 함수
+	
+	- 함수를 정의함과 동시에 바로 실행
+	- 최초 한번만 실행하는 코드를 처리하기 적합
+	- 대다수의 자바스크립트 라이브러리에서 사용
+	
+	형태
+	(함수정의)([매개변수, ...]);
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		(function () {
+			console.log("즉시실행 함수 호출됨..");
+		})();
+		
+		(function (msg) {
+			console.log("함수 실행됨", msg);
+		})("테스트");
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

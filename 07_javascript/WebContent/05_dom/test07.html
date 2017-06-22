@@ -1,0 +1,55 @@
+<!-- 
+	document.createElement
+	document.createTextNode
+	appendChild
+	
+	->
+	innerHTML 을 이용한 엘리먼트 추가
+	
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<button onclick="doAdd(1);">H1추가</button>
+	<button onclick="doAdd(2);">DIV추가</button>
+	<div id="list1">H1 추가 영역</div>
+	<div id="list2">DIV 추가 영역</div>	
+
+	<script>
+	function doAdd(type) {
+		var list = document.querySelector("#list" + type);
+		// <h1>h1</h1>
+		switch (type) {
+		case 1:
+			list.innerHTML += "<h1>h1</h1>";
+			break;
+		case 2:
+			list.innerHTML += "<div>div</div>";
+			break;
+		}
+	}	
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

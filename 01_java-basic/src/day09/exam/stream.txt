@@ -1,0 +1,23 @@
+------WebKitFormBoundary2DYFs87zeHyw9BZx
+Content-Disposition: form-data; name="id"
+
+hong
+------WebKitFormBoundary2DYFs87zeHyw9BZx
+Content-Disposition: form-data; name="pass"
+
+1234
+------WebKitFormBoundary2DYFs87zeHyw9BZx
+Content-Disposition: form-data; name="uploadfile"; filename="test.txt"
+Content-Type: text/plain
+
+commons-fileupload
+commons-fileupload
+1.3.1
+------WebKitFormBoundary2DYFs87zeHyw9BZx
+Content-Disposition: form-data; name="uploadfile2"; filename="abc.txt"
+Content-Type: text/plain
+
+abcd
+efg
+hijk
+------WebKitFormBoundary2DYFs87zeHyw9BZx--

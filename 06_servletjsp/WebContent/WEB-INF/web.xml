@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>06_servletjsp</display-name>
+  <!-- 
+  <filter>
+  	<filter-name>MyFilter</filter-name>
+  	<filter-class>servlet.filter.MyFilter</filter-class>
+  	<init-param>
+  		<param-name>app-name</param-name>
+  		<param-value>/servletjsp</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>server-ip</param-name>
+  		<param-value>192.168.0.20</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>MyFilter</filter-name>
+	<url-pattern>*</url-pattern>  
+  </filter-mapping>
+   -->
+  
+  <!-- 
+  	서블릿을 특정 URI와 연결하는 방법
+  	1. 서블릿 등록
+  	2. 등록된 서블릿을 특정 URI와 매핑 
+    -->
+  <servlet>
+  	<servlet-name>test01</servlet-name>
+  	<servlet-class>servlet.basic.Test01</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>test01</servlet-name>
+  	<url-pattern>/servlet/basic/Test01</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+  	<servlet-name>test02</servlet-name>
+  	<servlet-class>servlet.basic.Test02</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>test02</servlet-name>
+  	<url-pattern>/servlet/basic/Test02</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+  	<servlet-name>test03</servlet-name>
+  	<servlet-class>servlet.basic.Test03</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>test03</servlet-name>
+  	<url-pattern>/servlet/basic/Test03</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+  	<servlet-name>test04</servlet-name>
+  	<servlet-class>servlet.basic.Test04</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>test04</servlet-name>
+  	<url-pattern>/servlet/basic/Test04</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+  	<servlet-name>test05</servlet-name>
+  	<servlet-class>servlet.basic.Test05</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>test05</servlet-name>
+  	<url-pattern>/servlet/basic/Test05</url-pattern>
+  </servlet-mapping>
+  
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
+
+
+
+
+
+
+
+

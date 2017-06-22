@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>로또결과</title>
+<script>
+	var lotto = new Array(0, 0, 0, 0, 0, 0);
+	var pos = 0; // 현재 배열의 로또 위치
+	var num = 0;
+	var loc = 1;
+
+	function imgChange() {
+		var lottoNum = Math.floor(Math.random() * 45) + 1;
+		document.querySelector("#lottoDiv" + loc).innerHTML 
+		= "<img width='40' height='40' src='images/ball" + lottoNum + ".gif' />";
+		
+		if (num != 0) {
+			num--;
+			setTimeout(imgChange, 100);
+		} else {
+			num = 30;
+			if (dupCheck(lottoNum) == false) {
+				setTimeout(imgChange, 100);
+			} else {
+				lotto[pos++] = lottoNum; 
+				loc++;
+				if (loc < 7) {
+					setTimeout(imgChange, 100);
+				} 
+			}
+		}
+	}
+	
+	function dupCheck(no) {
+		for ( var j = 0; j < pos; j++ ) {
+			if (no == lotto[j]) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	function doStart() {
+		num = 30;
+		setTimeout(imgChange, 100);
+	}
+</script>
+</head>
+<body>
+<div align="center">
+	<hr width="50%" />
+	<h2>로또게임</h2>
+	<hr width="50%" />
+	<div class="lotto">
+		<span id="lottoDiv1"></span>
+		<span id="lottoDiv2"></span>
+		<span id="lottoDiv3"></span>
+		<span id="lottoDiv4"></span>
+		<span id="lottoDiv5"></span>
+		<span id="lottoDiv6"></span>
+	</div>
+	<hr width="50%" />
+	<br />
+	<a href="javascript:doStart();">추첨시작</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	p {
+		font-size: 20px;
+		font-weight: bold;
+		height: 40px;
+		background: tomato;
+		color: white;
+		text-align: center;
+		line-height: 40px;		
+	}
+	
+	p:hover {
+		background: black;
+	}
+	
+	div {
+		height: 500px;
+		background: yellow;
+		font-size: 20px;
+		overflow: auto;
+	}
+	
+</style>
+</head>
+<body>
+	<p>마우스 이벤트 연습</p>
+	<div></div>
+	
+	<script>
+		var pObj = document.querySelector("p");		
+		var divObj = document.querySelector("div");
+		
+		pObj.addEventListener("mouseenter", function(e) {
+			debug("마우스가 들어갔습니다.");
+		});
+		pObj.addEventListener("mouseleave", function(e) {
+			debug("마우스가 빠져나갔습니다.");
+		});
+		pObj.addEventListener("mousedown", function(e) {
+			debug("마우스가 눌렸습니다.");
+		});
+		pObj.addEventListener("mouseup", function(e) {
+			debug("마우스가 올라갔습니다.");
+		});
+		pObj.addEventListener("mousemove", function(e) {
+			debug("마우스가 움직입니다.");
+		});
+		
+		function debug(msg) {
+			divObj.innerHTML = msg + "<br>" + divObj.innerHTML; 
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

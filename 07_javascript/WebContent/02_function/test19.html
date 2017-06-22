@@ -1,0 +1,38 @@
+<!-- 
+	// 밀리세켠 마다 콜백함수를 지속적으로 호출
+	var id = setInterval(콜백함수, 밀리세컨);
+	
+	clearInterval(id);
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		var i = 1;
+		function func() {
+			console.log(i++);
+		}
+		var id = setInterval(func, 1000);
+		setTimeout(function () {
+			clearInterval(id);
+		}, 5000);
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

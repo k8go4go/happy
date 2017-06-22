@@ -1,0 +1,36 @@
+<!-- 
+	밀리세컨드 뒤의 시간에 콜백함수를 실행시킨다.
+	var id = setTimeout(콜백함수, 밀리세컨드);
+	clearTimeout(id);
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+		function func() {
+			var date = new Date();
+			var time = date.toLocaleTimeString();
+			console.log(time);
+			var id = setTimeout(func, 1000);
+// 			clearTimeout(id);
+		}
+		func();
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

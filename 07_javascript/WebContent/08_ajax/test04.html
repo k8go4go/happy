@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/library.js"></script>
+</head>
+<body>
+	<h1>파라미터 처리</h1>
+	<div id="result">실행결과 표시</div>
+	<br>
+	<button id="clearBtn">초기화</button>	
+	<button id="getBtn">GET 호출</button>	
+	<button id="postBtn">POST 호출</button>	
+	<script>
+		$("#clearBtn").on("click", function () {
+			$("#result").html("실행결과 표시");
+		});
+		
+		$("#getBtn").on("click", function () {
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState == 4) {
+					if (xhr.status == 200) {
+						$("#result").html(xhr.responseText);
+					}
+				}
+			};
+			// 파라미터 추가
+			xhr.open("GET", "test04?msg=test", true);
+			xhr.send(null);
+		});
+		
+		$("#postBtn").on("click", function () {
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState == 4) {
+					if (xhr.status == 200) {
+						$("#result").html(xhr.responseText);
+					}
+				}
+			};
+			// 파라미터 추가
+			xhr.open("POST", "test04", true);
+			
+			// POST 방식일 경우 추가
+			// 헤더 정보 추가
+			xhr.setRequestHeader(
+					"Content-Type", "application/x-www-form-urlencoded")
+			xhr.send("msg=post test");			
+		});
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

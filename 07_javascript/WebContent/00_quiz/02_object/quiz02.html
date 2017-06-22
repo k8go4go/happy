@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	var MyMap = {
+		data: {},
+		count: 0,
+		put: function (key, value) {
+			this.data[key] = value;
+			this.count++;
+		}, 
+		size: function () {
+			return this.count;
+		},
+		get: function (key) {
+			return this.data[key];
+		},
+		del: function (key) {
+			delete this.data[key];
+			this.count--;
+		},
+		clear: function () {
+			this.data = {};
+			this.count = 0;
+		}
+	};
+	
+	// MyMap 객체 구현하기
+	var mData = MyMap;
+	mData.put("id", "sbc");
+	mData.put("name", "sonbyungchan");
+	
+	alert(mData.size());      // 2
+	alert(mData.get("id"));   // sbc
+	mData.del("id");          
+	alert(mData.get("id"));   // undefined	
+	mData.clear();
+	alert(mData.size());      // 0
+</script>
+</head>
+<body>
+
+</body>
+</html>

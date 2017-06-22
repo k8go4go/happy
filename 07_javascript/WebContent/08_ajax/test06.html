@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../js/library.js"></script>
+</head>
+<body>
+	<h1>XML 데이터 처리</h1>
+	<hr>
+	<div id="result">실행 결과</div>
+	<hr>
+	<button id="clearBtn">초기화</button>
+	<button id="sendBtn">호출</button>
+	
+	<script>
+		$("#clearBtn").on("click", function () {
+			$("#result").html("실행 결과");
+		});
+
+		$("#sendBtn").on("click", function () {
+			// GET, test05  호출
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState == 4) {
+					if (xhr.status == 200) {
+						// 서버에서 xml을 넘겨준 경우
+						var members = JSON.parse(xhr.responseText);
+						var html = "";
+						for (var i = 0; i < members.length; i++) {
+							var m = members[i];
+							html += "<p>이름 : " + m.name + ", 나이 : " + m.age + "</p>"; 
+						}
+						$("#result").html(html);
+					}
+				}
+			};
+			xhr.open("GET", "test06", true);
+			xhr.send(null);
+		});
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

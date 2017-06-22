@@ -1,0 +1,48 @@
+<!-- 
+	동적인 프로퍼티 추가
+	
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<script>
+	var obj = {};
+	
+	console.log("obj.id", obj.id);
+	// 프로퍼티 추가됨
+	obj.id = "hong";
+	obj["email"] = "hong@a.com";
+	
+	console.log(obj.id, obj.email);
+	
+	obj.getId = function () {
+		return this.id;
+	};
+	
+	obj.setId = function (id) {
+		this.id = id;
+	};
+	
+	obj.setId("tester");
+	console.log( obj.getId() );
+	
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

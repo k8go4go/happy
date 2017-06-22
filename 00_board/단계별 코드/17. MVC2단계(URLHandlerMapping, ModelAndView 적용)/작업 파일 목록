@@ -1,0 +1,10 @@
+- org.springframework.web 패키지 변경
+  : DispatcherServlet 변경
+  : Controller 인터페이스 변경
+  : ModelAndView, URLHandlerMapping 추가
+  
+  : kr.co.mlec.board.servlet -> kr.co.mlec.board.controller 로 변경
+  : kr.co.mlec.login.servlet -> kr.co.mlec.login.controller 로 변경
+  : kr.co.mlec.main -> kr.co.mlec.main.controller 로 변경
+    - Controller 내용 변경
+  

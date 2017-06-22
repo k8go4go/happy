@@ -1,0 +1,75 @@
+<!-- 
+	select box 의 선택된 항목의 인덱스 위치 가져오기
+	: select객체.selectedIndex
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form name="mForm" onsubmit="return chkForm();">
+		<select name="searchType">
+			<option value="">선택하세요</option>
+			<option value="writer">글쓴이</option>
+			<option value="title">제목</option>
+		</select>
+		<input type="text" name="searchWord" />
+		<button>검색</button>
+		
+		<button type="button" onclick="changeDisabled(false)">활성화</button>
+		<button type="button" onclick="changeDisabled(true)">비활성화</button>
+	</form>
+	
+	<script>
+		function changeDisabled(val) {
+			var selBox = document.mForm.searchType;
+			if (val) {
+				// 선택위치 지정
+				selBox.selectedIndex = 0;
+			}
+			selBox.disabled = val;
+		}
+	
+		function chkForm() {
+			var f = document.mForm;
+			var searchText = f.searchWord; 
+			// 검색어가 존재한다면 
+			// 검색항목이 "선택하세요"일 경우 경고메세지를 띄운다. 
+			if (searchText.value != "") {
+				// select 객체 : f.searchType
+				if (f.searchType.selectedIndex == 0) {
+					alert("검색 항목을 선택하세요");
+					return false;
+				}
+			}
+			// 검색어가 없는 경우
+			else {
+				if (f.searchType.selectedIndex != 0) {
+					alert("검색어를 입력하세요");
+					return false;
+				}
+			}
+			return true;
+		}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
