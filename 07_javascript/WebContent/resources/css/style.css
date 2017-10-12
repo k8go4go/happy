@@ -1,0 +1,92 @@
+@charset "utf-8";
+
+/* common ********************************************************************/
+
+/* select box */
+
+
+
+/* gridStack custom */
+.grid-stack-item-content {position:relative;}
+.grid-stack-item-content .tit {position:relative;height:60px;padding:19px 0px 0 10px;}
+.grid-stack-item-content .tit > i {position:absolute;left:10px;top:19px;font-size:20px;color:#1c1c1c;}
+.grid-stack-item-content .tit strong {display:block;padding:0 10px 0  20px; font-size:18px;color:#1c1c1c;font-weight:400;line-height:20px;vertical-align:top;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;}
+.grid-stack-item-content .tit a {position:absolute;top:13px;display:block;width:30px;height:30px;line-height:28px;text-align:center;color:#333;background:#fff;border:1px solid #ccc;border-radius:15px;box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.10);transition:all 0.1s;}
+.grid-stack-item-content .tit a:hover {box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.20);border-color:#666;}
+.grid-stack-item-content .tit a span{display:none;}
+.grid-stack-item-content .tit .xi-wrench {right:50px;font-size:16px;}
+.grid-stack-item-content .tit .xi-trash {right:13px;font-size:18px;}
+.grid-stack-item-content .overLayer {display:none;position:absolute;right:0;left:0;top:60px;bottom:0;background:rgba(255,255,255,0.96);font-size:15px;color:#1c1c1c;text-align:center;line-height:22px;}
+.grid-stack-item-content .overLayer p {position:absolute;left:0;top:50%;width:100%;margin-top:-86px;padding-top:68px;background:url('/resources/images/common/ico_widget_over.png') 50% 0 no-repeat;letter-spacing:-1px;}
+.grid-stack-item:hover .overLayer {display:block;}
+
+/* Dashboard Edit */
+.widgetAddLayer {position:absolute;right:0px;top:-28px;overflow:hidden;width:300px;border-radius:12px;box-shadow: 8px 12px 30px 0px rgba(0, 0, 0, 0.08);}
+.widgetAddLayer > a {position:relative;display:block;height:42px;padding-left:15px;line-height:42px;background:#30475d;color:#fff;font-weight:700;font-size:16px;}
+.widgetAddLayer .xi-drag-handle {position:absolute;left:50%;top:0;margin-left:-9px;font-size:18px;color:#7d8c99;}
+.widgetAddLayer .xi-angle-up {display:none;position:absolute;right:13px;top:12px;font-size:18px;color:#d5dade;}
+.widgetAddLayer .xi-angle-down {position:absolute;right:13px;top:12px;font-size:18px;color:#d5dade;}
+.widgetAddLayer.open .xi-angle-up {display:block;}
+.widgetAddLayer.open .xi-angle-down {display:none;}
+
+.widgetAddLayer .cont {display:none;padding-bottom:25px;background:#fff;}
+.widgetAddLayer.open .cont {display:block;}
+
+.widgetAddLayer .widgetSearch {position:relative;height:40px;background:#f4f8f9;border-bottom:1px solid #e0e4e5;}
+.widgetAddLayer .widgetSearch input {width:300px;padding:0 40px 0 15px;border:none;background:none;outline:none;line-height:40px;font-size:13px;color:#1c1c1c;}
+.widgetAddLayer .widgetSearch input::-webkit-input-placeholder {color:#666;}
+.widgetAddLayer .widgetSearch input:-ms-input-placeholder {color:#666;}
+.widgetAddLayer .widgetSearch input::-moz-input-placeholder {color:#666;}
+.widgetAddLayer .widgetSearch input:-moz-placeholder {color:#666;}
+.widgetAddLayer .widgetSearch a {position:absolute;right:0;top:0;display:block;width:40px;height:40px;line-height:40px;text-align:center;font-size:18px;color:#999;}
+.widgetAddLayer .widgetSearch a span {display:none;}
+.widgetAddLayer .widgetSearch input:focus + a {color:#1c1c1c;}
+
+.widgetAddLayer .sort {position:relative;padding:12px 17px 15px 15px;}
+.widgetAddLayer .sort:after {content:"";display:block;clear:both;}
+.widgetAddLayer .sort .cate {float:left;}
+.widgetAddLayer .sort .type {float:right;}
+
+.widgetAddLayer .sort .dropdown {position:relative;}
+.widgetAddLayer .sort .dropdown dt a {position:relative;display:inline-block;padding-right:20px;font-size:13px;color:#1c1c1c;opacity:0.5;}
+.widgetAddLayer .sort .dropdown dt a i.xi-angle-down-min {position:absolute;right:0px;top:3px;font-size:13px;color:#666;}
+.widgetAddLayer .sort .dropdown dt a:hover, .widgetAddLayer .sort .dropdown dt.open a {opacity:1}
+
+.widgetAddLayer .sort .dropdown dd {display:none;position:absolute;overflow:hidden;left:0;top:25px;;font-size:13px;line-height:22px;z-index:10;box-shadow: 0px 10px 20px 0px rgba(50, 60, 70, 0.3);background:#fff;border:1px solid #ddd;border-radius:8px;padding:11px 15px 9px 15px; }
+
+.widgetAddLayer .sort .cate .dropdown {width:170px;}
+.widgetAddLayer .sort .cate .dropdown dd {left:0;}
+.widgetAddLayer .sort .type .dropdown {width:80px;}
+.widgetAddLayer .sort .type .dropdown dt a {float:right;}
+.widgetAddLayer .sort .type .dropdown dd {right:0;}
+.widgetAddLayer .sort .dropdown dd i.xi-angle-down-min {display:none;}
+.widgetAddLayer .sort .dropdown dd a {display:block;font-size:13px;font-weight:300;color:#1c1c1c;}
+.widgetAddLayer .sort .dropdown dd a:hover {font-weight:400;}
+.widgetAddLayer .sort .dropdown dd em { display:none;}
+
+.widgetAddLayer .list {padding:0 10px}
+.widgetAddLayer .list:after {content:"";display:block;clear:both;}
+.widgetAddLayer .list li {float:left;width:120px;margin:0px 10px 20px 10px;text-align:center;}
+.widgetAddLayer .list li a {display:block;}
+.widgetAddLayer .list li .img {overflow:hidden;position:relative;width:120px;height:120px;border-radius:4px;border:1px solid #e3ebed;}
+.widgetAddLayer .list li .img:hover {border-color: #1f8efa;}
+.widgetAddLayer .list li .img .layer {display:none;position:absolute;left:0;top:0;width:120px;height:120px;border-radius:4px;background:url('/resources/images/common/thumb_widget_over_add.svg') no-repeat;}
+.widgetAddLayer .list li .img:hover .layer {display:block;}
+.widgetAddLayer .list li .img img {width:120px;height:120px;}
+.widgetAddLayer .list li strong {display:block;padding-top:6px;font-size:14px;color:#1c1c1c;font-weight:400;}
+.widgetAddLayer .list li:hover strong {font-weight:500;}
+
+.widgetAddLayer .paging {height:18px;font-size:0;text-align:center;}
+.widgetAddLayer .paging a {display:inline-block;margin:0 6px;line-height:18px;color:#999;font-size:13px;}
+.widgetAddLayer .paging a:hover {color:#666;}
+.widgetAddLayer .paging a.on {color:#1c1c1c;}
+.widgetAddLayer .paging .btn {width:18px;height:18px;border:1px solid #e0e4e5;border-radius:9px;box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);font-size:10px;line-height:16px;color:#1c1c1c;opacity:0.5;transition:all 0.1s;}
+.widgetAddLayer .paging .btn:hover {opacity:1;box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);}
+.widgetAddLayer .paging .btn span {display:none;}
+.widgetAddLayer .paging .xi-angle-left {text-indent:-2px;}
+.widgetAddLayer .paging .xi-angle-right {text-indent:2px;}
+
+
+
+
+
