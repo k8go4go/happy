@@ -74,10 +74,10 @@ var tgArr = [];
 			var opt = this._options;
 			this.tglArea = opt.tglArea;
 			this.tglObj = this.tglArea;
+			
 			this.tglBtn = this.tglObj.find("" + opt.tglBtn).eq(0);
 			this.tglCont = this.tglObj.find("" + opt.tglCont).eq(0);
-			this.innerBtn = this.tglCont.find("" + opt.innerBtn)
-			
+			this.innerBtn = this.tglCont.find("" + opt.innerBtn);
 			this.closeCallback = opt.closeCallback;
 			this.subMenuCallback = opt.subMenuCallback;
 			
@@ -89,14 +89,19 @@ var tgArr = [];
 		},
 		_hashHandler : function(){
 			var that = this;
+			var scName = "" + that.tglObj.selector + " "+that._options.tglBtn;
+			var scInnerName = "" + that.tglObj.selector + " "+that._options.tglCont + " "+that._options.innerBtn;
+			//console.log(scInnerName)
+			//$(document).on("click",scName,function(e){
 			that.tglBtn.off("click").on("click",function(e){
 				e.preventDefault();
-				
+	
 				if(!$(this).closest(".drop-ar").hasClass("dragged")){
 					//alert($(this).hasClass("open"))
 					if($(this).hasClass("open")){
 						that.hideCont();
 					}else {
+						
 						if(that.closeCallback != null)that.closeCallback();
 						that.tglCont.show();
 						$(this).addClass("open");
@@ -105,10 +110,11 @@ var tgArr = [];
 				
 			})
 
+			//$(document).on("click",scInnerName,function(e){
 			that.innerBtn.off("click").on("click",function(e){
-				
-				if(that.subMenuCallback != null)that.subMenuCallback($(this));
-				if(!$(this).closest(""+that.tglObj.selector).hasClass("non-ch")){
+
+				if(that.subMenuCallback != null)that.subMenuCallback(e,$(this),that.tglObj);
+				if(!that.tglObj.hasClass("non-ch")){
 					
 					that.tglCont.hide();
 					that.tglBtn.removeClass("open");
@@ -125,28 +131,7 @@ var tgArr = [];
 		
 		}
 		,
-		_setEvent : function() {
-			var that = this;
-			
-			$(document).on("click",this.menu.selector,{
-				me : this
-			}, function(e) {
-				
-				if(!that.hashEvent){
-					e.preventDefault();
-				}
-				
-				var me = e.data.me;
-				if(me.setIndex){
-					me.cIdx = $(this).attr("idx");
-				}else{
-					me.cIdx = $(this).index();
-				}
-				me._changeTab(me.cIdx);
-				
-				
-			})
-		},
+		
 		getArea : function(){
 			var that = this;
 			return that.tglObj
@@ -294,16 +279,19 @@ var tgArr = [];
 
 
 
-$(window).load(function() {
+$(document).ready(function() {
 	
-	
-
+		
+		
 	// 기타 토글 버튼 UI
 	$(".drop-ar").each(function(){
-		$tgler = $(this);
-		var toggle = new tu.ui.Toggle();
-		toggle.show({tglArea : $tgler , innerBtn : "a",closeCallback : otherClose});
+		var dropToggle = new tu.ui.Toggle();
+		dropToggle.show({tglArea : $(this) , innerBtn : "a",closeCallback : otherClose });
 	})
+
+
+	
+	//닫기 컨트롤
 	function otherClose(){
 		for(var i = 0; i<tgArr.length; i++ ){
 			if(!tgArr[i].getArea().is(".non-ch"))tgArr[i].hideCont();
@@ -318,7 +306,7 @@ $(window).load(function() {
 
 	
 	//좌측 상단 커버스토리 메뉴 클릭 콜백
-	function coverMenuControl(el){
+	function coverMenuControl(e,el){
 		var $menu = el;
 		$(".cover-ar .drop-bt span").html($menu.html());
 		
@@ -328,64 +316,83 @@ $(window).load(function() {
 
 
 
-	//대시보드1 토글
-	var dashToggle1 = new tu.ui.Toggle();
-	dashToggle1.show({tglArea : $(".dash1-ar") , innerBtn : "a",closeCallback : otherClose, subMenuCallback : dashMenuControl });
-
-	//대시보드2 토글
-	var dashToggle2 = new tu.ui.Toggle();
-	dashToggle2.show({tglArea : $(".dash2-ar") , innerBtn : "a",closeCallback : otherClose, subMenuCallback : dashMenuControl });
-
-	//대시보드3 토글
-	var dashToggle3 = new tu.ui.Toggle();
-	dashToggle3.show({tglArea : $(".dash3-ar") , innerBtn : "a",closeCallback : otherClose, subMenuCallback : dashMenuControl });
-
+	//대시보드 토글
 	
-	function dashMenuControl(el){
+	$(".dash1-ar").each(function(){
+		var dashToggle1 = new tu.ui.Toggle();
+		dashToggle1.show({tglArea : $(this) , innerBtn : "a",closeCallback : otherClose, subMenuCallback : dashMenuControl });
+	})
+	
+	function dashMenuControl(e,el,parent){
 		var $menu = el;
-		alert(el.text());
+		if(el.text() == "삭제"){
+			parent.remove();
+		};
 		
 	}
+
+
+	// 대시보드 추가
+	$(".addSuc").on("click",function(e){
+		e.preventDefault();
+
+		var wrapper = $("<li>",{class : 'dash1-ar'});
+		var data = '<a href="#">DASHBOARD 3</a><a href="" class="xi-ellipsis-h drop-bt"><span>설정</span></a><ul class="boardMenu_setting drop-ct"><li><a href="#">이름변경</a></li><li><a href="#">삭제</a></li></ul>'
+
+		var dash = wrapper.append(data) ;
+		$(".menu").append(dash);
+
+		var dashToggle1 = new tu.ui.Toggle();
+		dashToggle1.show({tglArea : dash , innerBtn : "a",closeCallback : otherClose, subMenuCallback : dashMenuControl });
+		
+	})
 	
 	
 
 	
+
+
 
 	//채널 토글
 	var channelToggle1 = new tu.ui.Toggle();
 	channelToggle1.show({tglArea : $(".channel-ar") , innerBtn : "a",closeCallback : otherClose, subMenuCallback : channelMenuControl });
 
 	
-	function channelMenuControl(el){
+	function channelMenuControl(e,el,parent){
 		var $menu = el;
-		$(".channel-ar .drop-bt span").html($menu.html());
+		parent.find(".drop-bt span").html($menu.html());
 		
 	}
-
+	
 
 	
 
 	//위젯 카테고리 토글
-	var wgCateToogle = new tu.ui.Toggle();
-	wgCateToogle.show({tglArea : $(".category-ar") , innerBtn : "a",closeCallback : otherClose, subMenuCallback : wgCateMenuControl });
+	$(".category-ar").each(function(){
+		var wgCateToogle = new tu.ui.Toggle();
+		wgCateToogle.show({tglArea : $(this) , innerBtn : "a",closeCallback : otherClose, subMenuCallback : wgCateMenuControl });
+	})
 	
-	function wgCateMenuControl(el){
+	
+	function wgCateMenuControl(e,el,parent){
 		var $menu = el;
-		$(".category-ar .drop-bt span").html($menu.html());
+		parent.find(".drop-bt span").html($menu.html());
 		
 	}
 
 
 	//위젯 인기순 토글
-	var wgRankToogle = new tu.ui.Toggle();
-	wgRankToogle.show({tglArea : $(".rank-ar") , innerBtn : "a",closeCallback : otherClose, subMenuCallback : wgRankMenuControl });
-
+	$(".rank-ar").each(function(){
+		var wgRankToogle = new tu.ui.Toggle();
+		wgRankToogle.show({tglArea : $(this) , innerBtn : "a",closeCallback : otherClose, subMenuCallback : wgRankMenuControl });
+	});
 	
-	function wgRankMenuControl(el){
+	function wgRankMenuControl(e,el,parent){
 		var $menu = el;
-		$(".rank-ar .drop-bt span").html($menu.html());
+		parent.find(".drop-bt span").html($menu.html());
 		
 	}
+
 
 
 	
@@ -400,6 +407,8 @@ $(window).load(function() {
 		searchBox.find("input").val(searchTxt);
 		searchSetting.hide();
 	})
+
+
 
 
 
@@ -418,6 +427,9 @@ $(window).load(function() {
 			setTimeout(function(){ that.removeClass('dragged') }, 200);
 		}
 	});
+
+
+
 
 	// datePicker 
 	var datepickerSetting = function(){
@@ -556,8 +568,17 @@ $(window).load(function() {
 	$(window).trigger("scroll");
 
 
-
 	//footer 공지사항 슬라이드
 	var slide = new tu.ui.Slide({item : $(".rollingNotice li"), next : $(".rollingNotice .up"), prev :$(".rollingNotice .down")}); 
 	slide.show();
+
+});
+
+$(document).ready(function(){
+	
+	$('.grid-stack').gridstack({
+		width: 12
+	});
+	//scrollbar jqeury
+	$('.scrollbar-inner').scrollbar();
 });

@@ -375,6 +375,14 @@
 		});
 	};
 	
+/*	// 이미 그려진 차트에 다시 차트 그리기
+	function setDataChart(chartData, id , type){
+		zingchart.exec('id', 'setdata', {
+			data : {type :  type , series:[values:[]] }
+		}
+	}*/
+	
+	
 	// 차트별 기본정의
 	
 	
@@ -392,10 +400,10 @@
 			    thousandsSeparator: ",",
 			    decimalsSeparator: ".",
 			    decimals: "0",
-			    palette: ["#c98411","#281300","#991e00","#470000","#ff921f","#feb950","#704700","#8a773c"],
+			    palette: [], // "#c98411","#281300","#991e00","#470000","#ff921f","#feb950","#704700","#8a773c"
 			    minAlpha: .4,
-			    colorStart: "#336699", // #336699
-			    colorEnd: "#99ccff", // #99ccff
+			    colorStart: "", // #336699
+			    colorEnd: "", // #99ccff
 			    box: {bordercolor:""},
 			    tooltipBox: {},
 			    hoverState: {
